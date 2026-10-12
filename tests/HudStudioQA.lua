@@ -5,7 +5,7 @@ task.spawn(function()
     local layout=game.Players.LocalPlayer.PlayerGui.SimulatorUI.HudLayout
     local original=layout.Size
     local ok,err=pcall(function()
-        local controls={layout.PowerCard,layout.CoinsCard,layout.ActionDock.Shop,
+        local controls={layout.PowerCard,layout.CoinsCard,layout.MultiplierCard,layout.Mode,layout.ActionDock.Shop,
             layout.ActionDock.Gifts,layout.Rebirth,layout.Train,layout.Hint,layout.Notice}
         for _,size in {{320,568},{390,700},{568,320},{844,390},{1280,720}} do
             layout.Size=UDim2.fromOffset(size[1],size[2]); task.wait(.4)

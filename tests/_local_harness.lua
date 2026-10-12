@@ -63,10 +63,14 @@ function C.Requirements(rebirths)
     local factor = 1 + math.min(rebirths, C.RequirementGrowthCap) * C.RebirthRequirementGrowth
     return math.floor(C.RebirthPower * factor), math.floor(C.RebirthCoins * factor)
 end
-function C.Gains(data, stationMultiplier)
+function C.TrainingMultipliers(data, stationMultiplier)
     local m = C.Multiplier(data) * (stationMultiplier or 1) * C.PetMultiplier(data)
-    return math.floor(C.BasePower * (1 + data.Level * C.PowerLevelBonus) * m),
-        math.floor(C.BaseCoins * (1 + data.Level * C.CoinLevelBonus) * m)
+    return (1 + data.Level * C.PowerLevelBonus) * m,
+        (1 + data.Level * C.CoinLevelBonus) * m
+end
+function C.Gains(data, stationMultiplier)
+    local power, coins = C.TrainingMultipliers(data, stationMultiplier)
+    return math.floor(C.BasePower * power), math.floor(C.BaseCoins * coins)
 end
 function C.PetMultiplier(data)
     local pet = C.PetTypes[data.EquippedPet]
@@ -433,6 +437,12 @@ function Spec.Run()
     check(Pets.Equip(petData,"Bunny") and C.PetMultiplier(petData)==1.35,"owned pet bonus")
     local power,coins=C.Gains(petData,1)
     check(power==6 and coins==10,"server gains include single pet bonus")
+    local bonusData=Schema.New(); bonusData.Level=3; bonusData.Rebirths=2
+    bonusData.Pets.Bunny=1; bonusData.EquippedPet="Bunny"
+    local totalPower,totalCoins=C.TrainingMultipliers(bonusData,1.25)
+    check(math.abs(totalPower-3.348)<.000001 and math.abs(totalCoins-3.034125)<.000001,"separate total multipliers combine all active bonuses")
+    local gainPower,gainCoins=C.Gains(bonusData,1.25)
+    check(gainPower==math.floor(C.BasePower*totalPower) and gainCoins==math.floor(C.BaseCoins*totalCoins),"HUD multipliers match server gain formula")
     check(Schema.Validate(petData)~=nil,"pet profile valid")
     petData.Power=200; petData.Coins=150
     check(R.Apply(petData) and petData.Pets.Bunny==1 and petData.EquippedPet=="Bunny","rebirth preserves pets")

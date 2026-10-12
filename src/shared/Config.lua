@@ -50,10 +50,14 @@ function C.Requirements(rebirths)
     local factor = 1 + math.min(rebirths, C.RequirementGrowthCap) * C.RebirthRequirementGrowth
     return math.floor(C.RebirthPower * factor), math.floor(C.RebirthCoins * factor)
 end
-function C.Gains(data, stationMultiplier)
+function C.TrainingMultipliers(data, stationMultiplier)
     local m = C.Multiplier(data) * (stationMultiplier or 1) * C.PetMultiplier(data)
-    return math.floor(C.BasePower * (1 + data.Level * C.PowerLevelBonus) * m),
-        math.floor(C.BaseCoins * (1 + data.Level * C.CoinLevelBonus) * m)
+    return (1 + data.Level * C.PowerLevelBonus) * m,
+        (1 + data.Level * C.CoinLevelBonus) * m
+end
+function C.Gains(data, stationMultiplier)
+    local power, coins = C.TrainingMultipliers(data, stationMultiplier)
+    return math.floor(C.BasePower * power), math.floor(C.BaseCoins * coins)
 end
 function C.PetMultiplier(data)
     local pet = C.PetTypes[data.EquippedPet]

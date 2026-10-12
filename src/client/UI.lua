@@ -61,6 +61,11 @@ function UI.Build(player)
     local coinFont=Instance.new("UITextSizeConstraint"); coinFont.MinTextSize=12; coinFont.MaxTextSize=28; coinFont.Parent=refs.Coins
     refs.Mode=label(gui,UDim2.fromOffset(18,110),UDim2.fromOffset(240,19),"Загрузка данных…",11,palette.Muted)
     refs.Mode.TextXAlignment=Enum.TextXAlignment.Left
+    local multipliers=frame(gui,UDim2.fromOffset(164,64),UDim2.new(1,-12,0,16),Vector2.new(1,0),palette.Mint)
+    multipliers.Name="MultiplierCard"
+    local multiplierTitle=label(multipliers,UDim2.fromOffset(10,6),UDim2.new(1,-20,0,14),"ОБЩИЙ МНОЖИТЕЛЬ",10,palette.Muted)
+    refs.PowerMultiplier=label(multipliers,UDim2.fromOffset(10,24),UDim2.new(1,-20,0,16),"Сила  x1.00",13,palette.Mint)
+    refs.CoinMultiplier=label(multipliers,UDim2.fromOffset(10,42),UDim2.new(1,-20,0,16),"Монеты  x1.00",13,palette.Gold)
     local left=Instance.new("Frame"); left.Name="ActionDock"; left.Size=UDim2.fromOffset(152,120)
     left.Position=UDim2.new(0,16,0.5,0); left.AnchorPoint=Vector2.new(0,0.5); left.BackgroundTransparency=1; left.Parent=gui
     refs.Shop=button(left,UDim2.fromOffset(0,0),UDim2.fromOffset(152,54),"Магазин",palette.Blue)
@@ -183,6 +188,13 @@ function UI.Build(player)
         coins.AnchorPoint=small and Vector2.new(1,0) or Vector2.new(0.5,0)
         coins.Position=small and UDim2.new(1,-12,0,16) or UDim2.new(0.5,0,0,16)
         local statWidth=small and math.min(164,(v.X-36)/2) or 180
+        multipliers.Position=UDim2.new(1,-12,0,small and (v.Y<460 and 88 or 94) or 16)
+        multipliers.Size=UDim2.fromOffset(small and statWidth or 164,small and 48 or 64)
+        multiplierTitle.Position=UDim2.fromOffset(10,small and 3 or 6)
+        refs.PowerMultiplier.Position=UDim2.fromOffset(10,small and 17 or 24)
+        refs.CoinMultiplier.Position=UDim2.fromOffset(10,small and 31 or 42)
+        refs.PowerMultiplier.TextSize=small and 12 or 13; refs.CoinMultiplier.TextSize=small and 12 or 13
+        refs.Mode.Size=UDim2.fromOffset(small and statWidth or 240,19)
         power.Size=UDim2.fromOffset(statWidth,88); coins.Size=UDim2.fromOffset(small and statWidth or 172,72)
         refs.Power.Size=UDim2.new(1,-66,0,33); refs.Coins.Size=UDim2.new(1,-66,0,32)
         powerTitle.Size=UDim2.new(1,-66,0,17); coinTitle.Size=UDim2.new(1,-66,0,16)

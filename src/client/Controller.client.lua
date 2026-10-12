@@ -12,6 +12,13 @@ for _,obj in workspace:GetDescendants() do styleTrainingPrompt(obj) end
 local remotes=game.ReplicatedStorage:WaitForChild("SimulatorRemotes")
 local action=remotes:WaitForChild("Action")
 local state,rebirthToken,serverOffset
+local stationFactor=1
+local function renderMultipliers()
+    if not state then return end
+    local power,coins=C.TrainingMultipliers(state,stationFactor)
+    refs.PowerMultiplier.Text=("Сила  x%.2f"):format(power)
+    refs.CoinMultiplier.Text=("Монеты  x%.2f"):format(coins)
+end
 local noticeVersion=0
 local function showNotice(message)
     noticeVersion+=1
@@ -32,6 +39,7 @@ local function cooldownText(last,seconds,title,now)
 end
 local function render()
     if not state then return end
+    renderMultipliers()
     refs.Power.Text=tostring(state.Power)
     refs.Coins.Text=tostring(state.Coins)
     local petCount=0
@@ -118,12 +126,20 @@ task.spawn(function()
     while refs.Gui.Parent do
         local root=player.Character and player.Character:FindFirstChild("HumanoidRootPart")
         local near=false
+        local selectedFactor,nearest=1,math.huge
         if root and state then
             for _,station in pairs(C.Stations) do
-                if (root.Position-station.Position).Magnitude<=C.TrainDistance then near=true; break end
+                local distance=(root.Position-station.Position).Magnitude
+                if distance<=C.TrainDistance then
+                    near=true
+                    if distance<nearest and state.Level>=station.MinLevel then
+                        nearest=distance; selectedFactor=station.Multiplier
+                    end
+                end
             end
         end
         refs.Train.Visible=near
+        stationFactor=selectedFactor; renderMultipliers()
         task.wait(0.2)
     end
 end)
