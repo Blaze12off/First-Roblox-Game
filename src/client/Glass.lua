@@ -39,6 +39,12 @@ function Glass.Icon(parent,kind,accent,position,size)
         shape(.25,.37,.5,.42,3)
         local handle=shape(.37,.2,.26,.27,3); handle.BackgroundTransparency=1
         local st=Instance.new("UIStroke"); st.Color=accent; st.Thickness=2; st.Parent=handle
+    elseif kind=="Pets" then
+        shape(.25,.34,.5,.43,6)
+        local ear1=shape(.25,.22,.19,.22,2); ear1.Rotation=-20
+        local ear2=shape(.56,.22,.19,.22,2); ear2.Rotation=20
+        local eye1=shape(.36,.49,.06,.08,2); eye1.BackgroundColor3=Glass.Colors.Base
+        local eye2=shape(.58,.49,.06,.08,2); eye2.BackgroundColor3=Glass.Colors.Base
     elseif kind=="Gifts" then
         shape(.22,.4,.56,.1,2); shape(.27,.52,.46,.27,2); shape(.47,.28,.06,.52,2)
         local a=shape(.3,.26,.19,.1,3); a.Rotation=30

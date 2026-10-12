@@ -66,11 +66,14 @@ function UI.Build(player)
     local multiplierTitle=label(multipliers,UDim2.fromOffset(10,6),UDim2.new(1,-20,0,14),"ОБЩИЙ МНОЖИТЕЛЬ",10,palette.Muted)
     refs.PowerMultiplier=label(multipliers,UDim2.fromOffset(10,24),UDim2.new(1,-20,0,16),"Сила  x1.00",13,palette.Mint)
     refs.CoinMultiplier=label(multipliers,UDim2.fromOffset(10,42),UDim2.new(1,-20,0,16),"Монеты  x1.00",13,palette.Gold)
-    local left=Instance.new("Frame"); left.Name="ActionDock"; left.Size=UDim2.fromOffset(152,120)
+    local left=Instance.new("Frame"); left.Name="ActionDock"; left.Size=UDim2.fromOffset(152,186)
     left.Position=UDim2.new(0,16,0.5,0); left.AnchorPoint=Vector2.new(0,0.5); left.BackgroundTransparency=1; left.Parent=gui
     refs.Shop=button(left,UDim2.fromOffset(0,0),UDim2.fromOffset(152,54),"Магазин",palette.Blue)
     refs.Gifts=button(left,UDim2.fromOffset(0,66),UDim2.fromOffset(152,54),"Награды",palette.Gold)
-    for _,info in {{refs.Shop,"Shop",palette.Blue},{refs.Gifts,"Gifts",palette.Gold}} do
+    refs.Pets=button(left,UDim2.fromOffset(0,132),UDim2.fromOffset(152,54),"Яйца и питомцы",palette.Mint)
+    for _,info in {{refs.Shop,"Shop",palette.Blue},{refs.Gifts,"Gifts",palette.Gold},{refs.Pets,"Pets",palette.Mint}} do
+        info[1].AnchorPoint=Vector2.new(.5,.5)
+        info[1].Position+=UDim2.fromOffset(76,27)
         local caption=info[1].Text; info[1].Text=""
         Glass.Icon(info[1],info[2],info[3]); local captionLabel=label(info[1],UDim2.fromOffset(50,0),UDim2.new(1,-58,0,54),caption,15)
         captionLabel.Name="Caption"
@@ -133,11 +136,10 @@ function UI.Build(player)
         local m=menus[name]; m.Position=UDim2.new(.5,0,.5,12)
         TweenService:Create(m,TweenInfo.new(.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=UDim2.fromScale(.5,.5)}):Play()
     end
-    local shop=menu("Shop","МАГАЗИН",338)
+    local shop=menu("Shop","МАГАЗИН",272)
     label(shop,UDim2.fromOffset(20,64),UDim2.fromOffset(310,42),"Улучшения усиливают тренировку.\nУровень 3 открывает новую станцию.",15)
     refs.Upgrade=button(shop,UDim2.fromOffset(20,122),UDim2.fromOffset(310,48),"Улучшение: 25 монет")
     refs.Cosmetic=button(shop,UDim2.fromOffset(20,184),UDim2.fromOffset(310,62),"Косметика: за Rebirth",Color3.fromRGB(84,95,131))
-    refs.Pets=button(shop,UDim2.fromOffset(20,264),UDim2.fromOffset(310,48),"Яйца и питомцы",palette.Mint)
     local pets=menu("Pets","ЯЙЦА И ПИТОМЦЫ",520)
     local C=require(game.ReplicatedStorage.SimulatorShared.Config)
     refs.PetSummary=label(pets,UDim2.fromOffset(20,58),UDim2.fromOffset(310,34),"Питомцы: 0/50 • бонус x1.00",14)
@@ -200,9 +202,16 @@ function UI.Build(player)
         powerTitle.Size=UDim2.new(1,-66,0,17); coinTitle.Size=UDim2.new(1,-66,0,16)
         refs.Level.Size=UDim2.new(1,-28,0,17)
         local actionWidth=small and 138 or 152
-        left.Size=UDim2.fromOffset(actionWidth,120)
-        refs.Shop.Size=UDim2.fromOffset(actionWidth,54); refs.Gifts.Size=UDim2.fromOffset(actionWidth,54)
-        refs.Shop.Caption.TextSize=small and 14 or 15; refs.Gifts.Caption.TextSize=small and 14 or 15
+        local dockHeight=v.Y<460 and 44 or 54
+        local dockGap=v.Y<460 and 6 or 12
+        left.Size=UDim2.fromOffset(actionWidth,3*dockHeight+2*dockGap)
+        for index,b in {refs.Shop,refs.Gifts,refs.Pets} do
+            b.Size=UDim2.fromOffset(actionWidth,dockHeight)
+            b.Position=UDim2.fromOffset(actionWidth/2,(index-1)*(dockHeight+dockGap)+dockHeight/2)
+            b.Caption.Size=UDim2.new(1,-58,0,dockHeight)
+            b.Caption.TextSize=small and 14 or 15
+            b.Icon.Position=UDim2.fromOffset(12,(dockHeight-32)/2)
+        end
         refs.Rebirth.Size=UDim2.fromOffset(small and 148 or 164,88)
         local sideY=v.Y<460 and 136 or 152
         left.Position=UDim2.new(0,12,0,compact and sideY or v.Y*.5); left.AnchorPoint=Vector2.new(0,compact and 0 or .5)

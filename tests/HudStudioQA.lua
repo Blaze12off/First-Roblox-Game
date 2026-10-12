@@ -6,7 +6,7 @@ task.spawn(function()
     local original=layout.Size
     local ok,err=pcall(function()
         local controls={layout.PowerCard,layout.CoinsCard,layout.MultiplierCard,layout.Mode,layout.ActionDock.Shop,
-            layout.ActionDock.Gifts,layout.Rebirth,layout.Train,layout.Hint,layout.Notice}
+            layout.ActionDock.Gifts,layout.ActionDock.Pets,layout.Rebirth,layout.Train,layout.Hint,layout.Notice}
         for _,size in {{320,568},{390,700},{568,320},{844,390},{1280,720}} do
             layout.Size=UDim2.fromOffset(size[1],size[2]); task.wait(.4)
             local origin=layout.AbsolutePosition
@@ -23,7 +23,7 @@ task.spawn(function()
                         a.Name.." overlaps "..b.Name.." at "..size[1].."x"..size[2])
                 end
             end
-            assert(layout.ActionDock.Shop.AbsoluteSize.Y>=44 and layout.Train.AbsoluteSize.Y>=44,"Touch target too small")
+            assert(layout.ActionDock.Shop.AbsoluteSize.Y>=44 and layout.ActionDock.Pets.AbsoluteSize.Y>=44 and layout.Train.AbsoluteSize.Y>=44,"Touch target too small")
             local scale=layout.Train.InteractionScale
             scale.Scale=1; task.wait(.1)
             local centre=layout.Train.AbsolutePosition+layout.Train.AbsoluteSize/2
