@@ -39,7 +39,7 @@ local function render()
     refs.PetSummary.Text=("Питомцы: %d/%d • бонус x%.2f"):format(petCount,C.MaxPets,state.PetMultiplier)
     for id,b in pairs(refs.PetButtons) do
         local info=C.PetTypes[id]; local count=state.Pets[id] or 0
-        b.Text=("%s ×%d • +%d%%\n%s"):format(info.Name,count,math.floor(info.Bonus*100+.5),
+        b.Text=("%s ×%d • x%.2f\n%s"):format(info.Name,count,1+info.Bonus,
             count==0 and "Не получен" or state.EquippedPet==id and "Экипирован • снять" or "Экипировать")
     end
     refs.Level.Text="Уровень "..state.Level

@@ -1,18 +1,18 @@
 <roblox version="4">
-  <Item class="Workspace" referent="RBXc6cf8e582b8c4de0a584d48e004df38f">
+  <Item class="Workspace" referent="RBX7be0ce8696ba49b3825fa2652c413a7d">
     <Properties>
       <string name="Name">Workspace</string>
     </Properties>
-    <Item class="Terrain" referent="RBX14babbb0b38f4c798f1c360f76456802">
+    <Item class="Terrain" referent="RBX610846b916244d6a89a94a15206209df">
       <Properties>
         <string name="Name">Terrain</string>
       </Properties>
     </Item>
-    <Item class="Folder" referent="RBX722af189652c4f6c90bc124f6f62cc2b">
+    <Item class="Folder" referent="RBX38a9b06e3d6d42b1a8453d9a47f048ab">
       <Properties>
         <string name="Name">SimulatorWorld</string>
       </Properties>
-      <Item class="Part" referent="RBX50f74914065f42b8b634eb130184e4c8">
+      <Item class="Part" referent="RBXb915c3a1aaa74c478926274f3d1623e4">
         <Properties>
           <string name="Name">Ground</string>
           <bool name="Anchored">true</bool>
@@ -41,7 +41,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX33b67f45bc644fa986f4e7bc7e8512f0">
+      <Item class="Part" referent="RBX96c9ca49e1fd486685de1b010c16d2b8">
         <Properties>
           <string name="Name">StartingPlaza</string>
           <bool name="Anchored">true</bool>
@@ -70,7 +70,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX4461a41bea31402384b817613c76d972">
+      <Item class="Part" referent="RBX536af137e133445bbbfe0452993bbbbf">
         <Properties>
           <string name="Name">AdvancedPlaza</string>
           <bool name="Anchored">true</bool>
@@ -99,7 +99,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX181e9f1f55f3456e9449aa76afeb43f3">
+      <Item class="Part" referent="RBXad0467c7896c4d7786dce8bf93c4d5da">
         <Properties>
           <string name="Name">Path</string>
           <bool name="Anchored">true</bool>
@@ -128,7 +128,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXffb3684025f9489aa6dc0ee983e6d95f">
+      <Item class="Part" referent="RBXb644ca54e7194a278ca04f5c64791086">
         <Properties>
           <string name="Name">Basic</string>
           <bool name="Anchored">true</bool>
@@ -157,7 +157,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX31fb85c0cdb4488b84fdd8fa7e6e9450">
+      <Item class="Part" referent="RBX83e83cf744b84fdc9371d5dc89b8d610">
         <Properties>
           <string name="Name">Advanced</string>
           <bool name="Anchored">true</bool>
@@ -186,7 +186,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="SpawnLocation" referent="RBX368331bebae744358f70b760ed57cb3e">
+      <Item class="SpawnLocation" referent="RBX737c7159d8f54c659f73b555c479026a">
         <Properties>
           <string name="Name">SimulatorSpawn</string>
           <bool name="Anchored">true</bool>
@@ -219,27 +219,27 @@
       </Item>
     </Item>
   </Item>
-  <Item class="Players" referent="RBXe8c7bd244562481784805bc627f38fcc">
+  <Item class="Players" referent="RBXe90be5d52ab1468092467b45e40bdd4d">
     <Properties>
       <string name="Name">Players</string>
     </Properties>
   </Item>
-  <Item class="Lighting" referent="RBX5c6142075faf4da58fe5cd9282c50020">
+  <Item class="Lighting" referent="RBXf65c15e9eb184935b40147cd2a41e7c2">
     <Properties>
       <string name="Name">Lighting</string>
       <float name="ClockTime">14</float>
       <float name="Brightness">2</float>
     </Properties>
   </Item>
-  <Item class="ReplicatedStorage" referent="RBXc61c1a3eb8fe4b2f91992461811b251e">
+  <Item class="ReplicatedStorage" referent="RBX2423c2184e5747a68e5e15f6799b860e">
     <Properties>
       <string name="Name">ReplicatedStorage</string>
     </Properties>
-    <Item class="Folder" referent="RBX0a86218cc5044bee93f674e2a5e3bf99">
+    <Item class="Folder" referent="RBX0d590357180a44618f0cdc8a60c7211b">
       <Properties>
         <string name="Name">SimulatorShared</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBXe39557c158e6417d96b1aa71b48eb8b2">
+      <Item class="ModuleScript" referent="RBX4231d54e863244ab96b01000397c136d">
         <Properties>
           <string name="Name">Config</string>
           <ProtectedString name="Source">-- Balance lives here. No secrets and no client-supplied reward values.
@@ -307,7 +307,7 @@ return table.freeze(C)
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXe9397ab1e8484c2b844911298bf83ab0">
+      <Item class="ModuleScript" referent="RBXce99214ef31f459199dde2e4cbc280c2">
         <Properties>
           <string name="Name">TextStyle</string>
           <ProtectedString name="Source">-- Template rule: floating text must stay legible over bright platforms.
@@ -323,15 +323,15 @@ return TextStyle
       </Item>
     </Item>
   </Item>
-  <Item class="ServerScriptService" referent="RBX36c6a3a45dc744e6ba646ab5e045eabd">
+  <Item class="ServerScriptService" referent="RBX096bdcd9214540a28ce974f4e7a37472">
     <Properties>
       <string name="Name">ServerScriptService</string>
     </Properties>
-    <Item class="Folder" referent="RBX2b584838fd9f441190e0496adad4a770">
+    <Item class="Folder" referent="RBXbcfff352d6a74ab8a3484c6c4f71b836">
       <Properties>
         <string name="Name">Simulator</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBX9c38615f0f8943f7a2d946aa028ed814">
+      <Item class="ModuleScript" referent="RBX52825f6a698a4aa9be658978484b97bc">
         <Properties>
           <string name="Name">Schema</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -385,7 +385,7 @@ return Schema
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXf7f1626262da4735a47e580a112e7bce">
+      <Item class="ModuleScript" referent="RBX32cfd38784304c51ba9a3de74a4827cb">
         <Properties>
           <string name="Name">PlayerData</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -493,7 +493,7 @@ return PlayerData
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXb3c5cb8978e94494b5cbc0e2896012e5">
+      <Item class="ModuleScript" referent="RBXa4d1174d08974ed699cabce437015461">
         <Properties>
           <string name="Name">Progression</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -519,7 +519,7 @@ return P
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXe2898b4335ed41e19f4b86efe4647edd">
+      <Item class="ModuleScript" referent="RBXfcb019efc2834d26a32b294cec2f7ffe">
         <Properties>
           <string name="Name">Rebirth</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -536,7 +536,7 @@ return R
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXe8d650784a714833a78a54e77e0a0ae6">
+      <Item class="ModuleScript" referent="RBXc4eb6bf11a9646f8865678a9fb83bac8">
         <Properties>
           <string name="Name">Rewards</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -589,7 +589,7 @@ return Rewards
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX162bc042661a4a34a8078f92c1843411">
+      <Item class="ModuleScript" referent="RBX25bc44ed9e3241af98fbadd6476b8063">
         <Properties>
           <string name="Name">Pets</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -633,7 +633,7 @@ return Pets
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX11eeaa94d98348219970adfc16e3781e">
+      <Item class="ModuleScript" referent="RBX4bbd716ace034d82a50a02bf1b8b6a54">
         <Properties>
           <string name="Name">PetVisuals</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -676,7 +676,7 @@ return Visuals
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX702af9644d54408fbb0dc2f7811c66f8">
+      <Item class="ModuleScript" referent="RBX4e792a768d41485cb1168404ac4747a5">
         <Properties>
           <string name="Name">Security</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -711,7 +711,7 @@ return S
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX73b859f8848544588bc93336692a4b2c">
+      <Item class="ModuleScript" referent="RBXa14228996c294ba7bc0c6f59e5ba50ae">
         <Properties>
           <string name="Name">LeaderboardTemplate</string>
           <ProtectedString name="Source">-- Visual draft only: each ranking row is a separate solid plaque, no live data.
@@ -796,7 +796,7 @@ return Board
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXac49795f3ed749078cd7e0211dfd9a24">
+      <Item class="ModuleScript" referent="RBX3021b066b610409bb00d40b88b1c0f96">
         <Properties>
           <string name="Name">World</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -884,7 +884,7 @@ return World
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXcf554d9cefec41b9a6d2a66c066768d1">
+      <Item class="ModuleScript" referent="RBXf2d411cac7a3432d82e2d1fcbf20b96b">
         <Properties>
           <string name="Name">Network</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -911,7 +911,7 @@ return Network
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXbd30b0e5b42e42c6b8fe2c262500710e">
+      <Item class="ModuleScript" referent="RBX2e688a4e74aa488faccea6d549792542">
         <Properties>
           <string name="Name">Telemetry</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -930,7 +930,7 @@ return Telemetry
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXfe9910c24c3a4e67a47bb06086f6b3a9">
+      <Item class="ModuleScript" referent="RBX4818c4925b844533b3935251f15ef3ae">
         <Properties>
           <string name="Name">Runtime</string>
           <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -1140,18 +1140,18 @@ return Runtime
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Script" referent="RBX388163c75af24f51924e6637b30e24b8">
+      <Item class="Script" referent="RBXff0ff17823de4c469eac8bad69d3e6d4">
         <Properties>
           <string name="Name">Bootstrap</string>
           <ProtectedString name="Source">require(script.Parent.Runtime).Start()
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Folder" referent="RBXba6fbc86199d4d4e979d268da03e5ce7">
+      <Item class="Folder" referent="RBXf3316175ca86475db4c74c1cf8b7782d">
         <Properties>
           <string name="Name">Tests</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBXb64ae02e40554c3c95253b957a9857f6">
+        <Item class="ModuleScript" referent="RBXe2c98c8cd83a4020870bc46e36b49602">
           <Properties>
             <string name="Name">Spec</string>
             <ProtectedString name="Source">-- Server-only deterministic tests. No production DataStore, no real user records.
@@ -1314,7 +1314,7 @@ return Spec
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXbbebca2c06ef4b34b77281bdf8540b9b">
+        <Item class="ModuleScript" referent="RBX79ef9f7a66414cbd8305f2cf690ba94f">
           <Properties>
             <string name="Name">Integration</string>
             <ProtectedString name="Source">-- SERVER Command Bar in a fresh Play. Only runs in Studio sandbox.
@@ -1383,19 +1383,19 @@ return Integration
       </Item>
     </Item>
   </Item>
-  <Item class="StarterPlayer" referent="RBX0cc85029a4894f118c2157291bb6450e">
+  <Item class="StarterPlayer" referent="RBX41d9587a4494479bb1e41006155f46fd">
     <Properties>
       <string name="Name">StarterPlayer</string>
     </Properties>
-    <Item class="StarterPlayerScripts" referent="RBXf1aefb8949fd47b9bd40a297f020db6f">
+    <Item class="StarterPlayerScripts" referent="RBX9676e76198924089a4423b926876ddc4">
       <Properties>
         <string name="Name">StarterPlayerScripts</string>
       </Properties>
-      <Item class="Folder" referent="RBXeedd6cd80bb142269e11f698a2156b9a">
+      <Item class="Folder" referent="RBX04090556e5514d49b8b00736668ff101">
         <Properties>
           <string name="Name">SimulatorClient</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBX8a6421b2fe99421e962c8a46a097a449">
+        <Item class="ModuleScript" referent="RBX2ae2845109374db9a829218edc02c4fa">
           <Properties>
             <string name="Name">UI</string>
             <ProtectedString name="Source">local UI={}
@@ -1623,7 +1623,7 @@ return UI
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX07ea3fb72cd14fa39f252f90531a7b14">
+        <Item class="ModuleScript" referent="RBX87f3146be60f4d4f95b1ad463d9837f4">
           <Properties>
             <string name="Name">Glass</string>
             <ProtectedString name="Source">local TweenService=game:GetService("TweenService")
@@ -1761,7 +1761,7 @@ return Glass
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBX3ade6936756545b2ae35580c323796e0">
+        <Item class="LocalScript" referent="RBX75aac354b9e84f60a92145391eb3ad6d">
           <Properties>
             <string name="Name">Controller</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -1805,7 +1805,7 @@ local function render()
     refs.PetSummary.Text=("Питомцы: %d/%d • бонус x%.2f"):format(petCount,C.MaxPets,state.PetMultiplier)
     for id,b in pairs(refs.PetButtons) do
         local info=C.PetTypes[id]; local count=state.Pets[id] or 0
-        b.Text=("%s ×%d • +%d%%\n%s"):format(info.Name,count,math.floor(info.Bonus*100+.5),
+        b.Text=("%s ×%d • x%.2f\n%s"):format(info.Name,count,1+info.Bonus,
             count==0 and "Не получен" or state.EquippedPet==id and "Экипирован • снять" or "Экипировать")
     end
     refs.Level.Text="Уровень "..state.Level
@@ -1901,7 +1901,7 @@ end)
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBXedc12739ac3946b1a0c533d15f6d4dad">
+        <Item class="LocalScript" referent="RBX227205cca50f456e96229b94cdbc000a">
           <Properties>
             <string name="Name">WorldSigns</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -1978,7 +1978,7 @@ end
       </Item>
     </Item>
   </Item>
-  <Item class="StarterGui" referent="RBXa62cc871c4b44a9c9d73e6918d3bce3a">
+  <Item class="StarterGui" referent="RBX3c8ebd543f464bafb4588d76a99fcd98">
     <Properties>
       <string name="Name">StarterGui</string>
     </Properties>
