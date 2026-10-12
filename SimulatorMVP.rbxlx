@@ -1,0 +1,1762 @@
+<roblox version="4">
+  <Item class="Workspace" referent="RBX27c5e8939e3448a4a22a3589627fcd83">
+    <Properties>
+      <string name="Name">Workspace</string>
+    </Properties>
+    <Item class="Terrain" referent="RBXb5eb3f85bb274087889a20621980cc31">
+      <Properties>
+        <string name="Name">Terrain</string>
+      </Properties>
+    </Item>
+    <Item class="Folder" referent="RBX77535e4a31cd4fb2a346fd4299999a17">
+      <Properties>
+        <string name="Name">SimulatorWorld</string>
+      </Properties>
+      <Item class="Part" referent="RBX5dc11177b8eb4aa08797de8480a284b0">
+        <Properties>
+          <string name="Name">Ground</string>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">true</bool>
+          <token name="TopSurface">0</token>
+          <token name="BottomSurface">0</token>
+          <Color3uint8 name="Color3uint8">4280166462</Color3uint8>
+          <Vector3 name="size">
+            <X>100</X>
+            <Y>2</Y>
+            <Z>80</Z>
+          </Vector3>
+          <CoordinateFrame name="CFrame">
+            <X>4</X>
+            <Y>-1</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+      </Item>
+      <Item class="Part" referent="RBXf4fdd95ec98846babbe6e4a72850639d">
+        <Properties>
+          <string name="Name">StartingPlaza</string>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">true</bool>
+          <token name="TopSurface">0</token>
+          <token name="BottomSurface">0</token>
+          <Color3uint8 name="Color3uint8">4281288792</Color3uint8>
+          <Vector3 name="size">
+            <X>32</X>
+            <Y>0.2</Y>
+            <Z>26</Z>
+          </Vector3>
+          <CoordinateFrame name="CFrame">
+            <X>-12</X>
+            <Y>0.1</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+      </Item>
+      <Item class="Part" referent="RBX038d32dbfa2a492994a86bed944fbcdc">
+        <Properties>
+          <string name="Name">AdvancedPlaza</string>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">true</bool>
+          <token name="TopSurface">0</token>
+          <token name="BottomSurface">0</token>
+          <Color3uint8 name="Color3uint8">4282593632</Color3uint8>
+          <Vector3 name="size">
+            <X>28</X>
+            <Y>0.2</Y>
+            <Z>26</Z>
+          </Vector3>
+          <CoordinateFrame name="CFrame">
+            <X>24</X>
+            <Y>0.1</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+      </Item>
+      <Item class="Part" referent="RBX51caf55399fb47848cbb8e7d302a6c0b">
+        <Properties>
+          <string name="Name">Path</string>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">true</bool>
+          <token name="TopSurface">0</token>
+          <token name="BottomSurface">0</token>
+          <Color3uint8 name="Color3uint8">4284771718</Color3uint8>
+          <Vector3 name="size">
+            <X>6</X>
+            <Y>0.2</Y>
+            <Z>7</Z>
+          </Vector3>
+          <CoordinateFrame name="CFrame">
+            <X>7</X>
+            <Y>0.05</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+      </Item>
+      <Item class="Part" referent="RBX2fbb8e63c50e459092991067a90cdbc1">
+        <Properties>
+          <string name="Name">Basic</string>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">true</bool>
+          <token name="TopSurface">0</token>
+          <token name="BottomSurface">0</token>
+          <Color3uint8 name="Color3uint8">4282506423</Color3uint8>
+          <Vector3 name="size">
+            <X>8</X>
+            <Y>1</Y>
+            <Z>8</Z>
+          </Vector3>
+          <CoordinateFrame name="CFrame">
+            <X>-16</X>
+            <Y>1</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+      </Item>
+      <Item class="Part" referent="RBX49c665a211a643cd86545ab0c155e522">
+        <Properties>
+          <string name="Name">Advanced</string>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">true</bool>
+          <token name="TopSurface">0</token>
+          <token name="BottomSurface">0</token>
+          <Color3uint8 name="Color3uint8">4288705791</Color3uint8>
+          <Vector3 name="size">
+            <X>8</X>
+            <Y>1</Y>
+            <Z>8</Z>
+          </Vector3>
+          <CoordinateFrame name="CFrame">
+            <X>24</X>
+            <Y>1</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+        </Properties>
+      </Item>
+      <Item class="SpawnLocation" referent="RBX8fc31779f6ad494ea482adb7f09514ce">
+        <Properties>
+          <string name="Name">SimulatorSpawn</string>
+          <bool name="Anchored">true</bool>
+          <bool name="CanCollide">true</bool>
+          <token name="TopSurface">0</token>
+          <token name="BottomSurface">0</token>
+          <Color3uint8 name="Color3uint8">4283420343</Color3uint8>
+          <Vector3 name="size">
+            <X>6</X>
+            <Y>0.4</Y>
+            <Z>6</Z>
+          </Vector3>
+          <CoordinateFrame name="CFrame">
+            <X>-16</X>
+            <Y>0.4</Y>
+            <Z>12</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <bool name="Neutral">true</bool>
+          <float name="Duration">0</float>
+        </Properties>
+      </Item>
+    </Item>
+  </Item>
+  <Item class="Players" referent="RBX5abbf9a658de43758cf22420b4367f9d">
+    <Properties>
+      <string name="Name">Players</string>
+    </Properties>
+  </Item>
+  <Item class="Lighting" referent="RBX31c7a78fae3a49d2858cfc28de3d16c1">
+    <Properties>
+      <string name="Name">Lighting</string>
+      <float name="ClockTime">14</float>
+      <float name="Brightness">2</float>
+    </Properties>
+  </Item>
+  <Item class="ReplicatedStorage" referent="RBXa85eed91cc6a4efb899ed93f0ec67365">
+    <Properties>
+      <string name="Name">ReplicatedStorage</string>
+    </Properties>
+    <Item class="Folder" referent="RBX6d2332f0e09b40e4a74f21d355197c71">
+      <Properties>
+        <string name="Name">SimulatorShared</string>
+      </Properties>
+      <Item class="ModuleScript" referent="RBXcf4d84556b6b4357ad8e0cce5ca74f2c">
+        <Properties>
+          <string name="Name">Config</string>
+          <ProtectedString name="Source">-- Balance lives here. No secrets and no client-supplied reward values.
+local C = {
+    StoreName = "StrengthSimulator_v1",
+    StudioStoreName = "StrengthSimulator_STUDIO_v1",
+    StudioOffline = true, -- Studio-only sandbox; production ALWAYS uses DataStore.
+    AutoSaveSeconds = 45, LeaseSeconds = 180, Attempts = 4,
+    MaxValue = 1000000000000, MaxLevel = 15, MaxRebirths = 10000,
+    TrainCooldown = 0.8, BaseCoins = 8, BasePower = 5,
+    UpgradeBase = 25, UpgradeGrowth = 1.6,
+    CoinLevelBonus = 0.15, PowerLevelBonus = 0.20,
+    RebirthBonus = 0.12, RebirthBonusCap = 25,
+    RebirthPower = 200, RebirthCoins = 150,
+    RebirthRequirementGrowth = 0.08, RequirementGrowthCap = 10,
+    DailySeconds = 86400, WeeklySeconds = 604800,
+    DailyTrainingEquivalent = 8, WeeklyTrainingEquivalent = 25,
+    RewardMinTrainings = 3,
+    RemoteBurst = 8, RemotePerSecond = 4,
+    ActionCooldown = 0.3, TrainDistance = 11,
+    SignRevealDistance = 18, SignHideMargin = 2,
+    SignFadeSeconds = 0.25, SignWidth = 220, SignHeight = 70, SignTextSize = 16,
+    MilestoneTrail = 10,
+    AnalyticsEnabled = false, -- Enable after publishing and checking Dashboard.
+    SupportRewardsEnabled = false, PaidItemsEnabled = false,
+    Stations = {
+        Basic = {Position = Vector3.new(-16, 1, 0), MinLevel = 0, Multiplier = 1},
+        Advanced = {Position = Vector3.new(24, 1, 0), MinLevel = 3, Multiplier = 1.25},
+    },
+}
+function C.Multiplier(data)
+    return 1 + math.min(data.Rebirths, C.RebirthBonusCap) * C.RebirthBonus
+end
+function C.UpgradeCost(level)
+    return math.floor(C.UpgradeBase * C.UpgradeGrowth ^ level)
+end
+function C.Requirements(rebirths)
+    local factor = 1 + math.min(rebirths, C.RequirementGrowthCap) * C.RebirthRequirementGrowth
+    return math.floor(C.RebirthPower * factor), math.floor(C.RebirthCoins * factor)
+end
+function C.Gains(data, stationMultiplier)
+    local m = C.Multiplier(data) * (stationMultiplier or 1)
+    return math.floor(C.BasePower * (1 + data.Level * C.PowerLevelBonus) * m),
+        math.floor(C.BaseCoins * (1 + data.Level * C.CoinLevelBonus) * m)
+end
+return table.freeze(C)
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBX90b5c196f9a14f50ae0a9269a0163fda">
+        <Properties>
+          <string name="Name">TextStyle</string>
+          <ProtectedString name="Source">-- Template rule: floating text must stay legible over bright platforms.
+local TextStyle={}
+function TextStyle.Apply(textObject)
+    textObject.TextStrokeColor3=Color3.fromRGB(10,14,22)
+    textObject.TextStrokeTransparency=0.15
+    return textObject
+end
+return TextStyle
+</ProtectedString>
+        </Properties>
+      </Item>
+    </Item>
+  </Item>
+  <Item class="ServerScriptService" referent="RBXfa069327d942409c85df815690fe406a">
+    <Properties>
+      <string name="Name">ServerScriptService</string>
+    </Properties>
+    <Item class="Folder" referent="RBX1a93bd094de04e319794894cc266e5dd">
+      <Properties>
+        <string name="Name">Simulator</string>
+      </Properties>
+      <Item class="ModuleScript" referent="RBXd1c4ebdcfaa7475e9d702c13acf17302">
+        <Properties>
+          <string name="Name">Schema</string>
+          <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
+local Schema = {}
+function Schema.New()
+    return {Version = 1, Coins = 0, Power = 0, Level = 0, Rebirths = 0,
+        LifetimePower = 0, TotalTrainings = 0, LastDaily = 0, LastWeekly = 0,
+        Cosmetics = {}, Equipped = ""}
+end
+function Schema.Copy(value)
+    if type(value) ~= "table" then return value end
+    local result = {}
+    for key, item in pairs(value) do result[key] = Schema.Copy(item) end
+    return result
+end
+local function integer(value, maximum)
+    return type(value) == "number" and value == value and value &gt;= 0
+        and value &lt;= maximum and value % 1 == 0
+end
+-- Corrupt/unknown records fail closed. Defaults only come from a genuinely absent key.
+function Schema.Validate(raw)
+    if type(raw) ~= "table" or raw.Version ~= 1 then return nil end
+    local limits = {Coins=C.MaxValue, Power=C.MaxValue, Level=C.MaxLevel,
+        Rebirths=C.MaxRebirths, LifetimePower=C.MaxValue, TotalTrainings=C.MaxValue,
+        LastDaily=100000000000, LastWeekly=100000000000}
+    for key, limit in pairs(limits) do if not integer(raw[key], limit) then return nil end end
+    if type(raw.Cosmetics) ~= "table" or type(raw.Equipped) ~= "string" then return nil end
+    for key, value in pairs(raw.Cosmetics) do
+        if (key ~= "BronzeAura" and key ~= "NeonTrail") or value ~= true then return nil end
+    end
+    if raw.Equipped ~= "" and not raw.Cosmetics[raw.Equipped] then return nil end
+    local clean = Schema.New()
+    for key in pairs(clean) do clean[key] = Schema.Copy(raw[key]) end
+    return clean
+end
+return Schema
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBXd87229ebbe8242dc91bde6aef0c76567">
+        <Properties>
+          <string name="Name">PlayerData</string>
+          <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
+local Schema = require(script.Parent.Schema)
+local HttpService = game:GetService("HttpService")
+local PlayerData = {}
+PlayerData.__index = PlayerData
+
+-- Injectable backend/clock are used by tests, never accessible through remotes.
+function PlayerData.new(store, options)
+    options = options or {}
+    return setmetatable({store=store, profiles={}, loading={}, closing=false,
+        now=options.now or os.time, wait=options.wait or task.wait,
+        offline=options.offline == true, token=options.token or HttpService:GenerateGUID(false)}, PlayerData)
+end
+function PlayerData:_request(key, transform)
+    for attempt = 1, C.Attempts do
+        local ok, result = pcall(function() return self.store:UpdateAsync(key, transform) end)
+        if ok then return true, result end
+        if attempt &lt; C.Attempts then self.wait(math.min(2 ^ (attempt-1), 4) + math.random()*0.2) end
+    end
+    return false, "unavailable"
+end
+local function validRecord(record)
+    if type(record) ~= "table" or record.Schema ~= 1 or not Schema.Validate(record.Data) then return false end
+    if type(record.Revision) ~= "number" or record.Revision % 1 ~= 0 or record.Revision &lt; 0 then return false end
+    local lock = record.Session
+    return lock == nil or (type(lock)=="table" and type(lock.Token)=="string"
+        and type(lock.Until)=="number" and lock.Until == lock.Until and lock.Until &lt; math.huge)
+end
+function PlayerData:Load(userId)
+    if self.closing or self.profiles[userId] or self.loading[userId] then return false, "busy" end
+    self.loading[userId] = true
+    if self.offline then
+        self.profiles[userId] = {data=Schema.New(), lease=math.huge, status="ready", seq=0, savedSeq=0}
+        self.loading[userId] = nil
+        return true
+    end
+    local reason = "unavailable"
+    local token = self.token .. ":" .. tostring(userId)
+    local ok, record = self:_request("Player_"..userId, function(old)
+        local now = self.now()
+        if old ~= nil and not validRecord(old) then reason="corrupt"; return nil end
+        if old and old.Session and old.Session.Token ~= token and old.Session.Until &gt; now then
+            reason="locked"; return nil
+        end
+        local data = old and Schema.Validate(old.Data) or Schema.New()
+        return {Schema=1, Data=data, Revision=old and old.Revision or 0,
+            Session={Token=token, Until=now+C.LeaseSeconds}}, {userId}
+    end)
+    self.loading[userId] = nil
+    if not ok or not record or not validRecord(record) or not record.Session or record.Session.Token~=token then
+        return false, reason
+    end
+    self.profiles[userId] = {data=Schema.Validate(record.Data), lease=record.Session.Until,
+        status="ready", seq=0, savedSeq=0, token=token, revision=record.Revision}
+    return true
+end
+function PlayerData:Get(userId)
+    local p = self.profiles[userId]
+    if not p or p.status ~= "ready" or self.closing then return nil end
+    -- Stop granting progress before a stale server can overwrite a new session.
+    if p.lease &lt;= self.now()+10 then return nil end
+    return p.data
+end
+function PlayerData:Changed(userId)
+    local p = self.profiles[userId]
+    if p then p.seq += 1 end
+end
+function PlayerData:Save(userId, release)
+    local p = self.profiles[userId]
+    if not p then return true end
+    if release then p.status="closing" end
+    -- One operation per key; exit waits for an autosave then writes the latest snapshot.
+    while p.saving do self.wait(0.05) end
+    if self.profiles[userId] ~= p then return true end
+    p.saving = true
+    local snapshot, seq = Schema.Copy(p.data), p.seq
+    if not Schema.Validate(snapshot) then p.saving=false; return false, "corrupt" end
+    if self.offline then
+        p.savedSeq=seq; p.saving=false
+        if release then self.profiles[userId]=nil end
+        return true
+    end
+    local reason = "unavailable"
+    local ok, result = self:_request("Player_"..userId, function(old)
+        local now=self.now()
+        if not validRecord(old) then reason="corrupt"; return nil end
+        if not old.Session or old.Session.Token~=p.token or old.Session.Until &lt;= now then
+            reason="lost_lock"; return nil
+        end
+        return {Schema=1, Data=snapshot, Revision=old.Revision+1,
+            Session=not release and {Token=p.token, Until=now+C.LeaseSeconds} or nil}, {userId}
+    end)
+    p.saving=false
+    if ok and result and validRecord(result) then
+        p.savedSeq=seq; p.revision=result.Revision
+        if release then self.profiles[userId]=nil else p.lease=result.Session.Until end
+        return true
+    end
+    if reason=="lost_lock" or reason=="corrupt" then p.status="failed" end
+    return false, reason
+end
+return PlayerData
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBX16d06666544a41b296a3d62f11cd69bb">
+        <Properties>
+          <string name="Name">Progression</string>
+          <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
+local P = {}
+function P.Train(data, stationId)
+    local station = C.Stations[stationId]
+    if not station or data.Level &lt; station.MinLevel then return false, "Станция откроется на уровне 3." end
+    local power, coins = C.Gains(data, station.Multiplier)
+    data.Power = math.min(C.MaxValue, data.Power+power)
+    data.Coins = math.min(C.MaxValue, data.Coins+coins)
+    data.LifetimePower = math.min(C.MaxValue, data.LifetimePower+power)
+    data.TotalTrainings = math.min(C.MaxValue, data.TotalTrainings+1)
+    return true, ("+%d силы, +%d монет"):format(power, coins)
+end
+function P.Upgrade(data)
+    if data.Level &gt;= C.MaxLevel then return false, "Максимальный уровень тренировки." end
+    local cost=C.UpgradeCost(data.Level)
+    if data.Coins &lt; cost then return false, "Не хватает монет на улучшение." end
+    data.Coins-=cost; data.Level+=1
+    return true, "Тренировка усилена! Уровень "..data.Level
+end
+return P
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBXd9b8e41bf0f74447890eb7c894473a16">
+        <Properties>
+          <string name="Name">Rebirth</string>
+          <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
+local R = {}
+function R.Apply(data)
+    if data.Rebirths&gt;=C.MaxRebirths then return false, "Достигнут предел перерождений MVP." end
+    local power, coins=C.Requirements(data.Rebirths)
+    if data.Power&lt;power or data.Coins&lt;coins then return false, "Для перерождения нужны сила и монеты." end
+    -- Lifetime score, reward timestamps and cosmetics deliberately survive the reset.
+    data.Power=0; data.Coins=0; data.Level=0; data.Rebirths+=1
+    return true, ("Перерождение! Постоянный бонус: x%.2f"):format(C.Multiplier(data))
+end
+return R
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBXe2f6dd44d49f40d0b911e46732fac3ab">
+        <Properties>
+          <string name="Name">Rewards</string>
+          <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local Rewards={}
+function Rewards.Reconcile(data)
+    local changed=false
+    if data.Rebirths&gt;=1 and not data.Cosmetics.BronzeAura then data.Cosmetics.BronzeAura=true; changed=true end
+    if data.Rebirths&gt;=C.MilestoneTrail and not data.Cosmetics.NeonTrail then data.Cosmetics.NeonTrail=true; changed=true end
+    if changed and data.Equipped=="" then data.Equipped=data.Cosmetics.NeonTrail and "NeonTrail" or "BronzeAura" end
+    return changed
+end
+function Rewards.Claim(data, kind, now)
+    local key, seconds, count
+    if kind=="Daily" then key="LastDaily"; seconds=C.DailySeconds; count=C.DailyTrainingEquivalent
+    elseif kind=="Weekly" then key="LastWeekly"; seconds=C.WeeklySeconds; count=C.WeeklyTrainingEquivalent
+    else return false, "Неизвестная награда." end
+    if data.TotalTrainings&lt;C.RewardMinTrainings then return false, "Сначала потренируйся 3 раза." end
+    if data[key]~=0 and now &lt; data[key]+seconds then return false, "Награда ещё не готова." end
+    local _, perTraining=C.Gains(data, 1)
+    local reward=perTraining*count
+    data[key]=now; data.Coins=math.min(C.MaxValue, data.Coins+reward)
+    return true, ("Награда: +%d монет"):format(reward)
+end
+function Rewards.Equip(data, cosmetic)
+    if cosmetic~="" and not data.Cosmetics[cosmetic] then return false, "Косметика ещё не открыта." end
+    data.Equipped=cosmetic
+    return true, cosmetic=="" and "Эффект выключен." or "Эффект включён."
+end
+function Rewards.ApplyCharacter(player, data)
+    local char=player.Character
+    local root=char and char:FindFirstChild("HumanoidRootPart")
+    if not root then return end
+    for _, child in root:GetChildren() do
+        if child.Name:sub(1,10)=="Simulator_" then child:Destroy() end
+    end
+    if data.Equipped=="BronzeAura" and data.Cosmetics.BronzeAura then
+        local light=Instance.new("PointLight"); light.Name="Simulator_Aura"
+        light.Color=Color3.fromRGB(255,170,65); light.Range=10; light.Brightness=2; light.Parent=root
+        local sparks=Instance.new("Sparkles"); sparks.Name="Simulator_Sparks"
+        sparks.SparkleColor=light.Color; sparks.Parent=root
+    elseif data.Equipped=="NeonTrail" and data.Cosmetics.NeonTrail then
+        local a=Instance.new("Attachment"); a.Name="Simulator_TrailA"; a.Position=Vector3.new(-1,0,0); a.Parent=root
+        local b=Instance.new("Attachment"); b.Name="Simulator_TrailB"; b.Position=Vector3.new(1,0,0); b.Parent=root
+        local trail=Instance.new("Trail"); trail.Name="Simulator_Trail"
+        trail.Attachment0=a; trail.Attachment1=b; trail.Lifetime=0.5
+        trail.Color=ColorSequence.new(Color3.fromRGB(70,240,255),Color3.fromRGB(160,100,255)); trail.Parent=root
+    end
+end
+return Rewards
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBX3c6679a1efed4bcfb89caab0153f3682">
+        <Properties>
+          <string name="Name">Security</string>
+          <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local S={}
+function S.NewLimiter() return {tokens=C.RemoteBurst, at=os.clock(), actions={}} end
+function S.Allow(limiter, action, now, cooldown)
+    limiter.tokens=math.min(C.RemoteBurst, limiter.tokens+(now-limiter.at)*C.RemotePerSecond)
+    limiter.at=now
+    if limiter.tokens&lt;1 then return false end
+    limiter.tokens-=1
+    local last=limiter.actions[action]
+    if last and now-last&lt;cooldown then return false end
+    limiter.actions[action]=now
+    return true
+end
+function S.Valid(action, args)
+    if type(action)~="string" or #action&gt;16 then return false end
+    if action=="Train" then return args.n==1 and type(args[1])=="string" and C.Stations[args[1]]~=nil end
+    if action=="Equip" then return args.n==1 and (args[1]=="" or args[1]=="BronzeAura" or args[1]=="NeonTrail") end
+    if action=="Rebirth" then return args.n==1 and type(args[1])=="string" and #args[1]&lt;=64 end
+    return (action=="Sync" or action=="Upgrade" or action=="PrepareRebirth" or action=="Daily" or action=="Weekly") and args.n==0
+end
+function S.Near(player, part, radius)
+    local char=player.Character
+    local root=char and char:FindFirstChild("HumanoidRootPart")
+    local human=char and char:FindFirstChildOfClass("Humanoid")
+    return root~=nil and human~=nil and human.Health&gt;0 and (root.Position-part.Position).Magnitude&lt;=radius
+end
+return S
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBXeec8213d838f48ed8d2de4fa8fb96dd2">
+        <Properties>
+          <string name="Name">LeaderboardTemplate</string>
+          <ProtectedString name="Source">-- Visual draft only: each ranking row is a separate solid plaque, no live data.
+local Board={}
+-- Intended refresh interval for the future live leaderboard; this draft has no data fetch loop.
+Board.RefreshIntervalSeconds=3600
+local rgb=Color3.fromRGB
+local function part(parent,name,size,pos,color,neon)
+    local p=Instance.new("Part"); p.Name=name; p.Size=size; p.Position=pos; p.Anchored=true
+    p.Material=neon and Enum.Material.Neon or Enum.Material.SmoothPlastic; p.Color=color
+    p.TopSurface=Enum.SurfaceType.Smooth; p.BottomSurface=Enum.SurfaceType.Smooth
+    p.Parent=parent; return p
+end
+local function face(p,width,height)
+    p.CFrame=CFrame.new(p.Position)*CFrame.Angles(0,math.pi,0)
+    local g=Instance.new("SurfaceGui"); g.Name="Lettering"; g.Face=Enum.NormalId.Front
+    g.SizingMode=Enum.SurfaceGuiSizingMode.FixedSize; g.CanvasSize=Vector2.new(width,height)
+    g.LightInfluence=0; g.AlwaysOnTop=false; g.Parent=p; return g
+end
+local function text(g,name,value,x,y,w,h,size,color,align)
+    local t=Instance.new("TextLabel"); t.Name=name; t.Text=value
+    t.Position=UDim2.fromOffset(x,y); t.Size=UDim2.fromOffset(w,h)
+    t.BackgroundTransparency=1; t.Font=Enum.Font.GothamBold; t.TextSize=size
+    t.TextColor3=color; t.TextXAlignment=align or Enum.TextXAlignment.Left
+    t.TextStrokeColor3=rgb(8,12,24); t.TextStrokeTransparency=0.15; t.Parent=g
+    return t
+end
+function Board.Build(parent)
+    if parent:FindFirstChild("LeaderboardTemplate") then return parent.LeaderboardTemplate end
+    local m=Instance.new("Model"); m.Name="LeaderboardTemplate"; m.Parent=parent
+    m:SetAttribute("RefreshIntervalSeconds",Board.RefreshIntervalSeconds)
+    -- Ground -&gt; foundation -&gt; pedestal -&gt; feet -&gt; shafts -&gt; capitals -&gt; canopy.
+    -- Adjacent pieces touch only at their hidden joints; exposed rear faces have different depths.
+    part(m,"Foundation",Vector3.new(57,0.6,8),Vector3.new(4,0.3,-30),rgb(22,30,47))
+    part(m,"Pedestal",Vector3.new(55,1.4,6),Vector3.new(4,1.3,-30),rgb(44,55,77))
+    -- Full-height backing closes the gaps beside and above the title.
+    part(m,"Backing",Vector3.new(51,31.2,2),Vector3.new(4,17.6,-32.2),rgb(15,23,39))
+    for _,x in {-22,4,30} do
+        part(m,"Pillar",Vector3.new(1.5,29.4,2.6),Vector3.new(x,17.7,-30.7),rgb(65,79,103))
+        part(m,"PillarFoot",Vector3.new(2.6,1,3.6),Vector3.new(x,2.5,-30.7),rgb(98,117,147))
+        part(m,"PillarCap",Vector3.new(2.6,0.8,3.6),Vector3.new(x,32.8,-30.7),rgb(98,117,147))
+    end
+    local title=part(m,"HallTitle",Vector3.new(48,4,2.4),Vector3.new(4,30.4,-30),rgb(31,43,66))
+    text(face(title,1200,100),"Title","ЗАЛ СЛАВЫ",0,0,1200,100,74,rgb(255,220,125),Enum.TextXAlignment.Center)
+    -- Rear edge -33.6, front edge -26.4: a visible forward overhang above the title.
+    part(m,"CrownTrim",Vector3.new(58.6,0.6,7.2),Vector3.new(4,33.5,-30),rgb(255,205,96))
+    part(m,"TopGlow",Vector3.new(48,0.18,0.2),Vector3.new(4,32.5,-28.65),rgb(255,213,111),true)
+    local cols={{name="Players",x=-9,title="ТОП 10 ИГРОКОВ",prefix="Игрок",accent=rgb(86,221,255)},
+        {name="Donors",x=17,title="ТОП 10 ДОНАТЕРОВ",prefix="Донатер",accent=rgb(196,147,255)}}
+    local medals={rgb(255,205,96),rgb(201,223,245),rgb(234,161,111)}
+    for _,c in ipairs(cols) do
+        local col=Instance.new("Model"); col.Name=c.name; col.Parent=m
+        local header=part(col,"Heading",Vector3.new(23,2.5,1.6),Vector3.new(c.x,26.7,-29.9),rgb(30,42,63))
+        local hg=face(header,920,100)
+        local heading=text(hg,"Title",c.title,20,4,880,92,74,c.accent,Enum.TextXAlignment.Center)
+        heading.TextScaled=true
+        for _,x in {c.x-11.7,c.x+11.7} do
+            -- Solid saturated rails retain the theme color without white neon bloom.
+            local railColor=c.name=="Donors" and rgb(156,76,235) or rgb(40,177,227)
+            part(col,"LightRail",Vector3.new(0.14,23.5,0.2),Vector3.new(x,14,-29.15),railColor,false)
+        end
+        for rank=1,10 do
+            local y=23.5-(rank-1)*2.1
+            local tint=medals[rank] or c.accent
+            -- Winners physically project further from the wall, with separate medal blocks.
+            local z=rank&lt;=3 and -29.35 or -29.65
+            local row=part(col,"Row"..rank,Vector3.new(22.6,1.85,rank&lt;=3 and 1.6 or 1),Vector3.new(c.x,y,z),rank&lt;=3 and rgb(48,59,79) or (rank%2==0 and rgb(31,44,65) or rgb(25,36,56)))
+            local g=face(row,904,74)
+            text(g,"PlayerName",string.format("%s_%02d",c.prefix,rank),125,0,610,74,43,rgb(244,248,255))
+            text(g,"Value","—",750,0,130,74,46,tint,Enum.TextXAlignment.Right)
+            local medal=part(col,"Rank"..rank,Vector3.new(1.8,1.45,0.35),Vector3.new(c.x-9.9,y,z+row.Size.Z/2+0.2),rank&lt;=3 and tint or rgb(57,76,103))
+            text(face(medal,80,64),"Rank",tostring(rank),0,0,80,64,48,rank&lt;=3 and rgb(29,25,25) or rgb(232,242,255),Enum.TextXAlignment.Center)
+            part(col,"RowAccent"..rank,Vector3.new(0.1,1.3,0.12),Vector3.new(c.x-8.7,y,z+row.Size.Z/2+0.08),tint,true)
+        end
+    end
+    local notice=part(m,"RefreshNotice",Vector3.new(46,1.2,0.4),Vector3.new(4,3,-29),rgb(27,37,56))
+    -- Match the 46:1.2 stud face aspect ratio so glyphs are not stretched horizontally.
+    text(face(notice,1840,48),"Interval","Таблица обновляется раз в час",400,0,1040,48,32,rgb(210,220,241),Enum.TextXAlignment.Center)
+    return m
+end
+return Board
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBX3f7961b324414d34ba778ad4483f2b1c">
+        <Properties>
+          <string name="Name">World</string>
+          <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
+local LeaderboardTemplate=require(script.Parent.LeaderboardTemplate)
+local World={}
+local builtMap
+local function part(parent,name,size,position,color)
+    local p=Instance.new("Part"); p.Name=name; p.Size=size; p.Position=position
+    p.Color=color; p.Material=Enum.Material.SmoothPlastic; p.Anchored=true; p.Parent=parent
+    return p
+end
+local function sign(parent,name,position,text,color)
+    local anchor=part(parent,name,Vector3.new(1,1,1),position,color)
+    anchor.Transparency=1; anchor.CanCollide=false
+    local gui=Instance.new("BillboardGui"); gui.Name="SimulatorSign"
+    gui.Size=UDim2.fromOffset(C.SignWidth,C.SignHeight); gui.AlwaysOnTop=false
+    -- Client handles player distance and fading; no hard camera-distance cut during the tween.
+    gui.MaxDistance=0; gui.Enabled=false; gui.Parent=anchor
+    local label=Instance.new("TextLabel"); label.Name="SignText"; label.Size=UDim2.fromScale(1,1)
+    label.AnchorPoint=Vector2.new(0.5,0.5); label.Position=UDim2.fromScale(0.5,0.5)
+    label.BackgroundColor3=Color3.fromRGB(22,30,50); label.BackgroundTransparency=1
+    label.TextColor3=color; label.TextSize=C.SignTextSize; label.Font=Enum.Font.GothamBold
+    label.TextWrapped=true; label.Text=text; label.Parent=gui
+    TextStyle.Apply(label)
+    label.TextTransparency=1; label.TextStrokeTransparency=1
+    local scale=Instance.new("UIScale"); scale.Name="RevealScale"; scale.Scale=0.94; scale.Parent=label
+    local corner=Instance.new("UICorner"); corner.Parent=label
+end
+function World.Build()
+    if builtMap and builtMap.Parent then return builtMap end
+    local existing=workspace:FindFirstChild("SimulatorWorld")
+    -- Editor preview is recreated from this module at Play; balance/layout source stays authoritative.
+    if existing then existing:Destroy() end
+    local map=Instance.new("Folder"); map.Name="SimulatorWorld"; map.Parent=workspace
+    part(map,"Ground",Vector3.new(100,2,80),Vector3.new(4,-1,0),Color3.fromRGB(30,40,62))
+    part(map,"StartingPlaza",Vector3.new(32,0.2,26),Vector3.new(-12,0.1,0),Color3.fromRGB(47,72,88))
+    part(map,"AdvancedPlaza",Vector3.new(28,0.2,26),Vector3.new(24,0.1,0),Color3.fromRGB(67,49,96))
+    -- Join x=4..10 exactly: no overlap with either plaza, and a 0.05 stud step below them.
+    part(map,"Path",Vector3.new(6,0.2,7),Vector3.new(7,0.05,0),Color3.fromRGB(100,109,134))
+    local spawn=Instance.new("SpawnLocation"); spawn.Name="SimulatorSpawn"
+    spawn.Size=Vector3.new(6,0.4,6); spawn.Position=Vector3.new(-16,0.4,12)
+    spawn.Anchored=true; spawn.Neutral=true; spawn.Duration=0; spawn.Color=Color3.fromRGB(79,206,183); spawn.Parent=map
+    for id, info in pairs(C.Stations) do
+        local color=id=="Basic" and Color3.fromRGB(65,220,183) or Color3.fromRGB(160,116,255)
+        local pad=part(map,id,Vector3.new(8,1,8),info.Position,color); pad.Material=Enum.Material.Neon
+        local prompt=Instance.new("ProximityPrompt"); prompt.Name="TrainPrompt"
+        prompt.ActionText="Тренироваться"; prompt.ObjectText=id=="Basic" and "Сила" or "Сила x1.25 • уровень 3"
+        prompt.KeyboardKeyCode=Enum.KeyCode.E; prompt.HoldDuration=0; prompt.MaxActivationDistance=C.TrainDistance
+        prompt.RequiresLineOfSight=false; prompt.Parent=pad
+        sign(map,id.."Sign",info.Position+Vector3.new(0,6,-7),id=="Basic" and "ТРЕНИРОВКА СИЛЫ\nНажми E у платформы" or "ПРОДВИНУТАЯ ЗОНА\nУровень 3 • +25% за тренировку",color)
+        -- Simple equipment built from primitives, no external models/scripts.
+        local bar=part(map,id.."Bar",Vector3.new(6,0.3,0.3),info.Position+Vector3.new(0,2,-2),Color3.fromRGB(160,175,188))
+        for _, x in {-2.5,2.5} do
+            local weight=part(map,id.."Weight"..x,Vector3.new(0.8,2,2),bar.Position+Vector3.new(x,0,0),Color3.fromRGB(30,34,44))
+            weight.Shape=Enum.PartType.Ball
+        end
+    end
+    sign(map,"Welcome",Vector3.new(-34,7,14),"СИЛА → МОНЕТЫ → УЛУЧШЕНИЯ\nПерерождение даёт постоянный бонус",Color3.fromRGB(245,210,106))
+    sign(map,"Milestone",Vector3.new(24,7,-13),"НАГРАДЫ ЗА ПРОГРЕСС\n1 Rebirth: аура • 10 Rebirth: неоновый след",Color3.fromRGB(120,223,255))
+    for _, z in {-37,37} do
+        part(map,"Border"..z,Vector3.new(94,3,1),Vector3.new(4,1.5,z),Color3.fromRGB(52,67,93))
+    end
+    for _, x in {-43,51} do
+        part(map,"Border"..x,Vector3.new(1,3,74),Vector3.new(x,1.5,0),Color3.fromRGB(52,67,93))
+    end
+    LeaderboardTemplate.Build(map)
+    builtMap=map
+    return map
+end
+return World
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBX4ed3b8e141f54e7da4875555cb287ecf">
+        <Properties>
+          <string name="Name">Network</string>
+          <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local Network={}
+function Network.Create()
+    local folder=Instance.new("Folder"); folder.Name="SimulatorRemotes"; folder.Parent=game.ReplicatedStorage
+    local action=Instance.new("RemoteEvent"); action.Name="Action"; action.Parent=folder
+    local state=Instance.new("RemoteEvent"); state.Name="State"; state.Parent=folder
+    local notice=Instance.new("RemoteEvent"); notice.Name="Notice"; notice.Parent=folder
+    return {Action=action,State=state,Notice=notice}
+end
+function Network.Snapshot(data, mode, saveStatus)
+    local power,coins=C.Requirements(data.Rebirths)
+    return {Coins=data.Coins, Power=data.Power, Level=data.Level, Rebirths=data.Rebirths,
+        LifetimePower=data.LifetimePower, Multiplier=C.Multiplier(data),
+        UpgradeCost=data.Level&lt;C.MaxLevel and C.UpgradeCost(data.Level) or 0,
+        RequiredPower=power, RequiredCoins=coins, TotalTrainings=data.TotalTrainings,
+        LastDaily=data.LastDaily, LastWeekly=data.LastWeekly, ServerTime=os.time(),
+        BronzeAura=data.Cosmetics.BronzeAura==true, NeonTrail=data.Cosmetics.NeonTrail==true,
+        Equipped=data.Equipped, StorageMode=mode, SaveStatus=saveStatus or "ready"}
+end
+return Network
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBXbb89ccb4d6ca466881374bebf6050951">
+        <Properties>
+          <string name="Name">Telemetry</string>
+          <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local RunService=game:GetService("RunService")
+local Analytics=game:GetService("AnalyticsService")
+local Telemetry={}
+-- Supported API; opt-in only. Delivery is not claimed without Dashboard verification.
+function Telemetry.Step(player,step,name)
+    if not C.AnalyticsEnabled or RunService:IsStudio() then return end
+    task.spawn(function()
+        local ok=pcall(function() Analytics:LogOnboardingFunnelStepEvent(player,step,name) end)
+        if not ok then warn("Simulator analytics event unavailable") end
+    end)
+end
+return Telemetry
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBXd2ad7004b2af4b5a985c55a9e49e1205">
+        <Properties>
+          <string name="Name">Runtime</string>
+          <ProtectedString name="Source">local Players=game:GetService("Players")
+local RunService=game:GetService("RunService")
+local HttpService=game:GetService("HttpService")
+local DataStoreService=game:GetService("DataStoreService")
+local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local PlayerData=require(script.Parent.PlayerData)
+local Progression=require(script.Parent.Progression)
+local Rebirth=require(script.Parent.Rebirth)
+local Rewards=require(script.Parent.Rewards)
+local Security=require(script.Parent.Security)
+local Network=require(script.Parent.Network)
+local World=require(script.Parent.World)
+local Telemetry=require(script.Parent.Telemetry)
+local Runtime={sessions={},started=false}
+local dataService,remotes,map,mode
+local function stats(player,data)
+    local folder=player:FindFirstChild("leaderstats")
+    if not folder then
+        folder=Instance.new("Folder"); folder.Name="leaderstats"; folder.Parent=player
+        for _, name in {"Rebirths","LifetimePower"} do local n=Instance.new("NumberValue"); n.Name=name; n.Parent=folder end
+    end
+    folder.Rebirths.Value=data.Rebirths; folder.LifetimePower.Value=data.LifetimePower
+end
+local function publish(player)
+    local data=dataService:Get(player.UserId)
+    if data and player.Parent==Players then
+        stats(player,data)
+        local session=Runtime.sessions[player.UserId]
+        remotes.State:FireClient(player,Network.Snapshot(data,mode,session and session.saveStatus))
+    end
+end
+local function notice(player,message,extra)
+    if player.Parent==Players then remotes.Notice:FireClient(player,message,extra) end
+end
+-- Shared by the RemoteEvent and ProximityPrompt. Tests call the SAME gate on server.
+function Runtime.Dispatch(player,action,...)
+    local session=Runtime.sessions[player.UserId]
+    if not session then return false,"loading" end
+    local now=os.clock()
+    if not Security.Allow(session.limiter,"Request",now,0) then return false,"rate" end
+    local args=table.pack(...)
+    if not Security.Valid(action,args) then return false,"arguments" end
+    local cooldown=action=="Train" and C.TrainCooldown or (action=="Sync" and 1 or C.ActionCooldown)
+    local last=session.actionTimes[action]
+    if last and now-last&lt;cooldown then return false,"cooldown" end
+    session.actionTimes[action]=now
+    local data=dataService:Get(player.UserId)
+    if not data then return false,"data_unavailable" end
+    if action=="Sync" then publish(player); return true end
+    if action=="PrepareRebirth" then
+        local power,coins=C.Requirements(data.Rebirths)
+        if data.Power&lt;power or data.Coins&lt;coins or data.Rebirths&gt;=C.MaxRebirths then
+            notice(player,"Пока не хватает силы или монет для перерождения."); return false,"conditions"
+        end
+        session.confirm={token=HttpService:GenerateGUID(false),expires=now+20,rebirths=data.Rebirths}
+        notice(player,"Перерождение сбросит силу, монеты и уровень. Косметика и рекорд сохранятся.",
+            {RebirthToken=session.confirm.token,NextMultiplier=C.Multiplier({Rebirths=data.Rebirths+1})})
+        return true
+    end
+    local ok,message
+    if action=="Train" then
+        local station=C.Stations[args[1]]
+        local pad=map:FindFirstChild(args[1])
+        if not pad or not Security.Near(player,pad,C.TrainDistance) then return false,"distance" end
+        if data.Level&lt;station.MinLevel then notice(player,"Продвинутая станция: нужен уровень 3."); return false,"level" end
+        ok,message=Progression.Train(data,args[1])
+    elseif action=="Upgrade" then ok,message=Progression.Upgrade(data)
+    elseif action=="Rebirth" then
+        local confirmation=session.confirm
+        session.confirm=nil -- Single use, expires, bound to this player's current cycle.
+        if not confirmation or confirmation.token~=args[1] or confirmation.expires&lt;now
+            or confirmation.rebirths~=data.Rebirths then return false,"confirmation" end
+        ok,message=Rebirth.Apply(data)
+    elseif action=="Daily" or action=="Weekly" then ok,message=Rewards.Claim(data,action,os.time())
+    elseif action=="Equip" then ok,message=Rewards.Equip(data,args[1]) end
+    if not ok then notice(player,message or "Действие недоступно."); return false,"conditions" end
+    Rewards.Reconcile(data)
+    dataService:Changed(player.UserId)
+    if action=="Equip" or action=="Rebirth" then Rewards.ApplyCharacter(player,data) end
+    publish(player); notice(player,message)
+    if action=="Train" and data.TotalTrainings==1 then Telemetry.Step(player,2,"FirstTraining") end
+    if action=="Upgrade" and data.Level==1 then Telemetry.Step(player,3,"FirstUpgrade") end
+    if action=="Rebirth" and data.Rebirths==1 then Telemetry.Step(player,4,"FirstRebirth") end
+    return true
+end
+local function savePlayer(player,release)
+    local ok,reason=dataService:Save(player.UserId,release)
+    local session=Runtime.sessions[player.UserId]
+    if not release and session then
+        session.saveStatus=ok and "saved" or "retry"
+        publish(player)
+        if not ok then notice(player,"Сохранение задерживается. Игра повторит попытку.") end
+    end
+    if not ok then warn("Simulator save failed: "..tostring(reason)) end
+    return ok
+end
+local function joined(player)
+    local ok,reason=dataService:Load(player.UserId)
+    if not ok then
+        if player.Parent==Players then player:Kick("Не удалось безопасно загрузить прогресс ("..reason.."). Подожди и войди снова. Данные не сброшены.") end
+        return
+    end
+    if player.Parent~=Players or dataService.closing then dataService:Save(player.UserId,true); return end
+    Runtime.sessions[player.UserId]={limiter=Security.NewLimiter(),actionTimes={},saveStatus="ready"}
+    local data=dataService:Get(player.UserId)
+    if not data then player:Kick("Сессия данных истекла. Войди снова."); return end
+    if Rewards.Reconcile(data) then dataService:Changed(player.UserId) end
+    stats(player,data)
+    player.RespawnLocation=map.SimulatorSpawn
+    player.CharacterAdded:Connect(function(char)
+        local root=char:WaitForChild("HumanoidRootPart",10)
+        local current=dataService:Get(player.UserId)
+        if root and current then Rewards.ApplyCharacter(player,current) end
+        local humanoid=char:WaitForChild("Humanoid",10)
+        if humanoid then
+            humanoid.Died:Connect(function()
+                task.delay(3,function()
+                    if player.Parent==Players and dataService:Get(player.UserId) then
+                        local loaded=pcall(function() player:LoadCharacterAsync() end)
+                        if not loaded then player:Kick("Не удалось загрузить персонажа. Войди снова.") end
+                    end
+                end)
+            end)
+        end
+    end)
+    local loaded=pcall(function() player:LoadCharacterAsync() end)
+    if not loaded then player:Kick("Не удалось загрузить персонажа. Войди снова."); return end
+    publish(player); Telemetry.Step(player,1,"Joined")
+end
+function Runtime.Start()
+    assert(not Runtime.started,"Runtime already started"); Runtime.started=true
+    Players.CharacterAutoLoads=false
+    mode=RunService:IsStudio() and C.StudioOffline and "sandbox" or "datastore"
+    local store
+    if mode=="datastore" then
+        store=DataStoreService:GetDataStore(RunService:IsStudio() and C.StudioStoreName or C.StoreName)
+    end
+    dataService=PlayerData.new(store,{offline=mode=="sandbox"})
+    map=World.Build(); remotes=Network.Create()
+    remotes.Action.OnServerEvent:Connect(function(player,action,...) Runtime.Dispatch(player,action,...) end)
+    for id in pairs(C.Stations) do
+        map[id].TrainPrompt.Triggered:Connect(function(player) Runtime.Dispatch(player,"Train",id) end)
+    end
+    Players.PlayerAdded:Connect(joined)
+    Players.PlayerRemoving:Connect(function(player)
+        savePlayer(player,true); Runtime.sessions[player.UserId]=nil
+    end)
+    for _, player in Players:GetPlayers() do task.spawn(joined,player) end
+    task.spawn(function()
+        while not dataService.closing do
+            task.wait(C.AutoSaveSeconds)
+            if dataService.closing then break end
+            for _,player in Players:GetPlayers() do task.spawn(savePlayer,player,false) end
+        end
+    end)
+    task.spawn(function()
+        while not dataService.closing do
+            task.wait(2)
+            for _,player in Players:GetPlayers() do
+                if Runtime.sessions[player.UserId] and not dataService:Get(player.UserId) then
+                    player:Kick("Защита данных: сохранение недоступно или сессия истекла. Войди снова позже.")
+                end
+            end
+        end
+    end)
+    game:BindToClose(function()
+        dataService.closing=true
+        local pending=0
+        for userId in pairs(dataService.profiles) do
+            pending+=1
+            task.spawn(function()
+                local ok=dataService:Save(userId,true)
+                if not ok then warn("Simulator final save failed") end
+                pending-=1
+            end)
+        end
+        local deadline=os.clock()+25
+        while (pending&gt;0 or next(dataService.loading)~=nil) and os.clock()&lt;deadline do task.wait(0.1) end
+    end)
+    print("SIMULATOR_READY mode="..mode)
+end
+return Runtime
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="Script" referent="RBX3a9c235edcc44c7da091158f10045056">
+        <Properties>
+          <string name="Name">Bootstrap</string>
+          <ProtectedString name="Source">require(script.Parent.Runtime).Start()
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="Folder" referent="RBX0d6f05d9d6bb46abbf8c74bfaabd71d9">
+        <Properties>
+          <string name="Name">Tests</string>
+        </Properties>
+        <Item class="ModuleScript" referent="RBX5258ad28349c48229c457ac3cc29d05b">
+          <Properties>
+            <string name="Name">Spec</string>
+            <ProtectedString name="Source">-- Server-only deterministic tests. No production DataStore, no real user records.
+local Root=game.ServerScriptService.Simulator
+local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local Schema=require(Root.Schema)
+local Data=require(Root.PlayerData)
+local P=require(Root.Progression)
+local R=require(Root.Rebirth)
+local Rewards=require(Root.Rewards)
+local S=require(Root.Security)
+local Spec={}
+function Spec.Run()
+    local count=0
+    local function check(value,message) assert(value,message); count+=1 end
+    local d=Schema.New()
+    check(Schema.Validate(d)~=nil,"default schema")
+    d.Coins=0/0; check(Schema.Validate(d)==nil,"reject NaN")
+    d=Schema.New(); d.Power=math.huge; check(Schema.Validate(d)==nil,"reject infinity")
+    d=Schema.New(); d.Coins=-1; check(Schema.Validate(d)==nil,"reject negative")
+    d=Schema.New(); check(not P.Upgrade(d),"cannot buy without coins")
+    check(not P.Train(d,"Advanced"),"zone level locked")
+    P.Train(d,"Basic"); check(d.Power==5 and d.Coins==8 and d.LifetimePower==5,"server training gains")
+    for _=1,3 do P.Train(d,"Basic") end
+    check(P.Upgrade(d) and d.Level==1 and d.Coins==7,"deduct exact cost")
+    check(not R.Apply(d),"early rebirth rejected")
+    d.Power=200; d.Coins=150; d.LastDaily=100; d.Cosmetics.BronzeAura=true; d.Equipped="BronzeAura"
+    local lifetime=d.LifetimePower
+    check(R.Apply(d),"rebirth allowed")
+    check(d.Power==0 and d.Coins==0 and d.Level==0 and d.Rebirths==1,"reset only cycle fields")
+    check(d.LifetimePower==lifetime and d.LastDaily==100 and d.Equipped=="BronzeAura","preserve persistent fields")
+    check(C.Multiplier(d)==1.12,"controlled permanent bonus")
+    d.Rebirths=10; check(Rewards.Reconcile(d) and d.Cosmetics.NeonTrail,"milestone")
+    check(not Rewards.Reconcile(d),"milestone idempotent")
+    check(not Rewards.Equip(Schema.New(),"NeonTrail"),"unowned cosmetic rejected")
+    d=Schema.New(); check(not Rewards.Claim(d,"Daily",1000),"new account reward gated")
+    d.TotalTrainings=3
+    check(Rewards.Claim(d,"Daily",1000),"daily first claim")
+    local coins=d.Coins
+    check(not Rewards.Claim(d,"Daily",1001) and d.Coins==coins,"daily duplication rejected")
+    check(not Rewards.Claim(d,"Daily",999),"clock rollback")
+    check(Rewards.Claim(d,"Daily",1000+C.DailySeconds),"daily interval boundary")
+    check(Rewards.Claim(d,"Weekly",1000),"weekly first claim")
+    check(not Rewards.Claim(d,"Weekly",1000+C.WeeklySeconds-1),"weekly interval")
+    check(Rewards.Claim(d,"Weekly",1000+C.WeeklySeconds),"weekly ready")
+    check(not S.Valid("Train",table.pack("Basic",1000000)),"extra reward arg rejected")
+    check(not S.Valid("Train",table.pack({})),"wrong type rejected")
+    check(not S.Valid("Train",table.pack("Fake")),"unknown station rejected")
+    check(not S.Valid("Rebirth",table.pack(true)),"confirmation type rejected")
+    check(not S.Valid("Coins",table.pack(100000)),"no give currency action")
+    local limiter=S.NewLimiter()
+    check(S.Allow(limiter,"Train",limiter.at,0.8),"first request allowed")
+    check(not S.Allow(limiter,"Train",limiter.at+0.1,0.8),"cooldown")
+    limiter=S.NewLimiter(); local accepted=0; local instant=limiter.at
+    for _=1,50 do if S.Allow(limiter,"Request",instant,0) then accepted+=1 end end
+    check(accepted==C.RemoteBurst,"bounded remote burst")
+    check(not S.Near({Character=nil},{Position=Vector3.zero},11),"no dead/missing character activity")
+
+    local clock=1000
+    local store={records={},calls=0,fail=false,doubleCallback=false,afterWriteFailure=false}
+    function store:UpdateAsync(key,callback)
+        self.calls+=1
+        if self.fail then error("simulated outage") end
+        local old=Schema.Copy(self.records[key])
+        if self.doubleCallback then callback(Schema.Copy(old)) end
+        local result=callback(old)
+        if result then self.records[key]=Schema.Copy(result) end
+        if result and self.afterWriteFailure then self.afterWriteFailure=false; error("response lost after commit") end
+        return Schema.Copy(result)
+    end
+    local opts={now=function() return clock end,wait=function() end,token="A"}
+    local a=Data.new(store,opts)
+    check(a:Load(77),"load new player")
+    a:Get(77).Coins=250; a:Changed(77)
+    store.doubleCallback=true
+    check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"callback retry safe")
+    local b=Data.new(store,{now=opts.now,wait=opts.wait,token="B"})
+    check(not b:Load(77),"second server session locked")
+    local before=Schema.Copy(store.records.Player_77)
+    store.fail=true
+    local c=Data.new(store,{now=opts.now,wait=opts.wait,token="C"})
+    check(not c:Load(77) and c:Get(77)==nil,"load error never exposes default profile")
+    check(c:Save(77,true) and store.records.Player_77.Data.Coins==before.Data.Coins,"load error cannot overwrite")
+    check(not a:Save(77,false),"save outage handled")
+    store.fail=false; store.afterWriteFailure=true
+    check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"commit response lost retry safe")
+    check(a:Save(77,true) and store.records.Player_77.Session==nil,"release lock")
+    check(b:Load(77) and b:Get(77).Coins==250,"reload persisted progress")
+    b:Get(77).Coins=400; b:Changed(77); check(b:Save(77,false),"second session saves")
+    clock+=C.LeaseSeconds+1
+    check(b:Get(77)==nil,"expired lease freezes actions")
+    check(c:Load(77),"stale lease takeover")
+    check(not b:Save(77,false),"old server cannot overwrite takeover")
+    check(store.records.Player_77.Data.Coins==400,"takeover data intact")
+    store.records.Player_88={Schema=99,Data=Schema.New(),Revision=0}
+    check(not a:Load(88) and store.records.Player_88.Schema==99,"unknown schema preserved")
+    store.records.Player_89={Schema=1,Data=Schema.New(),Revision=0}
+    store.records.Player_89.Data.Coins=-20
+    check(not a:Load(89) and store.records.Player_89.Data.Coins==-20,"corrupt data not overwritten")
+    check(c:Save(77,true),"final save")
+    local offline=Data.new(nil,{offline=true})
+    check(offline:Load(1) and offline:Get(1).Coins==0,"explicit offline default")
+    offline.closing=true; check(offline:Get(1)==nil and not offline:Load(2),"shutdown freezes operations")
+    check(offline:Save(1,true),"shutdown release")
+
+    local balance={}; d=Schema.New()
+    for cycle=1,26 do
+        local powerReq,coinReq=C.Requirements(d.Rebirths)
+        local actions=0
+        -- A simple player strategy: buy levels 1..3 while still building power.
+        while d.Power&lt;powerReq or d.Coins&lt;coinReq do
+            local station=d.Level&gt;=3 and "Advanced" or "Basic"
+            P.Train(d,station); actions+=1
+            if d.Level&lt;3 and d.Power&lt;powerReq and d.Coins&gt;=C.UpgradeCost(d.Level) then P.Upgrade(d) end
+            assert(actions&lt;500,"unreachable rebirth")
+        end
+        balance[cycle]=actions*C.TrainCooldown
+        check(R.Apply(d),"balance cycle "..cycle)
+    end
+    check(balance[1]&lt;=90 and balance[2]&lt;=balance[1]*1.2,"early pacing")
+    check(balance[26]&lt;balance[1],"later cycles moderately faster")
+    print(("SIMULATOR_SPEC_PASS %d assertions; cycle_seconds [1]=%.1f [2]=%.1f [10]=%.1f [26]=%.1f")
+        :format(count,balance[1],balance[2],balance[10],balance[26]))
+    return {Assertions=count,Balance=balance}
+end
+return Spec
+</ProtectedString>
+          </Properties>
+        </Item>
+        <Item class="ModuleScript" referent="RBX44c3c01bc2d6482b8510d3b7e06e9356">
+          <Properties>
+            <string name="Name">Integration</string>
+            <ProtectedString name="Source">-- SERVER Command Bar in a fresh Play. Only runs in Studio sandbox.
+assert(game:GetService("RunService"):IsStudio(),"Studio only")
+local Integration={}
+function Integration.Run()
+local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+assert(C.StudioOffline,"Only run integration in offline sandbox")
+local Runtime=require(game.ServerScriptService.Simulator.Runtime)
+local player=game.Players:GetPlayers()[1]
+assert(player and player.Character,"Wait for character to spawn")
+local remotes=game.ReplicatedStorage.SimulatorRemotes
+local map=workspace.SimulatorWorld
+local function send(action,...)
+    local ok,reason=Runtime.Dispatch(player,action,...)
+    return ok,reason
+end
+task.spawn(function()
+    local function settle(pad)
+        local root=player.Character.HumanoidRootPart
+        root.AssemblyLinearVelocity=Vector3.zero
+        player.Character:PivotTo(pad.CFrame+Vector3.new(0,4,0))
+        task.wait(1)
+    end
+    assert(player.leaderstats.LifetimePower.Value==0,"Fresh Play needed")
+    settle(map.SimulatorSpawn)
+    local ok,reason=send("Train","Basic")
+    assert(not ok and reason=="distance","distance validation")
+    settle(map.Basic)
+    assert(not send("Train","Basic",1000000),"malicious reward argument")
+    task.wait(0.85)
+    assert(send("Train","Basic"),"valid training")
+    assert(not send("Train","Basic"),"training cooldown")
+    assert(player.leaderstats.LifetimePower.Value==5,"leaderboard server score")
+    for _=1,3 do task.wait(0.85); assert(send("Train","Basic")) end
+    assert(send("Upgrade"),"buy improvement")
+    assert(not send("Rebirth","invented"),"confirmation token rejected")
+    settle(map.Advanced)
+    local allowed,why=send("Train","Advanced")
+    assert(not allowed and why=="level","locked advanced zone")
+    settle(map.Basic)
+    -- Earn the first cycle normally, without injecting coins or power into a profile.
+    for _=1,40 do task.wait(0.85); assert(send("Train","Basic")) end
+    assert(send("Daily"),"daily reward")
+    task.wait(0.35); assert(not send("Daily"),"duplicate daily reward")
+    task.wait(0.35); assert(send("PrepareRebirth"),"rebirth preparation")
+    local token=Runtime.sessions[player.UserId].confirm.token
+    task.wait(0.35); assert(send("Rebirth",token),"rebirth confirmed")
+    assert(player.leaderstats.Rebirths.Value==1,"leaderboard rebirth")
+    task.wait(0.35); assert(not send("Rebirth",token),"token cannot replay")
+    local oldCharacter=player.Character
+    oldCharacter.Humanoid.Health=0
+    local deadline=os.clock()+15
+    repeat task.wait(0.2) until player.Character~=oldCharacter or os.clock()&gt;deadline
+    assert(player.Character~=oldCharacter,"respawn")
+    local root=player.Character:WaitForChild("HumanoidRootPart",10)
+    assert(root:WaitForChild("Simulator_Aura",10),"cosmetic restored on respawn")
+    assert(player.leaderstats.Rebirths.Value==1,"progress survives death")
+    print("SIMULATOR_INTEGRATION_PASS training, distance, malformed args, cooldown, upgrade, daily, rebirth, replay, cosmetics, respawn")
+end)
+end
+return Integration
+</ProtectedString>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+  </Item>
+  <Item class="StarterPlayer" referent="RBXa9bd398287e74972832fba240a105525">
+    <Properties>
+      <string name="Name">StarterPlayer</string>
+    </Properties>
+    <Item class="StarterPlayerScripts" referent="RBX793325d0d87d4f7dbb0f9a9c2c6f0a0e">
+      <Properties>
+        <string name="Name">StarterPlayerScripts</string>
+      </Properties>
+      <Item class="Folder" referent="RBXf6b1ac30dd6546c198ee571fa2d0bab9">
+        <Properties>
+          <string name="Name">SimulatorClient</string>
+        </Properties>
+        <Item class="ModuleScript" referent="RBXdad95708d3b24c0898e4620b4eea5626">
+          <Properties>
+            <string name="Name">UI</string>
+            <ProtectedString name="Source">local UI={}
+local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
+local Glass=require(script.Parent.Glass)
+local TweenService=game:GetService("TweenService")
+local palette=Glass.Colors
+local dark=Color3.fromRGB(22,30,48)
+local function rounded(instance,radius)
+    local c=Instance.new("UICorner"); c.CornerRadius=UDim.new(0,radius or 12); c.Parent=instance
+end
+local function frame(parent,size,position,anchor,color)
+    local f=Instance.new("Frame"); f.Size=size; f.Position=position; f.AnchorPoint=anchor or Vector2.zero
+    f.BackgroundColor3=color or dark; f.BackgroundTransparency=0.1; f.BorderSizePixel=0
+    f.Parent=parent; Glass.Style(f,color); return f
+end
+local function label(parent,position,size,text,fontSize,color)
+    local l=Instance.new("TextLabel"); l.Position=position; l.Size=size; l.Text=text
+    l.BackgroundTransparency=1; l.TextColor3=color or Color3.fromRGB(236,242,255)
+    l.TextSize=fontSize or 17; l.Font=Enum.Font.GothamBold; l.TextWrapped=true; l.Parent=parent
+    TextStyle.Apply(l)
+    return l
+end
+local function button(parent,position,size,text,color)
+    local b=Instance.new("TextButton"); b.Position=position; b.Size=size; b.Text=text
+    if parent.Parent and parent.Parent.Name=="MenuShade" then
+        -- Preserve the resting rectangle, but make UIScale expand around its centre.
+        b.AnchorPoint=Vector2.new(.5,.5)
+        b.Position=UDim2.new(position.X.Scale+size.X.Scale/2,position.X.Offset+size.X.Offset/2,
+            position.Y.Scale+size.Y.Scale/2,position.Y.Offset+size.Y.Offset/2)
+    end
+    b.BackgroundColor3=color or Color3.fromRGB(58,100,163); b.TextColor3=Color3.new(1,1,1)
+    b.TextSize=16; b.Font=Enum.Font.GothamBold; b.TextWrapped=true; b.BorderSizePixel=0
+    b.Parent=parent; Glass.Style(b,color,16)
+    -- Gradients on TextButton also tint its text; retain bright captions and the glass rim.
+    b.GlassTint:Destroy()
+    TextStyle.Apply(b); Glass.AnimateButton(b); return b
+end
+function UI.Build(player)
+    local gui=Instance.new("ScreenGui"); gui.Name="SimulatorUI"; gui.ResetOnSpawn=false
+    gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling; gui.Parent=player:WaitForChild("PlayerGui")
+    local refs={Gui=gui}
+    local layout=Instance.new("Frame"); layout.Name="HudLayout"; layout.Size=UDim2.fromScale(1,1)
+    layout.BackgroundTransparency=1; layout.Parent=gui; refs.Layout=layout; gui=layout
+    -- Independent edge anchors keep the world clear. Only opened menus cover the centre.
+    local power=frame(gui,UDim2.fromOffset(180,88),UDim2.fromOffset(16,16),nil,palette.Mint); power.Name="PowerCard"
+    Glass.Icon(power,"Power",palette.Mint,UDim2.fromOffset(12,14),32)
+    local powerTitle=label(power,UDim2.fromOffset(54,12),UDim2.fromOffset(114,17),"СИЛА",11,palette.Mint)
+    powerTitle.TextXAlignment=Enum.TextXAlignment.Left
+    refs.Power=label(power,UDim2.fromOffset(54,29),UDim2.fromOffset(114,33),"0",29)
+    refs.Power.TextXAlignment=Enum.TextXAlignment.Left
+    refs.Power.TextScaled=true
+    local powerFont=Instance.new("UITextSizeConstraint"); powerFont.MinTextSize=12; powerFont.MaxTextSize=29; powerFont.Parent=refs.Power
+    refs.Level=label(power,UDim2.fromOffset(14,65),UDim2.fromOffset(152,17),"Уровень 0",12,palette.Muted)
+    refs.Level.TextXAlignment=Enum.TextXAlignment.Left
+    local coins=frame(gui,UDim2.fromOffset(172,72),UDim2.new(0.5,0,0,16),Vector2.new(0.5,0),palette.Gold); coins.Name="CoinsCard"
+    Glass.Icon(coins,"Coins",palette.Gold,UDim2.fromOffset(12,19),32)
+    local coinTitle=label(coins,UDim2.fromOffset(54,12),UDim2.fromOffset(106,16),"МОНЕТЫ",11,palette.Gold)
+    coinTitle.TextXAlignment=Enum.TextXAlignment.Left
+    refs.Coins=label(coins,UDim2.fromOffset(54,29),UDim2.fromOffset(106,32),"0",28)
+    refs.Coins.TextXAlignment=Enum.TextXAlignment.Left
+    refs.Coins.TextScaled=true
+    local coinFont=Instance.new("UITextSizeConstraint"); coinFont.MinTextSize=12; coinFont.MaxTextSize=28; coinFont.Parent=refs.Coins
+    refs.Mode=label(gui,UDim2.fromOffset(18,110),UDim2.fromOffset(240,19),"Загрузка данных…",11,palette.Muted)
+    refs.Mode.TextXAlignment=Enum.TextXAlignment.Left
+    local left=Instance.new("Frame"); left.Name="ActionDock"; left.Size=UDim2.fromOffset(152,120)
+    left.Position=UDim2.new(0,16,0.5,0); left.AnchorPoint=Vector2.new(0,0.5); left.BackgroundTransparency=1; left.Parent=gui
+    refs.Shop=button(left,UDim2.fromOffset(0,0),UDim2.fromOffset(152,54),"Магазин",palette.Blue)
+    refs.Gifts=button(left,UDim2.fromOffset(0,66),UDim2.fromOffset(152,54),"Награды",palette.Gold)
+    for _,info in {{refs.Shop,"Shop",palette.Blue},{refs.Gifts,"Gifts",palette.Gold}} do
+        local caption=info[1].Text; info[1].Text=""
+        Glass.Icon(info[1],info[2],info[3]); local captionLabel=label(info[1],UDim2.fromOffset(50,0),UDim2.new(1,-58,0,54),caption,15)
+        captionLabel.Name="Caption"
+    end
+    refs.Rebirth=button(gui,UDim2.new(1,-16,0.5,0),UDim2.fromOffset(164,88),"",palette.Violet)
+    refs.Rebirth.AnchorPoint=Vector2.new(1,0.5)
+    Glass.Icon(refs.Rebirth,"Rebirth",palette.Violet,UDim2.fromOffset(12,12),30)
+    label(refs.Rebirth,UDim2.fromOffset(48,13),UDim2.new(1,-56,0,27),"Перерождения",12,palette.Violet)
+    refs.RebirthStats=label(refs.Rebirth,UDim2.fromOffset(12,48),UDim2.new(1,-24,0,27),"0 • x1.00",21)
+    local notifyGifts=Glass.Notification(refs.Gifts,"right")
+    local notifyRebirth=Glass.Notification(refs.Rebirth,"left")
+    function refs.Notifications(giftsCount,rebirthCount)
+        notifyGifts(giftsCount); notifyRebirth(rebirthCount)
+    end
+    refs.Train=button(gui,UDim2.new(0.5,0,1,-49),UDim2.fromOffset(260,54),"Тренироваться  ·  E",palette.Mint)
+    refs.Train.AnchorPoint=Vector2.new(.5,.5)
+    Glass.Icon(refs.Train,"Power",palette.Mint,UDim2.fromOffset(12,11),32)
+    refs.Train.Text=""
+    label(refs.Train,UDim2.fromOffset(50,0),UDim2.fromOffset(198,54),game:GetService("UserInputService").TouchEnabled and "Тренироваться" or "Тренироваться · E",16)
+    refs.Train.Visible=false
+    refs.Hint=label(gui,UDim2.new(0.5,-210,1,-120),UDim2.fromOffset(420,34),"Подойди к зелёной платформе и нажми E.",13,palette.Muted)
+    refs.Notice=label(gui,UDim2.new(0.5,-190,1,-166),UDim2.fromOffset(380,38),"",15,palette.Gold)
+    Glass.Style(refs.Notice,palette.Gold,13)
+    refs.Notice.GlassTint:Destroy()
+    refs.Notice.Visible=false
+    Glass.Appear(power); Glass.Appear(coins,.06)
+    local shade=frame(gui,UDim2.fromScale(1,1),UDim2.fromScale(0,0))
+    shade.Name="MenuShade"; shade.BackgroundColor3=Color3.new(0,0,0); shade.BackgroundTransparency=0.4
+    for _,child in shade:GetChildren() do child:Destroy() end
+    shade.Visible=false; shade.ZIndex=20
+    local menus,menuScales={},{}
+    local function menu(name,title,height)
+        local f=frame(shade,UDim2.fromOffset(350,height),UDim2.fromScale(0.5,0.5),Vector2.new(0.5,0.5))
+        f.Name=name; f.Visible=false; f.ZIndex=21
+        f.BackgroundTransparency=0.08
+        local s=Instance.new("UIScale"); s.Parent=f; menuScales[#menuScales+1]={scale=s,height=height}
+        label(f,UDim2.fromOffset(20,16),UDim2.fromOffset(266,34),title,22)
+        local close=button(f,UDim2.fromOffset(300,14),UDim2.fromOffset(36,36),"×",Color3.fromRGB(65,75,95))
+        close.Name="Close"; close.Text=""
+        close.SpecularRim:Destroy()
+        -- Each rounded diagonal is 75% of the button width, with clear inset from the rim.
+        local glyph=Instance.new("Frame"); glyph.Name="CloseGlyph"; glyph.BackgroundTransparency=1
+        glyph.AnchorPoint=Vector2.new(.5,.5); glyph.Position=UDim2.fromScale(.5,.5)
+        glyph.Size=UDim2.fromScale(.75,.75); glyph.Parent=close
+        for _,angle in {45,-45} do
+            local line=Instance.new("Frame"); line.Name="Stroke"; line.BorderSizePixel=0
+            line.AnchorPoint=Vector2.new(.5,.5); line.Position=UDim2.fromScale(.5,.5)
+            line.Size=UDim2.new(1,0,0,3.5); line.Rotation=angle
+            line.BackgroundColor3=palette.Text; line.Parent=glyph; rounded(line,50)
+        end
+        close.Activated:Connect(function() refs.Close() end)
+        menus[name]=f; return f
+    end
+    function refs.Close()
+        for _,m in pairs(menus) do m.Visible=false end
+        shade.Visible=false
+    end
+    function refs.Open(name)
+        refs.Close(); menus[name].Visible=true; shade.Visible=true
+        local m=menus[name]; m.Position=UDim2.new(.5,0,.5,12)
+        TweenService:Create(m,TweenInfo.new(.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=UDim2.fromScale(.5,.5)}):Play()
+    end
+    local shop=menu("Shop","МАГАЗИН",272)
+    label(shop,UDim2.fromOffset(20,64),UDim2.fromOffset(310,42),"Улучшения усиливают тренировку.\nУровень 3 открывает новую станцию.",15)
+    refs.Upgrade=button(shop,UDim2.fromOffset(20,122),UDim2.fromOffset(310,48),"Улучшение: 25 монет")
+    refs.Cosmetic=button(shop,UDim2.fromOffset(20,184),UDim2.fromOffset(310,62),"Косметика: за Rebirth",Color3.fromRGB(84,95,131))
+    local gifts=menu("Gifts","НАГРАДЫ",250)
+    label(gifts,UDim2.fromOffset(20,62),UDim2.fromOffset(310,42),"Бонусы за возвращение.\nПропуск дня не сбрасывает прогресс.",15)
+    refs.Daily=button(gifts,UDim2.fromOffset(20,118),UDim2.fromOffset(310,48),"Ежедневная награда")
+    refs.Weekly=button(gifts,UDim2.fromOffset(20,180),UDim2.fromOffset(310,48),"Недельная награда")
+    local rebirth=menu("Rebirth","ПЕРЕРОЖДЕНИЕ",342)
+    refs.Bonus=label(rebirth,UDim2.fromOffset(20,62),UDim2.fromOffset(310,40),"Постоянный бонус: x1.00",16)
+    refs.Goal=label(rebirth,UDim2.fromOffset(20,114),UDim2.fromOffset(310,52),"200 силы и 150 монет",18)
+    local bar=frame(rebirth,UDim2.fromOffset(310,10),UDim2.fromOffset(20,180))
+    bar.BackgroundColor3=Color3.fromRGB(50,62,85)
+    refs.Fill=frame(bar,UDim2.fromScale(0,1),UDim2.fromScale(0,0),nil,Color3.fromRGB(105,226,193))
+    for _,child in refs.Fill:GetChildren() do child:Destroy() end
+    refs.Fill.BackgroundColor3=palette.Mint; refs.Fill.BackgroundTransparency=0; rounded(refs.Fill,5)
+    local progressTween,lastProgress
+    function refs.Progress(value)
+        if value==lastProgress then return end
+        lastProgress=value
+        if progressTween then progressTween:Cancel() end
+        progressTween=TweenService:Create(refs.Fill,TweenInfo.new(.22,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Size=UDim2.fromScale(value,1)})
+        progressTween:Play()
+    end
+    label(rebirth,UDim2.fromOffset(20,202),UDim2.fromOffset(310,54),"Сбросятся сила, монеты и уровень.\nРекорд, косметика и бонус сохранятся.",15)
+    refs.Prepare=button(rebirth,UDim2.fromOffset(20,274),UDim2.fromOffset(310,48),"Переродиться…",Color3.fromRGB(131,82,189))
+    local confirmation=menu("Confirm","ПОДТВЕРЖДЕНИЕ",350)
+    refs.Dialog=label(confirmation,UDim2.fromOffset(20,62),UDim2.fromOffset(310,148),"",17)
+    refs.Confirm=button(confirmation,UDim2.fromOffset(20,226),UDim2.fromOffset(310,48),"Подтвердить",Color3.fromRGB(131,82,189))
+    refs.Cancel=button(confirmation,UDim2.fromOffset(20,288),UDim2.fromOffset(310,42),"Отмена",Color3.fromRGB(68,81,105))
+    local cameraConnection
+    local function resize()
+        local camera=workspace.CurrentCamera; if not camera then return end
+        local v=refs.Layout.AbsoluteSize; if v.X&lt;1 then v=camera.ViewportSize end
+        local small=v.X&lt;640; local compact=small or v.Y&lt;460
+        coins.AnchorPoint=small and Vector2.new(1,0) or Vector2.new(0.5,0)
+        coins.Position=small and UDim2.new(1,-12,0,16) or UDim2.new(0.5,0,0,16)
+        local statWidth=small and math.min(164,(v.X-36)/2) or 180
+        power.Size=UDim2.fromOffset(statWidth,88); coins.Size=UDim2.fromOffset(small and statWidth or 172,72)
+        refs.Power.Size=UDim2.new(1,-66,0,33); refs.Coins.Size=UDim2.new(1,-66,0,32)
+        powerTitle.Size=UDim2.new(1,-66,0,17); coinTitle.Size=UDim2.new(1,-66,0,16)
+        refs.Level.Size=UDim2.new(1,-28,0,17)
+        local actionWidth=small and 138 or 152
+        left.Size=UDim2.fromOffset(actionWidth,120)
+        refs.Shop.Size=UDim2.fromOffset(actionWidth,54); refs.Gifts.Size=UDim2.fromOffset(actionWidth,54)
+        refs.Shop.Caption.TextSize=small and 14 or 15; refs.Gifts.Caption.TextSize=small and 14 or 15
+        refs.Rebirth.Size=UDim2.fromOffset(small and 148 or 164,88)
+        local sideY=v.Y&lt;460 and 136 or 152
+        left.Position=UDim2.new(0,12,0,compact and sideY or v.Y*.5); left.AnchorPoint=Vector2.new(0,compact and 0 or .5)
+        refs.Rebirth.Position=UDim2.new(1,-12,0,compact and sideY or v.Y*.5); refs.Rebirth.AnchorPoint=Vector2.new(1,compact and 0 or .5)
+        -- Centre the animated button; half its height preserves the existing bottom inset.
+        refs.Train.Position=UDim2.new(.5,0,1,compact and -65 or -49)
+        -- Short landscape screens reserve the side-button lanes for touch input.
+        local width=math.min(420,v.X-32)
+        if v.Y&lt;460 and v.X&gt;=560 then width=math.min(width,v.X-360) end
+        refs.Hint.Size=UDim2.fromOffset(width,34); refs.Hint.Position=UDim2.new(0.5,-width/2,1,compact and -136 or -120)
+        refs.Notice.Size=UDim2.fromOffset(math.min(380,width),38); refs.Notice.Position=UDim2.new(0.5,-math.min(380,width)/2,1,compact and -182 or -166)
+        for _,entry in menuScales do entry.scale.Scale=math.min(1,(v.X-24)/350,(v.Y-90)/entry.height) end
+    end
+    local function bindCamera()
+        if cameraConnection then cameraConnection:Disconnect() end
+        if workspace.CurrentCamera then cameraConnection=workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(resize) end
+        resize()
+    end
+    workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(bindCamera); bindCamera()
+    refs.Layout:GetPropertyChangedSignal("AbsoluteSize"):Connect(resize)
+    refs.Shop.Activated:Connect(function() refs.Open("Shop") end)
+    refs.Gifts.Activated:Connect(function() refs.Open("Gifts") end)
+    refs.Rebirth.Activated:Connect(function() refs.Open("Rebirth") end)
+    for name,value in pairs(refs) do
+        if typeof(value)=="Instance" and value:IsA("GuiObject") and value~=layout then value.Name=name end
+    end
+    return refs
+end
+return UI
+</ProtectedString>
+          </Properties>
+        </Item>
+        <Item class="ModuleScript" referent="RBXe97c7f4f65e54af8a21b0172c82bbd27">
+          <Properties>
+            <string name="Name">Glass</string>
+            <ProtectedString name="Source">local TweenService=game:GetService("TweenService")
+local Glass={}
+Glass.Colors={Base=Color3.fromRGB(24,37,59),Text=Color3.fromRGB(242,248,255),Muted=Color3.fromRGB(171,193,217),
+    Mint=Color3.fromRGB(104,239,202),Gold=Color3.fromRGB(255,212,119),Blue=Color3.fromRGB(114,198,255),Violet=Color3.fromRGB(199,167,255)}
+local function corner(p,r)
+    local c=Instance.new("UICorner"); c.CornerRadius=UDim.new(0,r); c.Parent=p
+end
+function Glass.Style(p,accent,radius)
+    accent=accent or Glass.Colors.Blue
+    p.BackgroundColor3=Glass.Colors.Base; p.BackgroundTransparency=0.23; p.BorderSizePixel=0
+    corner(p,radius or 18)
+    local stroke=Instance.new("UIStroke"); stroke.Name="GlassEdge"; stroke.ApplyStrokeMode=Enum.ApplyStrokeMode.Border
+    stroke.Color=accent:Lerp(Color3.new(1,1,1),0.55); stroke.Transparency=0.55; stroke.Thickness=1; stroke.Parent=p
+    local gradient=Instance.new("UIGradient"); gradient.Name="GlassTint"; gradient.Rotation=105
+    gradient.Color=ColorSequence.new({ColorSequenceKeypoint.new(0,accent:Lerp(Color3.new(1,1,1),0.4)),
+        ColorSequenceKeypoint.new(0.38,Color3.fromRGB(169,193,220)),ColorSequenceKeypoint.new(1,Color3.fromRGB(92,120,157))})
+    gradient.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,0.08),NumberSequenceKeypoint.new(0.42,0.18),NumberSequenceKeypoint.new(1,0)})
+    gradient.Parent=p
+    local rim=Instance.new("Frame"); rim.Name="SpecularRim"; rim.Position=UDim2.new(0,16,0,1)
+    rim.Size=UDim2.new(1,-32,0,1); rim.BackgroundColor3=Color3.new(1,1,1); rim.BackgroundTransparency=0.52
+    rim.BorderSizePixel=0; rim.Parent=p
+    local shine=Instance.new("UIGradient"); shine.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,1),
+        NumberSequenceKeypoint.new(0.35,0.1),NumberSequenceKeypoint.new(0.65,0.25),NumberSequenceKeypoint.new(1,1)}); shine.Parent=rim
+    return stroke
+end
+function Glass.Icon(parent,kind,accent,position,size)
+    local f=Instance.new("Frame"); f.Name="Icon"; f.BackgroundColor3=accent; f.BackgroundTransparency=0.86
+    f.Size=UDim2.fromOffset(size or 32,size or 32); f.Position=position or UDim2.fromOffset(12,11); f.BorderSizePixel=0; f.Parent=parent; corner(f,10)
+    local function shape(x,y,w,h,round)
+        local s=Instance.new("Frame"); s.Position=UDim2.fromScale(x,y); s.Size=UDim2.fromScale(w,h)
+        s.BackgroundColor3=accent; s.BorderSizePixel=0; s.Parent=f; if round then corner(s,round) end; return s
+    end
+    if kind=="Power" then
+        shape(.22,.25,.13,.5,3); shape(.65,.25,.13,.5,3); shape(.35,.44,.3,.12,2)
+    elseif kind=="Coins" then
+        local disc=shape(.23,.23,.54,.54,50); disc.BackgroundTransparency=.1
+        local line=shape(.47,.32,.06,.36,2); line.BackgroundColor3=Glass.Colors.Base
+    elseif kind=="Shop" then
+        shape(.25,.37,.5,.42,3)
+        local handle=shape(.37,.2,.26,.27,3); handle.BackgroundTransparency=1
+        local st=Instance.new("UIStroke"); st.Color=accent; st.Thickness=2; st.Parent=handle
+    elseif kind=="Gifts" then
+        shape(.22,.4,.56,.1,2); shape(.27,.52,.46,.27,2); shape(.47,.28,.06,.52,2)
+        local a=shape(.3,.26,.19,.1,3); a.Rotation=30
+        local b=shape(.51,.26,.19,.1,3); b.Rotation=-30
+    else
+        local ring=shape(.25,.25,.5,.5,50); ring.BackgroundTransparency=1
+        local outline=Instance.new("UIStroke"); outline.Color=accent; outline.Thickness=2; outline.Parent=ring
+        local tip1=shape(.55,.18,.22,.07,2); tip1.Rotation=22
+        local tip2=shape(.7,.22,.07,.22,2); tip2.Rotation=22
+    end
+    return f
+end
+function Glass.AnimateButton(b)
+    b.AutoButtonColor=false
+    local s=Instance.new("UIScale"); s.Name="InteractionScale"; s.Parent=b
+    local edge=b:FindFirstChild("GlassEdge")
+    local currentScale,currentSurface,currentEdge
+    local function state(scale,alpha,line)
+        if currentScale then currentScale:Cancel() end
+        if currentSurface then currentSurface:Cancel() end
+        if currentEdge then currentEdge:Cancel() end
+        local info=TweenInfo.new(.14,Enum.EasingStyle.Quad,Enum.EasingDirection.Out)
+        currentScale=TweenService:Create(s,info,{Scale=scale}); currentScale:Play()
+        currentSurface=TweenService:Create(b,info,{BackgroundTransparency=alpha}); currentSurface:Play()
+        if edge then currentEdge=TweenService:Create(edge,info,{Transparency=line}); currentEdge:Play() end
+    end
+    b.MouseEnter:Connect(function() state(1.025,.12,.25) end)
+    b.MouseLeave:Connect(function() state(1,.23,.55) end)
+    b.InputBegan:Connect(function(input)
+        if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then state(.96,.08,.18) end
+    end)
+    b.InputEnded:Connect(function(input)
+        if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then state(1,.23,.55) end
+    end)
+    b.SelectionGained:Connect(function() state(1,.12,.25) end)
+    b.SelectionLost:Connect(function() state(1,.23,.55) end)
+    b:GetPropertyChangedSignal("Visible"):Connect(function()
+        if b.Visible then s.Scale=.94; b.BackgroundTransparency=1; state(1,.23,.55) end
+    end)
+end
+function Glass.Appear(p,delaySeconds)
+    local scale=Instance.new("UIScale"); scale.Name="RevealScale"; scale.Scale=.94; scale.Parent=p
+    p.BackgroundTransparency=1
+    task.delay(delaySeconds or 0,function()
+        if not p.Parent then return end
+        TweenService:Create(scale,TweenInfo.new(.3,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Scale=1}):Play()
+        TweenService:Create(p,TweenInfo.new(.3,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency=.23}):Play()
+    end)
+end
+function Glass.Notification(button,side)
+    local baseColor=button.BackgroundColor3
+    local edge=button:FindFirstChild("GlassEdge"); local baseEdge=edge and edge.Color
+    local red=Color3.fromRGB(239,83,104)
+    local badge=Instance.new("Frame"); badge.Name="NotificationBadge"; badge.Size=UDim2.fromOffset(22,22)
+    badge.AnchorPoint=Vector2.new(.5,.5)
+    badge.Position=side=="left" and UDim2.new(0,3,0,3) or UDim2.new(1,-3,0,3)
+    badge.BackgroundColor3=red; badge.BackgroundTransparency=.12; badge.BorderSizePixel=0
+    badge.ZIndex=button.ZIndex+3; badge.Visible=false; badge.Parent=button; corner(badge,50)
+    local border=Instance.new("UIStroke"); border.Color=Color3.fromRGB(255,184,192)
+    border.Transparency=.3; border.Thickness=1; border.Parent=badge
+    local tint=Instance.new("UIGradient"); tint.Rotation=90
+    tint.Color=ColorSequence.new(Color3.fromRGB(255,231,235),Color3.fromRGB(175,189,211)); tint.Parent=badge
+    local number=Instance.new("TextLabel"); number.Name="Count"; number.BackgroundTransparency=1
+    number.Size=UDim2.fromScale(1,1); number.TextColor3=Glass.Colors.Text; number.Font=Enum.Font.GothamBold
+    number.TextSize=12; number.ZIndex=badge.ZIndex+1; number.Parent=badge
+    require(game.ReplicatedStorage.SimulatorShared.TextStyle).Apply(number)
+    local scale=Instance.new("UIScale"); scale.Parent=badge
+    local previous=-1; local surfaceTween,edgeTween,revealTween
+    return function(count)
+        count=math.max(0,math.floor(count))
+        if count==previous then return end
+        previous=count; button:SetAttribute("NotificationCount",count)
+        number.Text=count&gt;99 and "99+" or tostring(count); badge.Visible=count&gt;0
+        if surfaceTween then surfaceTween:Cancel() end
+        if edgeTween then edgeTween:Cancel() end
+        surfaceTween=TweenService:Create(button,TweenInfo.new(.2),{
+            BackgroundColor3=count&gt;0 and baseColor:Lerp(Color3.fromRGB(160,48,67),.38) or baseColor})
+        surfaceTween:Play()
+        if edge then
+            edgeTween=TweenService:Create(edge,TweenInfo.new(.2),{Color=count&gt;0 and baseEdge:Lerp(red,.6) or baseEdge})
+            edgeTween:Play()
+        end
+        if revealTween then revealTween:Cancel() end
+        if count&gt;0 then
+            scale.Scale=.75
+            revealTween=TweenService:Create(scale,TweenInfo.new(.2,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1})
+            revealTween:Play()
+        end
+    end
+end
+return Glass
+</ProtectedString>
+          </Properties>
+        </Item>
+        <Item class="LocalScript" referent="RBX1b6101cebf5f444aa3dd9ce493bfd576">
+          <Properties>
+            <string name="Name">Controller</string>
+            <ProtectedString name="Source">local Players=game:GetService("Players")
+local player=Players.LocalPlayer
+local C=require(game.ReplicatedStorage:WaitForChild("SimulatorShared"):WaitForChild("Config"))
+local UI=require(script.Parent.UI)
+local refs=UI.Build(player)
+-- The edge HUD renders the training hint; keep the prompt's E/gamepad input without duplicate default UI.
+local function styleTrainingPrompt(obj)
+    if obj:IsA("ProximityPrompt") and obj.Name=="TrainPrompt" then obj.Style=Enum.ProximityPromptStyle.Custom end
+end
+workspace.DescendantAdded:Connect(styleTrainingPrompt)
+for _,obj in workspace:GetDescendants() do styleTrainingPrompt(obj) end
+local remotes=game.ReplicatedStorage:WaitForChild("SimulatorRemotes")
+local action=remotes:WaitForChild("Action")
+local state,rebirthToken,serverOffset
+local noticeVersion=0
+local function showNotice(message)
+    noticeVersion+=1
+    local version=noticeVersion
+    refs.Notice.Text=message; refs.Notice.Visible=true
+    task.delay(4,function() if noticeVersion==version then refs.Notice.Visible=false end end)
+end
+local function request(name,...)
+    -- This only improves UX. Every limit/condition is rechecked on the server.
+    if state then action:FireServer(name,...) end
+end
+local function cooldownText(last,seconds,title,now)
+    if state.TotalTrainings&lt;C.RewardMinTrainings then return title.." • 3 тренировки" end
+    local remaining=last==0 and 0 or math.max(0,last+seconds-now)
+    if remaining==0 then return title.." • забрать" end
+    local hours=math.floor(remaining/3600); local minutes=math.floor(remaining%3600/60)
+    return ("%s • %dч %dм"):format(title,hours,minutes)
+end
+local function render()
+    if not state then return end
+    refs.Power.Text=tostring(state.Power)
+    refs.Coins.Text=tostring(state.Coins)
+    refs.Level.Text="Уровень "..state.Level
+    refs.RebirthStats.Text=("%d • x%.2f"):format(state.Rebirths,state.Multiplier)
+    refs.Bonus.Text=("Постоянный бонус: x%.2f  •  Рекорд: %d"):format(state.Multiplier,state.LifetimePower)
+    refs.Goal.Text=("До Rebirth: %d / %d силы\n%d / %d монет"):format(state.Power,state.RequiredPower,state.Coins,state.RequiredCoins)
+    refs.Progress(math.min(1,state.Power/state.RequiredPower,state.Coins/state.RequiredCoins))
+    refs.Upgrade.Text=state.UpgradeCost&gt;0 and ("Улучшение: "..state.UpgradeCost.." монет") or "Уровень тренировки: максимум"
+    local now=os.time()+(serverOffset or 0)
+    local rewardsReady=state.TotalTrainings&gt;=C.RewardMinTrainings
+    local dailyReady=rewardsReady and (state.LastDaily==0 or now&gt;=state.LastDaily+C.DailySeconds)
+    local weeklyReady=rewardsReady and (state.LastWeekly==0 or now&gt;=state.LastWeekly+C.WeeklySeconds)
+    local rebirthReady=state.Rebirths&lt;C.MaxRebirths and state.Power&gt;=state.RequiredPower and state.Coins&gt;=state.RequiredCoins
+    refs.Notifications((dailyReady and 1 or 0)+(weeklyReady and 1 or 0),rebirthReady and 1 or 0)
+    refs.Daily.Text=cooldownText(state.LastDaily,C.DailySeconds,"Ежедневная",now)
+    refs.Weekly.Text=cooldownText(state.LastWeekly,C.WeeklySeconds,"Недельная",now)
+    refs.Cosmetic.Text=state.NeonTrail and ("Неоновый след • "..(state.Equipped=="NeonTrail" and "выключить" or "включить"))
+        or state.BronzeAura and ("Бронзовая аура • "..(state.Equipped=="BronzeAura" and "выключить" or "включить"))
+        or "Косметика: аура за 1, след за 10 Rebirth"
+    if state.StorageMode=="sandbox" then refs.Mode.Text="Studio: без сохранений"
+    elseif state.SaveStatus=="retry" then refs.Mode.Text="DataStore: повтор сохранения…"
+    elseif state.SaveStatus=="saved" then refs.Mode.Text="DataStore: прогресс сохранён"
+    else refs.Mode.Text="DataStore: прогресс загружен" end
+    if state.TotalTrainings==0 then refs.Hint.Text=game:GetService("UserInputService").TouchEnabled and "Подойди к зелёной платформе и нажми «Тренироваться»." or "Подойди к зелёной платформе и нажми E."
+    elseif state.Level==0 then refs.Hint.Text="Открой магазин: первое улучшение стоит 25 монет."
+    else refs.Hint.Text="" end
+    refs.Hint.Visible=refs.Hint.Text~=""
+end
+remotes.State.OnClientEvent:Connect(function(snapshot)
+    state=snapshot; serverOffset=snapshot.ServerTime-os.time(); render()
+end)
+remotes.Notice.OnClientEvent:Connect(function(message,extra)
+    showNotice(message)
+    if extra and extra.RebirthToken then
+        rebirthToken=extra.RebirthToken
+        refs.Dialog.Text=message..("\n\nНовый постоянный бонус: x%.2f\nПодтверждение действует 20 секунд."):format(extra.NextMultiplier)
+        refs.Open("Confirm")
+    end
+end)
+refs.Train.Activated:Connect(function()
+    local char=player.Character; local root=char and char:FindFirstChild("HumanoidRootPart")
+    if not root then return end
+    local selected,distance="Basic",math.huge
+    for id,station in pairs(C.Stations) do
+        local d=(root.Position-station.Position).Magnitude
+        if d&lt;distance then selected=id; distance=d end
+    end
+    if distance&gt;C.TrainDistance then showNotice("Подойди к тренировочной платформе."); return end
+    request("Train",selected)
+end)
+refs.Upgrade.Activated:Connect(function() request("Upgrade") end)
+refs.Prepare.Activated:Connect(function() request("PrepareRebirth") end)
+refs.Daily.Activated:Connect(function() request("Daily") end)
+refs.Weekly.Activated:Connect(function() request("Weekly") end)
+refs.Cosmetic.Activated:Connect(function()
+    if not state then return end
+    local item=state.NeonTrail and "NeonTrail" or state.BronzeAura and "BronzeAura" or nil
+    if item then request("Equip",state.Equipped==item and "" or item) end
+end)
+refs.Cancel.Activated:Connect(function() rebirthToken=nil; refs.Close() end)
+refs.Confirm.Activated:Connect(function()
+    local token=rebirthToken; rebirthToken=nil; refs.Close()
+    if token then request("Rebirth",token) end
+end)
+-- Visibility is a UX hint; the server checks training distance independently.
+task.spawn(function()
+    while refs.Gui.Parent do
+        local root=player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+        local near=false
+        if root and state then
+            for _,station in pairs(C.Stations) do
+                if (root.Position-station.Position).Magnitude&lt;=C.TrainDistance then near=true; break end
+            end
+        end
+        refs.Train.Visible=near
+        task.wait(0.2)
+    end
+end)
+task.spawn(function()
+    -- Initial State may arrive before the client listener. Retry only synchronization.
+    while not state do action:FireServer("Sync"); task.wait(2) end
+    while refs.Gui.Parent do task.wait(1); render() end
+end)
+</ProtectedString>
+          </Properties>
+        </Item>
+        <Item class="LocalScript" referent="RBXbbaa28175d4d4c02acfcd05661170283">
+          <Properties>
+            <string name="Name">WorldSigns</string>
+            <ProtectedString name="Source">local Players=game:GetService("Players")
+local TweenService=game:GetService("TweenService")
+local C=require(game.ReplicatedStorage:WaitForChild("SimulatorShared"):WaitForChild("Config"))
+local player=Players.LocalPlayer
+local entries={}
+local current
+local tweenInfo=TweenInfo.new(C.SignFadeSeconds,Enum.EasingStyle.Quad,Enum.EasingDirection.Out)
+
+local function register(gui)
+    if not gui:IsA("BillboardGui") or gui.Name~="SimulatorSign" or entries[gui] then return end
+    local text=gui:WaitForChild("SignText",5)
+    local scale=text and text:WaitForChild("RevealScale",5)
+    if not text or not scale or not gui:IsDescendantOf(workspace) then return end
+    gui.Enabled=false; text.TextTransparency=1; text.TextStrokeTransparency=1; text.BackgroundTransparency=1
+    scale.Scale=0.94
+    entries[gui]={gui=gui,text=text,scale=scale,shown=false,generation=0}
+end
+local function reveal(entry,show)
+    if entry.shown==show then return end
+    entry.shown=show; entry.generation+=1
+    local generation=entry.generation
+    if entry.fade then entry.fade:Cancel() end
+    if entry.grow then entry.grow:Cancel() end
+    if show then entry.gui.Enabled=true end
+    entry.fade=TweenService:Create(entry.text,tweenInfo,{
+        TextTransparency=show and 0 or 1,
+        TextStrokeTransparency=show and 0.15 or 1,
+        BackgroundTransparency=show and 0.1 or 1,
+    })
+    entry.grow=TweenService:Create(entry.scale,tweenInfo,{Scale=show and 1 or 0.94})
+    if not show then
+        entry.fade.Completed:Once(function(state)
+            if state==Enum.PlaybackState.Completed and entry.generation==generation and not entry.shown then
+                entry.gui.Enabled=false
+            end
+        end)
+    end
+    entry.fade:Play(); entry.grow:Play()
+end
+workspace.DescendantAdded:Connect(function(obj)
+    if obj:IsA("BillboardGui") and obj.Name=="SimulatorSign" then task.spawn(register,obj) end
+end)
+for _,obj in workspace:GetDescendants() do
+    if obj:IsA("BillboardGui") and obj.Name=="SimulatorSign" then task.spawn(register,obj) end
+end
+while script.Parent do
+    local root=player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+    local nearest,nearestDistance=nil,C.SignRevealDistance
+    local currentDistance=math.huge
+    for gui,entry in pairs(entries) do
+        local anchor=gui.Adornee or gui.Parent
+        if not gui:IsDescendantOf(workspace) or not anchor:IsA("BasePart") then
+            if entry.fade then entry.fade:Cancel() end
+            if entry.grow then entry.grow:Cancel() end
+            entries[gui]=nil; if current==entry then current=nil end
+        elseif root then
+            local distance=(root.Position-anchor.Position).Magnitude
+            if entry==current then currentDistance=distance end
+            if distance&lt;nearestDistance then nearest=entry; nearestDistance=distance end
+        end
+    end
+    -- Show one nearby sign. A small hysteresis prevents rapid switching at the boundary.
+    if current and currentDistance&lt;=C.SignRevealDistance+C.SignHideMargin
+        and (not nearest or nearestDistance+C.SignHideMargin&gt;=currentDistance) then nearest=current end
+    for _,entry in pairs(entries) do reveal(entry,entry==nearest) end
+    current=nearest
+    task.wait(0.1)
+end
+</ProtectedString>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+  </Item>
+  <Item class="StarterGui" referent="RBX9db879aebb9145d490a48a3a8ad9f1b6">
+    <Properties>
+      <string name="Name">StarterGui</string>
+    </Properties>
+  </Item>
+</roblox>

@@ -1,0 +1,28 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Studio recovery, locks and temporary files (keep actual .rbxl/.rbxlx places)
+*.rbxl.lock
+*.rbxlx.lock
+*.rbxl.autosave
+*.rbxlx.autosave
+*.tmp
+*.bak
+*.log
+AutoSaves/
+logs/
+
+# Downloaded Luau CLI; see tools/README.md
+tools/luau-*/
+tools/luau-*.zip
+
+# Local editor and OS state
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
