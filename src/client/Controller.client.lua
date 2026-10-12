@@ -11,7 +11,7 @@ workspace.DescendantAdded:Connect(styleTrainingPrompt)
 for _,obj in workspace:GetDescendants() do styleTrainingPrompt(obj) end
 local remotes=game.ReplicatedStorage:WaitForChild("SimulatorRemotes")
 local action=remotes:WaitForChild("Action")
-local state,rebirthToken,serverOffset
+local state,rebirthToken,serverOffset,selectedEgg
 local stationFactor=1
 local function renderMultipliers()
     if not state then return end
@@ -44,11 +44,24 @@ local function render()
     refs.Coins.Text=tostring(state.Coins)
     local petCount=0
     for _,amount in pairs(state.Pets) do petCount+=amount end
-    refs.PetSummary.Text=("Питомцы: %d/%d • бонус x%.2f"):format(petCount,C.MaxPets,state.PetMultiplier)
+    local equippedCount=0
+    for _,amount in pairs(state.EquippedPets) do equippedCount+=amount end
+    refs.PetSummary.Text=("Получено %d/%d • нанято %d/%d • x%.2f"):format(petCount,C.MaxPets,equippedCount,C.PetEquipSlots,state.PetMultiplier)
     for id,b in pairs(refs.PetButtons) do
         local info=C.PetTypes[id]; local count=state.Pets[id] or 0
-        b.Text=("%s ×%d • x%.2f\n%s"):format(info.Name,count,1+info.Bonus,
-            count==0 and "Не получен" or state.EquippedPet==id and "Экипирован • снять" or "Экипировать")
+        local equipped=state.EquippedPets[id] or 0
+        refs.PetCards[id].Text=("Получено: %d\nНанято: %d"):format(count,equipped)
+        b.Text=count==0 and "Не получен" or equippedCount>=C.PetEquipSlots and "Слоты заняты" or count==equipped and "Все наняты" or "Нанять +1"
+        b.Active=count>equipped and equippedCount<C.PetEquipSlots
+        refs.PetRemoveButtons[id].Active=equipped>0
+        refs.PetRemoveButtons[id].Text=equipped>0 and "Снять −1" or "Не нанят"
+    end
+    refs.Catalog.UpdateEggs(state.Level)
+    if selectedEgg then
+        local egg=C.Eggs[selectedEgg]; local unlocked=state.Level>=egg.MinLevel
+        refs.EggChoiceText.Text=unlocked and (egg.Name.."\n"..egg.Description.."\n\n"..egg.Cost.." монет. Для открытия подойди к этой стойке.")
+            or (egg.Name.."\nНедоступно. Нужен уровень "..egg.MinLevel..".")
+        refs.HatchSelected.Active=unlocked
     end
     refs.Level.Text="Уровень "..state.Level
     refs.RebirthStats.Text=("%d • x%.2f"):format(state.Rebirths,state.Multiplier)
@@ -100,14 +113,23 @@ refs.Train.Activated:Connect(function()
     request("Train",selected)
 end)
 refs.Upgrade.Activated:Connect(function() request("Upgrade") end)
-for id,b in pairs(refs.EggButtons) do b.Activated:Connect(function() request("Hatch",id) end) end
+for id,b in pairs(refs.EggButtons) do b.Activated:Connect(function()
+    if not state or state.Level<C.Eggs[id].MinLevel then return end
+    selectedEgg=id
+    local egg=C.Eggs[id]
+    refs.EggChoiceText.Text=egg.Name.."\n"..egg.Description.."\n\n"..egg.Cost.." монет. Для открытия подойди к этой стойке."
+    refs.HatchSelected.Text="Открыть • "..egg.Cost
+    refs.Open("EggChoice")
+end) end
+refs.HatchSelected.Activated:Connect(function() if selectedEgg then request("Hatch",selectedEgg) end end)
 for id,b in pairs(refs.PetButtons) do
     b.Activated:Connect(function()
         if not state then return end
         if not state.Pets[id] then showNotice("Сначала получи этого питомца из яйца."); return end
-        request("PetEquip",state.EquippedPet==id and "" or id)
+        request("PetEquip",id)
     end)
 end
+for id,b in pairs(refs.PetRemoveButtons) do b.Activated:Connect(function() request("PetUnequip",id) end) end
 refs.Prepare.Activated:Connect(function() request("PrepareRebirth") end)
 refs.Daily.Activated:Connect(function() request("Daily") end)
 refs.Weekly.Activated:Connect(function() request("Weekly") end)

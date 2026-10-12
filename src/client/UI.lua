@@ -1,6 +1,7 @@
 local UI={}
 local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
 local Glass=require(script.Parent.Glass)
+local PetCatalog=require(script.Parent.PetCatalog)
 local TweenService=game:GetService("TweenService")
 local palette=Glass.Colors
 local dark=Color3.fromRGB(22,30,48)
@@ -109,7 +110,7 @@ function UI.Build(player)
         local f=frame(shade,UDim2.fromOffset(350,height),UDim2.fromScale(0.5,0.5),Vector2.new(0.5,0.5))
         f.Name=name; f.Visible=false; f.ZIndex=21
         f.BackgroundTransparency=0.08
-        local s=Instance.new("UIScale"); s.Parent=f; menuScales[#menuScales+1]={scale=s,height=height}
+        local s=Instance.new("UIScale"); s.Parent=f; menuScales[#menuScales+1]={scale=s,height=height,frame=f}
         label(f,UDim2.fromOffset(20,16),UDim2.fromOffset(266,34),title,22)
         local close=button(f,UDim2.fromOffset(300,14),UDim2.fromOffset(36,36),"×",Color3.fromRGB(65,75,95))
         close.Name="Close"; close.Text=""
@@ -141,20 +142,14 @@ function UI.Build(player)
     refs.Upgrade=button(shop,UDim2.fromOffset(20,122),UDim2.fromOffset(310,48),"Улучшение: 25 монет")
     refs.Cosmetic=button(shop,UDim2.fromOffset(20,184),UDim2.fromOffset(310,62),"Косметика: за Rebirth",Color3.fromRGB(84,95,131))
     local pets=menu("Pets","ЯЙЦА И ПИТОМЦЫ",520)
+    refs.Catalog=PetCatalog.Build(pets)
+    for key,value in pairs(refs.Catalog) do if key~="Select" then refs[key]=value end end
     local C=require(game.ReplicatedStorage.SimulatorShared.Config)
-    refs.PetSummary=label(pets,UDim2.fromOffset(20,58),UDim2.fromOffset(310,34),"Питомцы: 0/50 • бонус x1.00",14)
-    refs.EggButtons={}; refs.PetButtons={}
-    for index,id in C.EggOrder do
-        local egg=C.Eggs[id]
-        local y=98+(index-1)*86
-        refs.EggButtons[id]=button(pets,UDim2.fromOffset(20,y),UDim2.fromOffset(310,46),egg.Name.." • "..egg.Cost.." монет",Color3.fromRGB(table.unpack(egg.Color)))
-        label(pets,UDim2.fromOffset(20,y+48),UDim2.fromOffset(310,30),
-            ("Кот %d%% • Пёс %d%% • Кролик %d%%"):format(egg.Weights.Cat,egg.Weights.Dog,egg.Weights.Bunny),12,palette.Muted)
-    end
-    label(pets,UDim2.fromOffset(20,270),UDim2.fromOffset(310,30),"Инвентарь • экипирован один питомец",14,palette.Mint)
-    for index,id in C.PetOrder do
-        refs.PetButtons[id]=button(pets,UDim2.fromOffset(20,304+(index-1)*62),UDim2.fromOffset(310,52),C.PetTypes[id].Name,Color3.fromRGB(table.unpack(C.PetTypes[id].Color)))
-    end
+    local selection=menu("EggChoice","ВЫБРАННОЕ ЯЙЦО",272)
+    refs.EggChoiceText=label(selection,UDim2.fromOffset(20,62),UDim2.fromOffset(310,128),"",14)
+    refs.HatchSelected=button(selection,UDim2.fromOffset(20,204),UDim2.fromOffset(150,48),"Открыть")
+    refs.BackToEggs=button(selection,UDim2.fromOffset(184,204),UDim2.fromOffset(146,48),"Назад")
+    refs.BackToEggs.Activated:Connect(function() refs.Open("Pets"); refs.Catalog.Select("Eggs") end)
     refs.Pets.Activated:Connect(function() refs.Open("Pets") end)
     local gifts=menu("Gifts","НАГРАДЫ",250)
     label(gifts,UDim2.fromOffset(20,62),UDim2.fromOffset(310,42),"Бонусы за возвращение.\nПропуск дня не сбрасывает прогресс.",15)
@@ -223,7 +218,11 @@ function UI.Build(player)
         if v.Y<460 and v.X>=560 then width=math.min(width,v.X-360) end
         refs.Hint.Size=UDim2.fromOffset(width,34); refs.Hint.Position=UDim2.new(0.5,-width/2,1,compact and -136 or -120)
         refs.Notice.Size=UDim2.fromOffset(math.min(380,width),38); refs.Notice.Position=UDim2.new(0.5,-math.min(380,width)/2,1,compact and -182 or -166)
-        for _,entry in menuScales do entry.scale.Scale=math.min(1,(v.X-24)/350,(v.Y-90)/entry.height) end
+        for _,entry in menuScales do
+            local height=entry.frame.Name=="Pets" and math.min(520,math.max(230,v.Y-90)) or entry.height
+            if entry.frame.Name=="Pets" then entry.frame.Size=UDim2.fromOffset(350,height) end
+            entry.scale.Scale=math.min(1,(v.X-24)/350,(v.Y-90)/height)
+        end
     end
     local function bindCamera()
         if cameraConnection then cameraConnection:Disconnect() end

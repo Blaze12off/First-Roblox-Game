@@ -34,7 +34,7 @@ local C = {
     MilestoneTrail = 10,
     AnalyticsEnabled = false, -- Enable after publishing and checking Dashboard.
     SupportRewardsEnabled = false, PaidItemsEnabled = false,
-    MaxPets = 50, HatchCooldown = 1.2, EggDistance = 11,
+    MaxPets = 50, PetEquipSlots = 3, HatchCooldown = 1.2, EggDistance = 11,
     PetTypes = {
         Cat = {Name = "Кот", Bonus = 0.10, Color = {255, 182, 103}},
         Dog = {Name = "Пёс", Bonus = 0.20, Color = {111, 190, 255}},
@@ -43,9 +43,9 @@ local C = {
     PetOrder = {"Cat", "Dog", "Bunny"},
     EggOrder = {"Meadow", "Crystal"},
     Eggs = {
-        Meadow = {Name = "Луговое яйцо", Cost = 80, Position = Vector3.new(-31, 0.8, -8),
+        Meadow = {Name = "Луговое яйцо", Description = "Первое яйцо для твоей команды. Кот 60% • Пёс 30% • Кролик 10%.", MinLevel = 0, Cost = 80, Position = Vector3.new(-31, 0.8, -8),
             Color = {112, 228, 180}, Weights = {Cat = 60, Dog = 30, Bunny = 10}},
-        Crystal = {Name = "Кристальное яйцо", Cost = 240, Position = Vector3.new(-31, 0.8, 3),
+        Crystal = {Name = "Кристальное яйцо", Description = "Больше шансов на редкого питомца. Кот 20% • Пёс 45% • Кролик 35%.", MinLevel = 0, Cost = 240, Position = Vector3.new(-31, 0.8, 3),
             Color = {180, 143, 255}, Weights = {Cat = 20, Dog = 45, Bunny = 35}},
     },
     Stations = {
@@ -73,8 +73,11 @@ function C.Gains(data, stationMultiplier)
     return math.floor(C.BasePower * power), math.floor(C.BaseCoins * coins)
 end
 function C.PetMultiplier(data)
-    local pet = C.PetTypes[data.EquippedPet]
-    return 1 + (pet and data.Pets and (data.Pets[data.EquippedPet] or 0) > 0 and pet.Bonus or 0)
+    local bonus = 0
+    for id, count in pairs(data.EquippedPets or {}) do
+        if C.PetTypes[id] then bonus += C.PetTypes[id].Bonus * count end
+    end
+    return 1 + bonus
 end
 return table.freeze(C)
 
@@ -84,9 +87,9 @@ local require=getModule; local script={Parent=root}
 local C = require(game.ReplicatedStorage.SimulatorShared.Config)
 local Schema = {}
 function Schema.New()
-    return {Version = 2, Coins = 0, Power = 0, Level = 0, Rebirths = 0,
+    return {Version = 3, Coins = 0, Power = 0, Level = 0, Rebirths = 0,
         LifetimePower = 0, TotalTrainings = 0, LastDaily = 0, LastWeekly = 0,
-        Cosmetics = {}, Equipped = "", Pets = {}, EquippedPet = ""}
+        Cosmetics = {}, Equipped = "", Pets = {}, EquippedPets = {}}
 end
 function Schema.Copy(value)
     if type(value) ~= "table" then return value end
@@ -100,7 +103,7 @@ local function integer(value, maximum)
 end
 -- Corrupt/unknown records fail closed. Defaults only come from a genuinely absent key.
 function Schema.Validate(raw)
-    if type(raw) ~= "table" or (raw.Version ~= 1 and raw.Version ~= 2) then return nil end
+    if type(raw) ~= "table" or (raw.Version ~= 1 and raw.Version ~= 2 and raw.Version ~= 3) then return nil end
     local limits = {Coins=C.MaxValue, Power=C.MaxValue, Level=C.MaxLevel,
         Rebirths=C.MaxRebirths, LifetimePower=C.MaxValue, TotalTrainings=C.MaxValue,
         LastDaily=100000000000, LastWeekly=100000000000}
@@ -110,22 +113,34 @@ function Schema.Validate(raw)
         if (key ~= "BronzeAura" and key ~= "NeonTrail") or value ~= true then return nil end
     end
     if raw.Equipped ~= "" and not raw.Cosmetics[raw.Equipped] then return nil end
-    if raw.Version == 2 then
-        if type(raw.Pets) ~= "table" or type(raw.EquippedPet) ~= "string" then return nil end
+    if raw.Version >= 2 then
+        if type(raw.Pets) ~= "table" then return nil end
         local total = 0
         for id, count in pairs(raw.Pets) do
             if not C.PetTypes[id] or not integer(count, C.MaxPets) or count < 1 then return nil end
             total += count
         end
         if total > C.MaxPets then return nil end
-        if raw.EquippedPet ~= "" and not raw.Pets[raw.EquippedPet] then return nil end
+        if raw.Version == 2 then
+            if type(raw.EquippedPet) ~= "string" or (raw.EquippedPet ~= "" and not raw.Pets[raw.EquippedPet]) then return nil end
+        else
+            if type(raw.EquippedPets) ~= "table" then return nil end
+            local equipped = 0
+            for id, count in pairs(raw.EquippedPets) do
+                if not C.PetTypes[id] or not integer(count,C.PetEquipSlots) or count<1 or count>(raw.Pets[id] or 0) then return nil end
+                equipped += count
+            end
+            if equipped>C.PetEquipSlots then return nil end
+        end
     end
     local clean = Schema.New()
     for key in pairs(clean) do
-        if key ~= "Version" and (raw.Version == 2 or (key ~= "Pets" and key ~= "EquippedPet")) then
+        if key ~= "Version" and key ~= "EquippedPets" and (raw.Version >= 2 or key ~= "Pets") then
             clean[key] = Schema.Copy(raw[key])
         end
     end
+    if raw.Version == 3 then clean.EquippedPets=Schema.Copy(raw.EquippedPets)
+    elseif raw.Version == 2 and raw.EquippedPet ~= "" then clean.EquippedPets[raw.EquippedPet]=1 end
     return clean
 end
 return Schema
@@ -348,6 +363,7 @@ function S.Valid(action, args)
     if action=="Equip" then return args.n==1 and (args[1]=="" or args[1]=="BronzeAura" or args[1]=="NeonTrail") end
     if action=="Hatch" then return args.n==1 and type(args[1])=="string" and C.Eggs[args[1]]~=nil end
     if action=="PetEquip" then return args.n==1 and type(args[1])=="string" and (args[1]=="" or C.PetTypes[args[1]]~=nil) end
+    if action=="PetUnequip" then return args.n==1 and type(args[1])=="string" and C.PetTypes[args[1]]~=nil end
     if action=="Rebirth" then return args.n==1 and type(args[1])=="string" and #args[1]<=64 end
     return (action=="Sync" or action=="Upgrade" or action=="PrepareRebirth" or action=="Daily" or action=="Weekly" or action=="PetMenu") and args.n==0
 end
@@ -369,10 +385,16 @@ function Pets.Count(data)
     for _, amount in pairs(data.Pets) do count += amount end
     return count
 end
+function Pets.EquippedCount(data)
+    local count=0
+    for _,amount in pairs(data.EquippedPets) do count+=amount end
+    return count
+end
 -- Randomness is chosen on the server. An injectable roll supports deterministic unit tests.
 function Pets.Hatch(data, eggId, roll)
     local egg = C.Eggs[eggId]
     if not egg then return false, "Неизвестное яйцо." end
+    if data.Level < egg.MinLevel then return false, "Яйцо недоступно: нужен уровень "..egg.MinLevel.."." end
     if Pets.Count(data) >= C.MaxPets then return false, "Инвентарь питомцев заполнен (50)." end
     if data.Coins < egg.Cost then return false, "Не хватает монет на яйцо." end
     local value = roll and roll() or math.random()
@@ -389,15 +411,26 @@ function Pets.Hatch(data, eggId, roll)
     selected = selected or C.PetOrder[#C.PetOrder]
     data.Coins -= egg.Cost
     data.Pets[selected] = (data.Pets[selected] or 0) + 1
-    if data.EquippedPet == "" then data.EquippedPet = selected end
+    if Pets.EquippedCount(data) < C.PetEquipSlots then
+        data.EquippedPets[selected]=(data.EquippedPets[selected] or 0)+1
+    end
     return true, "Из яйца: " .. C.PetTypes[selected].Name .. "!", selected
 end
 function Pets.Equip(data, id)
     if id ~= "" and (not C.PetTypes[id] or not data.Pets[id]) then
         return false, "Этот питомец не получен."
     end
-    data.EquippedPet = id
-    return true, id == "" and "Питомец снят." or "Питомец экипирован: " .. C.PetTypes[id].Name
+    if id == "" then data.EquippedPets={}; return true,"Все питомцы сняты." end
+    if Pets.EquippedCount(data)>=C.PetEquipSlots then return false,"Все 3 обычных слота заняты." end
+    if (data.EquippedPets[id] or 0)>=data.Pets[id] then return false,"Нет свободного экземпляра питомца." end
+    data.EquippedPets[id]=(data.EquippedPets[id] or 0)+1
+    return true, "Питомец экипирован: " .. C.PetTypes[id].Name
+end
+function Pets.Unequip(data,id)
+    local count=data.EquippedPets[id] or 0
+    if count<1 then return false,"Этот питомец не экипирован." end
+    data.EquippedPets[id]=count>1 and count-1 or nil
+    return true,"Питомец снят."
 end
 return Pets
 
@@ -422,7 +455,7 @@ function Spec.Run()
     check(Schema.Validate(d)~=nil,"default schema")
     local old=Schema.New(); old.Version=1; old.Pets=nil; old.EquippedPet=nil; old.Coins=123
     local migrated=Schema.Validate(old)
-    check(migrated and migrated.Version==2 and migrated.Coins==123 and next(migrated.Pets)==nil,"migrate old profile without progress loss")
+    check(migrated and migrated.Version==3 and migrated.Coins==123 and next(migrated.Pets)==nil,"migrate old profile without progress loss")
     local petData=Schema.New()
     check(not Pets.Hatch(petData,"Meadow"),"no coins no hatch")
     petData.Coins=1000
@@ -433,19 +466,34 @@ function Spec.Run()
         local ok,_,id=Pets.Hatch(petData,"Meadow",function() return case[1] end)
         check(ok and id==case[2] and petData.Coins==before-80,"weighted hatch and exact cost")
     end
-    check(Pets.Count(petData)==3 and petData.EquippedPet=="Cat","auto equip first and inventory count")
+    check(Pets.Count(petData)==3 and petData.EquippedPets.Cat==1,"auto equip first and inventory count")
+    Pets.Equip(petData,"")
     check(Pets.Equip(petData,"Bunny") and C.PetMultiplier(petData)==1.35,"owned pet bonus")
     local power,coins=C.Gains(petData,1)
     check(power==6 and coins==10,"server gains include single pet bonus")
     local bonusData=Schema.New(); bonusData.Level=3; bonusData.Rebirths=2
-    bonusData.Pets.Bunny=1; bonusData.EquippedPet="Bunny"
+    bonusData.Pets.Bunny=1; bonusData.EquippedPets.Bunny=1
     local totalPower,totalCoins=C.TrainingMultipliers(bonusData,1.25)
     check(math.abs(totalPower-3.348)<.000001 and math.abs(totalCoins-3.034125)<.000001,"separate total multipliers combine all active bonuses")
     local gainPower,gainCoins=C.Gains(bonusData,1.25)
     check(gainPower==math.floor(C.BasePower*totalPower) and gainCoins==math.floor(C.BaseCoins*totalCoins),"HUD multipliers match server gain formula")
     check(Schema.Validate(petData)~=nil,"pet profile valid")
+    local v2=Schema.Copy(petData); v2.Version=2; v2.EquippedPets=nil; v2.EquippedPet="Bunny"
+    local v3=Schema.Validate(v2)
+    check(v3 and v3.Version==3 and v3.EquippedPets.Bunny==1 and v3.Pets.Bunny==1,"migrate v2 equipment")
+    local team=Schema.New(); team.Pets.Cat=4
+    check(Pets.Equip(team,"Cat") and Pets.Equip(team,"Cat") and Pets.Equip(team,"Cat"),"three owned copies can equip")
+    check(not Pets.Equip(team,"Cat") and Pets.EquippedCount(team)==3,"fourth ordinary slot denied")
+    check(math.abs(C.PetMultiplier(team)-1.3)<.000001,"three active bonuses sum")
+    check(Pets.Unequip(team,"Cat") and Pets.EquippedCount(team)==2 and Pets.Equip(team,"Cat"),"remove one and refill")
+    team.EquippedPets.Cat=4; check(Schema.Validate(team)==nil,"persisted fourth slot denied")
+    local lockedData=Schema.New(); lockedData.Coins=1000
+    local minLevel=C.Eggs.Meadow.MinLevel; C.Eggs.Meadow.MinLevel=3
+    local lockedOk=Pets.Hatch(lockedData,"Meadow")
+    C.Eggs.Meadow.MinLevel=minLevel
+    check(not lockedOk and lockedData.Coins==1000,"locked egg never charges")
     petData.Power=200; petData.Coins=150
-    check(R.Apply(petData) and petData.Pets.Bunny==1 and petData.EquippedPet=="Bunny","rebirth preserves pets")
+    check(R.Apply(petData) and petData.Pets.Bunny==1 and petData.EquippedPets.Bunny==1,"rebirth preserves pets")
     check(Pets.Equip(petData,"") and C.PetMultiplier(petData)==1,"unequip removes bonus")
     check(not Pets.Equip(Schema.New(),"Dog"),"cannot equip unowned pet")
     local full=Schema.New(); full.Coins=1000; full.Pets.Cat=C.MaxPets
@@ -453,7 +501,7 @@ function Spec.Run()
     full.Pets.Cat+=1; check(Schema.Validate(full)==nil,"oversized inventory rejected")
     local corrupt=Schema.New(); corrupt.Pets.Cat=-1; check(Schema.Validate(corrupt)==nil,"negative pets rejected")
     corrupt=Schema.New(); corrupt.Pets.Fake=1; check(Schema.Validate(corrupt)==nil,"unknown pet rejected")
-    corrupt=Schema.New(); corrupt.EquippedPet="Dog"; check(Schema.Validate(corrupt)==nil,"unowned equipped pet rejected")
+    corrupt=Schema.New(); corrupt.EquippedPets.Dog=1; check(Schema.Validate(corrupt)==nil,"unowned equipped pet rejected")
     check(S.Valid("Hatch",table.pack("Meadow")) and not S.Valid("Hatch",table.pack("Meadow","Bunny")),"client cannot choose hatch result")
     check(not S.Valid("PetEquip",table.pack({})) and not S.Valid("Hatch",table.pack("Fake")),"malformed pet remotes rejected")
     d.Coins=0/0; check(Schema.Validate(d)==nil,"reject NaN")
@@ -512,7 +560,7 @@ function Spec.Run()
     local opts={now=function() return clock end,wait=function() end,token="A"}
     local a=Data.new(store,opts)
     check(a:Load(77),"load new player")
-    a:Get(77).Pets.Bunny=2; a:Get(77).EquippedPet="Bunny"
+    a:Get(77).Pets.Bunny=2; a:Get(77).EquippedPets.Bunny=1
     a:Get(77).Coins=250; a:Changed(77)
     store.doubleCallback=true
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"callback retry safe")
@@ -528,7 +576,7 @@ function Spec.Run()
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"commit response lost retry safe")
     check(a:Save(77,true) and store.records.Player_77.Session==nil,"release lock")
     check(b:Load(77) and b:Get(77).Coins==250,"reload persisted progress")
-    check(b:Get(77).Pets.Bunny==2 and b:Get(77).EquippedPet=="Bunny","pet save reload roundtrip")
+    check(b:Get(77).Pets.Bunny==2 and b:Get(77).EquippedPets.Bunny==1,"pet save reload roundtrip")
     b:Get(77).Coins=400; b:Changed(77); check(b:Save(77,false),"second session saves")
     clock+=C.LeaseSeconds+1
     check(b:Get(77)==nil,"expired lease freezes actions")

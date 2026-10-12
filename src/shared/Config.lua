@@ -21,7 +21,7 @@ local C = {
     MilestoneTrail = 10,
     AnalyticsEnabled = false, -- Enable after publishing and checking Dashboard.
     SupportRewardsEnabled = false, PaidItemsEnabled = false,
-    MaxPets = 50, HatchCooldown = 1.2, EggDistance = 11,
+    MaxPets = 50, PetEquipSlots = 3, HatchCooldown = 1.2, EggDistance = 11,
     PetTypes = {
         Cat = {Name = "Кот", Bonus = 0.10, Color = {255, 182, 103}},
         Dog = {Name = "Пёс", Bonus = 0.20, Color = {111, 190, 255}},
@@ -30,9 +30,9 @@ local C = {
     PetOrder = {"Cat", "Dog", "Bunny"},
     EggOrder = {"Meadow", "Crystal"},
     Eggs = {
-        Meadow = {Name = "Луговое яйцо", Cost = 80, Position = Vector3.new(-31, 0.8, -8),
+        Meadow = {Name = "Луговое яйцо", Description = "Первое яйцо для твоей команды. Кот 60% • Пёс 30% • Кролик 10%.", MinLevel = 0, Cost = 80, Position = Vector3.new(-31, 0.8, -8),
             Color = {112, 228, 180}, Weights = {Cat = 60, Dog = 30, Bunny = 10}},
-        Crystal = {Name = "Кристальное яйцо", Cost = 240, Position = Vector3.new(-31, 0.8, 3),
+        Crystal = {Name = "Кристальное яйцо", Description = "Больше шансов на редкого питомца. Кот 20% • Пёс 45% • Кролик 35%.", MinLevel = 0, Cost = 240, Position = Vector3.new(-31, 0.8, 3),
             Color = {180, 143, 255}, Weights = {Cat = 20, Dog = 45, Bunny = 35}},
     },
     Stations = {
@@ -60,7 +60,10 @@ function C.Gains(data, stationMultiplier)
     return math.floor(C.BasePower * power), math.floor(C.BaseCoins * coins)
 end
 function C.PetMultiplier(data)
-    local pet = C.PetTypes[data.EquippedPet]
-    return 1 + (pet and data.Pets and (data.Pets[data.EquippedPet] or 0) > 0 and pet.Bonus or 0)
+    local bonus = 0
+    for id, count in pairs(data.EquippedPets or {}) do
+        if C.PetTypes[id] then bonus += C.PetTypes[id].Bonus * count end
+    end
+    return 1 + bonus
 end
 return table.freeze(C)

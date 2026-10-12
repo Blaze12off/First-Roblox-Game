@@ -7,11 +7,16 @@ function Visuals.Apply(player, data)
     local previous = character:FindFirstChild("SimulatorPet")
     if previous then previous:Destroy() end
     local root = character:FindFirstChild("HumanoidRootPart")
-    local id = data.EquippedPet
-    local info = C.PetTypes[id]
-    if not root or not info or not data.Pets[id] then return end
-    local model = Instance.new("Model"); model.Name = "SimulatorPet"; model.Parent = character
-    local origin = root.CFrame * CFrame.new(3, -.6, 2)
+    if not root then return end
+    local folder=Instance.new("Folder"); folder.Name="SimulatorPet"; folder.Parent=character
+    local slot=0
+    for _,id in C.PetOrder do
+      for _=1,data.EquippedPets[id] or 0 do
+    slot+=1
+    local info=C.PetTypes[id]
+    local model = Instance.new("Model"); model.Name = id..slot; model.Parent = folder
+    local offset=({Vector3.new(-3,-.6,2),Vector3.new(3,-.6,2),Vector3.new(0,-.6,4)})[slot]
+    local origin = root.CFrame * CFrame.new(offset)
     local function piece(name, size, offset, color)
         local p = Instance.new("Part"); p.Name = name; p.Size = size; p.Color = color
         p.Material = Enum.Material.SmoothPlastic; p.CanCollide = false; p.CanTouch = false
@@ -33,5 +38,8 @@ function Visuals.Apply(player, data)
     local text = Instance.new("TextLabel"); text.Size = UDim2.fromScale(1, 1)
     text.BackgroundTransparency = 1; text.Font = Enum.Font.GothamBold; text.TextSize = 14
     text.TextColor3 = color; text.Text = info.Name; text.Parent = tag; TextStyle.Apply(text)
+      end
+    end
+    if slot==0 then folder:Destroy() end
 end
 return Visuals

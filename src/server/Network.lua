@@ -15,7 +15,7 @@ function Network.Snapshot(data, mode, saveStatus)
         RequiredPower=power, RequiredCoins=coins, TotalTrainings=data.TotalTrainings,
         LastDaily=data.LastDaily, LastWeekly=data.LastWeekly, ServerTime=os.time(),
         BronzeAura=data.Cosmetics.BronzeAura==true, NeonTrail=data.Cosmetics.NeonTrail==true,
-        Equipped=data.Equipped, Pets=table.clone(data.Pets), EquippedPet=data.EquippedPet,
+        Equipped=data.Equipped, Pets=table.clone(data.Pets), EquippedPets=table.clone(data.EquippedPets),
         PetMultiplier=C.PetMultiplier(data), StorageMode=mode, SaveStatus=saveStatus or "ready"}
 end
 return Network
