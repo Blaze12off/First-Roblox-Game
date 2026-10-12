@@ -11,6 +11,8 @@ local Security=require(script.Parent.Security)
 local Network=require(script.Parent.Network)
 local World=require(script.Parent.World)
 local Telemetry=require(script.Parent.Telemetry)
+local Pets=require(script.Parent.Pets)
+local PetVisuals=require(script.Parent.PetVisuals)
 local Runtime={sessions={},started=false}
 local dataService,remotes,map,mode
 local function stats(player,data)
@@ -40,13 +42,22 @@ function Runtime.Dispatch(player,action,...)
     if not Security.Allow(session.limiter,"Request",now,0) then return false,"rate" end
     local args=table.pack(...)
     if not Security.Valid(action,args) then return false,"arguments" end
-    local cooldown=action=="Train" and C.TrainCooldown or (action=="Sync" and 1 or C.ActionCooldown)
+    local cooldown=action=="Train" and C.TrainCooldown or (action=="Hatch" and C.HatchCooldown or (action=="Sync" and 1 or C.ActionCooldown))
     local last=session.actionTimes[action]
     if last and now-last<cooldown then return false,"cooldown" end
     session.actionTimes[action]=now
     local data=dataService:Get(player.UserId)
     if not data then return false,"data_unavailable" end
     if action=="Sync" then publish(player); return true end
+    if action=="PetMenu" then
+        local near=false
+        for id in pairs(C.Eggs) do
+            local stand=map:FindFirstChild("Egg"..id)
+            if stand and Security.Near(player,stand,C.EggDistance) then near=true; break end
+        end
+        if not near then return false,"distance" end
+        notice(player,"Яйца открываются за игровые монеты.",{OpenPets=true}); return true
+    end
     if action=="PrepareRebirth" then
         local power,coins=C.Requirements(data.Rebirths)
         if data.Power<power or data.Coins<coins or data.Rebirths>=C.MaxRebirths then
@@ -64,6 +75,13 @@ function Runtime.Dispatch(player,action,...)
         if not pad or not Security.Near(player,pad,C.TrainDistance) then return false,"distance" end
         if data.Level<station.MinLevel then notice(player,"Продвинутая станция: нужен уровень 3."); return false,"level" end
         ok,message=Progression.Train(data,args[1])
+    elseif action=="Hatch" then
+        local stand=map:FindFirstChild("Egg"..args[1])
+        if not stand or not Security.Near(player,stand,C.EggDistance) then
+            notice(player,"Подойди к выбранному яйцу."); return false,"distance"
+        end
+        ok,message=Pets.Hatch(data,args[1])
+    elseif action=="PetEquip" then ok,message=Pets.Equip(data,args[1])
     elseif action=="Upgrade" then ok,message=Progression.Upgrade(data)
     elseif action=="Rebirth" then
         local confirmation=session.confirm
@@ -77,6 +95,7 @@ function Runtime.Dispatch(player,action,...)
     Rewards.Reconcile(data)
     dataService:Changed(player.UserId)
     if action=="Equip" or action=="Rebirth" then Rewards.ApplyCharacter(player,data) end
+    if action=="PetEquip" or action=="Hatch" then PetVisuals.Apply(player,data) end
     publish(player); notice(player,message)
     if action=="Train" and data.TotalTrainings==1 then Telemetry.Step(player,2,"FirstTraining") end
     if action=="Upgrade" and data.Level==1 then Telemetry.Step(player,3,"FirstUpgrade") end
@@ -110,7 +129,7 @@ local function joined(player)
     player.CharacterAdded:Connect(function(char)
         local root=char:WaitForChild("HumanoidRootPart",10)
         local current=dataService:Get(player.UserId)
-        if root and current then Rewards.ApplyCharacter(player,current) end
+        if root and current then Rewards.ApplyCharacter(player,current); PetVisuals.Apply(player,current) end
         local humanoid=char:WaitForChild("Humanoid",10)
         if humanoid then
             humanoid.Died:Connect(function()
@@ -140,6 +159,9 @@ function Runtime.Start()
     remotes.Action.OnServerEvent:Connect(function(player,action,...) Runtime.Dispatch(player,action,...) end)
     for id in pairs(C.Stations) do
         map[id].TrainPrompt.Triggered:Connect(function(player) Runtime.Dispatch(player,"Train",id) end)
+    end
+    for id in pairs(C.Eggs) do
+        map["Egg"..id].EggPrompt.Triggered:Connect(function(player) Runtime.Dispatch(player,"PetMenu") end)
     end
     Players.PlayerAdded:Connect(joined)
     Players.PlayerRemoving:Connect(function(player)

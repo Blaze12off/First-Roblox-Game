@@ -74,7 +74,7 @@ $null = Add-Script $shared 'ModuleScript' 'Config' 'src\shared\Config.lua'
 $null = Add-Script $shared 'ModuleScript' 'TextStyle' 'src\shared\TextStyle.lua'
 $server = Add-Item $root 'ServerScriptService' 'ServerScriptService'
 $modules = Add-Item $server 'Folder' 'Simulator'
-foreach ($name in @('Schema','PlayerData','Progression','Rebirth','Rewards','Security','LeaderboardTemplate','World','Network','Telemetry','Runtime')) {
+foreach ($name in @('Schema','PlayerData','Progression','Rebirth','Rewards','Pets','PetVisuals','Security','LeaderboardTemplate','World','Network','Telemetry','Runtime')) {
     $null = Add-Script $modules 'ModuleScript' $name "src\server\$name.lua"
 }
 $null = Add-Script $modules 'Script' 'Bootstrap' 'src\server\Bootstrap.server.lua'

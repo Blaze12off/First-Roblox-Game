@@ -128,10 +128,27 @@ function UI.Build(player)
         local m=menus[name]; m.Position=UDim2.new(.5,0,.5,12)
         TweenService:Create(m,TweenInfo.new(.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=UDim2.fromScale(.5,.5)}):Play()
     end
-    local shop=menu("Shop","МАГАЗИН",272)
+    local shop=menu("Shop","МАГАЗИН",338)
     label(shop,UDim2.fromOffset(20,64),UDim2.fromOffset(310,42),"Улучшения усиливают тренировку.\nУровень 3 открывает новую станцию.",15)
     refs.Upgrade=button(shop,UDim2.fromOffset(20,122),UDim2.fromOffset(310,48),"Улучшение: 25 монет")
     refs.Cosmetic=button(shop,UDim2.fromOffset(20,184),UDim2.fromOffset(310,62),"Косметика: за Rebirth",Color3.fromRGB(84,95,131))
+    refs.Pets=button(shop,UDim2.fromOffset(20,264),UDim2.fromOffset(310,48),"Яйца и питомцы",palette.Mint)
+    local pets=menu("Pets","ЯЙЦА И ПИТОМЦЫ",520)
+    local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+    refs.PetSummary=label(pets,UDim2.fromOffset(20,58),UDim2.fromOffset(310,34),"Питомцы: 0/50 • бонус x1.00",14)
+    refs.EggButtons={}; refs.PetButtons={}
+    for index,id in C.EggOrder do
+        local egg=C.Eggs[id]
+        local y=98+(index-1)*86
+        refs.EggButtons[id]=button(pets,UDim2.fromOffset(20,y),UDim2.fromOffset(310,46),egg.Name.." • "..egg.Cost.." монет",Color3.fromRGB(table.unpack(egg.Color)))
+        label(pets,UDim2.fromOffset(20,y+48),UDim2.fromOffset(310,30),
+            ("Кот %d%% • Пёс %d%% • Кролик %d%%"):format(egg.Weights.Cat,egg.Weights.Dog,egg.Weights.Bunny),12,palette.Muted)
+    end
+    label(pets,UDim2.fromOffset(20,270),UDim2.fromOffset(310,30),"Инвентарь • экипирован один питомец",14,palette.Mint)
+    for index,id in C.PetOrder do
+        refs.PetButtons[id]=button(pets,UDim2.fromOffset(20,304+(index-1)*62),UDim2.fromOffset(310,52),C.PetTypes[id].Name,Color3.fromRGB(table.unpack(C.PetTypes[id].Color)))
+    end
+    refs.Pets.Activated:Connect(function() refs.Open("Pets") end)
     local gifts=menu("Gifts","НАГРАДЫ",250)
     label(gifts,UDim2.fromOffset(20,62),UDim2.fromOffset(310,42),"Бонусы за возвращение.\nПропуск дня не сбрасывает прогресс.",15)
     refs.Daily=button(gifts,UDim2.fromOffset(20,118),UDim2.fromOffset(310,48),"Ежедневная награда")

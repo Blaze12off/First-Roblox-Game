@@ -7,12 +7,43 @@ local P=require(Root.Progression)
 local R=require(Root.Rebirth)
 local Rewards=require(Root.Rewards)
 local S=require(Root.Security)
+local Pets=require(Root.Pets)
 local Spec={}
 function Spec.Run()
     local count=0
     local function check(value,message) assert(value,message); count+=1 end
     local d=Schema.New()
     check(Schema.Validate(d)~=nil,"default schema")
+    local old=Schema.New(); old.Version=1; old.Pets=nil; old.EquippedPet=nil; old.Coins=123
+    local migrated=Schema.Validate(old)
+    check(migrated and migrated.Version==2 and migrated.Coins==123 and next(migrated.Pets)==nil,"migrate old profile without progress loss")
+    local petData=Schema.New()
+    check(not Pets.Hatch(petData,"Meadow"),"no coins no hatch")
+    petData.Coins=1000
+    check(not Pets.Hatch(petData,"Fake"),"unknown egg rejected")
+    check(not Pets.Hatch(petData,"Meadow",function() return 0/0 end) and petData.Coins==1000,"bad roll preserves coins")
+    for _,case in {{0,"Cat"},{.6,"Dog"},{.9,"Bunny"}} do
+        local before=petData.Coins
+        local ok,_,id=Pets.Hatch(petData,"Meadow",function() return case[1] end)
+        check(ok and id==case[2] and petData.Coins==before-80,"weighted hatch and exact cost")
+    end
+    check(Pets.Count(petData)==3 and petData.EquippedPet=="Cat","auto equip first and inventory count")
+    check(Pets.Equip(petData,"Bunny") and C.PetMultiplier(petData)==1.35,"owned pet bonus")
+    local power,coins=C.Gains(petData,1)
+    check(power==6 and coins==10,"server gains include single pet bonus")
+    check(Schema.Validate(petData)~=nil,"pet profile valid")
+    petData.Power=200; petData.Coins=150
+    check(R.Apply(petData) and petData.Pets.Bunny==1 and petData.EquippedPet=="Bunny","rebirth preserves pets")
+    check(Pets.Equip(petData,"") and C.PetMultiplier(petData)==1,"unequip removes bonus")
+    check(not Pets.Equip(Schema.New(),"Dog"),"cannot equip unowned pet")
+    local full=Schema.New(); full.Coins=1000; full.Pets.Cat=C.MaxPets
+    check(not Pets.Hatch(full,"Meadow") and full.Coins==1000,"capacity blocks without charge")
+    full.Pets.Cat+=1; check(Schema.Validate(full)==nil,"oversized inventory rejected")
+    local corrupt=Schema.New(); corrupt.Pets.Cat=-1; check(Schema.Validate(corrupt)==nil,"negative pets rejected")
+    corrupt=Schema.New(); corrupt.Pets.Fake=1; check(Schema.Validate(corrupt)==nil,"unknown pet rejected")
+    corrupt=Schema.New(); corrupt.EquippedPet="Dog"; check(Schema.Validate(corrupt)==nil,"unowned equipped pet rejected")
+    check(S.Valid("Hatch",table.pack("Meadow")) and not S.Valid("Hatch",table.pack("Meadow","Bunny")),"client cannot choose hatch result")
+    check(not S.Valid("PetEquip",table.pack({})) and not S.Valid("Hatch",table.pack("Fake")),"malformed pet remotes rejected")
     d.Coins=0/0; check(Schema.Validate(d)==nil,"reject NaN")
     d=Schema.New(); d.Power=math.huge; check(Schema.Validate(d)==nil,"reject infinity")
     d=Schema.New(); d.Coins=-1; check(Schema.Validate(d)==nil,"reject negative")
@@ -69,6 +100,7 @@ function Spec.Run()
     local opts={now=function() return clock end,wait=function() end,token="A"}
     local a=Data.new(store,opts)
     check(a:Load(77),"load new player")
+    a:Get(77).Pets.Bunny=2; a:Get(77).EquippedPet="Bunny"
     a:Get(77).Coins=250; a:Changed(77)
     store.doubleCallback=true
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"callback retry safe")
@@ -84,6 +116,7 @@ function Spec.Run()
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"commit response lost retry safe")
     check(a:Save(77,true) and store.records.Player_77.Session==nil,"release lock")
     check(b:Load(77) and b:Get(77).Coins==250,"reload persisted progress")
+    check(b:Get(77).Pets.Bunny==2 and b:Get(77).EquippedPet=="Bunny","pet save reload roundtrip")
     b:Get(77).Coins=400; b:Changed(77); check(b:Save(77,false),"second session saves")
     clock+=C.LeaseSeconds+1
     check(b:Get(77)==nil,"expired lease freezes actions")

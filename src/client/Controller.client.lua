@@ -34,6 +34,14 @@ local function render()
     if not state then return end
     refs.Power.Text=tostring(state.Power)
     refs.Coins.Text=tostring(state.Coins)
+    local petCount=0
+    for _,amount in pairs(state.Pets) do petCount+=amount end
+    refs.PetSummary.Text=("Питомцы: %d/%d • бонус x%.2f"):format(petCount,C.MaxPets,state.PetMultiplier)
+    for id,b in pairs(refs.PetButtons) do
+        local info=C.PetTypes[id]; local count=state.Pets[id] or 0
+        b.Text=("%s ×%d • +%d%%\n%s"):format(info.Name,count,math.floor(info.Bonus*100+.5),
+            count==0 and "Не получен" or state.EquippedPet==id and "Экипирован • снять" or "Экипировать")
+    end
     refs.Level.Text="Уровень "..state.Level
     refs.RebirthStats.Text=("%d • x%.2f"):format(state.Rebirths,state.Multiplier)
     refs.Bonus.Text=("Постоянный бонус: x%.2f  •  Рекорд: %d"):format(state.Multiplier,state.LifetimePower)
@@ -65,6 +73,7 @@ remotes.State.OnClientEvent:Connect(function(snapshot)
 end)
 remotes.Notice.OnClientEvent:Connect(function(message,extra)
     showNotice(message)
+    if extra and extra.OpenPets then refs.Open("Pets") end
     if extra and extra.RebirthToken then
         rebirthToken=extra.RebirthToken
         refs.Dialog.Text=message..("\n\nНовый постоянный бонус: x%.2f\nПодтверждение действует 20 секунд."):format(extra.NextMultiplier)
@@ -83,6 +92,14 @@ refs.Train.Activated:Connect(function()
     request("Train",selected)
 end)
 refs.Upgrade.Activated:Connect(function() request("Upgrade") end)
+for id,b in pairs(refs.EggButtons) do b.Activated:Connect(function() request("Hatch",id) end) end
+for id,b in pairs(refs.PetButtons) do
+    b.Activated:Connect(function()
+        if not state then return end
+        if not state.Pets[id] then showNotice("Сначала получи этого питомца из яйца."); return end
+        request("PetEquip",state.EquippedPet==id and "" or id)
+    end)
+end
 refs.Prepare.Activated:Connect(function() request("PrepareRebirth") end)
 refs.Daily.Activated:Connect(function() request("Daily") end)
 refs.Weekly.Activated:Connect(function() request("Weekly") end)

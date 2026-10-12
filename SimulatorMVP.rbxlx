@@ -1,18 +1,18 @@
 <roblox version="4">
-  <Item class="Workspace" referent="RBX27c5e8939e3448a4a22a3589627fcd83">
+  <Item class="Workspace" referent="RBXc6cf8e582b8c4de0a584d48e004df38f">
     <Properties>
       <string name="Name">Workspace</string>
     </Properties>
-    <Item class="Terrain" referent="RBXb5eb3f85bb274087889a20621980cc31">
+    <Item class="Terrain" referent="RBX14babbb0b38f4c798f1c360f76456802">
       <Properties>
         <string name="Name">Terrain</string>
       </Properties>
     </Item>
-    <Item class="Folder" referent="RBX77535e4a31cd4fb2a346fd4299999a17">
+    <Item class="Folder" referent="RBX722af189652c4f6c90bc124f6f62cc2b">
       <Properties>
         <string name="Name">SimulatorWorld</string>
       </Properties>
-      <Item class="Part" referent="RBX5dc11177b8eb4aa08797de8480a284b0">
+      <Item class="Part" referent="RBX50f74914065f42b8b634eb130184e4c8">
         <Properties>
           <string name="Name">Ground</string>
           <bool name="Anchored">true</bool>
@@ -41,7 +41,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXf4fdd95ec98846babbe6e4a72850639d">
+      <Item class="Part" referent="RBX33b67f45bc644fa986f4e7bc7e8512f0">
         <Properties>
           <string name="Name">StartingPlaza</string>
           <bool name="Anchored">true</bool>
@@ -70,7 +70,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX038d32dbfa2a492994a86bed944fbcdc">
+      <Item class="Part" referent="RBX4461a41bea31402384b817613c76d972">
         <Properties>
           <string name="Name">AdvancedPlaza</string>
           <bool name="Anchored">true</bool>
@@ -99,7 +99,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX51caf55399fb47848cbb8e7d302a6c0b">
+      <Item class="Part" referent="RBX181e9f1f55f3456e9449aa76afeb43f3">
         <Properties>
           <string name="Name">Path</string>
           <bool name="Anchored">true</bool>
@@ -128,7 +128,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX2fbb8e63c50e459092991067a90cdbc1">
+      <Item class="Part" referent="RBXffb3684025f9489aa6dc0ee983e6d95f">
         <Properties>
           <string name="Name">Basic</string>
           <bool name="Anchored">true</bool>
@@ -157,7 +157,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX49c665a211a643cd86545ab0c155e522">
+      <Item class="Part" referent="RBX31fb85c0cdb4488b84fdd8fa7e6e9450">
         <Properties>
           <string name="Name">Advanced</string>
           <bool name="Anchored">true</bool>
@@ -186,7 +186,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="SpawnLocation" referent="RBX8fc31779f6ad494ea482adb7f09514ce">
+      <Item class="SpawnLocation" referent="RBX368331bebae744358f70b760ed57cb3e">
         <Properties>
           <string name="Name">SimulatorSpawn</string>
           <bool name="Anchored">true</bool>
@@ -219,27 +219,27 @@
       </Item>
     </Item>
   </Item>
-  <Item class="Players" referent="RBX5abbf9a658de43758cf22420b4367f9d">
+  <Item class="Players" referent="RBXe8c7bd244562481784805bc627f38fcc">
     <Properties>
       <string name="Name">Players</string>
     </Properties>
   </Item>
-  <Item class="Lighting" referent="RBX31c7a78fae3a49d2858cfc28de3d16c1">
+  <Item class="Lighting" referent="RBX5c6142075faf4da58fe5cd9282c50020">
     <Properties>
       <string name="Name">Lighting</string>
       <float name="ClockTime">14</float>
       <float name="Brightness">2</float>
     </Properties>
   </Item>
-  <Item class="ReplicatedStorage" referent="RBXa85eed91cc6a4efb899ed93f0ec67365">
+  <Item class="ReplicatedStorage" referent="RBXc61c1a3eb8fe4b2f91992461811b251e">
     <Properties>
       <string name="Name">ReplicatedStorage</string>
     </Properties>
-    <Item class="Folder" referent="RBX6d2332f0e09b40e4a74f21d355197c71">
+    <Item class="Folder" referent="RBX0a86218cc5044bee93f674e2a5e3bf99">
       <Properties>
         <string name="Name">SimulatorShared</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBXcf4d84556b6b4357ad8e0cce5ca74f2c">
+      <Item class="ModuleScript" referent="RBXe39557c158e6417d96b1aa71b48eb8b2">
         <Properties>
           <string name="Name">Config</string>
           <ProtectedString name="Source">-- Balance lives here. No secrets and no client-supplied reward values.
@@ -265,6 +265,20 @@ local C = {
     MilestoneTrail = 10,
     AnalyticsEnabled = false, -- Enable after publishing and checking Dashboard.
     SupportRewardsEnabled = false, PaidItemsEnabled = false,
+    MaxPets = 50, HatchCooldown = 1.2, EggDistance = 11,
+    PetTypes = {
+        Cat = {Name = "Кот", Bonus = 0.10, Color = {255, 182, 103}},
+        Dog = {Name = "Пёс", Bonus = 0.20, Color = {111, 190, 255}},
+        Bunny = {Name = "Кролик", Bonus = 0.35, Color = {211, 151, 255}},
+    },
+    PetOrder = {"Cat", "Dog", "Bunny"},
+    EggOrder = {"Meadow", "Crystal"},
+    Eggs = {
+        Meadow = {Name = "Луговое яйцо", Cost = 80, Position = Vector3.new(-31, 0.8, -8),
+            Color = {112, 228, 180}, Weights = {Cat = 60, Dog = 30, Bunny = 10}},
+        Crystal = {Name = "Кристальное яйцо", Cost = 240, Position = Vector3.new(-31, 0.8, 3),
+            Color = {180, 143, 255}, Weights = {Cat = 20, Dog = 45, Bunny = 35}},
+    },
     Stations = {
         Basic = {Position = Vector3.new(-16, 1, 0), MinLevel = 0, Multiplier = 1},
         Advanced = {Position = Vector3.new(24, 1, 0), MinLevel = 3, Multiplier = 1.25},
@@ -281,15 +295,19 @@ function C.Requirements(rebirths)
     return math.floor(C.RebirthPower * factor), math.floor(C.RebirthCoins * factor)
 end
 function C.Gains(data, stationMultiplier)
-    local m = C.Multiplier(data) * (stationMultiplier or 1)
+    local m = C.Multiplier(data) * (stationMultiplier or 1) * C.PetMultiplier(data)
     return math.floor(C.BasePower * (1 + data.Level * C.PowerLevelBonus) * m),
         math.floor(C.BaseCoins * (1 + data.Level * C.CoinLevelBonus) * m)
+end
+function C.PetMultiplier(data)
+    local pet = C.PetTypes[data.EquippedPet]
+    return 1 + (pet and data.Pets and (data.Pets[data.EquippedPet] or 0) &gt; 0 and pet.Bonus or 0)
 end
 return table.freeze(C)
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX90b5c196f9a14f50ae0a9269a0163fda">
+      <Item class="ModuleScript" referent="RBXe9397ab1e8484c2b844911298bf83ab0">
         <Properties>
           <string name="Name">TextStyle</string>
           <ProtectedString name="Source">-- Template rule: floating text must stay legible over bright platforms.
@@ -305,23 +323,23 @@ return TextStyle
       </Item>
     </Item>
   </Item>
-  <Item class="ServerScriptService" referent="RBXfa069327d942409c85df815690fe406a">
+  <Item class="ServerScriptService" referent="RBX36c6a3a45dc744e6ba646ab5e045eabd">
     <Properties>
       <string name="Name">ServerScriptService</string>
     </Properties>
-    <Item class="Folder" referent="RBX1a93bd094de04e319794894cc266e5dd">
+    <Item class="Folder" referent="RBX2b584838fd9f441190e0496adad4a770">
       <Properties>
         <string name="Name">Simulator</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBXd1c4ebdcfaa7475e9d702c13acf17302">
+      <Item class="ModuleScript" referent="RBX9c38615f0f8943f7a2d946aa028ed814">
         <Properties>
           <string name="Name">Schema</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
 local Schema = {}
 function Schema.New()
-    return {Version = 1, Coins = 0, Power = 0, Level = 0, Rebirths = 0,
+    return {Version = 2, Coins = 0, Power = 0, Level = 0, Rebirths = 0,
         LifetimePower = 0, TotalTrainings = 0, LastDaily = 0, LastWeekly = 0,
-        Cosmetics = {}, Equipped = ""}
+        Cosmetics = {}, Equipped = "", Pets = {}, EquippedPet = ""}
 end
 function Schema.Copy(value)
     if type(value) ~= "table" then return value end
@@ -335,7 +353,7 @@ local function integer(value, maximum)
 end
 -- Corrupt/unknown records fail closed. Defaults only come from a genuinely absent key.
 function Schema.Validate(raw)
-    if type(raw) ~= "table" or raw.Version ~= 1 then return nil end
+    if type(raw) ~= "table" or (raw.Version ~= 1 and raw.Version ~= 2) then return nil end
     local limits = {Coins=C.MaxValue, Power=C.MaxValue, Level=C.MaxLevel,
         Rebirths=C.MaxRebirths, LifetimePower=C.MaxValue, TotalTrainings=C.MaxValue,
         LastDaily=100000000000, LastWeekly=100000000000}
@@ -345,15 +363,29 @@ function Schema.Validate(raw)
         if (key ~= "BronzeAura" and key ~= "NeonTrail") or value ~= true then return nil end
     end
     if raw.Equipped ~= "" and not raw.Cosmetics[raw.Equipped] then return nil end
+    if raw.Version == 2 then
+        if type(raw.Pets) ~= "table" or type(raw.EquippedPet) ~= "string" then return nil end
+        local total = 0
+        for id, count in pairs(raw.Pets) do
+            if not C.PetTypes[id] or not integer(count, C.MaxPets) or count &lt; 1 then return nil end
+            total += count
+        end
+        if total &gt; C.MaxPets then return nil end
+        if raw.EquippedPet ~= "" and not raw.Pets[raw.EquippedPet] then return nil end
+    end
     local clean = Schema.New()
-    for key in pairs(clean) do clean[key] = Schema.Copy(raw[key]) end
+    for key in pairs(clean) do
+        if key ~= "Version" and (raw.Version == 2 or (key ~= "Pets" and key ~= "EquippedPet")) then
+            clean[key] = Schema.Copy(raw[key])
+        end
+    end
     return clean
 end
 return Schema
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXd87229ebbe8242dc91bde6aef0c76567">
+      <Item class="ModuleScript" referent="RBXf7f1626262da4735a47e580a112e7bce">
         <Properties>
           <string name="Name">PlayerData</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -461,7 +493,7 @@ return PlayerData
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX16d06666544a41b296a3d62f11cd69bb">
+      <Item class="ModuleScript" referent="RBXb3c5cb8978e94494b5cbc0e2896012e5">
         <Properties>
           <string name="Name">Progression</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -487,7 +519,7 @@ return P
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXd9b8e41bf0f74447890eb7c894473a16">
+      <Item class="ModuleScript" referent="RBXe2898b4335ed41e19f4b86efe4647edd">
         <Properties>
           <string name="Name">Rebirth</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -504,7 +536,7 @@ return R
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXe2f6dd44d49f40d0b911e46732fac3ab">
+      <Item class="ModuleScript" referent="RBXe8d650784a714833a78a54e77e0a0ae6">
         <Properties>
           <string name="Name">Rewards</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -557,7 +589,94 @@ return Rewards
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX3c6679a1efed4bcfb89caab0153f3682">
+      <Item class="ModuleScript" referent="RBX162bc042661a4a34a8078f92c1843411">
+        <Properties>
+          <string name="Name">Pets</string>
+          <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
+local Pets = {}
+function Pets.Count(data)
+    local count = 0
+    for _, amount in pairs(data.Pets) do count += amount end
+    return count
+end
+-- Randomness is chosen on the server. An injectable roll supports deterministic unit tests.
+function Pets.Hatch(data, eggId, roll)
+    local egg = C.Eggs[eggId]
+    if not egg then return false, "Неизвестное яйцо." end
+    if Pets.Count(data) &gt;= C.MaxPets then return false, "Инвентарь питомцев заполнен (50)." end
+    if data.Coins &lt; egg.Cost then return false, "Не хватает монет на яйцо." end
+    local value = roll and roll() or math.random()
+    if type(value) ~= "number" or value ~= value or value &lt; 0 or value &gt;= 1 then
+        return false, "Не удалось открыть яйцо. Монеты не списаны."
+    end
+    local total = 0
+    for _, id in C.PetOrder do total += egg.Weights[id] end
+    local threshold, selected = 0, nil
+    for _, id in C.PetOrder do
+        threshold += egg.Weights[id] / total
+        if value &lt; threshold then selected = id; break end
+    end
+    selected = selected or C.PetOrder[#C.PetOrder]
+    data.Coins -= egg.Cost
+    data.Pets[selected] = (data.Pets[selected] or 0) + 1
+    if data.EquippedPet == "" then data.EquippedPet = selected end
+    return true, "Из яйца: " .. C.PetTypes[selected].Name .. "!", selected
+end
+function Pets.Equip(data, id)
+    if id ~= "" and (not C.PetTypes[id] or not data.Pets[id]) then
+        return false, "Этот питомец не получен."
+    end
+    data.EquippedPet = id
+    return true, id == "" and "Питомец снят." or "Питомец экипирован: " .. C.PetTypes[id].Name
+end
+return Pets
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBX11eeaa94d98348219970adfc16e3781e">
+        <Properties>
+          <string name="Name">PetVisuals</string>
+          <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
+local TextStyle = require(game.ReplicatedStorage.SimulatorShared.TextStyle)
+local Visuals = {}
+function Visuals.Apply(player, data)
+    local character = player.Character
+    if not character then return end
+    local previous = character:FindFirstChild("SimulatorPet")
+    if previous then previous:Destroy() end
+    local root = character:FindFirstChild("HumanoidRootPart")
+    local id = data.EquippedPet
+    local info = C.PetTypes[id]
+    if not root or not info or not data.Pets[id] then return end
+    local model = Instance.new("Model"); model.Name = "SimulatorPet"; model.Parent = character
+    local origin = root.CFrame * CFrame.new(3, -.6, 2)
+    local function piece(name, size, offset, color)
+        local p = Instance.new("Part"); p.Name = name; p.Size = size; p.Color = color
+        p.Material = Enum.Material.SmoothPlastic; p.CanCollide = false; p.CanTouch = false
+        p.CanQuery = false; p.Massless = true; p.CFrame = origin * CFrame.new(offset); p.Parent = model
+        local weld = Instance.new("WeldConstraint"); weld.Part0 = root; weld.Part1 = p; weld.Parent = p
+        return p
+    end
+    local color = Color3.fromRGB(table.unpack(info.Color))
+    local body = piece("Body", Vector3.new(1.6, 1.5, 1.5), Vector3.zero, color)
+    model.PrimaryPart = body
+    for _, x in {-.48, .48} do
+        piece("Ear", Vector3.new(.38, id == "Bunny" and 1.3 or .55, .45),
+            Vector3.new(x, id == "Bunny" and 1.15 or .87, 0), color)
+        piece("Eye", Vector3.new(.20, .25, .12), Vector3.new(x * .7, .18, -.78), Color3.fromRGB(22, 30, 48))
+    end
+    piece("Nose", Vector3.new(.22, .16, .14), Vector3.new(0, -.13, -.8), Color3.fromRGB(255, 125, 161))
+    local tag = Instance.new("BillboardGui"); tag.Size = UDim2.fromOffset(140, 30)
+    tag.StudsOffset = Vector3.new(0, 2.2, 0); tag.MaxDistance = 18; tag.Parent = body
+    local text = Instance.new("TextLabel"); text.Size = UDim2.fromScale(1, 1)
+    text.BackgroundTransparency = 1; text.Font = Enum.Font.GothamBold; text.TextSize = 14
+    text.TextColor3 = color; text.Text = info.Name; text.Parent = tag; TextStyle.Apply(text)
+end
+return Visuals
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBX702af9644d54408fbb0dc2f7811c66f8">
         <Properties>
           <string name="Name">Security</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -577,8 +696,10 @@ function S.Valid(action, args)
     if type(action)~="string" or #action&gt;16 then return false end
     if action=="Train" then return args.n==1 and type(args[1])=="string" and C.Stations[args[1]]~=nil end
     if action=="Equip" then return args.n==1 and (args[1]=="" or args[1]=="BronzeAura" or args[1]=="NeonTrail") end
+    if action=="Hatch" then return args.n==1 and type(args[1])=="string" and C.Eggs[args[1]]~=nil end
+    if action=="PetEquip" then return args.n==1 and type(args[1])=="string" and (args[1]=="" or C.PetTypes[args[1]]~=nil) end
     if action=="Rebirth" then return args.n==1 and type(args[1])=="string" and #args[1]&lt;=64 end
-    return (action=="Sync" or action=="Upgrade" or action=="PrepareRebirth" or action=="Daily" or action=="Weekly") and args.n==0
+    return (action=="Sync" or action=="Upgrade" or action=="PrepareRebirth" or action=="Daily" or action=="Weekly" or action=="PetMenu") and args.n==0
 end
 function S.Near(player, part, radius)
     local char=player.Character
@@ -590,7 +711,7 @@ return S
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXeec8213d838f48ed8d2de4fa8fb96dd2">
+      <Item class="ModuleScript" referent="RBX73b859f8848544588bc93336692a4b2c">
         <Properties>
           <string name="Name">LeaderboardTemplate</string>
           <ProtectedString name="Source">-- Visual draft only: each ranking row is a separate solid plaque, no live data.
@@ -675,7 +796,7 @@ return Board
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX3f7961b324414d34ba778ad4483f2b1c">
+      <Item class="ModuleScript" referent="RBXac49795f3ed749078cd7e0211dfd9a24">
         <Properties>
           <string name="Name">World</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -735,6 +856,19 @@ function World.Build()
         end
     end
     sign(map,"Welcome",Vector3.new(-34,7,14),"СИЛА → МОНЕТЫ → УЛУЧШЕНИЯ\nПерерождение даёт постоянный бонус",Color3.fromRGB(245,210,106))
+    for _,id in C.EggOrder do
+        local info=C.Eggs[id]; local color=Color3.fromRGB(table.unpack(info.Color))
+        local stand=part(map,"Egg"..id,Vector3.new(5,1.6,5),info.Position,color)
+        local egg=part(map,id.."Shell",Vector3.new(2.8,3.6,2.8),info.Position+Vector3.new(0,2.6,0),color)
+        egg.Shape=Enum.PartType.Ball; egg.Material=Enum.Material.Glass
+        local ring=part(map,id.."Band",Vector3.new(3,0.35,3),info.Position+Vector3.new(0,2.3,0),Color3.fromRGB(245,214,116))
+        ring.CanCollide=false
+        local prompt=Instance.new("ProximityPrompt"); prompt.Name="EggPrompt"
+        prompt.ActionText="Яйца и питомцы"; prompt.ObjectText=info.Name.." • "..info.Cost.." монет"
+        prompt.KeyboardKeyCode=Enum.KeyCode.F; prompt.MaxActivationDistance=C.EggDistance
+        prompt.RequiresLineOfSight=false; prompt.Parent=stand
+        sign(map,id.."EggSign",info.Position+Vector3.new(0,6,0),info.Name.."\n"..info.Cost.." монет • нажми F",color)
+    end
     sign(map,"Milestone",Vector3.new(24,7,-13),"НАГРАДЫ ЗА ПРОГРЕСС\n1 Rebirth: аура • 10 Rebirth: неоновый след",Color3.fromRGB(120,223,255))
     for _, z in {-37,37} do
         part(map,"Border"..z,Vector3.new(94,3,1),Vector3.new(4,1.5,z),Color3.fromRGB(52,67,93))
@@ -750,7 +884,7 @@ return World
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX4ed3b8e141f54e7da4875555cb287ecf">
+      <Item class="ModuleScript" referent="RBXcf554d9cefec41b9a6d2a66c066768d1">
         <Properties>
           <string name="Name">Network</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -770,13 +904,14 @@ function Network.Snapshot(data, mode, saveStatus)
         RequiredPower=power, RequiredCoins=coins, TotalTrainings=data.TotalTrainings,
         LastDaily=data.LastDaily, LastWeekly=data.LastWeekly, ServerTime=os.time(),
         BronzeAura=data.Cosmetics.BronzeAura==true, NeonTrail=data.Cosmetics.NeonTrail==true,
-        Equipped=data.Equipped, StorageMode=mode, SaveStatus=saveStatus or "ready"}
+        Equipped=data.Equipped, Pets=table.clone(data.Pets), EquippedPet=data.EquippedPet,
+        PetMultiplier=C.PetMultiplier(data), StorageMode=mode, SaveStatus=saveStatus or "ready"}
 end
 return Network
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXbb89ccb4d6ca466881374bebf6050951">
+      <Item class="ModuleScript" referent="RBXbd30b0e5b42e42c6b8fe2c262500710e">
         <Properties>
           <string name="Name">Telemetry</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -795,7 +930,7 @@ return Telemetry
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXd2ad7004b2af4b5a985c55a9e49e1205">
+      <Item class="ModuleScript" referent="RBXfe9910c24c3a4e67a47bb06086f6b3a9">
         <Properties>
           <string name="Name">Runtime</string>
           <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -811,6 +946,8 @@ local Security=require(script.Parent.Security)
 local Network=require(script.Parent.Network)
 local World=require(script.Parent.World)
 local Telemetry=require(script.Parent.Telemetry)
+local Pets=require(script.Parent.Pets)
+local PetVisuals=require(script.Parent.PetVisuals)
 local Runtime={sessions={},started=false}
 local dataService,remotes,map,mode
 local function stats(player,data)
@@ -840,13 +977,22 @@ function Runtime.Dispatch(player,action,...)
     if not Security.Allow(session.limiter,"Request",now,0) then return false,"rate" end
     local args=table.pack(...)
     if not Security.Valid(action,args) then return false,"arguments" end
-    local cooldown=action=="Train" and C.TrainCooldown or (action=="Sync" and 1 or C.ActionCooldown)
+    local cooldown=action=="Train" and C.TrainCooldown or (action=="Hatch" and C.HatchCooldown or (action=="Sync" and 1 or C.ActionCooldown))
     local last=session.actionTimes[action]
     if last and now-last&lt;cooldown then return false,"cooldown" end
     session.actionTimes[action]=now
     local data=dataService:Get(player.UserId)
     if not data then return false,"data_unavailable" end
     if action=="Sync" then publish(player); return true end
+    if action=="PetMenu" then
+        local near=false
+        for id in pairs(C.Eggs) do
+            local stand=map:FindFirstChild("Egg"..id)
+            if stand and Security.Near(player,stand,C.EggDistance) then near=true; break end
+        end
+        if not near then return false,"distance" end
+        notice(player,"Яйца открываются за игровые монеты.",{OpenPets=true}); return true
+    end
     if action=="PrepareRebirth" then
         local power,coins=C.Requirements(data.Rebirths)
         if data.Power&lt;power or data.Coins&lt;coins or data.Rebirths&gt;=C.MaxRebirths then
@@ -864,6 +1010,13 @@ function Runtime.Dispatch(player,action,...)
         if not pad or not Security.Near(player,pad,C.TrainDistance) then return false,"distance" end
         if data.Level&lt;station.MinLevel then notice(player,"Продвинутая станция: нужен уровень 3."); return false,"level" end
         ok,message=Progression.Train(data,args[1])
+    elseif action=="Hatch" then
+        local stand=map:FindFirstChild("Egg"..args[1])
+        if not stand or not Security.Near(player,stand,C.EggDistance) then
+            notice(player,"Подойди к выбранному яйцу."); return false,"distance"
+        end
+        ok,message=Pets.Hatch(data,args[1])
+    elseif action=="PetEquip" then ok,message=Pets.Equip(data,args[1])
     elseif action=="Upgrade" then ok,message=Progression.Upgrade(data)
     elseif action=="Rebirth" then
         local confirmation=session.confirm
@@ -877,6 +1030,7 @@ function Runtime.Dispatch(player,action,...)
     Rewards.Reconcile(data)
     dataService:Changed(player.UserId)
     if action=="Equip" or action=="Rebirth" then Rewards.ApplyCharacter(player,data) end
+    if action=="PetEquip" or action=="Hatch" then PetVisuals.Apply(player,data) end
     publish(player); notice(player,message)
     if action=="Train" and data.TotalTrainings==1 then Telemetry.Step(player,2,"FirstTraining") end
     if action=="Upgrade" and data.Level==1 then Telemetry.Step(player,3,"FirstUpgrade") end
@@ -910,7 +1064,7 @@ local function joined(player)
     player.CharacterAdded:Connect(function(char)
         local root=char:WaitForChild("HumanoidRootPart",10)
         local current=dataService:Get(player.UserId)
-        if root and current then Rewards.ApplyCharacter(player,current) end
+        if root and current then Rewards.ApplyCharacter(player,current); PetVisuals.Apply(player,current) end
         local humanoid=char:WaitForChild("Humanoid",10)
         if humanoid then
             humanoid.Died:Connect(function()
@@ -940,6 +1094,9 @@ function Runtime.Start()
     remotes.Action.OnServerEvent:Connect(function(player,action,...) Runtime.Dispatch(player,action,...) end)
     for id in pairs(C.Stations) do
         map[id].TrainPrompt.Triggered:Connect(function(player) Runtime.Dispatch(player,"Train",id) end)
+    end
+    for id in pairs(C.Eggs) do
+        map["Egg"..id].EggPrompt.Triggered:Connect(function(player) Runtime.Dispatch(player,"PetMenu") end)
     end
     Players.PlayerAdded:Connect(joined)
     Players.PlayerRemoving:Connect(function(player)
@@ -983,18 +1140,18 @@ return Runtime
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Script" referent="RBX3a9c235edcc44c7da091158f10045056">
+      <Item class="Script" referent="RBX388163c75af24f51924e6637b30e24b8">
         <Properties>
           <string name="Name">Bootstrap</string>
           <ProtectedString name="Source">require(script.Parent.Runtime).Start()
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Folder" referent="RBX0d6f05d9d6bb46abbf8c74bfaabd71d9">
+      <Item class="Folder" referent="RBXba6fbc86199d4d4e979d268da03e5ce7">
         <Properties>
           <string name="Name">Tests</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBX5258ad28349c48229c457ac3cc29d05b">
+        <Item class="ModuleScript" referent="RBXb64ae02e40554c3c95253b957a9857f6">
           <Properties>
             <string name="Name">Spec</string>
             <ProtectedString name="Source">-- Server-only deterministic tests. No production DataStore, no real user records.
@@ -1006,12 +1163,43 @@ local P=require(Root.Progression)
 local R=require(Root.Rebirth)
 local Rewards=require(Root.Rewards)
 local S=require(Root.Security)
+local Pets=require(Root.Pets)
 local Spec={}
 function Spec.Run()
     local count=0
     local function check(value,message) assert(value,message); count+=1 end
     local d=Schema.New()
     check(Schema.Validate(d)~=nil,"default schema")
+    local old=Schema.New(); old.Version=1; old.Pets=nil; old.EquippedPet=nil; old.Coins=123
+    local migrated=Schema.Validate(old)
+    check(migrated and migrated.Version==2 and migrated.Coins==123 and next(migrated.Pets)==nil,"migrate old profile without progress loss")
+    local petData=Schema.New()
+    check(not Pets.Hatch(petData,"Meadow"),"no coins no hatch")
+    petData.Coins=1000
+    check(not Pets.Hatch(petData,"Fake"),"unknown egg rejected")
+    check(not Pets.Hatch(petData,"Meadow",function() return 0/0 end) and petData.Coins==1000,"bad roll preserves coins")
+    for _,case in {{0,"Cat"},{.6,"Dog"},{.9,"Bunny"}} do
+        local before=petData.Coins
+        local ok,_,id=Pets.Hatch(petData,"Meadow",function() return case[1] end)
+        check(ok and id==case[2] and petData.Coins==before-80,"weighted hatch and exact cost")
+    end
+    check(Pets.Count(petData)==3 and petData.EquippedPet=="Cat","auto equip first and inventory count")
+    check(Pets.Equip(petData,"Bunny") and C.PetMultiplier(petData)==1.35,"owned pet bonus")
+    local power,coins=C.Gains(petData,1)
+    check(power==6 and coins==10,"server gains include single pet bonus")
+    check(Schema.Validate(petData)~=nil,"pet profile valid")
+    petData.Power=200; petData.Coins=150
+    check(R.Apply(petData) and petData.Pets.Bunny==1 and petData.EquippedPet=="Bunny","rebirth preserves pets")
+    check(Pets.Equip(petData,"") and C.PetMultiplier(petData)==1,"unequip removes bonus")
+    check(not Pets.Equip(Schema.New(),"Dog"),"cannot equip unowned pet")
+    local full=Schema.New(); full.Coins=1000; full.Pets.Cat=C.MaxPets
+    check(not Pets.Hatch(full,"Meadow") and full.Coins==1000,"capacity blocks without charge")
+    full.Pets.Cat+=1; check(Schema.Validate(full)==nil,"oversized inventory rejected")
+    local corrupt=Schema.New(); corrupt.Pets.Cat=-1; check(Schema.Validate(corrupt)==nil,"negative pets rejected")
+    corrupt=Schema.New(); corrupt.Pets.Fake=1; check(Schema.Validate(corrupt)==nil,"unknown pet rejected")
+    corrupt=Schema.New(); corrupt.EquippedPet="Dog"; check(Schema.Validate(corrupt)==nil,"unowned equipped pet rejected")
+    check(S.Valid("Hatch",table.pack("Meadow")) and not S.Valid("Hatch",table.pack("Meadow","Bunny")),"client cannot choose hatch result")
+    check(not S.Valid("PetEquip",table.pack({})) and not S.Valid("Hatch",table.pack("Fake")),"malformed pet remotes rejected")
     d.Coins=0/0; check(Schema.Validate(d)==nil,"reject NaN")
     d=Schema.New(); d.Power=math.huge; check(Schema.Validate(d)==nil,"reject infinity")
     d=Schema.New(); d.Coins=-1; check(Schema.Validate(d)==nil,"reject negative")
@@ -1068,6 +1256,7 @@ function Spec.Run()
     local opts={now=function() return clock end,wait=function() end,token="A"}
     local a=Data.new(store,opts)
     check(a:Load(77),"load new player")
+    a:Get(77).Pets.Bunny=2; a:Get(77).EquippedPet="Bunny"
     a:Get(77).Coins=250; a:Changed(77)
     store.doubleCallback=true
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"callback retry safe")
@@ -1083,6 +1272,7 @@ function Spec.Run()
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"commit response lost retry safe")
     check(a:Save(77,true) and store.records.Player_77.Session==nil,"release lock")
     check(b:Load(77) and b:Get(77).Coins==250,"reload persisted progress")
+    check(b:Get(77).Pets.Bunny==2 and b:Get(77).EquippedPet=="Bunny","pet save reload roundtrip")
     b:Get(77).Coins=400; b:Changed(77); check(b:Save(77,false),"second session saves")
     clock+=C.LeaseSeconds+1
     check(b:Get(77)==nil,"expired lease freezes actions")
@@ -1124,7 +1314,7 @@ return Spec
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX44c3c01bc2d6482b8510d3b7e06e9356">
+        <Item class="ModuleScript" referent="RBXbbebca2c06ef4b34b77281bdf8540b9b">
           <Properties>
             <string name="Name">Integration</string>
             <ProtectedString name="Source">-- SERVER Command Bar in a fresh Play. Only runs in Studio sandbox.
@@ -1193,19 +1383,19 @@ return Integration
       </Item>
     </Item>
   </Item>
-  <Item class="StarterPlayer" referent="RBXa9bd398287e74972832fba240a105525">
+  <Item class="StarterPlayer" referent="RBX0cc85029a4894f118c2157291bb6450e">
     <Properties>
       <string name="Name">StarterPlayer</string>
     </Properties>
-    <Item class="StarterPlayerScripts" referent="RBX793325d0d87d4f7dbb0f9a9c2c6f0a0e">
+    <Item class="StarterPlayerScripts" referent="RBXf1aefb8949fd47b9bd40a297f020db6f">
       <Properties>
         <string name="Name">StarterPlayerScripts</string>
       </Properties>
-      <Item class="Folder" referent="RBXf6b1ac30dd6546c198ee571fa2d0bab9">
+      <Item class="Folder" referent="RBXeedd6cd80bb142269e11f698a2156b9a">
         <Properties>
           <string name="Name">SimulatorClient</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBXdad95708d3b24c0898e4620b4eea5626">
+        <Item class="ModuleScript" referent="RBX8a6421b2fe99421e962c8a46a097a449">
           <Properties>
             <string name="Name">UI</string>
             <ProtectedString name="Source">local UI={}
@@ -1338,10 +1528,27 @@ function UI.Build(player)
         local m=menus[name]; m.Position=UDim2.new(.5,0,.5,12)
         TweenService:Create(m,TweenInfo.new(.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=UDim2.fromScale(.5,.5)}):Play()
     end
-    local shop=menu("Shop","МАГАЗИН",272)
+    local shop=menu("Shop","МАГАЗИН",338)
     label(shop,UDim2.fromOffset(20,64),UDim2.fromOffset(310,42),"Улучшения усиливают тренировку.\nУровень 3 открывает новую станцию.",15)
     refs.Upgrade=button(shop,UDim2.fromOffset(20,122),UDim2.fromOffset(310,48),"Улучшение: 25 монет")
     refs.Cosmetic=button(shop,UDim2.fromOffset(20,184),UDim2.fromOffset(310,62),"Косметика: за Rebirth",Color3.fromRGB(84,95,131))
+    refs.Pets=button(shop,UDim2.fromOffset(20,264),UDim2.fromOffset(310,48),"Яйца и питомцы",palette.Mint)
+    local pets=menu("Pets","ЯЙЦА И ПИТОМЦЫ",520)
+    local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+    refs.PetSummary=label(pets,UDim2.fromOffset(20,58),UDim2.fromOffset(310,34),"Питомцы: 0/50 • бонус x1.00",14)
+    refs.EggButtons={}; refs.PetButtons={}
+    for index,id in C.EggOrder do
+        local egg=C.Eggs[id]
+        local y=98+(index-1)*86
+        refs.EggButtons[id]=button(pets,UDim2.fromOffset(20,y),UDim2.fromOffset(310,46),egg.Name.." • "..egg.Cost.." монет",Color3.fromRGB(table.unpack(egg.Color)))
+        label(pets,UDim2.fromOffset(20,y+48),UDim2.fromOffset(310,30),
+            ("Кот %d%% • Пёс %d%% • Кролик %d%%"):format(egg.Weights.Cat,egg.Weights.Dog,egg.Weights.Bunny),12,palette.Muted)
+    end
+    label(pets,UDim2.fromOffset(20,270),UDim2.fromOffset(310,30),"Инвентарь • экипирован один питомец",14,palette.Mint)
+    for index,id in C.PetOrder do
+        refs.PetButtons[id]=button(pets,UDim2.fromOffset(20,304+(index-1)*62),UDim2.fromOffset(310,52),C.PetTypes[id].Name,Color3.fromRGB(table.unpack(C.PetTypes[id].Color)))
+    end
+    refs.Pets.Activated:Connect(function() refs.Open("Pets") end)
     local gifts=menu("Gifts","НАГРАДЫ",250)
     label(gifts,UDim2.fromOffset(20,62),UDim2.fromOffset(310,42),"Бонусы за возвращение.\nПропуск дня не сбрасывает прогресс.",15)
     refs.Daily=button(gifts,UDim2.fromOffset(20,118),UDim2.fromOffset(310,48),"Ежедневная награда")
@@ -1416,7 +1623,7 @@ return UI
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXe97c7f4f65e54af8a21b0172c82bbd27">
+        <Item class="ModuleScript" referent="RBX07ea3fb72cd14fa39f252f90531a7b14">
           <Properties>
             <string name="Name">Glass</string>
             <ProtectedString name="Source">local TweenService=game:GetService("TweenService")
@@ -1554,7 +1761,7 @@ return Glass
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBX1b6101cebf5f444aa3dd9ce493bfd576">
+        <Item class="LocalScript" referent="RBX3ade6936756545b2ae35580c323796e0">
           <Properties>
             <string name="Name">Controller</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -1593,6 +1800,14 @@ local function render()
     if not state then return end
     refs.Power.Text=tostring(state.Power)
     refs.Coins.Text=tostring(state.Coins)
+    local petCount=0
+    for _,amount in pairs(state.Pets) do petCount+=amount end
+    refs.PetSummary.Text=("Питомцы: %d/%d • бонус x%.2f"):format(petCount,C.MaxPets,state.PetMultiplier)
+    for id,b in pairs(refs.PetButtons) do
+        local info=C.PetTypes[id]; local count=state.Pets[id] or 0
+        b.Text=("%s ×%d • +%d%%\n%s"):format(info.Name,count,math.floor(info.Bonus*100+.5),
+            count==0 and "Не получен" or state.EquippedPet==id and "Экипирован • снять" or "Экипировать")
+    end
     refs.Level.Text="Уровень "..state.Level
     refs.RebirthStats.Text=("%d • x%.2f"):format(state.Rebirths,state.Multiplier)
     refs.Bonus.Text=("Постоянный бонус: x%.2f  •  Рекорд: %d"):format(state.Multiplier,state.LifetimePower)
@@ -1624,6 +1839,7 @@ remotes.State.OnClientEvent:Connect(function(snapshot)
 end)
 remotes.Notice.OnClientEvent:Connect(function(message,extra)
     showNotice(message)
+    if extra and extra.OpenPets then refs.Open("Pets") end
     if extra and extra.RebirthToken then
         rebirthToken=extra.RebirthToken
         refs.Dialog.Text=message..("\n\nНовый постоянный бонус: x%.2f\nПодтверждение действует 20 секунд."):format(extra.NextMultiplier)
@@ -1642,6 +1858,14 @@ refs.Train.Activated:Connect(function()
     request("Train",selected)
 end)
 refs.Upgrade.Activated:Connect(function() request("Upgrade") end)
+for id,b in pairs(refs.EggButtons) do b.Activated:Connect(function() request("Hatch",id) end) end
+for id,b in pairs(refs.PetButtons) do
+    b.Activated:Connect(function()
+        if not state then return end
+        if not state.Pets[id] then showNotice("Сначала получи этого питомца из яйца."); return end
+        request("PetEquip",state.EquippedPet==id and "" or id)
+    end)
+end
 refs.Prepare.Activated:Connect(function() request("PrepareRebirth") end)
 refs.Daily.Activated:Connect(function() request("Daily") end)
 refs.Weekly.Activated:Connect(function() request("Weekly") end)
@@ -1677,7 +1901,7 @@ end)
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBXbbaa28175d4d4c02acfcd05661170283">
+        <Item class="LocalScript" referent="RBXedc12739ac3946b1a0c533d15f6d4dad">
           <Properties>
             <string name="Name">WorldSigns</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -1754,7 +1978,7 @@ end
       </Item>
     </Item>
   </Item>
-  <Item class="StarterGui" referent="RBX9db879aebb9145d490a48a3a8ad9f1b6">
+  <Item class="StarterGui" referent="RBXa62cc871c4b44a9c9d73e6918d3bce3a">
     <Properties>
       <string name="Name">StarterGui</string>
     </Properties>

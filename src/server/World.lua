@@ -55,6 +55,19 @@ function World.Build()
         end
     end
     sign(map,"Welcome",Vector3.new(-34,7,14),"СИЛА → МОНЕТЫ → УЛУЧШЕНИЯ\nПерерождение даёт постоянный бонус",Color3.fromRGB(245,210,106))
+    for _,id in C.EggOrder do
+        local info=C.Eggs[id]; local color=Color3.fromRGB(table.unpack(info.Color))
+        local stand=part(map,"Egg"..id,Vector3.new(5,1.6,5),info.Position,color)
+        local egg=part(map,id.."Shell",Vector3.new(2.8,3.6,2.8),info.Position+Vector3.new(0,2.6,0),color)
+        egg.Shape=Enum.PartType.Ball; egg.Material=Enum.Material.Glass
+        local ring=part(map,id.."Band",Vector3.new(3,0.35,3),info.Position+Vector3.new(0,2.3,0),Color3.fromRGB(245,214,116))
+        ring.CanCollide=false
+        local prompt=Instance.new("ProximityPrompt"); prompt.Name="EggPrompt"
+        prompt.ActionText="Яйца и питомцы"; prompt.ObjectText=info.Name.." • "..info.Cost.." монет"
+        prompt.KeyboardKeyCode=Enum.KeyCode.F; prompt.MaxActivationDistance=C.EggDistance
+        prompt.RequiresLineOfSight=false; prompt.Parent=stand
+        sign(map,id.."EggSign",info.Position+Vector3.new(0,6,0),info.Name.."\n"..info.Cost.." монет • нажми F",color)
+    end
     sign(map,"Milestone",Vector3.new(24,7,-13),"НАГРАДЫ ЗА ПРОГРЕСС\n1 Rebirth: аура • 10 Rebirth: неоновый след",Color3.fromRGB(120,223,255))
     for _, z in {-37,37} do
         part(map,"Border"..z,Vector3.new(94,3,1),Vector3.new(4,1.5,z),Color3.fromRGB(52,67,93))

@@ -21,6 +21,20 @@ local C = {
     MilestoneTrail = 10,
     AnalyticsEnabled = false, -- Enable after publishing and checking Dashboard.
     SupportRewardsEnabled = false, PaidItemsEnabled = false,
+    MaxPets = 50, HatchCooldown = 1.2, EggDistance = 11,
+    PetTypes = {
+        Cat = {Name = "Кот", Bonus = 0.10, Color = {255, 182, 103}},
+        Dog = {Name = "Пёс", Bonus = 0.20, Color = {111, 190, 255}},
+        Bunny = {Name = "Кролик", Bonus = 0.35, Color = {211, 151, 255}},
+    },
+    PetOrder = {"Cat", "Dog", "Bunny"},
+    EggOrder = {"Meadow", "Crystal"},
+    Eggs = {
+        Meadow = {Name = "Луговое яйцо", Cost = 80, Position = Vector3.new(-31, 0.8, -8),
+            Color = {112, 228, 180}, Weights = {Cat = 60, Dog = 30, Bunny = 10}},
+        Crystal = {Name = "Кристальное яйцо", Cost = 240, Position = Vector3.new(-31, 0.8, 3),
+            Color = {180, 143, 255}, Weights = {Cat = 20, Dog = 45, Bunny = 35}},
+    },
     Stations = {
         Basic = {Position = Vector3.new(-16, 1, 0), MinLevel = 0, Multiplier = 1},
         Advanced = {Position = Vector3.new(24, 1, 0), MinLevel = 3, Multiplier = 1.25},
@@ -37,8 +51,12 @@ function C.Requirements(rebirths)
     return math.floor(C.RebirthPower * factor), math.floor(C.RebirthCoins * factor)
 end
 function C.Gains(data, stationMultiplier)
-    local m = C.Multiplier(data) * (stationMultiplier or 1)
+    local m = C.Multiplier(data) * (stationMultiplier or 1) * C.PetMultiplier(data)
     return math.floor(C.BasePower * (1 + data.Level * C.PowerLevelBonus) * m),
         math.floor(C.BaseCoins * (1 + data.Level * C.CoinLevelBonus) * m)
+end
+function C.PetMultiplier(data)
+    local pet = C.PetTypes[data.EquippedPet]
+    return 1 + (pet and data.Pets and (data.Pets[data.EquippedPet] or 0) > 0 and pet.Bonus or 0)
 end
 return table.freeze(C)

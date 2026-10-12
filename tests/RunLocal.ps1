@@ -14,7 +14,7 @@ $header=@'
 local moduleFactories,cache={},{}
 local getModule
 local root={}
-for _,name in {"Schema","PlayerData","Progression","Rebirth","Rewards","Security"} do root[name]=name end
+for _,name in {"Schema","PlayerData","Progression","Rebirth","Rewards","Security","Pets"} do root[name]=name end
 local Vector3={new=function(x,y,z) return {X=x,Y=y,Z=z} end,zero={X=0,Y=0,Z=0}}
 local nextGuid=0
 local Http={GenerateGUID=function() nextGuid+=1; return "test-guid-"..nextGuid end}
@@ -24,7 +24,7 @@ local task={wait=function() error("Unexpected real task.wait in unit tests") end
 '@
 $builder=New-Object System.Text.StringBuilder
 $null=$builder.AppendLine($header)
-$sources=[ordered]@{Config='src\shared\Config.lua';Schema='src\server\Schema.lua';PlayerData='src\server\PlayerData.lua';Progression='src\server\Progression.lua';Rebirth='src\server\Rebirth.lua';Rewards='src\server\Rewards.lua';Security='src\server\Security.lua';Spec='tests\Spec.lua'}
+$sources=[ordered]@{Config='src\shared\Config.lua';Schema='src\server\Schema.lua';PlayerData='src\server\PlayerData.lua';Progression='src\server\Progression.lua';Rebirth='src\server\Rebirth.lua';Rewards='src\server\Rewards.lua';Security='src\server\Security.lua';Pets='src\server\Pets.lua';Spec='tests\Spec.lua'}
 foreach($name in $sources.Keys){
     $null=$builder.AppendLine(('moduleFactories["'+$name+'"] = function()'))
     $null=$builder.AppendLine('local require=getModule; local script={Parent=root}')
