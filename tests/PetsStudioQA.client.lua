@@ -7,7 +7,7 @@ task.spawn(function()
     local state
     local connection=remote.State.OnClientEvent:Connect(function(snapshot) state=snapshot end)
     local function request(action,...)
-        remote.Action:FireServer(action,...); task.wait(1.4)
+        remote.Action:FireServer(action,...); task.wait(action=="Hatch" and 4.4 or 1.4)
     end
     local ok,err=pcall(function()
         request("Sync")

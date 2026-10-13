@@ -1,135 +1,270 @@
 local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local Factory=require(game.ReplicatedStorage.SimulatorShared.ModelFactory)
 local Glass=require(script.Parent.Glass)
 local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
+local Tween=game:GetService("TweenService")
+local Input=game:GetService("UserInputService")
 local Catalog={}
 local function text(parent,pos,size,value,font,color)
     local t=Instance.new("TextLabel"); t.Position=pos; t.Size=size; t.Text=value
     t.BackgroundTransparency=1; t.TextColor3=color or Glass.Colors.Text
-    t.Font=Enum.Font.GothamBold; t.TextSize=font or 14; t.TextWrapped=true
+    t.Font=Enum.Font.GothamBold; t.TextSize=font or 13; t.TextWrapped=true
     t.Parent=parent; TextStyle.Apply(t); return t
 end
 local function button(parent,pos,size,value)
-    local b=Instance.new("TextButton"); b.AnchorPoint=Vector2.new(.5,.5)
-    b.Position=pos; b.Size=size; b.Text=value; b.TextColor3=Glass.Colors.Text
-    b.Font=Enum.Font.GothamBold; b.TextSize=13; b.TextWrapped=true; b.Parent=parent
-    Glass.Style(b,Glass.Colors.Mint,12); b.GlassTint:Destroy(); Glass.AnimateButton(b)
-    TextStyle.Apply(b); return b
+    local b=Instance.new("TextButton"); b.AnchorPoint=Vector2.new(.5,.5); b.Position=pos
+    b.Size=size; b.Text=value; b.Font=Enum.Font.GothamBold; b.TextSize=12; b.TextWrapped=true
+    b.TextColor3=Glass.Colors.Text; b.Parent=parent
+    Glass.Style(b,Glass.Colors.Mint,10); b.GlassTint:Destroy(); Glass.AnimateButton(b); TextStyle.Apply(b)
+    return b
 end
-local function picture(parent,color,id,isEgg)
-    local view=Instance.new("ViewportFrame"); view.Name="Picture"; view.Size=UDim2.new(1,-16,0,68)
-    view.Position=UDim2.fromOffset(8,6); view.BackgroundTransparency=1
-    view.Ambient=Color3.fromRGB(220,220,230); view.LightColor=Color3.new(1,1,1); view.Parent=parent
+function Catalog.View(parent,id,isEgg,interactive)
+    local view=Instance.new("ViewportFrame"); view.Name="Picture"; view.BackgroundTransparency=1
+    view.Ambient=Color3.fromRGB(230,230,240); view.LightColor=Color3.new(1,1,1); view.Parent=parent
     local world=Instance.new("WorldModel"); world.Parent=view
-    local camera=Instance.new("Camera"); camera.FieldOfView=40
-    camera.CFrame=CFrame.lookAt(Vector3.new(3,2,6),Vector3.new(0,.4,0)); camera.Parent=view; view.CurrentCamera=camera
-    local function part(size,pos,tint,ball)
-        local p=Instance.new("Part"); p.Size=size; p.Position=pos; p.Color=tint
-        p.Anchored=true; p.CanCollide=false; p.Material=Enum.Material.SmoothPlastic
-        if ball then p.Shape=Enum.PartType.Ball end
-        p.Parent=world
+    local model=Factory.Build(id,isEgg); model.Parent=world
+    local camera=Instance.new("Camera"); camera.FieldOfView=40; camera.Parent=view; view.CurrentCamera=camera
+    local yaw,pitch=0,.15
+    local function rotate()
+        camera.CFrame=CFrame.lookAt(Vector3.new(math.sin(yaw)*6,1+pitch*4,-math.cos(yaw)*6),Vector3.new(0,.2,0))
     end
-    if isEgg then
-        part(Vector3.new(2,2.7,2),Vector3.zero,color,true)
-        part(Vector3.new(2.1,.18,2.1),Vector3.zero,Glass.Colors.Gold,false)
-    else
-        part(Vector3.new(1.6,1.5,1.5),Vector3.zero,color,false)
-        for _,x in {-.48,.48} do
-            part(Vector3.new(.38,id=="Bunny" and 1.3 or .55,.45),Vector3.new(x,id=="Bunny" and 1.15 or .87,0),color,false)
-            part(Vector3.new(.2,.25,.12),Vector3.new(x*.7,.18,.0+ .78),Glass.Colors.Base,false)
-        end
+    rotate()
+    if interactive then
+        view.Active=true
+        local drag,last=nil,nil
+        local began=view.InputBegan:Connect(function(input)
+            if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then drag=input; last=input.Position end
+        end)
+        local changed=Input.InputChanged:Connect(function(input)
+            if drag and (input==drag or input.UserInputType==Enum.UserInputType.MouseMovement) then
+                local delta=input.Position-last; last=input.Position
+                yaw-=delta.X*.015; pitch=math.clamp(pitch+delta.Y*.008,-.4,.65); rotate()
+            end
+        end)
+        local ended=Input.InputEnded:Connect(function(input) if input==drag then drag=nil end end)
+        view.Destroying:Connect(function() began:Disconnect(); changed:Disconnect(); ended:Disconnect() end)
     end
-    return view
+    return view,model
 end
 function Catalog.Build(parent)
-    local refs={EggButtons={},PetButtons={},PetRemoveButtons={},EggCards={},PetCards={}}
-    refs.PetSummary=text(parent,UDim2.fromOffset(20,58),UDim2.new(1,-40,0,30),"Загрузка питомцев…",13)
+    local refs={EggCards={},PetCards={},PetButtons={},EggButtons={},PetRemoveButtons={},EditButtons={}}
     local panes,tabs,grids={},{},{}
+    local state,width,selected={},parent.Size.X.Offset,nil
+    local selectedCopies={}; local callbacks={}
+    local inspector=Instance.new("Frame"); inspector.Name="Inspector"; inspector.AnchorPoint=Vector2.new(.5,.5)
+    inspector.Visible=false; inspector.Parent=parent.Parent; inspector.ZIndex=22; Glass.Style(inspector,Glass.Colors.Violet)
+    refs.Inspector=inspector
+    local title=text(inspector,UDim2.fromOffset(14,12),UDim2.new(1,-64,0,40),"",17,Glass.Colors.Mint)
+    local back=button(inspector,UDim2.new(1,-28,0,30),UDim2.fromOffset(34,34),"←")
+    local description=text(inspector,UDim2.fromOffset(14,240),UDim2.new(1,-28,0,120),"",13)
+    local primary=button(inspector,UDim2.new(.5,0,1,-80),UDim2.new(1,-28,0,42),"Экипировать")
+    local combine=button(inspector,UDim2.new(.5,0,1,-30),UDim2.new(1,-28,0,42),"Совместить")
+    refs.DetailPrimary=primary; refs.DetailCombine=combine; refs.DetailDescription=description
+    refs.PetSummary=text(parent,UDim2.fromOffset(20,58),UDim2.new(1,-40,0,28),"Загрузка…",12)
     for i,info in {{"Eggs","Выбор яйца"},{"Inventory","Питомцы"},{"Paid","Донатные предметы"}} do
-        local name=info[1]
-        local tab=button(parent,UDim2.fromOffset(70+(i-1)*105,109),UDim2.fromOffset(100,40),info[2])
-        tabs[name]=tab
+        local name=info[1]; tabs[name]=button(parent,UDim2.fromOffset(70+(i-1)*105,109),UDim2.fromOffset(100,38),info[2])
         local pane=Instance.new("Frame"); pane.Name=name; pane.BackgroundTransparency=1
-        pane.Position=UDim2.fromOffset(20,140); pane.Size=UDim2.new(1,-40,1,-158); pane.Parent=parent; panes[name]=pane
+        pane.Position=UDim2.fromOffset(20,138); pane.Size=UDim2.new(1,-40,1,-152); pane.Parent=parent; panes[name]=pane
     end
-    function refs.Select(name)
-        for key,pane in pairs(panes) do
-            pane.Visible=key==name; tabs[key].GlassEdge.Transparency=key==name and .1 or .65
-        end
-        refs.Selected=name
-        refs.EquipBest.Visible=name=="Inventory"
-    end
-    for name,tab in pairs(tabs) do tab.Activated:Connect(function() refs.Select(name) end) end
     local function list(pane)
-        local scroll=Instance.new("ScrollingFrame"); scroll.Name="Cards"
-        scroll.Size=UDim2.fromScale(1,1); scroll.BackgroundTransparency=1; scroll.BorderSizePixel=0
-        scroll.ScrollingDirection=Enum.ScrollingDirection.Y; scroll.AutomaticCanvasSize=Enum.AutomaticSize.Y
-        scroll.CanvasSize=UDim2.new(); scroll.ScrollBarThickness=5; scroll.ScrollBarImageColor3=Glass.Colors.Mint
-        scroll.Parent=pane
-        local layout=Instance.new("UIGridLayout"); layout.CellPadding=UDim2.fromOffset(10,10)
-        layout.CellSize=UDim2.fromOffset(160,250); grids[#grids+1]=layout
-        layout.SortOrder=Enum.SortOrder.LayoutOrder; layout.Parent=scroll
-        local padding=Instance.new("UIPadding"); padding.PaddingTop=UDim.new(0,4)
-        padding.PaddingBottom=UDim.new(0,8); padding.PaddingLeft=UDim.new(0,4); padding.Parent=scroll
+        local scroll=Instance.new("ScrollingFrame"); scroll.Name="Cards"; scroll.Size=UDim2.fromScale(1,1)
+        scroll.BackgroundTransparency=1; scroll.BorderSizePixel=0; scroll.ScrollingDirection=Enum.ScrollingDirection.Y
+        scroll.AutomaticCanvasSize=Enum.AutomaticSize.Y; scroll.CanvasSize=UDim2.new(); scroll.ScrollBarThickness=4
+        scroll.ScrollBarImageColor3=Glass.Colors.Mint; scroll.Parent=pane
+        local grid=Instance.new("UIGridLayout"); grid.CellPadding=UDim2.fromOffset(8,8); grid.SortOrder=Enum.SortOrder.LayoutOrder
+        grid.Parent=scroll; grids[#grids+1]=grid
+        local pad=Instance.new("UIPadding"); pad.PaddingTop=UDim.new(0,4); pad.PaddingBottom=UDim.new(0,8); pad.PaddingLeft=UDim.new(0,4); pad.Parent=scroll
         return scroll
     end
-    local function card(scroll,height,index)
-        local f=Instance.new("Frame"); f.Name="Card"..index; f.Size=UDim2.new(1,-14,0,height)
-        f.LayoutOrder=index; f.Parent=scroll; Glass.Style(f,Glass.Colors.Mint,16); return f
-    end
     refs.EggList=list(panes.Eggs); refs.PetList=list(panes.Inventory); refs.PaidList=list(panes.Paid)
-    refs.EquipBest=button(panes.Inventory,UDim2.new(.5,0,0,22),UDim2.new(1,-16,0,44),"Экипировать лучшее")
-    refs.PetList.Position=UDim2.fromOffset(0,54); refs.PetList.Size=UDim2.new(1,0,1,-54)
-    text(panes.Paid,UDim2.fromOffset(4,0),UDim2.new(1,-8,0,48),"Донатные предметы — скоро. Четвёртый слот пока недоступен.",13,Glass.Colors.Muted)
-    refs.PaidList.Position=UDim2.fromOffset(0,54); refs.PaidList.Size=UDim2.new(1,0,1,-54)
+    refs.EquipBest=button(panes.Inventory,UDim2.new(.5,0,0,20),UDim2.new(1,-16,0,38),"Экипировать лучшее")
+    refs.PetList.Position=UDim2.fromOffset(0,48); refs.PetList.Size=UDim2.new(1,0,1,-48)
+    text(panes.Paid,UDim2.fromOffset(4,0),UDim2.new(1,-8,0,44),"Донатные предметы — скоро",13,Glass.Colors.Muted)
+    refs.PaidList.Position=UDim2.fromOffset(0,48); refs.PaidList.Size=UDim2.new(1,0,1,-48)
+    local function card(scroll,index,placeholder)
+        local f=Instance.new("Frame"); f.Name=placeholder and "Placeholder"..index or "Card"..index
+        f.LayoutOrder=index; f.Parent=scroll; Glass.Style(f,Glass.Colors.Mint,12)
+        if placeholder then f:SetAttribute("Placeholder",true); f.BackgroundTransparency=.55 end
+        return f
+    end
+    local function placeholders(scroll)
+        for i=1,15 do card(scroll,1000+i,true) end
+    end
+    local function emit(action,id,copies) if callbacks.Action then callbacks.Action(action,id,copies) end end
+    local function selectedCount() local count=0; for _ in pairs(selectedCopies) do count+=1 end; return count end
+    local function craft()
+        if selectedCount()~=3 then return end
+        local copies={}
+        for key in pairs(selectedCopies) do table.insert(copies,tonumber(key:match(":(%d+)$"))) end
+        table.sort(copies); emit("PetCraft",refs.CraftId,copies)
+    end
+    refs.ConfirmCraft=craft
+    refs.SelectedCopiesCount=selectedCount
+    local function layout(animated)
+        local split=selected~=nil; local mobile=width<700
+        local mainWidth=split and not mobile and math.floor((width-12)*.65) or width
+        local detailWidth=math.max(240,width-mainWidth-12); if mobile then detailWidth=width end
+        local h=parent.Size.Y.Offset
+        local mainPos=split and not mobile and UDim2.new(.5,-(detailWidth+12)/2,.5,0) or UDim2.fromScale(.5,.5)
+        local detailPos=mobile and UDim2.fromScale(.5,.5) or UDim2.new(.5,(mainWidth+12)/2,.5,0)
+        if animated then
+            Tween:Create(parent,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Size=UDim2.fromOffset(mainWidth,h),Position=mainPos}):Play()
+            inspector.Position=detailPos+UDim2.fromOffset(28,0)
+            Tween:Create(inspector,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Position=detailPos}):Play()
+        else parent.Size=UDim2.fromOffset(mainWidth,h); parent.Position=mainPos; inspector.Position=detailPos end
+        inspector.Size=UDim2.fromOffset(detailWidth,h)
+        inspector.Visible=split and (not mobile or refs.CraftId==nil)
+        if split and mobile and refs.CraftId==nil then
+            refs.HiddenByInspector=true; parent.Visible=false
+        elseif refs.HiddenByInspector then refs.HiddenByInspector=nil; parent.Visible=true end
+        local columns=math.min(split and 3 or 5,math.max(1,math.floor((mainWidth-42)/126)))
+        local cell=math.floor((mainWidth-54-(columns-1)*8)/columns)
+        for _,grid in grids do grid.FillDirectionMaxCells=columns; grid.CellSize=UDim2.fromOffset(cell,216) end
+        local tabWidth=(mainWidth-56)/3
+        for i,name in {"Eggs","Inventory","Paid"} do tabs[name].Position=UDim2.fromOffset(20+tabWidth/2+(i-1)*(tabWidth+8),109); tabs[name].Size=UDim2.fromOffset(tabWidth,38) end
+        local picture=inspector:FindFirstChild("Picture")
+        local viewHeight=math.max(65,math.min(190,h*.34))
+        if picture then picture.Position=UDim2.fromOffset(12,60); picture.Size=UDim2.new(1,-24,0,viewHeight) end
+        description.Position=UDim2.fromOffset(14,64+viewHeight); description.Size=UDim2.new(1,-28,0,math.max(30,h-viewHeight-182))
+    end
+    local refresh
+    function refs.Resize(newWidth) width=newWidth; layout(false) end
+    function refs.Reset()
+        selected=nil; refs.CraftId=nil; selectedCopies={}; inspector.Visible=false
+        layout(false)
+    end
+    function refs.Select(name)
+        refs.Reset()
+        for key,pane in pairs(panes) do pane.Visible=key==name; tabs[key].GlassEdge.Transparency=key==name and .1 or .65 end
+        refs.Selected=name
+    end
+    for name,tab in pairs(tabs) do tab.Activated:Connect(function() refs.Select(name); if refresh then refresh() end end) end
+    local function detail()
+        if not selected then return end
+        local info=(selected.Egg and C.Eggs or C.PetTypes)[selected.Id]
+        title.Text=info.Name
+        local unlocked=not selected.Egg or (state.Level or 0)>=info.MinLevel
+        description.Text=not unlocked and "Недоступно: уровень "..info.MinLevel or
+            (info.Rarity.."\n"..(selected.Egg and info.Cost.." монет" or ("Сила и монеты x%.2f"):format(1+info.Bonus)).."\n"..info.Description)
+        if selected.Egg then primary.Text="Открыть · "..info.Cost; primary.Active=unlocked; combine.Visible=false
+        else
+            local owned=(state.Pets or {})[selected.Id] or 0; local eq=(state.EquippedPets or {})[selected.Id] or 0
+            primary.Text=eq>0 and "Снять" or "Экипировать"; primary.Active=owned>0
+            combine.Visible=true; combine.Active=not info.Upgraded and owned>=3
+            combine.Text=info.Upgraded and "Уже улучшенный" or refs.CraftId and ("Совместить · %d/3"):format(selectedCount()) or "Совместить 3 одинаковых"
+        end
+    end
+    function refs.Inspect(id,isEgg)
+        selected={Id=id,Egg=isEgg}; refs.CraftId=nil; selectedCopies={}
+        local old=inspector:FindFirstChild("Picture"); if old then old:Destroy() end
+        refs.DetailView=Catalog.View(inspector,id,isEgg,true)
+        detail(); layout(true)
+    end
+    function refs.BeginCraft(id)
+        local info=C.PetTypes[id]
+        if not info or info.Upgraded or ((state.Pets or {})[id] or 0)<3 then return false end
+        if not selected or selected.Id~=id or selected.Egg then refs.Inspect(id,false) end
+        refs.CraftId=id; selectedCopies={}; layout(false); refresh(); return true
+    end
+    function refs.ChooseCopy(id,index)
+        if id~=refs.CraftId or not C.PetTypes[id] or C.PetTypes[id].Upgraded or type(index)~="number" or index%1~=0 or index<1 or index>((state.Pets or {})[id] or 0) then return false end
+        local key=id..":"..index
+        if selectedCopies[key] then selectedCopies[key]=nil elseif selectedCount()<3 then selectedCopies[key]=true else return false end
+        refresh(); return true
+    end
+    back.Activated:Connect(function() refs.Reset(); layout(true); refresh() end)
+    primary.Activated:Connect(function()
+        if not selected or not primary.Active then return end
+        if selected.Egg then emit("Hatch",selected.Id)
+        else emit(((state.EquippedPets or {})[selected.Id] or 0)>0 and "PetUnequip" or "PetEquip",selected.Id) end
+    end)
+    combine.Activated:Connect(function()
+        if not selected or selected.Egg or not combine.Active then return end
+        if refs.CraftId then craft()
+        else refs.BeginCraft(selected.Id) end
+    end)
+    refs.EquipBest.Activated:Connect(function()
+        if refs.CraftId then craft()
+        else emit("PetEquipBest") end
+    end)
     for index,id in C.EggOrder do
-        local info=C.Eggs[id]; local f=card(refs.EggList,192,index)
-        picture(f,Color3.fromRGB(table.unpack(info.Color)),id,true)
-        text(f,UDim2.fromOffset(8,76),UDim2.new(1,-16,0,36),info.Name,15,Glass.Colors.Mint)
-        local description=text(f,UDim2.fromOffset(8,116),UDim2.new(1,-16,0,68),info.Description,12)
-        local locked=text(f,UDim2.fromOffset(8,116),UDim2.new(1,-16,0,68),"Недоступно",13,Glass.Colors.Muted)
-        local b=button(f,UDim2.new(.5,0,0,220),UDim2.new(1,-24,0,44),"Выбрать • "..info.Cost.." монет")
-        refs.EggButtons[id]=b; refs.EggCards[id]={Description=description,Locked=locked,Button=b}
+        local info=C.Eggs[id]; local f=card(refs.EggList,index)
+        local view=Catalog.View(f,id,true); view.Position=UDim2.fromOffset(6,4); view.Size=UDim2.new(1,-12,0,52)
+        text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),info.Name,13,Glass.Colors.Mint)
+        local rarity=text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,18),info.Rarity,11,Glass.Colors.Gold)
+        local locked=text(f,UDim2.fromOffset(6,109),UDim2.new(1,-12,0,24),info.Cost.." монет",12)
+        local open=button(f,UDim2.new(.5,0,0,159),UDim2.new(1,-16,0,36),"Открыть")
+        local edit=button(f,UDim2.new(.5,0,0,198),UDim2.new(1,-16,0,32),"Редактировать")
+        open.Activated:Connect(function() if open.Active then emit("Hatch",id) end end)
+        edit.Activated:Connect(function() refs.Inspect(id,true) end)
+        refs.EggButtons[id]=open; refs.EggCards[id]={Button=open,Locked=locked,Rarity=rarity}; refs.EditButtons[id]=edit
     end
-    for index,id in C.PetOrder do
-        local info=C.PetTypes[id]; local f=card(refs.PetList,168,index)
-        picture(f,Color3.fromRGB(table.unpack(info.Color)),id,false)
-        text(f,UDim2.fromOffset(8,76),UDim2.new(1,-16,0,28),info.Name,16,Glass.Colors.Mint)
-        text(f,UDim2.fromOffset(8,104),UDim2.new(1,-16,0,28),("Сила и монеты x%.2f"):format(1+info.Bonus),13)
-        refs.PetCards[id]=text(f,UDim2.fromOffset(8,132),UDim2.new(1,-16,0,32),"Получено: 0 • нанято: 0",12,Glass.Colors.Muted)
-        refs.PetButtons[id]=button(f,UDim2.new(.5,0,0,188),UDim2.new(1,-24,0,40),"Нанять +1")
-        refs.PetRemoveButtons[id]=button(f,UDim2.new(.5,0,0,230),UDim2.new(1,-24,0,32),"Снять −1")
-    end
-    -- Decorative placeholders never participate in inventory or remotes.
-    for _,scroll in {refs.EggList,refs.PetList,refs.PaidList} do
-        for i=1,15 do
-            local f=card(scroll,250,100+i); f.Name="Placeholder"..i
-            f:SetAttribute("Placeholder",true); f.BackgroundTransparency=.55
+    placeholders(refs.EggList); placeholders(refs.PaidList)
+    local signature
+    refresh=function()
+        local owned,equipped,totalEq=state.Pets or {},state.EquippedPets or {},0
+        local total=0; for _,amount in pairs(owned) do total+=amount end; for _,amount in pairs(equipped) do totalEq+=amount end
+        refs.PetSummary.Text=("Получено %d/%d · экипировано %d/3 · x%.2f"):format(total,C.MaxPets,totalEq,state.PetMultiplier or 1)
+        refs.EquipBest.Text=refs.CraftId and ("Совместить · выбрано %d/3"):format(selectedCount()) or "Экипировать лучшее"
+        for id,item in pairs(refs.EggCards) do
+            local unlocked=(state.Level or 0)>=C.Eggs[id].MinLevel
+            item.Button.Active=unlocked; item.Button.Text=unlocked and "Открыть" or "Недоступно"
+            item.Locked.Text=unlocked and C.Eggs[id].Cost.." монет" or "Недоступно · уровень "..C.Eggs[id].MinLevel
         end
-    end
-    function refs.Resize(width)
-        local available=width-58
-        local columns=math.clamp(math.floor((available+10)/135),1,5)
-        local cell=math.floor((available-(columns-1)*10)/columns)
-        for _,grid in grids do
-            grid.FillDirectionMaxCells=columns; grid.CellSize=UDim2.fromOffset(cell,250)
+        -- Rebuild only when counts/equipment/craft selections change; preserve scroll on state ticks.
+        local parts={refs.CraftId or ""}
+        for _,id in C.InventoryOrder do parts[#parts+1]=id..":"..(owned[id] or 0)..":"..(equipped[id] or 0) end
+        for key in pairs(selectedCopies) do parts[#parts+1]=key end; table.sort(parts)
+        local nextSignature=table.concat(parts,"|")
+        if nextSignature~=signature then
+            signature=nextSignature
+            for _,child in refs.PetList:GetChildren() do if child:IsA("Frame") then child:Destroy() end end
+            refs.PetCards={}; refs.PetButtons={}; refs.PetRemoveButtons={}
+            local index=0
+            for _,id in C.InventoryOrder do
+                local info=C.PetTypes[id]; local count=owned[id] or 0
+                if not info.Upgraded or count>0 then
+                    for copy=1,math.max(1,count) do
+                        index+=1; local key=id..":"..copy; local f=card(refs.PetList,index)
+                        f:SetAttribute("PetId",id); f:SetAttribute("Copy",copy)
+                        local view=Catalog.View(f,id,false); view.Position=UDim2.fromOffset(6,4); view.Size=UDim2.new(1,-12,0,52)
+                        text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),info.Name,13,Glass.Colors.Mint)
+                        text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,16),info.Rarity,11,Glass.Colors.Gold)
+                        text(f,UDim2.fromOffset(6,106),UDim2.new(1,-12,0,18),("x%.2f"):format(1+info.Bonus),13)
+                        local eq=copy<=(equipped[id] or 0)
+                        text(f,UDim2.fromOffset(6,126),UDim2.new(1,-12,0,16),count==0 and "Не получен" or eq and "Экипирован" or "В инвентаре",10,Glass.Colors.Muted)
+                        local allowed=not refs.CraftId or (id==refs.CraftId and not info.Upgraded and copy<=count)
+                        local equip=button(f,UDim2.new(.5,0,0,159),UDim2.new(1,-16,0,36),refs.CraftId and (selectedCopies[key] and "Выбран ✓" or "Выбрать") or eq and "Снять" or "Экипировать")
+                        equip.Active=count>0 and allowed
+                        local edit=button(f,UDim2.new(.5,0,0,198),UDim2.new(1,-16,0,32),"Редактировать"); edit.Active=refs.CraftId==nil
+                        equip.Activated:Connect(function()
+                            if not equip.Active then return end
+                            if refs.CraftId then
+                                refs.ChooseCopy(id,copy)
+                            else emit(eq and "PetUnequip" or "PetEquip",id) end
+                        end)
+                        edit.Activated:Connect(function() if edit.Active then refs.Inspect(id,false) end end)
+                        if not allowed then
+                            local cover=Instance.new("Frame"); cover.Name="CraftUnavailable"; cover.Size=UDim2.fromScale(1,1)
+                            cover.BackgroundColor3=Color3.new(0,0,0); cover.BackgroundTransparency=.35; cover.ZIndex=5; cover.Parent=f
+                            local corner=Instance.new("UICorner"); corner.CornerRadius=UDim.new(0,12); corner.Parent=cover
+                        end
+                        refs.PetCards[key]=f; refs.PetButtons[key]=equip; refs.EditButtons[key]=edit
+                    end
+                end
+            end
+            placeholders(refs.PetList)
         end
-        local tabWidth=(width-60)/3
-        for i,name in {"Eggs","Inventory","Paid"} do
-            tabs[name].Position=UDim2.fromOffset(20+tabWidth/2+(i-1)*(tabWidth+10),109)
-            tabs[name].Size=UDim2.fromOffset(tabWidth,40)
-        end
+        detail()
     end
-    refs.Resize(parent.Size.X.Offset)
-    function refs.UpdateEggs(level)
-        for id,card in pairs(refs.EggCards) do
-            local unlocked=level>=C.Eggs[id].MinLevel
-            card.Description.Visible=unlocked; card.Locked.Visible=not unlocked
-            card.Locked.Text="Недоступно\nУровень "..C.Eggs[id].MinLevel
-            card.Button.Text=unlocked and ("Выбрать • "..C.Eggs[id].Cost.." монет") or "Недоступно"
-            card.Button.Active=unlocked
-        end
+    function refs.Update(snapshot)
+        state=snapshot
+        if refs.CraftId and ((state.Pets or {})[refs.CraftId] or 0)<3 then refs.CraftId=nil; selectedCopies={} end
+        refresh()
     end
-    refs.Select("Eggs")
+    function refs.SetCallbacks(newCallbacks) callbacks=newCallbacks end
+    function refs.UpdateEggs(level) state.Level=level; refresh() end
+    refs.Select("Eggs"); refresh(); refs.Resize(width)
     return refs
 end
 return Catalog

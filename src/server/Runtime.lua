@@ -42,7 +42,7 @@ function Runtime.Dispatch(player,action,...)
     if not Security.Allow(session.limiter,"Request",now,0) then return false,"rate" end
     local args=table.pack(...)
     if not Security.Valid(action,args) then return false,"arguments" end
-    local cooldown=action=="Train" and C.TrainCooldown or (action=="Hatch" and C.HatchCooldown or (action=="Sync" and 1 or C.ActionCooldown))
+    local cooldown=action=="Train" and C.TrainCooldown or action=="Hatch" and C.HatchCooldown or action=="PetCraft" and C.CraftCooldown or action=="Rebirth" and 2 or action=="Sync" and 1 or C.ActionCooldown
     local last=session.actionTimes[action]
     if last and now-last<cooldown then return false,"cooldown" end
     session.actionTimes[action]=now
@@ -50,13 +50,16 @@ function Runtime.Dispatch(player,action,...)
     if not data then return false,"data_unavailable" end
     if action=="Sync" then publish(player); return true end
     if action=="PetMenu" then
-        local near=false
+        local near=false; local selected,nearest=nil,math.huge
         for id in pairs(C.Eggs) do
             local stand=map:FindFirstChild("Egg"..id)
-            if stand and Security.Near(player,stand,C.EggDistance) then near=true; break end
+            if stand and Security.Near(player,stand,C.EggDistance) then
+                local distance=(player.Character.HumanoidRootPart.Position-stand.Position).Magnitude
+                if distance<nearest then near=true; nearest=distance; selected=id end
+            end
         end
         if not near then return false,"distance" end
-        notice(player,"Яйца открываются за игровые монеты.",{OpenPets=true}); return true
+        notice(player,"Яйца открываются за игровые монеты.",{OpenPets=true,EggId=selected}); return true
     end
     if action=="PrepareRebirth" then
         local power,coins=C.Requirements(data.Rebirths)
@@ -68,7 +71,7 @@ function Runtime.Dispatch(player,action,...)
             {RebirthToken=session.confirm.token,NextMultiplier=C.Multiplier({Rebirths=data.Rebirths+1})})
         return true
     end
-    local ok,message
+    local ok,message,resultId
     if action=="Train" then
         local station=C.Stations[args[1]]
         local pad=map:FindFirstChild(args[1])
@@ -80,7 +83,8 @@ function Runtime.Dispatch(player,action,...)
         if not stand or not Security.Near(player,stand,C.EggDistance) then
             notice(player,"Подойди к выбранному яйцу."); return false,"distance"
         end
-        ok,message=Pets.Hatch(data,args[1])
+        ok,message,resultId=Pets.Hatch(data,args[1])
+    elseif action=="PetCraft" then ok,message,resultId=Pets.Craft(data,args[1],args[2])
     elseif action=="PetEquip" then ok,message=Pets.Equip(data,args[1])
     elseif action=="PetUnequip" then ok,message=Pets.Unequip(data,args[1])
     elseif action=="PetEquipBest" then ok,message=Pets.EquipBest(data)
@@ -97,8 +101,13 @@ function Runtime.Dispatch(player,action,...)
     Rewards.Reconcile(data)
     dataService:Changed(player.UserId)
     if action=="Equip" or action=="Rebirth" then Rewards.ApplyCharacter(player,data) end
-    if action=="PetEquip" or action=="PetUnequip" or action=="PetEquipBest" or action=="Hatch" then PetVisuals.Apply(player,data) end
-    publish(player); notice(player,message)
+    if action=="PetEquip" or action=="PetUnequip" or action=="PetEquipBest" or action=="Hatch" or action=="PetCraft" then PetVisuals.Apply(player,data) end
+    publish(player)
+    local extra
+    if action=="Hatch" or action=="PetCraft" or action=="Rebirth" then
+        extra={Result={Action=action,Id=resultId,Source=args[1],Duration=action=="Rebirth" and 2 or 4,Multiplier=C.Multiplier(data)}}
+    end
+    notice(player,message,extra)
     if action=="Train" and data.TotalTrainings==1 then Telemetry.Step(player,2,"FirstTraining") end
     if action=="Upgrade" and data.Level==1 then Telemetry.Step(player,3,"FirstUpgrade") end
     if action=="Rebirth" and data.Rebirths==1 then Telemetry.Step(player,4,"FirstRebirth") end

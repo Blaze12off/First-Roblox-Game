@@ -34,8 +34,8 @@ task.spawn(function()
         local built=require(game.StarterPlayer.StarterPlayerScripts.SimulatorClient.PetCatalog).Build(fixture)
         built.UpdateEggs(-1)
         local card=built.EggCards.Crystal
-        local hidden=not card.Description.Visible and card.Locked.Visible and not card.Button.Active
-        fixture:Destroy()
+        local hidden=card.Locked.Text:find("Недоступно",1,true) and not card.Button.Active
+        built.Inspector:Destroy(); fixture:Destroy()
         assert(hidden,"locked description hidden")
         print("CATALOG_UI_PASS pictures vertical_scroll bounds locked_description five_columns placeholders")
     end)

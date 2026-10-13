@@ -54,7 +54,7 @@ function Pets.Unequip(data,id)
 end
 function Pets.EquipBest(data)
     if Pets.Count(data)==0 then return false,"Сначала получите питомца." end
-    local order=table.clone(C.PetOrder)
+    local order=table.clone(C.InventoryOrder)
     table.sort(order,function(a,b)
         if C.PetTypes[a].Bonus==C.PetTypes[b].Bonus then return a<b end
         return C.PetTypes[a].Bonus>C.PetTypes[b].Bonus
@@ -67,5 +67,33 @@ function Pets.EquipBest(data)
     end
     data.EquippedPets=selected
     return true,"Лучшие питомцы экипированы."
+end
+-- Count-based inventory: three identical copies, validated and consumed atomically.
+function Pets.Craft(data,id,copies)
+    local info=C.PetTypes[id]
+    if not info or info.Upgraded then return false,"Можно совместить только обычные экземпляры одного вида." end
+    local owned=data.Pets[id] or 0
+    if owned<3 then return false,"Нужно три одинаковых питомца." end
+    if type(copies)~="table" or #copies~=3 then return false,"Выберите три экземпляра." end
+    local seen,removedEquipped,selectionCount={},0,0
+    for key,index in pairs(copies) do
+        if type(key)~="number" or key%1~=0 or key<1 or key>3 or type(index)~="number" or index%1~=0 or index<1 or index>owned or seen[index] then
+            return false,"Выбор питомцев устарел или некорректен."
+        end
+        seen[index]=true
+        selectionCount+=1
+        if index<=(data.EquippedPets[id] or 0) then removedEquipped+=1 end
+    end
+    if selectionCount~=3 then return false,"Выберите три экземпляра." end
+    local remaining=owned-3
+    data.Pets[id]=remaining>0 and remaining or nil
+    local equipped=(data.EquippedPets[id] or 0)-removedEquipped
+    data.EquippedPets[id]=equipped>0 and equipped or nil
+    local result=id.."_Upgraded"
+    data.Pets[result]=(data.Pets[result] or 0)+1
+    if Pets.EquippedCount(data)<C.PetEquipSlots then
+        data.EquippedPets[result]=(data.EquippedPets[result] or 0)+1
+    end
+    return true,"Получен "..C.PetTypes[result].Name.."!",result
 end
 return Pets

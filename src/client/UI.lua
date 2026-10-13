@@ -2,6 +2,7 @@ local UI={}
 local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
 local Glass=require(script.Parent.Glass)
 local PetCatalog=require(script.Parent.PetCatalog)
+local Presentation=require(script.Parent.Presentation)
 local TweenService=game:GetService("TweenService")
 local palette=Glass.Colors
 local dark=Color3.fromRGB(22,30,48)
@@ -37,6 +38,7 @@ local function button(parent,position,size,text,color)
 end
 function UI.Build(player)
     local gui=Instance.new("ScreenGui"); gui.Name="SimulatorUI"; gui.ResetOnSpawn=false
+    gui.IgnoreGuiInset=true
     gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling; gui.Parent=player:WaitForChild("PlayerGui")
     local refs={Gui=gui}
     local layout=Instance.new("Frame"); layout.Name="HudLayout"; layout.Size=UDim2.fromScale(1,1)
@@ -60,8 +62,6 @@ function UI.Build(player)
     refs.Coins.TextXAlignment=Enum.TextXAlignment.Left
     refs.Coins.TextScaled=true
     local coinFont=Instance.new("UITextSizeConstraint"); coinFont.MinTextSize=12; coinFont.MaxTextSize=28; coinFont.Parent=refs.Coins
-    refs.Mode=label(gui,UDim2.fromOffset(18,110),UDim2.fromOffset(240,19),"Загрузка данных…",11,palette.Muted)
-    refs.Mode.TextXAlignment=Enum.TextXAlignment.Left
     local multipliers=frame(gui,UDim2.fromOffset(164,64),UDim2.new(1,-12,0,16),Vector2.new(1,0),palette.Mint)
     multipliers.Name="MultiplierCard"
     local multiplierTitle=label(multipliers,UDim2.fromOffset(10,6),UDim2.new(1,-20,0,14),"ОБЩИЙ МНОЖИТЕЛЬ",10,palette.Muted)
@@ -93,18 +93,28 @@ function UI.Build(player)
     refs.Train.AnchorPoint=Vector2.new(.5,.5)
     Glass.Icon(refs.Train,"Power",palette.Mint,UDim2.fromOffset(12,11),32)
     refs.Train.Text=""
-    label(refs.Train,UDim2.fromOffset(50,0),UDim2.fromOffset(198,54),game:GetService("UserInputService").TouchEnabled and "Тренироваться" or "Тренироваться · E",16)
+    refs.InteractCaption=label(refs.Train,UDim2.fromOffset(50,0),UDim2.new(1,-58,1,0),"Тренироваться · E",16)
     refs.Train.Visible=false
     refs.Hint=label(gui,UDim2.new(0.5,-210,1,-120),UDim2.fromOffset(420,34),"Подойди к зелёной платформе и нажми E.",13,palette.Muted)
     refs.Notice=label(gui,UDim2.new(0.5,-190,1,-166),UDim2.fromOffset(380,38),"",15,palette.Gold)
     Glass.Style(refs.Notice,palette.Gold,13)
     refs.Notice.GlassTint:Destroy()
     refs.Notice.Visible=false
+    refs.Notice.ZIndex=60 -- Server validation feedback must remain readable above opened menus.
     Glass.Appear(power); Glass.Appear(coins,.06)
     local shade=frame(gui,UDim2.fromScale(1,1),UDim2.fromScale(0,0))
-    shade.Name="MenuShade"; shade.BackgroundColor3=Color3.new(0,0,0); shade.BackgroundTransparency=0.4
+    shade.Name="MenuShade"; shade.BackgroundTransparency=1; shade.Active=true
     for _,child in shade:GetChildren() do child:Destroy() end
     shade.Visible=false; shade.ZIndex=20
+    local blur=Instance.new("BlurEffect"); blur.Name="SimulatorMenuBlur"; blur.Size=0; blur.Parent=game:GetService("Lighting")
+    local blurTween
+    local function focusMenus(open)
+        if blurTween then blurTween:Cancel() end
+        blurTween=TweenService:Create(blur,TweenInfo.new(.2),{Size=open and 20 or 0}); blurTween:Play()
+        for _,item in {power,coins,multipliers,left,refs.Rebirth} do item.Visible=not open end
+        refs.Hint.Visible=false; refs.Notice.Visible=false; refs.Train.Visible=false
+    end
+    refs.Gui.Destroying:Connect(function() blur:Destroy() end)
     local menus,menuScales={},{}
     local function menu(name,title,height,width)
         width=width or 350
@@ -130,11 +140,13 @@ function UI.Build(player)
         menus[name]=f; return f
     end
     function refs.Close()
+        if refs.Catalog then refs.Catalog.Reset() end
         for _,m in pairs(menus) do m.Visible=false end
-        shade.Visible=false
+        shade.Visible=false; refs.ActiveMenu=nil; focusMenus(false)
     end
     function refs.Open(name)
         refs.Close(); menus[name].Visible=true; shade.Visible=true
+        refs.ActiveMenu=name; focusMenus(true)
         local m=menus[name]; m.Position=UDim2.new(.5,0,.5,12)
         TweenService:Create(m,TweenInfo.new(.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=UDim2.fromScale(.5,.5)}):Play()
     end
@@ -144,13 +156,14 @@ function UI.Build(player)
     refs.Cosmetic=button(shop,UDim2.fromOffset(20,184),UDim2.fromOffset(310,62),"Косметика: за Rebirth",Color3.fromRGB(84,95,131))
     local pets=menu("Pets","ЯЙЦА И ПИТОМЦЫ",580,920)
     refs.Catalog=PetCatalog.Build(pets)
-    for key,value in pairs(refs.Catalog) do if key~="Select" then refs[key]=value end end
-    local C=require(game.ReplicatedStorage.SimulatorShared.Config)
-    local selection=menu("EggChoice","ВЫБРАННОЕ ЯЙЦО",272)
-    refs.EggChoiceText=label(selection,UDim2.fromOffset(20,62),UDim2.fromOffset(310,128),"",14)
-    refs.HatchSelected=button(selection,UDim2.fromOffset(20,204),UDim2.fromOffset(150,48),"Открыть")
-    refs.BackToEggs=button(selection,UDim2.fromOffset(184,204),UDim2.fromOffset(146,48),"Назад")
-    refs.BackToEggs.Activated:Connect(function() refs.Open("Pets"); refs.Catalog.Select("Eggs") end)
+    refs.Animation=Presentation.Build(layout)
+    function refs.PlayResult(result,onDone)
+        focusMenus(true)
+        refs.Animation.Play(result,function()
+            focusMenus(refs.ActiveMenu~=nil)
+            if onDone then onDone() end
+        end)
+    end
     refs.Pets.Activated:Connect(function() refs.Open("Pets") end)
     local gifts=menu("Gifts","НАГРАДЫ",250)
     label(gifts,UDim2.fromOffset(20,62),UDim2.fromOffset(310,42),"Бонусы за возвращение.\nПропуск дня не сбрасывает прогресс.",15)
@@ -183,20 +196,26 @@ function UI.Build(player)
         local camera=workspace.CurrentCamera; if not camera then return end
         local v=refs.Layout.AbsoluteSize; if v.X<1 then v=camera.ViewportSize end
         local small=v.X<640; local compact=small or v.Y<460
-        coins.AnchorPoint=small and Vector2.new(1,0) or Vector2.new(0.5,0)
-        coins.Position=small and UDim2.new(1,-12,0,16) or UDim2.new(0.5,0,0,16)
+        local inset=game:GetService("GuiService"):GetGuiInset()
+        local top=inset.Y+12
+        coins.AnchorPoint=Vector2.new(1,0)
+        coins.Position=UDim2.new(1,-12,0,top+(compact and 48 or 64)+10)
         local statWidth=small and math.min(164,(v.X-36)/2) or 180
-        multipliers.Position=UDim2.new(1,-12,0,small and (v.Y<460 and 88 or 94) or 16)
-        multipliers.Size=UDim2.fromOffset(small and statWidth or 164,small and 48 or 64)
-        multiplierTitle.Position=UDim2.fromOffset(10,small and 3 or 6)
-        refs.PowerMultiplier.Position=UDim2.fromOffset(10,small and 17 or 24)
-        refs.CoinMultiplier.Position=UDim2.fromOffset(10,small and 31 or 42)
+        multipliers.Position=UDim2.new(1,-12,0,top)
+        multipliers.Size=UDim2.fromOffset(small and statWidth or 164,compact and 48 or 64)
+        multiplierTitle.Position=UDim2.fromOffset(10,compact and 3 or 6)
+        refs.PowerMultiplier.Position=UDim2.fromOffset(10,compact and 17 or 24)
+        refs.CoinMultiplier.Position=UDim2.fromOffset(10,compact and 31 or 42)
         refs.PowerMultiplier.TextSize=small and 12 or 13; refs.CoinMultiplier.TextSize=small and 12 or 13
-        refs.Mode.Size=UDim2.fromOffset(small and statWidth or 240,19)
-        power.Size=UDim2.fromOffset(statWidth,88); coins.Size=UDim2.fromOffset(small and statWidth or 172,72)
+        power.Position=UDim2.fromOffset(12,top)
+        power.Size=UDim2.fromOffset(statWidth,compact and 72 or 88); coins.Size=UDim2.fromOffset(small and statWidth or 164,compact and 40 or 64)
         refs.Power.Size=UDim2.new(1,-66,0,33); refs.Coins.Size=UDim2.new(1,-66,0,32)
         powerTitle.Size=UDim2.new(1,-66,0,17); coinTitle.Size=UDim2.new(1,-66,0,16)
         refs.Level.Size=UDim2.new(1,-28,0,17)
+        refs.Level.Position=UDim2.fromOffset(14,compact and 53 or 65)
+        coinTitle.Position=UDim2.fromOffset(46,compact and 3 or 9)
+        refs.Coins.Position=UDim2.fromOffset(46,compact and 16 or 26); refs.Coins.Size=UDim2.new(1,-58,0,compact and 22 or 32)
+        coins.Icon.Position=UDim2.fromOffset(10,compact and 8 or 16); coins.Icon.Size=UDim2.fromOffset(24,24)
         local actionWidth=small and 138 or 152
         local dockHeight=v.Y<460 and 44 or 54
         local dockGap=v.Y<460 and 6 or 12
@@ -210,10 +229,12 @@ function UI.Build(player)
         end
         refs.Rebirth.Size=UDim2.fromOffset(small and 148 or 164,88)
         local sideY=v.Y<460 and 136 or 152
-        left.Position=UDim2.new(0,12,0,compact and sideY or v.Y*.5); left.AnchorPoint=Vector2.new(0,compact and 0 or .5)
-        refs.Rebirth.Position=UDim2.new(1,-12,0,compact and sideY or v.Y*.5); refs.Rebirth.AnchorPoint=Vector2.new(1,compact and 0 or .5)
+        left.Position=UDim2.new(0,12,0,compact and math.max(sideY,top+82) or v.Y*.5); left.AnchorPoint=Vector2.new(0,compact and 0 or .5)
+        refs.Rebirth.Position=UDim2.new(1,-12,0,compact and top+108 or math.max(v.Y*.5,top+182)); refs.Rebirth.AnchorPoint=Vector2.new(1,compact and 0 or .5)
+        if v.Y<460 then refs.Rebirth.Size=UDim2.fromOffset(small and 148 or 164,60); refs.RebirthStats.Position=UDim2.fromOffset(12,33) else refs.RebirthStats.Position=UDim2.fromOffset(12,48) end
         -- Centre the animated button; half its height preserves the existing bottom inset.
         refs.Train.Position=UDim2.new(.5,0,1,compact and -65 or -49)
+        refs.Train.Size=UDim2.fromOffset(v.Y<460 and math.max(120,math.min(260,v.X-324)) or math.min(260,v.X-32),54)
         -- Short landscape screens reserve the side-button lanes for touch input.
         local width=math.min(420,v.X-32)
         if v.Y<460 and v.X>=560 then width=math.min(width,v.X-360) end

@@ -1,0 +1,35 @@
+-- Client Studio-only fixtures exercise the same methods used by real buttons.
+assert(game:GetService("RunService"):IsStudio())
+task.spawn(function()
+    local Catalog=require(game.StarterPlayer.StarterPlayerScripts.SimulatorClient.PetCatalog)
+    local root=Instance.new("ScreenGui"); root.Name="WorkshopFixture"; root.Enabled=false; root.Parent=game.Players.LocalPlayer.PlayerGui
+    local container=Instance.new("Frame"); container.Size=UDim2.fromOffset(1280,720); container.Parent=root
+    local main=Instance.new("Frame"); main.AnchorPoint=Vector2.new(.5,.5); main.Position=UDim2.fromScale(.5,.5); main.Size=UDim2.fromOffset(920,580); main.Parent=container
+    local built=Catalog.Build(main)
+    local sent
+    built.SetCallbacks({Action=function(action,id,copies) sent={Action=action,Id=id,Copies=copies} end})
+    local ok,err=pcall(function()
+        built.Update({Level=0,Pets={Cat=3,Dog=1,Cat_Upgraded=1},EquippedPets={Cat=1},PetMultiplier=1.1})
+        built.Select("Inventory"); built.Resize(920); task.wait(.3)
+        assert(built.PetList.UIGridLayout.FillDirectionMaxCells==5,"five columns")
+        assert(built.PetList.UIGridLayout.CellSize.Y.Offset<250,"shorter cards")
+        built.Inspect("Cat",false); task.wait(.3)
+        assert(built.Inspector.Visible and built.PetList.UIGridLayout.FillDirectionMaxCells==3,"three columns plus inspector")
+        assert(built.DetailView.CurrentCamera and built.DetailDescription.Text:find("x1.10",1,true),"rotatable enlarged model and multiplier")
+        assert(built.BeginCraft("Cat"),"begin craft")
+        assert(not built.ChooseCopy("Dog",1) and not built.ChooseCopy("Cat_Upgraded",1),"other species and upgraded disabled")
+        local disabled=built.PetCards["Dog:1"]
+        assert(disabled.CraftUnavailable and not built.PetButtons["Dog:1"].Active,"invalid card visibly dimmed")
+        assert(built.ChooseCopy("Cat",1) and built.ChooseCopy("Cat",2),"select two")
+        built.ConfirmCraft(); assert(sent==nil,"no craft before three selected")
+        assert(built.ChooseCopy("Cat",3) and built.SelectedCopiesCount()==3,"select three copies")
+        built.ConfirmCraft(); assert(sent.Action=="PetCraft" and sent.Id=="Cat" and #sent.Copies==3,"send exact three selected indices")
+        assert(not built.BeginCraft("Cat_Upgraded"),"no repeated upgraded craft")
+        built.Select("Eggs"); built.UpdateEggs(-1)
+        assert(not built.EggCards.Crystal.Button.Active and built.EggCards.Crystal.Locked.Text:find("Недоступно",1,true),"locked egg card")
+        built.Inspect("Crystal",true); assert(not built.DetailPrimary.Active and not built.DetailDescription.Text:find("Больше",1,true),"locked description hidden in inspector")
+        built.Reset(); built.Resize(320); assert(main.Size.X.Offset==320,"mobile width")
+        print("WORKSHOP_UI_PASS short_cards five_to_three preview craft_selection locked_egg mobile")
+    end)
+    root:Destroy(); assert(ok,err)
+end)

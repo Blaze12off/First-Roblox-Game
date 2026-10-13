@@ -18,6 +18,16 @@ function S.Valid(action, args)
     if action=="Hatch" then return args.n==1 and type(args[1])=="string" and C.Eggs[args[1]]~=nil end
     if action=="PetEquip" then return args.n==1 and type(args[1])=="string" and (args[1]=="" or C.PetTypes[args[1]]~=nil) end
     if action=="PetUnequip" then return args.n==1 and type(args[1])=="string" and C.PetTypes[args[1]]~=nil end
+    if action=="PetCraft" then
+        if args.n~=2 or type(args[1])~="string" or not C.PetTypes[args[1]] or C.PetTypes[args[1]].Upgraded or type(args[2])~="table" or #args[2]~=3 then return false end
+        local seen={}; local count=0
+        for key,index in pairs(args[2]) do
+            if type(key)~="number" or key%1~=0 or key<1 or key>3 or type(index)~="number" or index%1~=0 or index<1 or index>C.MaxPets or seen[index] then return false end
+            seen[index]=true
+            count+=1
+        end
+        return count==3
+    end
     if action=="Rebirth" then return args.n==1 and type(args[1])=="string" and #args[1]<=64 end
     return (action=="Sync" or action=="Upgrade" or action=="PrepareRebirth" or action=="Daily" or action=="Weekly" or action=="PetMenu" or action=="PetEquipBest") and args.n==0
 end

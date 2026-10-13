@@ -15,17 +15,18 @@ local C = {
     DailyTrainingEquivalent = 8, WeeklyTrainingEquivalent = 25,
     RewardMinTrainings = 3,
     RemoteBurst = 8, RemotePerSecond = 4,
-    ActionCooldown = 0.3, TrainDistance = 11,
+    ActionCooldown = 0.3, TrainDistance = 6,
     SignRevealDistance = 18, SignHideMargin = 2,
     SignFadeSeconds = 0.25, SignWidth = 220, SignHeight = 70, SignTextSize = 16,
     MilestoneTrail = 10,
     AnalyticsEnabled = false, -- Enable after publishing and checking Dashboard.
     SupportRewardsEnabled = false, PaidItemsEnabled = false,
-    MaxPets = 50, PetEquipSlots = 3, HatchCooldown = 1.2, EggDistance = 11,
+    MaxPets = 50, PetEquipSlots = 3, HatchCooldown = 4, CraftCooldown = 4, EggDistance = 5.25,
+    Rarities = {"Обычная","Редкая","Эпическая","Мифическая","Легендарная","Секретная","Божественная"},
     PetTypes = {
-        Cat = {Name = "Кот", Bonus = 0.10, Color = {255, 182, 103}},
-        Dog = {Name = "Пёс", Bonus = 0.20, Color = {111, 190, 255}},
-        Bunny = {Name = "Кролик", Bonus = 0.35, Color = {211, 151, 255}},
+        Cat = {Name = "Кот", Bonus = 0.10, Rarity="Обычная", Description="Верный спутник для первых тренировок.", Color = {255, 182, 103}},
+        Dog = {Name = "Пёс", Bonus = 0.20, Rarity="Редкая", Description="Помогает быстрее набирать силу и монеты.", Color = {111, 190, 255}},
+        Bunny = {Name = "Кролик", Bonus = 0.35, Rarity="Эпическая", Description="Самый сильный спутник из тестовых яиц.", Color = {211, 151, 255}},
     },
     PetOrder = {"Cat", "Dog", "Bunny"},
     EggOrder = {"Meadow", "Crystal"},
@@ -40,6 +41,15 @@ local C = {
         Advanced = {Position = Vector3.new(24, 1, 0), MinLevel = 3, Multiplier = 1.25},
     },
 }
+C.InventoryOrder=table.clone(C.PetOrder)
+for _,id in C.PetOrder do
+    local base=C.PetTypes[id]
+    C.PetTypes[id.."_Upgraded"]={Name=base.Name.." · Улучшенный",Bonus=(1+base.Bonus)*4-1,
+        Rarity=base.Rarity,Description="Совмещён из трёх одинаковых питомцев. Множитель увеличен в 4 раза.",
+        Color=base.Color,BaseId=id,Upgraded=true}
+    table.insert(C.InventoryOrder,id.."_Upgraded")
+end
+C.Eggs.Meadow.Rarity="Обычная"; C.Eggs.Crystal.Rarity="Редкая"
 function C.Multiplier(data)
     return 1 + math.min(data.Rebirths, C.RebirthBonusCap) * C.RebirthBonus
 end
