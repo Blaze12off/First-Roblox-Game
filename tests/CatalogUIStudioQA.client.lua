@@ -9,17 +9,23 @@ task.spawn(function()
     local petList=menu.Inventory:FindFirstChildOfClass("ScrollingFrame")
     local eggPosition,petPosition=eggList.CanvasPosition,petList.CanvasPosition
     local ok,err=pcall(function()
-        for _,list in {eggList,petList} do
+        for index,list in {eggList,petList,menu.Paid:FindFirstChildOfClass("ScrollingFrame")} do
+            local placeholders,cards=0,0
+            for _,child in list:GetChildren() do
+                if child:IsA("Frame") then cards+=1; if child:GetAttribute("Placeholder") then placeholders+=1 end end
+            end
+            assert(placeholders==15 and cards==({17,18,15})[index],"real cards plus fifteen empty cards")
             assert(list.ScrollingDirection==Enum.ScrollingDirection.Y,"vertical only")
             assert(list.AbsoluteCanvasSize.Y>list.AbsoluteWindowSize.Y,"scrollable content")
             for _,card in list:GetChildren() do
-                if card:IsA("Frame") then assert(card.Picture.CurrentCamera,"model picture") end
+                if card:IsA("Frame") and not card:GetAttribute("Placeholder") then assert(card.Picture.CurrentCamera,"model picture") end
             end
             list.CanvasPosition=Vector2.new(0,10000); task.wait(.1)
             assert(list.CanvasPosition.Y>0,"can scroll down")
         end
         for _,size in {{320,568},{568,320},{1280,720}} do
             layout.Size=UDim2.fromOffset(size[1],size[2]); task.wait(.3)
+            if size[1]==1280 then assert(eggList.UIGridLayout.FillDirectionMaxCells==5,"five desktop columns") end
             local pos=menu.AbsolutePosition-layout.AbsolutePosition
             assert(pos.X>=-1 and pos.Y>=-1 and pos.X+menu.AbsoluteSize.X<=size[1]+1 and pos.Y+menu.AbsoluteSize.Y<=size[2]+1,"catalog bounds")
         end
@@ -31,7 +37,7 @@ task.spawn(function()
         local hidden=not card.Description.Visible and card.Locked.Visible and not card.Button.Active
         fixture:Destroy()
         assert(hidden,"locked description hidden")
-        print("CATALOG_UI_PASS pictures vertical_scroll bounds locked_description")
+        print("CATALOG_UI_PASS pictures vertical_scroll bounds locked_description five_columns placeholders")
     end)
     layout.Size=originalSize; eggList.CanvasPosition=eggPosition; petList.CanvasPosition=petPosition
     assert(ok,err)

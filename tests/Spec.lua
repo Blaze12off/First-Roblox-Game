@@ -12,6 +12,15 @@ local Spec={}
 function Spec.Run()
     local count=0
     local function check(value,message) assert(value,message); count+=1 end
+    local best=Schema.New()
+    check(not Pets.EquipBest(best),"empty best selection rejected")
+    best.Pets={Cat=5,Dog=2,Bunny=2}; best.EquippedPets={Cat=3}
+    check(Pets.EquipBest(best) and best.EquippedPets.Bunny==2 and best.EquippedPets.Dog==1 and best.EquippedPets.Cat==nil,"best selects strongest owned copies")
+    check(Pets.EquippedCount(best)==3 and math.abs(C.PetMultiplier(best)-1.90)<.00001,"best team multiplier and cap")
+    check(Pets.EquipBest(best) and best.EquippedPets.Bunny==2 and best.EquippedPets.Dog==1,"best repeat stable")
+    best.Pets={Cat=1}; best.EquippedPets={}
+    check(Pets.EquipBest(best) and best.EquippedPets.Cat==1 and Pets.EquippedCount(best)==1,"best handles fewer than three")
+    check(S.Valid("PetEquipBest",{n=0}) and not S.Valid("PetEquipBest",{n=1,"Bunny"}),"best ignores client pet choice")
     local d=Schema.New()
     check(Schema.Validate(d)~=nil,"default schema")
     local old=Schema.New(); old.Version=1; old.Pets=nil; old.EquippedPet=nil; old.Coins=123

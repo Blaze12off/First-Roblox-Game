@@ -52,4 +52,20 @@ function Pets.Unequip(data,id)
     data.EquippedPets[id]=count>1 and count-1 or nil
     return true,"Питомец снят."
 end
+function Pets.EquipBest(data)
+    if Pets.Count(data)==0 then return false,"Сначала получите питомца." end
+    local order=table.clone(C.PetOrder)
+    table.sort(order,function(a,b)
+        if C.PetTypes[a].Bonus==C.PetTypes[b].Bonus then return a<b end
+        return C.PetTypes[a].Bonus>C.PetTypes[b].Bonus
+    end)
+    local selected,remaining={},C.PetEquipSlots
+    for _,id in order do
+        local amount=math.min(data.Pets[id] or 0,remaining)
+        if amount>0 then selected[id]=amount; remaining-=amount end
+        if remaining==0 then break end
+    end
+    data.EquippedPets=selected
+    return true,"Лучшие питомцы экипированы."
+end
 return Pets

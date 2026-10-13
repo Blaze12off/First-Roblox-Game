@@ -365,7 +365,7 @@ function S.Valid(action, args)
     if action=="PetEquip" then return args.n==1 and type(args[1])=="string" and (args[1]=="" or C.PetTypes[args[1]]~=nil) end
     if action=="PetUnequip" then return args.n==1 and type(args[1])=="string" and C.PetTypes[args[1]]~=nil end
     if action=="Rebirth" then return args.n==1 and type(args[1])=="string" and #args[1]<=64 end
-    return (action=="Sync" or action=="Upgrade" or action=="PrepareRebirth" or action=="Daily" or action=="Weekly" or action=="PetMenu") and args.n==0
+    return (action=="Sync" or action=="Upgrade" or action=="PrepareRebirth" or action=="Daily" or action=="Weekly" or action=="PetMenu" or action=="PetEquipBest") and args.n==0
 end
 function S.Near(player, part, radius)
     local char=player.Character
@@ -432,6 +432,22 @@ function Pets.Unequip(data,id)
     data.EquippedPets[id]=count>1 and count-1 or nil
     return true,"Питомец снят."
 end
+function Pets.EquipBest(data)
+    if Pets.Count(data)==0 then return false,"Сначала получите питомца." end
+    local order=table.clone(C.PetOrder)
+    table.sort(order,function(a,b)
+        if C.PetTypes[a].Bonus==C.PetTypes[b].Bonus then return a<b end
+        return C.PetTypes[a].Bonus>C.PetTypes[b].Bonus
+    end)
+    local selected,remaining={},C.PetEquipSlots
+    for _,id in order do
+        local amount=math.min(data.Pets[id] or 0,remaining)
+        if amount>0 then selected[id]=amount; remaining-=amount end
+        if remaining==0 then break end
+    end
+    data.EquippedPets=selected
+    return true,"Лучшие питомцы экипированы."
+end
 return Pets
 
 end
@@ -451,6 +467,15 @@ local Spec={}
 function Spec.Run()
     local count=0
     local function check(value,message) assert(value,message); count+=1 end
+    local best=Schema.New()
+    check(not Pets.EquipBest(best),"empty best selection rejected")
+    best.Pets={Cat=5,Dog=2,Bunny=2}; best.EquippedPets={Cat=3}
+    check(Pets.EquipBest(best) and best.EquippedPets.Bunny==2 and best.EquippedPets.Dog==1 and best.EquippedPets.Cat==nil,"best selects strongest owned copies")
+    check(Pets.EquippedCount(best)==3 and math.abs(C.PetMultiplier(best)-1.90)<.00001,"best team multiplier and cap")
+    check(Pets.EquipBest(best) and best.EquippedPets.Bunny==2 and best.EquippedPets.Dog==1,"best repeat stable")
+    best.Pets={Cat=1}; best.EquippedPets={}
+    check(Pets.EquipBest(best) and best.EquippedPets.Cat==1 and Pets.EquippedCount(best)==1,"best handles fewer than three")
+    check(S.Valid("PetEquipBest",{n=0}) and not S.Valid("PetEquipBest",{n=1,"Bunny"}),"best ignores client pet choice")
     local d=Schema.New()
     check(Schema.Validate(d)~=nil,"default schema")
     local old=Schema.New(); old.Version=1; old.Pets=nil; old.EquippedPet=nil; old.Coins=123

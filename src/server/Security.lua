@@ -19,7 +19,7 @@ function S.Valid(action, args)
     if action=="PetEquip" then return args.n==1 and type(args[1])=="string" and (args[1]=="" or C.PetTypes[args[1]]~=nil) end
     if action=="PetUnequip" then return args.n==1 and type(args[1])=="string" and C.PetTypes[args[1]]~=nil end
     if action=="Rebirth" then return args.n==1 and type(args[1])=="string" and #args[1]<=64 end
-    return (action=="Sync" or action=="Upgrade" or action=="PrepareRebirth" or action=="Daily" or action=="Weekly" or action=="PetMenu") and args.n==0
+    return (action=="Sync" or action=="Upgrade" or action=="PrepareRebirth" or action=="Daily" or action=="Weekly" or action=="PetMenu" or action=="PetEquipBest") and args.n==0
 end
 function S.Near(player, part, radius)
     local char=player.Character

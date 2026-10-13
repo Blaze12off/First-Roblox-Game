@@ -106,13 +106,14 @@ function UI.Build(player)
     for _,child in shade:GetChildren() do child:Destroy() end
     shade.Visible=false; shade.ZIndex=20
     local menus,menuScales={},{}
-    local function menu(name,title,height)
-        local f=frame(shade,UDim2.fromOffset(350,height),UDim2.fromScale(0.5,0.5),Vector2.new(0.5,0.5))
+    local function menu(name,title,height,width)
+        width=width or 350
+        local f=frame(shade,UDim2.fromOffset(width,height),UDim2.fromScale(0.5,0.5),Vector2.new(0.5,0.5))
         f.Name=name; f.Visible=false; f.ZIndex=21
         f.BackgroundTransparency=0.08
         local s=Instance.new("UIScale"); s.Parent=f; menuScales[#menuScales+1]={scale=s,height=height,frame=f}
-        label(f,UDim2.fromOffset(20,16),UDim2.fromOffset(266,34),title,22)
-        local close=button(f,UDim2.fromOffset(300,14),UDim2.fromOffset(36,36),"×",Color3.fromRGB(65,75,95))
+        label(f,UDim2.fromOffset(20,16),UDim2.new(1,-84,0,34),title,22)
+        local close=button(f,UDim2.new(1,-50,0,14),UDim2.fromOffset(36,36),"×",Color3.fromRGB(65,75,95))
         close.Name="Close"; close.Text=""
         close.SpecularRim:Destroy()
         -- Each rounded diagonal is 75% of the button width, with clear inset from the rim.
@@ -141,7 +142,7 @@ function UI.Build(player)
     label(shop,UDim2.fromOffset(20,64),UDim2.fromOffset(310,42),"Улучшения усиливают тренировку.\nУровень 3 открывает новую станцию.",15)
     refs.Upgrade=button(shop,UDim2.fromOffset(20,122),UDim2.fromOffset(310,48),"Улучшение: 25 монет")
     refs.Cosmetic=button(shop,UDim2.fromOffset(20,184),UDim2.fromOffset(310,62),"Косметика: за Rebirth",Color3.fromRGB(84,95,131))
-    local pets=menu("Pets","ЯЙЦА И ПИТОМЦЫ",520)
+    local pets=menu("Pets","ЯЙЦА И ПИТОМЦЫ",580,920)
     refs.Catalog=PetCatalog.Build(pets)
     for key,value in pairs(refs.Catalog) do if key~="Select" then refs[key]=value end end
     local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -219,9 +220,14 @@ function UI.Build(player)
         refs.Hint.Size=UDim2.fromOffset(width,34); refs.Hint.Position=UDim2.new(0.5,-width/2,1,compact and -136 or -120)
         refs.Notice.Size=UDim2.fromOffset(math.min(380,width),38); refs.Notice.Position=UDim2.new(0.5,-math.min(380,width)/2,1,compact and -182 or -166)
         for _,entry in menuScales do
-            local height=entry.frame.Name=="Pets" and math.min(520,math.max(230,v.Y-90)) or entry.height
-            if entry.frame.Name=="Pets" then entry.frame.Size=UDim2.fromOffset(350,height) end
-            entry.scale.Scale=math.min(1,(v.X-24)/350,(v.Y-90)/height)
+            if entry.frame.Name=="Pets" then
+                local width=math.min(920,math.max(240,v.X-24))
+                entry.frame.Size=UDim2.fromOffset(width,math.min(580,math.max(230,v.Y-90)))
+                entry.scale.Scale=math.min(1,(v.Y-90)/entry.frame.Size.Y.Offset)
+                refs.Catalog.Resize(width)
+            else
+                entry.scale.Scale=math.min(1,(v.X-24)/350,(v.Y-90)/entry.height)
+            end
         end
     end
     local function bindCamera()

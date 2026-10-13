@@ -83,6 +83,7 @@ function Runtime.Dispatch(player,action,...)
         ok,message=Pets.Hatch(data,args[1])
     elseif action=="PetEquip" then ok,message=Pets.Equip(data,args[1])
     elseif action=="PetUnequip" then ok,message=Pets.Unequip(data,args[1])
+    elseif action=="PetEquipBest" then ok,message=Pets.EquipBest(data)
     elseif action=="Upgrade" then ok,message=Progression.Upgrade(data)
     elseif action=="Rebirth" then
         local confirmation=session.confirm
@@ -96,7 +97,7 @@ function Runtime.Dispatch(player,action,...)
     Rewards.Reconcile(data)
     dataService:Changed(player.UserId)
     if action=="Equip" or action=="Rebirth" then Rewards.ApplyCharacter(player,data) end
-    if action=="PetEquip" or action=="PetUnequip" or action=="Hatch" then PetVisuals.Apply(player,data) end
+    if action=="PetEquip" or action=="PetUnequip" or action=="PetEquipBest" or action=="Hatch" then PetVisuals.Apply(player,data) end
     publish(player); notice(player,message)
     if action=="Train" and data.TotalTrainings==1 then Telemetry.Step(player,2,"FirstTraining") end
     if action=="Upgrade" and data.Level==1 then Telemetry.Step(player,3,"FirstUpgrade") end

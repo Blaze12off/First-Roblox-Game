@@ -130,6 +130,7 @@ for id,b in pairs(refs.PetButtons) do
     end)
 end
 for id,b in pairs(refs.PetRemoveButtons) do b.Activated:Connect(function() request("PetUnequip",id) end) end
+refs.EquipBest.Activated:Connect(function() request("PetEquipBest") end)
 refs.Prepare.Activated:Connect(function() request("PrepareRebirth") end)
 refs.Daily.Activated:Connect(function() request("Daily") end)
 refs.Weekly.Activated:Connect(function() request("Weekly") end)
