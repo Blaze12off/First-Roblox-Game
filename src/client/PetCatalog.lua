@@ -6,6 +6,11 @@ local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
 local Tween=game:GetService("TweenService")
 local Input=game:GetService("UserInputService")
 local Catalog={}
+local function rarity(info,egg)
+    local names={["Обычная"]="Обычный",["Редкая"]="Редкий",["Эпическая"]="Эпический",["Мифическая"]="Мифический",["Легендарная"]="Легендарный",["Секретная"]="Секретный",["Божественная"]="Божественный"}
+    return egg and info.Rarity or names[info.Rarity]
+end
+local function rarityColor(info) return Color3.fromRGB(table.unpack(C.RarityColors[info.Rarity])) end
 local function text(parent,pos,size,value,font,color)
     local t=Instance.new("TextLabel"); t.Position=pos; t.Size=size; t.Text=value
     t.BackgroundTransparency=1; t.TextColor3=color or Glass.Colors.Text
@@ -176,8 +181,9 @@ function Catalog.Build(parent)
         title.Text=Headings.Item(selected.Id)
         local unlocked=not selected.Egg or (state.Level or 0)>=info.MinLevel
         description.Text=not unlocked and "Недоступно: уровень "..info.MinLevel or
-            (info.Rarity.."\n"..(selected.Egg and info.Cost.." монет" or ("Сила и монеты x%.2f"):format(1+info.Bonus)).."\n"..info.Description)
-        if selected.Egg then primary.Text="Открыть · "..info.Cost; primary.Active=unlocked; combine.Visible=false
+            (rarity(info,selected.Egg).."\n"..(selected.Egg and info.Cost.." монет" or ("Сила и монеты x%.2f"):format(1+info.Bonus)).."\n"..info.Description)
+        description.TextColor3=rarityColor(info)
+        if selected.Egg then primary.Text="Открыть · "..info.Cost.." монет"; primary.Active=unlocked; combine.Visible=false
         else
             local owned=(state.Pets or {})[selected.Id] or 0; local eq=(state.EquippedPets or {})[selected.Id] or 0
             primary.Text=eq>0 and "Снять" or "Экипировать"; primary.Active=owned>0
@@ -223,7 +229,7 @@ function Catalog.Build(parent)
         local info=C.Eggs[id]; local f=card(refs.EggList,index)
         local view=Catalog.View(f,id,true); view.Position=UDim2.fromOffset(6,4); view.Size=UDim2.new(1,-12,0,52)
         text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),Headings.Item(id),13,Glass.Colors.Mint)
-        local rarity=text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,18),info.Rarity,11,Glass.Colors.Gold)
+        local rarity=text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,18),info.Rarity,11,rarityColor(info))
         local locked=text(f,UDim2.fromOffset(6,109),UDim2.new(1,-12,0,24),info.Cost.." монет",12)
         local open=button(f,UDim2.new(.5,0,0,159),UDim2.new(1,-16,0,36),"Открыть")
         local edit=button(f,UDim2.new(.5,0,0,198),UDim2.new(1,-16,0,32),"Редактировать")
@@ -261,7 +267,7 @@ function Catalog.Build(parent)
                         f:SetAttribute("PetId",id); f:SetAttribute("Copy",copy)
                         local view=Catalog.View(f,id,false); view.Position=UDim2.fromOffset(6,4); view.Size=UDim2.new(1,-12,0,52)
                         text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),Headings.Item(id),13,Glass.Colors.Mint)
-                        text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,16),info.Rarity,11,Glass.Colors.Gold)
+                        local rarityLabel=text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,16),rarity(info,false),11,rarityColor(info)); rarityLabel.Name="Rarity"
                         text(f,UDim2.fromOffset(6,106),UDim2.new(1,-12,0,18),("x%.2f"):format(1+info.Bonus),13)
                         local eq=copy<=(equipped[id] or 0)
                         text(f,UDim2.fromOffset(6,126),UDim2.new(1,-12,0,16),count==0 and "Не получен" or eq and "Экипирован" or "В инвентаре",10,Glass.Colors.Muted)

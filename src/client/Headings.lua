@@ -1,6 +1,7 @@
 local Localization=game:GetService("LocalizationService")
 local H={}
 local labels={
+    Settings={"Настройки","Settings"},
     Power={"СИЛА","POWER"}, Coins={"МОНЕТЫ","COINS"}, Total={"ОБЩИЙ МНОЖИТЕЛЬ","TOTAL MULTIPLIER"},
     Shop={"Магазин","Shop"}, Gifts={"Награды","Rewards"}, Pets={"Яйца и питомцы","Eggs & Pets"},
     Rebirth={"Перерождение","Rebirth"}, Confirm={"ПОДТВЕРЖДЕНИЕ","CONFIRMATION"},

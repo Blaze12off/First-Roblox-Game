@@ -4,6 +4,7 @@ local Glass=require(script.Parent.Glass)
 local PetCatalog=require(script.Parent.PetCatalog)
 local Presentation=require(script.Parent.Presentation)
 local Headings=require(script.Parent.Headings)
+local Settings=require(script.Parent.Settings)
 local TweenService=game:GetService("TweenService")
 local palette=Glass.Colors
 local dark=Color3.fromRGB(22,30,48)
@@ -122,7 +123,8 @@ function UI.Build(player)
             blurTween=TweenService:Create(blur,TweenInfo.new(.2),{Size=open and 20 or 0}); blurTween:Play()
         end
         -- ScreenGui stays sharp above the menu shade; world blur never hides navigation.
-        for _,item in {power,coins,multipliers,left,refs.Rebirth} do item.Visible=true end
+        for _,info in {{power,"Power"},{coins,"Coins"},{multipliers,"Multiplier"},{refs.Rebirth,"Rebirth"}} do info[1].Visible=not refs.ShouldShow or refs.ShouldShow(info[2]) end
+        left.Visible=true
     end
     refs.Gui.Destroying:Connect(function() blur:Destroy() end)
     local menus,menuScales={},{}
@@ -209,6 +211,7 @@ function UI.Build(player)
     refs.Dialog=label(confirmation,UDim2.fromOffset(20,62),UDim2.fromOffset(310,148),"",17)
     refs.Confirm=button(confirmation,UDim2.fromOffset(20,226),UDim2.fromOffset(310,48),"Подтвердить",Color3.fromRGB(131,82,189))
     refs.Cancel=button(confirmation,UDim2.fromOffset(20,288),UDim2.fromOffset(310,42),"Отмена",Color3.fromRGB(68,81,105))
+    refs.Settings=Settings.Build(refs,menu("Settings","НАСТРОЙКИ",460))
     local cameraConnection
     local function resize()
         local camera=workspace.CurrentCamera; if not camera then return end
