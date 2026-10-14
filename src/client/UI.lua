@@ -161,8 +161,11 @@ function UI.Build(player)
         if refs.Animation and refs.Animation.Busy then return end
         refs.Close(); menus[name].Visible=true; shade.Visible=true
         refs.ActiveMenu=name; focusMenus(true)
-        local m=menus[name]; m.Position=UDim2.new(.5,0,.5,12)
-        TweenService:Create(m,TweenInfo.new(.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=UDim2.fromScale(.5,.5)}):Play()
+        local m=menus[name]
+        if name~="Pets" then
+            m.Position=UDim2.new(.5,0,.5,12)
+            TweenService:Create(m,TweenInfo.new(.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=UDim2.fromScale(.5,.5)}):Play()
+        end
     end
     local shop=menu("Shop","МАГАЗИН",272)
     label(shop,UDim2.fromOffset(20,64),UDim2.fromOffset(310,42),"Улучшения усиливают тренировку.\nУровень 3 открывает новую станцию.",15)
@@ -227,9 +230,11 @@ function UI.Build(player)
         for _,entry in menuScales do
             entry.scale.Scale=scale
             if entry.frame.Name=="Pets" then
-                local width=math.min(920,logical.X-24)
-                entry.frame.Size=UDim2.fromOffset(width,math.min(580,logical.Y-40))
-                refs.Catalog.Resize(width,scale)
+                -- Reserve the HUD columns and the lower hint/interaction strip.
+                local width=math.min(920,logical.X-394)
+                local safeTop=math.max(24,inset.Y/scale+12)
+                entry.frame.Size=UDim2.fromOffset(width,math.min(580,logical.Y-156-safeTop))
+                refs.Catalog.Resize(width,scale,UDim2.new(.5,9*scale,.5,(safeTop-156)*scale/2))
             end
         end
     end

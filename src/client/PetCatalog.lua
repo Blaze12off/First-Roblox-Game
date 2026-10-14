@@ -53,6 +53,7 @@ function Catalog.Build(parent)
     local state,width,selected={},parent.Size.X.Offset,nil
     local responsiveScale,transition=1,0
     local slideTweens={}
+    local centre=UDim2.fromScale(.5,.5)
     local selectedCopies={}; local callbacks={}
     local inspector=Instance.new("Frame"); inspector.Name="Inspector"; inspector.AnchorPoint=Vector2.new(.5,.5)
     inspector.Visible=false; inspector.Parent=parent.Parent; inspector.ZIndex=22; Glass.Style(inspector,Glass.Colors.Violet)
@@ -119,26 +120,27 @@ function Catalog.Build(parent)
     refs.SelectedCopiesCount=selectedCount
     local function layout(animated,closing)
         for _,t in slideTweens do t:Cancel() end; slideTweens={}
-        local split=selected~=nil; local mobile=width<700
-        local mainWidth=split and not mobile and math.floor((width-12)*.65) or width
-        local detailWidth=math.max(240,width-mainWidth-12); if mobile then detailWidth=width end
+        local split=selected~=nil; local mobile=width<560
+        local detailWidth=math.clamp(math.floor(width*.36),200,300); if mobile then detailWidth=width end
+        local mainWidth=split and not mobile and width-detailWidth-12 or width
         local h=parent.Size.Y.Offset
-        local mainPos=split and not mobile and UDim2.new(.5,-(detailWidth+12)*responsiveScale/2,.5,0) or UDim2.fromScale(.5,.5)
-        local detailPos=mobile and UDim2.fromScale(.5,.5) or UDim2.new(.5,(mainWidth+12)*responsiveScale/2,.5,0)
+        local mainPos=split and not mobile and centre-UDim2.fromOffset((detailWidth+12)*responsiveScale/2,0) or centre
+        local detailPos=mobile and centre or centre+UDim2.fromOffset((mainWidth+12)*responsiveScale/2,0)
+        local foldedPos=centre+UDim2.fromOffset(width*responsiveScale/2,0)
+        inspector.ClipsDescendants=true
         if animated then
-            local mainTween=Tween:Create(parent,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Size=UDim2.fromOffset(mainWidth,h),Position=mainPos})
-            local target
-            if closing then target=inspector.Position+UDim2.fromOffset(28*responsiveScale,0)
-            else inspector.Position=detailPos+UDim2.fromOffset(28*responsiveScale,0); target=detailPos end
-            local sideTween=Tween:Create(inspector,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Position=target})
+            local timing=TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out)
+            local mainTween=Tween:Create(parent,timing,{Size=UDim2.fromOffset(mainWidth,h),Position=mainPos})
+            if not closing and not inspector.Visible then inspector.Size=UDim2.fromOffset(0,h); inspector.Position=foldedPos end
+            local sideTween=Tween:Create(inspector,timing,{Position=closing and foldedPos or detailPos,Size=UDim2.fromOffset(closing and 0 or detailWidth,h)})
             slideTweens={mainTween,sideTween}; mainTween:Play(); sideTween:Play()
         else parent.Size=UDim2.fromOffset(mainWidth,h); parent.Position=mainPos; inspector.Position=detailPos end
-        if not closing then inspector.Size=UDim2.fromOffset(detailWidth,h) end
+        if not animated and not closing then inspector.Size=UDim2.fromOffset(detailWidth,h) end
         if not closing then inspector.Visible=split and (not mobile or refs.CraftId==nil) end
         if split and mobile and refs.CraftId==nil then
             refs.HiddenByInspector=true; parent.Visible=false
         elseif refs.HiddenByInspector then refs.HiddenByInspector=nil; parent.Visible=true end
-        local columns=math.min(split and 3 or 5,math.max(1,math.floor((mainWidth-42)/126)))
+        local columns=math.min(split and 3 or 5,math.max(1,math.floor((mainWidth-42)/85)))
         local cell=math.floor((mainWidth-54-(columns-1)*8)/columns)
         for _,grid in grids do grid.FillDirectionMaxCells=columns; grid.CellSize=UDim2.fromOffset(cell,216) end
         local tabWidth=(mainWidth-56)/3
@@ -149,7 +151,7 @@ function Catalog.Build(parent)
         description.Position=UDim2.fromOffset(14,64+viewHeight); description.Size=UDim2.new(1,-28,0,math.max(30,h-viewHeight-182))
     end
     local refresh
-    function refs.Resize(newWidth,scale) width=newWidth; responsiveScale=scale or 1; inspectorScale.Scale=responsiveScale; layout(false) end
+    function refs.Resize(newWidth,scale,newCentre) width=newWidth; responsiveScale=scale or 1; centre=newCentre or centre; inspectorScale.Scale=responsiveScale; layout(false) end
     function refs.Reset()
         transition+=1
         selected=nil; refs.CraftId=nil; selectedCopies={}; inspector.Visible=false
