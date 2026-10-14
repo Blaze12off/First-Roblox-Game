@@ -44,7 +44,7 @@ function UI.Build(player)
     local refs={Gui=gui}
     local layout=Instance.new("Frame"); layout.Name="HudLayout"; layout.Size=UDim2.fromScale(1,1)
     layout.BackgroundTransparency=1; layout.Parent=gui; refs.Layout=layout
-    local hud=Instance.new("Frame"); hud.Name="HudContent"; hud.BackgroundTransparency=1; hud.Parent=layout
+    local hud=Instance.new("Frame"); hud.Name="HudContent"; hud.BackgroundTransparency=1; hud.ZIndex=30; hud.Parent=layout
     local hudScale=Instance.new("UIScale"); hudScale.Name="ResponsiveScale"; hudScale.Parent=hud
     refs.HudContent=hud; gui=hud
     -- Independent edge anchors keep the world clear. Only opened menus cover the centre.
@@ -114,14 +114,15 @@ function UI.Build(player)
     for _,child in shade:GetChildren() do child:Destroy() end
     shade.Visible=false; shade.ZIndex=20
     local blur=Instance.new("BlurEffect"); blur.Name="SimulatorMenuBlur"; blur.Size=0; blur.Parent=game:GetService("Lighting")
+    refs.MenuBlur=blur
     local blurTween
     local function focusMenus(open,animateBlur)
         if animateBlur~=false then
             if blurTween then blurTween:Cancel() end
             blurTween=TweenService:Create(blur,TweenInfo.new(.2),{Size=open and 20 or 0}); blurTween:Play()
         end
-        for _,item in {power,coins,multipliers,left,refs.Rebirth} do item.Visible=not open end
-        refs.Hint.Visible=false; refs.Notice.Visible=false; refs.Train.Visible=false
+        -- ScreenGui stays sharp above the menu shade; world blur never hides navigation.
+        for _,item in {power,coins,multipliers,left,refs.Rebirth} do item.Visible=true end
     end
     refs.Gui.Destroying:Connect(function() blur:Destroy() end)
     local menus,menuScales={},{}
@@ -157,6 +158,7 @@ function UI.Build(player)
         shade.Visible=false; refs.ActiveMenu=nil; focusMenus(false)
     end
     function refs.Open(name)
+        if refs.Animation and refs.Animation.Busy then return end
         refs.Close(); menus[name].Visible=true; shade.Visible=true
         refs.ActiveMenu=name; focusMenus(true)
         local m=menus[name]; m.Position=UDim2.new(.5,0,.5,12)

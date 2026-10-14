@@ -63,7 +63,7 @@ local function render()
     if state.TotalTrainings==0 then refs.Hint.Text=game:GetService("UserInputService").TouchEnabled and "Подойди к зелёной платформе и нажми «Тренироваться»." or "Подойди к зелёной платформе и нажми E."
     elseif state.Level==0 then refs.Hint.Text="Открой магазин: первое улучшение стоит 25 монет."
     else refs.Hint.Text="" end
-    refs.Hint.Visible=refs.Hint.Text~="" and refs.ActiveMenu==nil and not refs.Animation.Busy
+    refs.Hint.Visible=refs.Hint.Text~="" and not refs.Animation.Busy
 end
 remotes.State.OnClientEvent:Connect(function(snapshot)
     state=snapshot; serverOffset=snapshot.ServerTime-os.time(); render()
@@ -131,7 +131,7 @@ task.spawn(function()
             end
         end
         local available=refs.ActiveMenu==nil and not refs.Animation.Busy
-        refs.Train.Visible=nearestId~=nil and available
+        refs.Train.Visible=nearestId~=nil and not refs.Animation.Busy
         refs.InteractCaption.Text=(nearestAction=="Egg" and "Открыть яйцо" or "Тренироваться")..(game:GetService("UserInputService").TouchEnabled and "" or " · E")
         for _,obj in workspace:GetDescendants() do
             if obj:IsA("ProximityPrompt") and (obj.Name=="TrainPrompt" or obj.Name=="EggPrompt") then obj.Enabled=available end
