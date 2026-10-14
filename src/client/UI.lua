@@ -59,7 +59,7 @@ function UI.Build(player)
     refs.Level=label(power,UDim2.fromOffset(14,65),UDim2.fromOffset(152,17),"Уровень 0",12,palette.Muted)
     refs.Level.TextXAlignment=Enum.TextXAlignment.Left
     local coins=frame(gui,UDim2.fromOffset(164,64),UDim2.new(0.5,0,0,16),Vector2.new(0.5,0),palette.Gold); coins.Name="CoinsCard"
-    Glass.Icon(coins,"Coins",palette.Gold,UDim2.fromOffset(10,16),24)
+    Glass.Icon(coins,"Coins",palette.Gold,UDim2.fromOffset(12,16),32)
     local coinTitle=label(coins,UDim2.fromOffset(54,12),UDim2.fromOffset(106,16),Headings.Text("Coins"),14,palette.Gold)
     coinTitle.TextXAlignment=Enum.TextXAlignment.Left; Headings.Style(coinTitle,palette.Gold)
     refs.Coins=label(coins,UDim2.fromOffset(54,29),UDim2.fromOffset(106,32),"0",28)
@@ -131,7 +131,10 @@ function UI.Build(player)
         f.Name=name; f.Visible=false; f.ZIndex=21
         f.BackgroundTransparency=0.08
         local s=Instance.new("UIScale"); s.Parent=f; menuScales[#menuScales+1]={scale=s,height=height,frame=f}
-        Headings.Style(label(f,UDim2.fromOffset(20,16),UDim2.new(1,-84,0,34),Headings.Text(name),22),palette.Mint)
+        local heading=label(f,UDim2.fromOffset(56,16),UDim2.new(1,-112,0,34),Headings.Text(name),22)
+        heading.Name="Title"; heading.TextScaled=true
+        local headingSize=Instance.new("UITextSizeConstraint"); headingSize.MinTextSize=12; headingSize.MaxTextSize=22; headingSize.Parent=heading
+        Headings.Style(heading,palette.Text)
         local close=button(f,UDim2.new(1,-50,0,14),UDim2.fromOffset(36,36),"×",Color3.fromRGB(65,75,95))
         close.Name="Close"; close.Text=""
         close.SpecularRim:Destroy()

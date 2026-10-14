@@ -58,7 +58,9 @@ function Catalog.Build(parent)
     inspector.Visible=false; inspector.Parent=parent.Parent; inspector.ZIndex=22; Glass.Style(inspector,Glass.Colors.Violet)
     refs.Inspector=inspector
     local inspectorScale=Instance.new("UIScale"); inspectorScale.Name="ResponsiveScale"; inspectorScale.Parent=inspector
-    local title=text(inspector,UDim2.fromOffset(14,12),UDim2.new(1,-64,0,40),"",17,Glass.Colors.Mint)
+    local title=text(inspector,UDim2.fromOffset(56,12),UDim2.new(1,-112,0,40),"",17,Glass.Colors.Mint)
+    title.Name="Title"; title.TextScaled=true
+    local titleSize=Instance.new("UITextSizeConstraint"); titleSize.MinTextSize=11; titleSize.MaxTextSize=17; titleSize.Parent=title
     Headings.Style(title,Glass.Colors.Mint)
     local back=button(inspector,UDim2.new(1,-28,0,30),UDim2.fromOffset(36,36),"")
     back.Name="Back"; back.SpecularRim:Destroy()

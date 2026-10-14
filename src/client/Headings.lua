@@ -24,14 +24,10 @@ function H.Item(id,locale)
     return H.Text(base,locale)..(base~=id and " · "..H.Text("Upgraded",locale) or "")
 end
 function H.Style(label,color,size)
-    label:SetAttribute("HeadingStyle","GlassAccent")
-    label.Font=Enum.Font.GothamBlack; label.TextSize=size or label.TextSize
-    label.TextColor3=Color3.fromRGB(239,248,255)
-    local line=Instance.new("Frame"); line.Name="HeadingAccent"; line.AnchorPoint=Vector2.new(.5,1)
-    line.Position=UDim2.new(.5,0,1,2); line.Size=UDim2.fromOffset(42,2)
-    line.BackgroundColor3=color or Color3.fromRGB(104,239,202); line.BackgroundTransparency=.2
-    line.BorderSizePixel=0; line.Parent=label
-    local corner=Instance.new("UICorner"); corner.CornerRadius=UDim.new(1,0); corner.Parent=line
+    label:SetAttribute("HeadingStyle","GlassTypography")
+    label.Font=Enum.Font.GothamBold; label.TextSize=size or label.TextSize
+    label.TextColor3=color or Color3.fromRGB(239,248,255)
+    -- Heading decoration belongs to the text; no underline or extra geometry.
     return label
 end
 return H
