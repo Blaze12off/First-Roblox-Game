@@ -1,8 +1,10 @@
 local C=require(game.ReplicatedStorage.SimulatorShared.Config)
 local S={}
-function S.NewLimiter() return {tokens=C.RemoteBurst, at=os.clock(), actions={}} end
+function S.NewLimiter(burst,perSecond)
+    return {tokens=burst or C.RemoteBurst,burst=burst or C.RemoteBurst,perSecond=perSecond or C.RemotePerSecond,at=os.clock(),actions={}}
+end
 function S.Allow(limiter, action, now, cooldown)
-    limiter.tokens=math.min(C.RemoteBurst, limiter.tokens+(now-limiter.at)*C.RemotePerSecond)
+    limiter.tokens=math.min(limiter.burst, limiter.tokens+(now-limiter.at)*limiter.perSecond)
     limiter.at=now
     if limiter.tokens<1 then return false end
     limiter.tokens-=1

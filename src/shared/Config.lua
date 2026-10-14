@@ -6,7 +6,7 @@ local C = {
     SpawnPosition = Vector3.new(-16,4,12), -- Temporary spawn point, never a visible platform.
     AutoSaveSeconds = 45, LeaseSeconds = 180, Attempts = 4,
     MaxValue = 1000000000000, MaxLevel = 15, MaxRebirths = 10000,
-    TrainCooldown = 0.8, BaseCoins = 8, BasePower = 5,
+    TrainCooldown = 0, BaseCoins = 8, BasePower = 5,
     UpgradeBase = 25, UpgradeGrowth = 1.6,
     CoinLevelBonus = 0.15, PowerLevelBonus = 0.20,
     RebirthBonus = 0.12, RebirthBonusCap = 25,
@@ -16,6 +16,7 @@ local C = {
     DailyTrainingEquivalent = 8, WeeklyTrainingEquivalent = 25,
     RewardMinTrainings = 3,
     RemoteBurst = 8, RemotePerSecond = 4,
+    TrainRemoteBurst = 64, TrainRemotePerSecond = 32, -- No click cooldown; bounded abuse budget.
     ActionCooldown = 0.3, TrainDistance = 6,
     SignRevealDistance = 18, SignHideMargin = 2,
     SignFadeSeconds = 0.25, SignWidth = 220, SignHeight = 70, SignTextSize = 16,

@@ -50,7 +50,8 @@ function Runtime.Dispatch(player,action,...)
     local session=Runtime.sessions[player.UserId]
     if not session then return false,"loading" end
     local now=os.clock()
-    if not Security.Allow(session.limiter,"Request",now,0) then return false,"rate" end
+    local limiter=action=="Train" and session.trainLimiter or session.limiter
+    if not Security.Allow(limiter,"Request",now,0) then return false,"rate" end
     local args=table.pack(...)
     if not Security.Valid(action,args) then return false,"arguments" end
     local cooldown=action=="Train" and C.TrainCooldown or action=="Hatch" and C.HatchCooldown or action=="PetCraft" and C.CraftCooldown or action=="Rebirth" and 2 or action=="Sync" and 1 or C.ActionCooldown
@@ -143,7 +144,7 @@ local function joined(player)
         return
     end
     if player.Parent~=Players or dataService.closing then dataService:Save(player.UserId,true); return end
-    Runtime.sessions[player.UserId]={limiter=Security.NewLimiter(),actionTimes={},saveStatus="ready"}
+    Runtime.sessions[player.UserId]={limiter=Security.NewLimiter(),trainLimiter=Security.NewLimiter(C.TrainRemoteBurst,C.TrainRemotePerSecond),actionTimes={},saveStatus="ready"}
     local data=dataService:Get(player.UserId)
     if not data then player:Kick("Сессия данных истекла. Войди снова."); return end
     if Rewards.Reconcile(data) then dataService:Changed(player.UserId) end

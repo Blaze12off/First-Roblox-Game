@@ -19,7 +19,7 @@ local C = {
     SpawnPosition = Vector3.new(-16,4,12), -- Temporary spawn point, never a visible platform.
     AutoSaveSeconds = 45, LeaseSeconds = 180, Attempts = 4,
     MaxValue = 1000000000000, MaxLevel = 15, MaxRebirths = 10000,
-    TrainCooldown = 0.8, BaseCoins = 8, BasePower = 5,
+    TrainCooldown = 0, BaseCoins = 8, BasePower = 5,
     UpgradeBase = 25, UpgradeGrowth = 1.6,
     CoinLevelBonus = 0.15, PowerLevelBonus = 0.20,
     RebirthBonus = 0.12, RebirthBonusCap = 25,
@@ -29,6 +29,7 @@ local C = {
     DailyTrainingEquivalent = 8, WeeklyTrainingEquivalent = 25,
     RewardMinTrainings = 3,
     RemoteBurst = 8, RemotePerSecond = 4,
+    TrainRemoteBurst = 64, TrainRemotePerSecond = 32, -- No click cooldown; bounded abuse budget.
     ActionCooldown = 0.3, TrainDistance = 6,
     SignRevealDistance = 18, SignHideMargin = 2,
     SignFadeSeconds = 0.25, SignWidth = 220, SignHeight = 70, SignTextSize = 16,
@@ -357,9 +358,11 @@ moduleFactories["Security"] = function()
 local require=getModule; local script={Parent=root}
 local C=require(game.ReplicatedStorage.SimulatorShared.Config)
 local S={}
-function S.NewLimiter() return {tokens=C.RemoteBurst, at=os.clock(), actions={}} end
+function S.NewLimiter(burst,perSecond)
+    return {tokens=burst or C.RemoteBurst,burst=burst or C.RemoteBurst,perSecond=perSecond or C.RemotePerSecond,at=os.clock(),actions={}}
+end
 function S.Allow(limiter, action, now, cooldown)
-    limiter.tokens=math.min(C.RemoteBurst, limiter.tokens+(now-limiter.at)*C.RemotePerSecond)
+    limiter.tokens=math.min(limiter.burst, limiter.tokens+(now-limiter.at)*limiter.perSecond)
     limiter.at=now
     if limiter.tokens<1 then return false end
     limiter.tokens-=1
@@ -645,6 +648,13 @@ function Spec.Run()
     limiter=S.NewLimiter(); local accepted=0; local instant=limiter.at
     for _=1,50 do if S.Allow(limiter,"Request",instant,0) then accepted+=1 end end
     check(accepted==C.RemoteBurst,"bounded remote burst")
+    local training=S.NewLimiter(C.TrainRemoteBurst,C.TrainRemotePerSecond)
+    local rapid=0; local at=training.at
+    for _=1,20 do if S.Allow(training,"Train",at,C.TrainCooldown) then rapid+=1 end end
+    check(rapid==20,"twenty taps without cooldown")
+    for _=1,100 do S.Allow(training,"Train",at,0) end
+    check(not S.Allow(training,"Train",at,0),"training abuse budget bounded")
+    check(S.Allow(training,"Train",at+1,0),"training budget refills")
     check(not S.Near({Character=nil},{Position=Vector3.zero},11),"no dead/missing character activity")
 
     local clock=1000
@@ -708,12 +718,12 @@ function Spec.Run()
             if d.Level<3 and d.Power<powerReq and d.Coins>=C.UpgradeCost(d.Level) then P.Upgrade(d) end
             assert(actions<500,"unreachable rebirth")
         end
-        balance[cycle]=actions*C.TrainCooldown
+        balance[cycle]=actions -- Click pacing belongs to the player, not a training timer.
         check(R.Apply(d),"balance cycle "..cycle)
     end
     check(balance[1]<=90 and balance[2]<=balance[1]*1.2,"early pacing")
     check(balance[26]<balance[1],"later cycles moderately faster")
-    print(("SIMULATOR_SPEC_PASS %d assertions; cycle_seconds [1]=%.1f [2]=%.1f [10]=%.1f [26]=%.1f")
+    print(("SIMULATOR_SPEC_PASS %d assertions; cycle_clicks [1]=%.0f [2]=%.0f [10]=%.0f [26]=%.0f")
         :format(count,balance[1],balance[2],balance[10],balance[26]))
     return {Assertions=count,Balance=balance}
 end

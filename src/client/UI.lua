@@ -52,23 +52,23 @@ function UI.Build(player)
     Glass.Icon(power,"Power",palette.Mint,UDim2.fromOffset(12,14),32)
     local powerTitle=label(power,UDim2.fromOffset(54,12),UDim2.fromOffset(114,17),Headings.Text("Power"),14,palette.Mint)
     powerTitle.TextXAlignment=Enum.TextXAlignment.Left; Headings.Style(powerTitle,palette.Mint)
-    refs.Power=label(power,UDim2.fromOffset(54,29),UDim2.fromOffset(114,33),"0",29)
+    refs.Power=label(power,UDim2.fromOffset(54,29),UDim2.fromOffset(114,33),"0",24)
     refs.Power.TextXAlignment=Enum.TextXAlignment.Left
-    refs.Power.TextScaled=true
+    refs.Power.TextScaled=false; refs.Power.TextTruncate=Enum.TextTruncate.AtEnd
     local powerFont=Instance.new("UITextSizeConstraint"); powerFont.MinTextSize=12; powerFont.MaxTextSize=29; powerFont.Parent=refs.Power
     refs.Level=label(power,UDim2.fromOffset(14,65),UDim2.fromOffset(152,17),"Уровень 0",12,palette.Muted)
     refs.Level.TextXAlignment=Enum.TextXAlignment.Left
-    local coins=frame(gui,UDim2.fromOffset(164,64),UDim2.new(0.5,0,0,16),Vector2.new(0.5,0),palette.Gold); coins.Name="CoinsCard"
+    local coins=frame(gui,UDim2.fromOffset(164,76),UDim2.new(0.5,0,0,16),Vector2.new(0.5,0),palette.Gold); coins.Name="CoinsCard"
     Glass.Icon(coins,"Coins",palette.Gold,UDim2.fromOffset(12,16),32)
     local coinTitle=label(coins,UDim2.fromOffset(54,12),UDim2.fromOffset(106,16),Headings.Text("Coins"),14,palette.Gold)
     coinTitle.TextXAlignment=Enum.TextXAlignment.Left; Headings.Style(coinTitle,palette.Gold)
-    refs.Coins=label(coins,UDim2.fromOffset(54,29),UDim2.fromOffset(106,32),"0",28)
+    refs.Coins=label(coins,UDim2.fromOffset(54,29),UDim2.fromOffset(106,33),"0",24)
     refs.Coins.TextXAlignment=Enum.TextXAlignment.Left
-    refs.Coins.TextScaled=true
+    refs.Coins.TextScaled=false; refs.Coins.TextTruncate=Enum.TextTruncate.AtEnd
     local coinFont=Instance.new("UITextSizeConstraint"); coinFont.MinTextSize=12; coinFont.MaxTextSize=28; coinFont.Parent=refs.Coins
     local multipliers=frame(gui,UDim2.fromOffset(164,64),UDim2.new(1,-12,0,16),Vector2.new(1,0),palette.Mint)
     multipliers.Name="MultiplierCard"
-    local multiplierTitle=label(multipliers,UDim2.fromOffset(10,6),UDim2.new(1,-20,0,14),Headings.Text("Total"),10,palette.Muted)
+    local multiplierTitle=label(multipliers,UDim2.fromOffset(8,4),UDim2.new(1,-16,0,18),Headings.Text("Total"),12,palette.Muted)
     Headings.Style(multiplierTitle,palette.Mint)
     refs.PowerMultiplier=label(multipliers,UDim2.fromOffset(10,24),UDim2.new(1,-20,0,16),"Сила  x1.00",13,palette.Mint)
     refs.CoinMultiplier=label(multipliers,UDim2.fromOffset(10,42),UDim2.new(1,-20,0,16),"Монеты  x1.00",13,palette.Gold)
@@ -87,7 +87,7 @@ function UI.Build(player)
     refs.Rebirth=button(gui,UDim2.new(1,-16,0.5,0),UDim2.fromOffset(164,88),"",palette.Violet)
     refs.Rebirth.AnchorPoint=Vector2.new(1,0.5)
     Glass.Icon(refs.Rebirth,"Rebirth",palette.Violet,UDim2.fromOffset(12,12),30)
-    Headings.Style(label(refs.Rebirth,UDim2.fromOffset(48,13),UDim2.new(1,-56,0,27),Headings.Text("Rebirth"),12,palette.Violet),palette.Violet)
+    Headings.Style(label(refs.Rebirth,UDim2.fromOffset(44,8),UDim2.new(1,-50,0,34),Headings.Text("Rebirth"),14,palette.Violet),palette.Violet)
     refs.RebirthStats=label(refs.Rebirth,UDim2.fromOffset(12,48),UDim2.new(1,-24,0,27),"0 • x1.00",21)
     local notifyGifts=Glass.Notification(refs.Gifts,"right")
     local notifyRebirth=Glass.Notification(refs.Rebirth,"left")
@@ -219,7 +219,7 @@ function UI.Build(player)
         coins.AnchorPoint=Vector2.new(1,0); coins.Position=UDim2.new(1,-12,0,top+74)
         multipliers.Position=UDim2.new(1,-12,0,top)
         left.Position=UDim2.new(0,14,.5,0); left.AnchorPoint=Vector2.new(0,.5)
-        refs.Rebirth.Position=UDim2.new(1,-12,.5,0); refs.Rebirth.AnchorPoint=Vector2.new(1,.5)
+        refs.Rebirth.Position=UDim2.new(1,-12,0,math.max(logical.Y*.5,top+74+76+12+44)); refs.Rebirth.AnchorPoint=Vector2.new(1,.5)
         refs.Train.Position=UDim2.new(.5,0,1,-49)
         refs.Notice.Position=UDim2.new(.5,-190*scale,1,-166*scale); noticeScale.Scale=scale
         for _,entry in menuScales do

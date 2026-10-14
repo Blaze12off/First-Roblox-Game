@@ -141,6 +141,13 @@ function Spec.Run()
     limiter=S.NewLimiter(); local accepted=0; local instant=limiter.at
     for _=1,50 do if S.Allow(limiter,"Request",instant,0) then accepted+=1 end end
     check(accepted==C.RemoteBurst,"bounded remote burst")
+    local training=S.NewLimiter(C.TrainRemoteBurst,C.TrainRemotePerSecond)
+    local rapid=0; local at=training.at
+    for _=1,20 do if S.Allow(training,"Train",at,C.TrainCooldown) then rapid+=1 end end
+    check(rapid==20,"twenty taps without cooldown")
+    for _=1,100 do S.Allow(training,"Train",at,0) end
+    check(not S.Allow(training,"Train",at,0),"training abuse budget bounded")
+    check(S.Allow(training,"Train",at+1,0),"training budget refills")
     check(not S.Near({Character=nil},{Position=Vector3.zero},11),"no dead/missing character activity")
 
     local clock=1000
@@ -204,12 +211,12 @@ function Spec.Run()
             if d.Level<3 and d.Power<powerReq and d.Coins>=C.UpgradeCost(d.Level) then P.Upgrade(d) end
             assert(actions<500,"unreachable rebirth")
         end
-        balance[cycle]=actions*C.TrainCooldown
+        balance[cycle]=actions -- Click pacing belongs to the player, not a training timer.
         check(R.Apply(d),"balance cycle "..cycle)
     end
     check(balance[1]<=90 and balance[2]<=balance[1]*1.2,"early pacing")
     check(balance[26]<balance[1],"later cycles moderately faster")
-    print(("SIMULATOR_SPEC_PASS %d assertions; cycle_seconds [1]=%.1f [2]=%.1f [10]=%.1f [26]=%.1f")
+    print(("SIMULATOR_SPEC_PASS %d assertions; cycle_clicks [1]=%.0f [2]=%.0f [10]=%.0f [26]=%.0f")
         :format(count,balance[1],balance[2],balance[10],balance[26]))
     return {Assertions=count,Balance=balance}
 end
