@@ -21,7 +21,7 @@ task.spawn(function()
         task.wait(1)
     end
     assert(player.leaderstats.LifetimePower.Value==0,"Fresh Play needed")
-    settle(map.SimulatorSpawn)
+    player.Character:PivotTo(CFrame.new(-16,4,12)); task.wait(1)
     local ok,reason=send("Train","Basic")
     assert(not ok and reason=="distance","distance validation")
     settle(map.Basic)

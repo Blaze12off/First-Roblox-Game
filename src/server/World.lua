@@ -37,9 +37,6 @@ function World.Build()
     part(map,"AdvancedPlaza",Vector3.new(28,0.2,26),Vector3.new(24,0.1,0),Color3.fromRGB(67,49,96))
     -- Join x=4..10 exactly: no overlap with either plaza, and a 0.05 stud step below them.
     part(map,"Path",Vector3.new(6,0.2,7),Vector3.new(7,0.05,0),Color3.fromRGB(100,109,134))
-    local spawn=Instance.new("SpawnLocation"); spawn.Name="SimulatorSpawn"
-    spawn.Size=Vector3.new(6,0.4,6); spawn.Position=Vector3.new(-16,0.4,12)
-    spawn.Anchored=true; spawn.Neutral=true; spawn.Duration=0; spawn.Color=Color3.fromRGB(79,206,183); spawn.Parent=map
     for id, info in pairs(C.Stations) do
         local color=id=="Basic" and Color3.fromRGB(65,220,183) or Color3.fromRGB(160,116,255)
         local pad=part(map,id,Vector3.new(8,1,8),info.Position,color); pad.Material=Enum.Material.Neon

@@ -3,6 +3,7 @@ local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
 local Glass=require(script.Parent.Glass)
 local PetCatalog=require(script.Parent.PetCatalog)
 local Presentation=require(script.Parent.Presentation)
+local Headings=require(script.Parent.Headings)
 local TweenService=game:GetService("TweenService")
 local palette=Glass.Colors
 local dark=Color3.fromRGB(22,30,48)
@@ -42,47 +43,51 @@ function UI.Build(player)
     gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling; gui.Parent=player:WaitForChild("PlayerGui")
     local refs={Gui=gui}
     local layout=Instance.new("Frame"); layout.Name="HudLayout"; layout.Size=UDim2.fromScale(1,1)
-    layout.BackgroundTransparency=1; layout.Parent=gui; refs.Layout=layout; gui=layout
+    layout.BackgroundTransparency=1; layout.Parent=gui; refs.Layout=layout
+    local hud=Instance.new("Frame"); hud.Name="HudContent"; hud.BackgroundTransparency=1; hud.Parent=layout
+    local hudScale=Instance.new("UIScale"); hudScale.Name="ResponsiveScale"; hudScale.Parent=hud
+    refs.HudContent=hud; gui=hud
     -- Independent edge anchors keep the world clear. Only opened menus cover the centre.
     local power=frame(gui,UDim2.fromOffset(180,88),UDim2.fromOffset(16,16),nil,palette.Mint); power.Name="PowerCard"
     Glass.Icon(power,"Power",palette.Mint,UDim2.fromOffset(12,14),32)
-    local powerTitle=label(power,UDim2.fromOffset(54,12),UDim2.fromOffset(114,17),"СИЛА",11,palette.Mint)
-    powerTitle.TextXAlignment=Enum.TextXAlignment.Left
+    local powerTitle=label(power,UDim2.fromOffset(54,12),UDim2.fromOffset(114,17),Headings.Text("Power"),14,palette.Mint)
+    powerTitle.TextXAlignment=Enum.TextXAlignment.Left; Headings.Style(powerTitle,palette.Mint)
     refs.Power=label(power,UDim2.fromOffset(54,29),UDim2.fromOffset(114,33),"0",29)
     refs.Power.TextXAlignment=Enum.TextXAlignment.Left
     refs.Power.TextScaled=true
     local powerFont=Instance.new("UITextSizeConstraint"); powerFont.MinTextSize=12; powerFont.MaxTextSize=29; powerFont.Parent=refs.Power
     refs.Level=label(power,UDim2.fromOffset(14,65),UDim2.fromOffset(152,17),"Уровень 0",12,palette.Muted)
     refs.Level.TextXAlignment=Enum.TextXAlignment.Left
-    local coins=frame(gui,UDim2.fromOffset(172,72),UDim2.new(0.5,0,0,16),Vector2.new(0.5,0),palette.Gold); coins.Name="CoinsCard"
-    Glass.Icon(coins,"Coins",palette.Gold,UDim2.fromOffset(12,19),32)
-    local coinTitle=label(coins,UDim2.fromOffset(54,12),UDim2.fromOffset(106,16),"МОНЕТЫ",11,palette.Gold)
-    coinTitle.TextXAlignment=Enum.TextXAlignment.Left
+    local coins=frame(gui,UDim2.fromOffset(164,64),UDim2.new(0.5,0,0,16),Vector2.new(0.5,0),palette.Gold); coins.Name="CoinsCard"
+    Glass.Icon(coins,"Coins",palette.Gold,UDim2.fromOffset(10,16),24)
+    local coinTitle=label(coins,UDim2.fromOffset(54,12),UDim2.fromOffset(106,16),Headings.Text("Coins"),14,palette.Gold)
+    coinTitle.TextXAlignment=Enum.TextXAlignment.Left; Headings.Style(coinTitle,palette.Gold)
     refs.Coins=label(coins,UDim2.fromOffset(54,29),UDim2.fromOffset(106,32),"0",28)
     refs.Coins.TextXAlignment=Enum.TextXAlignment.Left
     refs.Coins.TextScaled=true
     local coinFont=Instance.new("UITextSizeConstraint"); coinFont.MinTextSize=12; coinFont.MaxTextSize=28; coinFont.Parent=refs.Coins
     local multipliers=frame(gui,UDim2.fromOffset(164,64),UDim2.new(1,-12,0,16),Vector2.new(1,0),palette.Mint)
     multipliers.Name="MultiplierCard"
-    local multiplierTitle=label(multipliers,UDim2.fromOffset(10,6),UDim2.new(1,-20,0,14),"ОБЩИЙ МНОЖИТЕЛЬ",10,palette.Muted)
+    local multiplierTitle=label(multipliers,UDim2.fromOffset(10,6),UDim2.new(1,-20,0,14),Headings.Text("Total"),10,palette.Muted)
+    Headings.Style(multiplierTitle,palette.Mint)
     refs.PowerMultiplier=label(multipliers,UDim2.fromOffset(10,24),UDim2.new(1,-20,0,16),"Сила  x1.00",13,palette.Mint)
     refs.CoinMultiplier=label(multipliers,UDim2.fromOffset(10,42),UDim2.new(1,-20,0,16),"Монеты  x1.00",13,palette.Gold)
     local left=Instance.new("Frame"); left.Name="ActionDock"; left.Size=UDim2.fromOffset(152,186)
     left.Position=UDim2.new(0,16,0.5,0); left.AnchorPoint=Vector2.new(0,0.5); left.BackgroundTransparency=1; left.Parent=gui
-    refs.Shop=button(left,UDim2.fromOffset(0,0),UDim2.fromOffset(152,54),"Магазин",palette.Blue)
-    refs.Gifts=button(left,UDim2.fromOffset(0,66),UDim2.fromOffset(152,54),"Награды",palette.Gold)
-    refs.Pets=button(left,UDim2.fromOffset(0,132),UDim2.fromOffset(152,54),"Яйца и питомцы",palette.Mint)
+    refs.Shop=button(left,UDim2.fromOffset(0,0),UDim2.fromOffset(152,54),Headings.Text("Shop"),palette.Blue)
+    refs.Gifts=button(left,UDim2.fromOffset(0,66),UDim2.fromOffset(152,54),Headings.Text("Gifts"),palette.Gold)
+    refs.Pets=button(left,UDim2.fromOffset(0,132),UDim2.fromOffset(152,54),Headings.Text("Pets"),palette.Mint)
     for _,info in {{refs.Shop,"Shop",palette.Blue},{refs.Gifts,"Gifts",palette.Gold},{refs.Pets,"Pets",palette.Mint}} do
         info[1].AnchorPoint=Vector2.new(.5,.5)
         info[1].Position+=UDim2.fromOffset(76,27)
         local caption=info[1].Text; info[1].Text=""
         Glass.Icon(info[1],info[2],info[3]); local captionLabel=label(info[1],UDim2.fromOffset(50,0),UDim2.new(1,-58,0,54),caption,15)
-        captionLabel.Name="Caption"
+        captionLabel.Name="Caption"; captionLabel.Font=Enum.Font.GothamBlack
     end
     refs.Rebirth=button(gui,UDim2.new(1,-16,0.5,0),UDim2.fromOffset(164,88),"",palette.Violet)
     refs.Rebirth.AnchorPoint=Vector2.new(1,0.5)
     Glass.Icon(refs.Rebirth,"Rebirth",palette.Violet,UDim2.fromOffset(12,12),30)
-    label(refs.Rebirth,UDim2.fromOffset(48,13),UDim2.new(1,-56,0,27),"Перерождения",12,palette.Violet)
+    Headings.Style(label(refs.Rebirth,UDim2.fromOffset(48,13),UDim2.new(1,-56,0,27),Headings.Text("Rebirth"),12,palette.Violet),palette.Violet)
     refs.RebirthStats=label(refs.Rebirth,UDim2.fromOffset(12,48),UDim2.new(1,-24,0,27),"0 • x1.00",21)
     local notifyGifts=Glass.Notification(refs.Gifts,"right")
     local notifyRebirth=Glass.Notification(refs.Rebirth,"left")
@@ -100,17 +105,21 @@ function UI.Build(player)
     Glass.Style(refs.Notice,palette.Gold,13)
     refs.Notice.GlassTint:Destroy()
     refs.Notice.Visible=false
+    refs.Notice.Parent=layout
+    local noticeScale=Instance.new("UIScale"); noticeScale.Name="ResponsiveScale"; noticeScale.Parent=refs.Notice
     refs.Notice.ZIndex=60 -- Server validation feedback must remain readable above opened menus.
     Glass.Appear(power); Glass.Appear(coins,.06)
-    local shade=frame(gui,UDim2.fromScale(1,1),UDim2.fromScale(0,0))
+    local shade=frame(layout,UDim2.fromScale(1,1),UDim2.fromScale(0,0))
     shade.Name="MenuShade"; shade.BackgroundTransparency=1; shade.Active=true
     for _,child in shade:GetChildren() do child:Destroy() end
     shade.Visible=false; shade.ZIndex=20
     local blur=Instance.new("BlurEffect"); blur.Name="SimulatorMenuBlur"; blur.Size=0; blur.Parent=game:GetService("Lighting")
     local blurTween
-    local function focusMenus(open)
-        if blurTween then blurTween:Cancel() end
-        blurTween=TweenService:Create(blur,TweenInfo.new(.2),{Size=open and 20 or 0}); blurTween:Play()
+    local function focusMenus(open,animateBlur)
+        if animateBlur~=false then
+            if blurTween then blurTween:Cancel() end
+            blurTween=TweenService:Create(blur,TweenInfo.new(.2),{Size=open and 20 or 0}); blurTween:Play()
+        end
         for _,item in {power,coins,multipliers,left,refs.Rebirth} do item.Visible=not open end
         refs.Hint.Visible=false; refs.Notice.Visible=false; refs.Train.Visible=false
     end
@@ -122,7 +131,7 @@ function UI.Build(player)
         f.Name=name; f.Visible=false; f.ZIndex=21
         f.BackgroundTransparency=0.08
         local s=Instance.new("UIScale"); s.Parent=f; menuScales[#menuScales+1]={scale=s,height=height,frame=f}
-        label(f,UDim2.fromOffset(20,16),UDim2.new(1,-84,0,34),title,22)
+        Headings.Style(label(f,UDim2.fromOffset(20,16),UDim2.new(1,-84,0,34),Headings.Text(name),22),palette.Mint)
         local close=button(f,UDim2.new(1,-50,0,14),UDim2.fromOffset(36,36),"×",Color3.fromRGB(65,75,95))
         close.Name="Close"; close.Text=""
         close.SpecularRim:Destroy()
@@ -158,8 +167,9 @@ function UI.Build(player)
     refs.Catalog=PetCatalog.Build(pets)
     refs.Animation=Presentation.Build(layout)
     function refs.PlayResult(result,onDone)
-        focusMenus(true)
-        refs.Animation.Play(result,function()
+        if refs.Animation.Busy then return false end
+        focusMenus(true,result.Action~="Rebirth")
+        return refs.Animation.Play(result,function()
             focusMenus(refs.ActiveMenu~=nil)
             if onDone then onDone() end
         end)
@@ -195,59 +205,26 @@ function UI.Build(player)
     local function resize()
         local camera=workspace.CurrentCamera; if not camera then return end
         local v=refs.Layout.AbsoluteSize; if v.X<1 then v=camera.ViewportSize end
-        local small=v.X<640; local compact=small or v.Y<460
+        -- 980x620 reference canvas reproduces the proportions approved in the screenshot.
+        local scale=math.min(v.X/980,v.Y/620)
+        local logical=Vector2.new(v.X/scale,v.Y/scale)
+        hudScale.Scale=scale; hud.Size=UDim2.fromOffset(logical.X,logical.Y)
+        refs.ResponsiveScale=scale
         local inset=game:GetService("GuiService"):GetGuiInset()
-        local top=inset.Y+12
-        coins.AnchorPoint=Vector2.new(1,0)
-        coins.Position=UDim2.new(1,-12,0,top+(compact and 48 or 64)+10)
-        local statWidth=small and math.min(164,(v.X-36)/2) or 180
+        local top=math.max(72,inset.Y/scale+12)
+        power.Position=UDim2.fromOffset(14,top)
+        coins.AnchorPoint=Vector2.new(1,0); coins.Position=UDim2.new(1,-12,0,top+74)
         multipliers.Position=UDim2.new(1,-12,0,top)
-        multipliers.Size=UDim2.fromOffset(small and statWidth or 164,compact and 48 or 64)
-        multiplierTitle.Position=UDim2.fromOffset(10,compact and 3 or 6)
-        refs.PowerMultiplier.Position=UDim2.fromOffset(10,compact and 17 or 24)
-        refs.CoinMultiplier.Position=UDim2.fromOffset(10,compact and 31 or 42)
-        refs.PowerMultiplier.TextSize=small and 12 or 13; refs.CoinMultiplier.TextSize=small and 12 or 13
-        power.Position=UDim2.fromOffset(12,top)
-        power.Size=UDim2.fromOffset(statWidth,compact and 72 or 88); coins.Size=UDim2.fromOffset(small and statWidth or 164,compact and 40 or 64)
-        refs.Power.Size=UDim2.new(1,-66,0,33); refs.Coins.Size=UDim2.new(1,-66,0,32)
-        powerTitle.Size=UDim2.new(1,-66,0,17); coinTitle.Size=UDim2.new(1,-66,0,16)
-        refs.Level.Size=UDim2.new(1,-28,0,17)
-        refs.Level.Position=UDim2.fromOffset(14,compact and 53 or 65)
-        coinTitle.Position=UDim2.fromOffset(46,compact and 3 or 9)
-        refs.Coins.Position=UDim2.fromOffset(46,compact and 16 or 26); refs.Coins.Size=UDim2.new(1,-58,0,compact and 22 or 32)
-        coins.Icon.Position=UDim2.fromOffset(10,compact and 8 or 16); coins.Icon.Size=UDim2.fromOffset(24,24)
-        local actionWidth=small and 138 or 152
-        local dockHeight=v.Y<460 and 44 or 54
-        local dockGap=v.Y<460 and 6 or 12
-        left.Size=UDim2.fromOffset(actionWidth,3*dockHeight+2*dockGap)
-        for index,b in {refs.Shop,refs.Gifts,refs.Pets} do
-            b.Size=UDim2.fromOffset(actionWidth,dockHeight)
-            b.Position=UDim2.fromOffset(actionWidth/2,(index-1)*(dockHeight+dockGap)+dockHeight/2)
-            b.Caption.Size=UDim2.new(1,-58,0,dockHeight)
-            b.Caption.TextSize=small and 14 or 15
-            b.Icon.Position=UDim2.fromOffset(12,(dockHeight-32)/2)
-        end
-        refs.Rebirth.Size=UDim2.fromOffset(small and 148 or 164,88)
-        local sideY=v.Y<460 and 136 or 152
-        left.Position=UDim2.new(0,12,0,compact and math.max(sideY,top+82) or v.Y*.5); left.AnchorPoint=Vector2.new(0,compact and 0 or .5)
-        refs.Rebirth.Position=UDim2.new(1,-12,0,compact and top+108 or math.max(v.Y*.5,top+182)); refs.Rebirth.AnchorPoint=Vector2.new(1,compact and 0 or .5)
-        if v.Y<460 then refs.Rebirth.Size=UDim2.fromOffset(small and 148 or 164,60); refs.RebirthStats.Position=UDim2.fromOffset(12,33) else refs.RebirthStats.Position=UDim2.fromOffset(12,48) end
-        -- Centre the animated button; half its height preserves the existing bottom inset.
-        refs.Train.Position=UDim2.new(.5,0,1,compact and -65 or -49)
-        refs.Train.Size=UDim2.fromOffset(v.Y<460 and math.max(120,math.min(260,v.X-324)) or math.min(260,v.X-32),54)
-        -- Short landscape screens reserve the side-button lanes for touch input.
-        local width=math.min(420,v.X-32)
-        if v.Y<460 and v.X>=560 then width=math.min(width,v.X-360) end
-        refs.Hint.Size=UDim2.fromOffset(width,34); refs.Hint.Position=UDim2.new(0.5,-width/2,1,compact and -136 or -120)
-        refs.Notice.Size=UDim2.fromOffset(math.min(380,width),38); refs.Notice.Position=UDim2.new(0.5,-math.min(380,width)/2,1,compact and -182 or -166)
+        left.Position=UDim2.new(0,14,.5,0); left.AnchorPoint=Vector2.new(0,.5)
+        refs.Rebirth.Position=UDim2.new(1,-12,.5,0); refs.Rebirth.AnchorPoint=Vector2.new(1,.5)
+        refs.Train.Position=UDim2.new(.5,0,1,-49)
+        refs.Notice.Position=UDim2.new(.5,-190*scale,1,-166*scale); noticeScale.Scale=scale
         for _,entry in menuScales do
+            entry.scale.Scale=scale
             if entry.frame.Name=="Pets" then
-                local width=math.min(920,math.max(240,v.X-24))
-                entry.frame.Size=UDim2.fromOffset(width,math.min(580,math.max(230,v.Y-90)))
-                entry.scale.Scale=math.min(1,(v.Y-90)/entry.frame.Size.Y.Offset)
-                refs.Catalog.Resize(width)
-            else
-                entry.scale.Scale=math.min(1,(v.X-24)/350,(v.Y-90)/entry.height)
+                local width=math.min(920,logical.X-24)
+                entry.frame.Size=UDim2.fromOffset(width,math.min(580,logical.Y-40))
+                refs.Catalog.Resize(width,scale)
             end
         end
     end

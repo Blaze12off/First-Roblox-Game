@@ -1,18 +1,18 @@
 <roblox version="4">
-  <Item class="Workspace" referent="RBX4339d8135ccc40509057f3e54e209933">
+  <Item class="Workspace" referent="RBX3eac6006f57c4497852b8454b1e96232">
     <Properties>
       <string name="Name">Workspace</string>
     </Properties>
-    <Item class="Terrain" referent="RBX28caa8b13d714069be59d4ab13e76361">
+    <Item class="Terrain" referent="RBXf8039405d0294b56b4f346e62728757e">
       <Properties>
         <string name="Name">Terrain</string>
       </Properties>
     </Item>
-    <Item class="Folder" referent="RBXccde55d53bfa48d191e1704638dda94f">
+    <Item class="Folder" referent="RBX42581d7ca3b94a8e8077e9557892b673">
       <Properties>
         <string name="Name">SimulatorWorld</string>
       </Properties>
-      <Item class="Part" referent="RBXe2014d28a6714aeb8bced233628d4d86">
+      <Item class="Part" referent="RBXe6c70c1f4057483982b0ab96bad64d01">
         <Properties>
           <string name="Name">Ground</string>
           <bool name="Anchored">true</bool>
@@ -41,7 +41,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX7c707d7efa7b4768a100f4e44caba8c7">
+      <Item class="Part" referent="RBX8157ff62f48e4359b0a038bbdee02586">
         <Properties>
           <string name="Name">StartingPlaza</string>
           <bool name="Anchored">true</bool>
@@ -70,7 +70,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXabcf66b943e1419fbf724479a96a5637">
+      <Item class="Part" referent="RBX6330a05c51aa406faeaf229f0e741844">
         <Properties>
           <string name="Name">AdvancedPlaza</string>
           <bool name="Anchored">true</bool>
@@ -99,7 +99,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX3e007f63f2f84df786e307a462c0367c">
+      <Item class="Part" referent="RBXe360a329e0f1492bbf1d867425d6a0a4">
         <Properties>
           <string name="Name">Path</string>
           <bool name="Anchored">true</bool>
@@ -128,7 +128,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXe7e91296877e4f96b97d78aa5bd27b42">
+      <Item class="Part" referent="RBX4571a2eae45549289e6dfb47319f746a">
         <Properties>
           <string name="Name">Basic</string>
           <bool name="Anchored">true</bool>
@@ -157,7 +157,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXab7c7456666245ed931bdc61035e502c">
+      <Item class="Part" referent="RBXa589e57e37444a038a9448f841787205">
         <Properties>
           <string name="Name">Advanced</string>
           <bool name="Anchored">true</bool>
@@ -186,7 +186,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="SpawnLocation" referent="RBXceded31777c74ead8811617871e757e8">
+      <Item class="SpawnLocation" referent="RBXe6f4cd1039774c04b63c4a218615b8da">
         <Properties>
           <string name="Name">SimulatorSpawn</string>
           <bool name="Anchored">true</bool>
@@ -219,27 +219,27 @@
       </Item>
     </Item>
   </Item>
-  <Item class="Players" referent="RBX77b72a3bd3624561902fa80d80726458">
+  <Item class="Players" referent="RBX7763d3e3b6ce454a92485552886b236a">
     <Properties>
       <string name="Name">Players</string>
     </Properties>
   </Item>
-  <Item class="Lighting" referent="RBX647aa94938cb47a1b87299872b896a34">
+  <Item class="Lighting" referent="RBXdfa01b2e1b84451bb0487b9a09a3f52c">
     <Properties>
       <string name="Name">Lighting</string>
       <float name="ClockTime">14</float>
       <float name="Brightness">2</float>
     </Properties>
   </Item>
-  <Item class="ReplicatedStorage" referent="RBX13413fb81a5c4d35a69f5b5a1346d491">
+  <Item class="ReplicatedStorage" referent="RBX1055619003bd4d23ac6fe818277f9d9e">
     <Properties>
       <string name="Name">ReplicatedStorage</string>
     </Properties>
-    <Item class="Folder" referent="RBX36910cfebba647b9b33f5397f44b8c47">
+    <Item class="Folder" referent="RBX989c1f9f4d944cd4b9dcfb4c3a2c724e">
       <Properties>
         <string name="Name">SimulatorShared</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBXd150091e5cd04d05a49f418d720f0185">
+      <Item class="ModuleScript" referent="RBXa4b8d5398e5740ef9d6f510e5607d14c">
         <Properties>
           <string name="Name">Config</string>
           <ProtectedString name="Source">-- Balance lives here. No secrets and no client-supplied reward values.
@@ -247,6 +247,7 @@ local C = {
     StoreName = "StrengthSimulator_v1",
     StudioStoreName = "StrengthSimulator_STUDIO_v1",
     StudioOffline = true, -- Studio-only sandbox; production ALWAYS uses DataStore.
+    SpawnPosition = Vector3.new(-16,4,12), -- Temporary spawn point, never a visible platform.
     AutoSaveSeconds = 45, LeaseSeconds = 180, Attempts = 4,
     MaxValue = 1000000000000, MaxLevel = 15, MaxRebirths = 10000,
     TrainCooldown = 0.8, BaseCoins = 8, BasePower = 5,
@@ -324,7 +325,7 @@ return table.freeze(C)
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX0e170b0925444ddab8b6b61bd2f0bd5c">
+      <Item class="ModuleScript" referent="RBX0130b6d55aaa4997b1b00f9aebec8946">
         <Properties>
           <string name="Name">TextStyle</string>
           <ProtectedString name="Source">-- Template rule: floating text must stay legible over bright platforms.
@@ -338,7 +339,7 @@ return TextStyle
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXc556f6776d5e4c9584252c6ed7fe6fae">
+      <Item class="ModuleScript" referent="RBXd5438416a6604dabbba989f2c7113e57">
         <Properties>
           <string name="Name">ModelFactory</string>
           <ProtectedString name="Source">local C=require(script.Parent.Config)
@@ -383,15 +384,15 @@ return Factory
       </Item>
     </Item>
   </Item>
-  <Item class="ServerScriptService" referent="RBX5d973b9805674b8dab6ba0fb194df369">
+  <Item class="ServerScriptService" referent="RBXe2862bb5a65449f8b0b01e27326face2">
     <Properties>
       <string name="Name">ServerScriptService</string>
     </Properties>
-    <Item class="Folder" referent="RBX4833434ae7d647d0b5474ee8a93f8d4e">
+    <Item class="Folder" referent="RBX99770036a8214890bf3162664b7e7967">
       <Properties>
         <string name="Name">Simulator</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBX30f0d964528d46d5a28c335c632a647c">
+      <Item class="ModuleScript" referent="RBX3adcb59a3b97449f89d72d6eb16f1c64">
         <Properties>
           <string name="Name">Schema</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -457,7 +458,7 @@ return Schema
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXe0416b5cd1f14c489524a8ae495dfcb4">
+      <Item class="ModuleScript" referent="RBX1fdcdd40f8a141b69484aed8943fcc5a">
         <Properties>
           <string name="Name">PlayerData</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -565,7 +566,7 @@ return PlayerData
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXc565800dde5644dd9a76b1f4a9be0eab">
+      <Item class="ModuleScript" referent="RBXe8ed5c2ebd6144d883d818c016034606">
         <Properties>
           <string name="Name">Progression</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -591,7 +592,7 @@ return P
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX3eed3e22c3fb45fc91e5076ada400dc8">
+      <Item class="ModuleScript" referent="RBX6f734986af7f44ca8190d85954700848">
         <Properties>
           <string name="Name">Rebirth</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -608,7 +609,7 @@ return R
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX24d64c9b15b541e28eacfce93fef2c1b">
+      <Item class="ModuleScript" referent="RBXac2fd9c91c38404dac9121a26b54128b">
         <Properties>
           <string name="Name">Rewards</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -661,7 +662,7 @@ return Rewards
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXe54e2f30ba9d433b809e85dd562e52f7">
+      <Item class="ModuleScript" referent="RBX52b447b024824804bbefd982421dbb33">
         <Properties>
           <string name="Name">Pets</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -766,7 +767,7 @@ return Pets
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXf5f600a9d5794637aa4c05bf221702d0">
+      <Item class="ModuleScript" referent="RBXa82f8061a0f245029d0ef3b2e39cefa7">
         <Properties>
           <string name="Name">PetVisuals</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -818,7 +819,7 @@ return Visuals
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX0a5e53d910fd48159f8ce7a25e0a1b8e">
+      <Item class="ModuleScript" referent="RBXd917c63aae164bc58800605753b1848c">
         <Properties>
           <string name="Name">Security</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -864,7 +865,7 @@ return S
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX2e9073950b43489c8d41fd7010e18603">
+      <Item class="ModuleScript" referent="RBX9a585f16243f402d99a86325b8ac7761">
         <Properties>
           <string name="Name">LeaderboardTemplate</string>
           <ProtectedString name="Source">-- Visual draft only: each ranking row is a separate solid plaque, no live data.
@@ -949,7 +950,7 @@ return Board
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX56d8238f8626472dbe7041a1fa9c85b9">
+      <Item class="ModuleScript" referent="RBX7a176a9a6c3a4c45ace65357ef412ae4">
         <Properties>
           <string name="Name">World</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -991,9 +992,6 @@ function World.Build()
     part(map,"AdvancedPlaza",Vector3.new(28,0.2,26),Vector3.new(24,0.1,0),Color3.fromRGB(67,49,96))
     -- Join x=4..10 exactly: no overlap with either plaza, and a 0.05 stud step below them.
     part(map,"Path",Vector3.new(6,0.2,7),Vector3.new(7,0.05,0),Color3.fromRGB(100,109,134))
-    local spawn=Instance.new("SpawnLocation"); spawn.Name="SimulatorSpawn"
-    spawn.Size=Vector3.new(6,0.4,6); spawn.Position=Vector3.new(-16,0.4,12)
-    spawn.Anchored=true; spawn.Neutral=true; spawn.Duration=0; spawn.Color=Color3.fromRGB(79,206,183); spawn.Parent=map
     for id, info in pairs(C.Stations) do
         local color=id=="Basic" and Color3.fromRGB(65,220,183) or Color3.fromRGB(160,116,255)
         local pad=part(map,id,Vector3.new(8,1,8),info.Position,color); pad.Material=Enum.Material.Neon
@@ -1038,7 +1036,7 @@ return World
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX15658511930b400c9a9f34c240fa882d">
+      <Item class="ModuleScript" referent="RBXab756f708b074871bbdc1434234fba2e">
         <Properties>
           <string name="Name">Network</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1065,7 +1063,7 @@ return Network
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX14cf0f7dd40d4477b45d4b438a8e7135">
+      <Item class="ModuleScript" referent="RBX3844335b284d41989dc5b1c5e256506c">
         <Properties>
           <string name="Name">Telemetry</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1084,7 +1082,7 @@ return Telemetry
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXaaec4ab42efc42098a04bdd6a537084b">
+      <Item class="ModuleScript" referent="RBXe8ef4ec3b00542b79c4b9518df554b83">
         <Properties>
           <string name="Name">Runtime</string>
           <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -1104,6 +1102,17 @@ local Pets=require(script.Parent.Pets)
 local PetVisuals=require(script.Parent.PetVisuals)
 local Runtime={sessions={},started=false}
 local dataService,remotes,map,mode
+local function loadCharacterAtSpawn(player)
+    local ok=pcall(function() player:LoadCharacterAsync() end)
+    if not ok or player.Parent~=Players then return false end
+    local character=player.Character
+    local root=character and character:WaitForChild("HumanoidRootPart",10)
+    if not root then return false end
+    -- LoadCharacterAsync finalizes the engine spawn transform; move only after it returns.
+    root.AssemblyLinearVelocity=Vector3.zero; root.AssemblyAngularVelocity=Vector3.zero
+    character:PivotTo(CFrame.new(C.SpawnPosition))
+    return true
+end
 local function stats(player,data)
     local folder=player:FindFirstChild("leaderstats")
     if not folder then
@@ -1160,6 +1169,7 @@ function Runtime.Dispatch(player,action,...)
             {RebirthToken=session.confirm.token,NextMultiplier=C.Multiplier({Rebirths=data.Rebirths+1})})
         return true
     end
+    local previousMultiplier=C.Multiplier(data)
     local ok,message,resultId
     if action=="Train" then
         local station=C.Stations[args[1]]
@@ -1194,7 +1204,7 @@ function Runtime.Dispatch(player,action,...)
     publish(player)
     local extra
     if action=="Hatch" or action=="PetCraft" or action=="Rebirth" then
-        extra={Result={Action=action,Id=resultId,Source=args[1],Duration=action=="Rebirth" and 2 or 4,Multiplier=C.Multiplier(data)}}
+        extra={Result={Action=action,Id=resultId,Source=args[1],Duration=action=="Rebirth" and 2 or 4,Multiplier=C.Multiplier(data),PreviousMultiplier=previousMultiplier}}
     end
     notice(player,message,extra)
     if action=="Train" and data.TotalTrainings==1 then Telemetry.Step(player,2,"FirstTraining") end
@@ -1225,7 +1235,6 @@ local function joined(player)
     if not data then player:Kick("Сессия данных истекла. Войди снова."); return end
     if Rewards.Reconcile(data) then dataService:Changed(player.UserId) end
     stats(player,data)
-    player.RespawnLocation=map.SimulatorSpawn
     player.CharacterAdded:Connect(function(char)
         local root=char:WaitForChild("HumanoidRootPart",10)
         local current=dataService:Get(player.UserId)
@@ -1235,14 +1244,14 @@ local function joined(player)
             humanoid.Died:Connect(function()
                 task.delay(3,function()
                     if player.Parent==Players and dataService:Get(player.UserId) then
-                        local loaded=pcall(function() player:LoadCharacterAsync() end)
+                        local loaded=loadCharacterAtSpawn(player)
                         if not loaded then player:Kick("Не удалось загрузить персонажа. Войди снова.") end
                     end
                 end)
             end)
         end
     end)
-    local loaded=pcall(function() player:LoadCharacterAsync() end)
+    local loaded=loadCharacterAtSpawn(player)
     if not loaded then player:Kick("Не удалось загрузить персонажа. Войди снова."); return end
     publish(player); Telemetry.Step(player,1,"Joined")
 end
@@ -1305,18 +1314,18 @@ return Runtime
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Script" referent="RBXcbd0b9b63cfe4b75a15860a985ccef8a">
+      <Item class="Script" referent="RBXa49e5ccf9f8543a5bc8ff6ed1dfc2309">
         <Properties>
           <string name="Name">Bootstrap</string>
           <ProtectedString name="Source">require(script.Parent.Runtime).Start()
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Folder" referent="RBXcd5c7364d17b40c692536b6a8341218a">
+      <Item class="Folder" referent="RBXeaf571e4fa27434681185f9a3c041b11">
         <Properties>
           <string name="Name">Tests</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBX11ff11184aa746d59a3ac40091df0283">
+        <Item class="ModuleScript" referent="RBX60b64f96d1834d3ba5387b99213743ad">
           <Properties>
             <string name="Name">Spec</string>
             <ProtectedString name="Source">-- Server-only deterministic tests. No production DataStore, no real user records.
@@ -1538,7 +1547,7 @@ return Spec
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXd6d037873abb4dbdb58fb85d57259dc7">
+        <Item class="ModuleScript" referent="RBXfe854cc1a5b24daa8d7a87b400776704">
           <Properties>
             <string name="Name">Integration</string>
             <ProtectedString name="Source">-- SERVER Command Bar in a fresh Play. Only runs in Studio sandbox.
@@ -1564,7 +1573,7 @@ task.spawn(function()
         task.wait(1)
     end
     assert(player.leaderstats.LifetimePower.Value==0,"Fresh Play needed")
-    settle(map.SimulatorSpawn)
+    player.Character:PivotTo(CFrame.new(-16,4,12)); task.wait(1)
     local ok,reason=send("Train","Basic")
     assert(not ok and reason=="distance","distance validation")
     settle(map.Basic)
@@ -1607,19 +1616,19 @@ return Integration
       </Item>
     </Item>
   </Item>
-  <Item class="StarterPlayer" referent="RBX9745ee02616b4d4c8dd7f1b382e3e758">
+  <Item class="StarterPlayer" referent="RBX61cf112ead2346e28291f1b8c1cce714">
     <Properties>
       <string name="Name">StarterPlayer</string>
     </Properties>
-    <Item class="StarterPlayerScripts" referent="RBX68b6706f56664ea1bb299a8408fbe86a">
+    <Item class="StarterPlayerScripts" referent="RBXebe0cb970e5841768a8d84073adab376">
       <Properties>
         <string name="Name">StarterPlayerScripts</string>
       </Properties>
-      <Item class="Folder" referent="RBXbf54e60b56d645249afefce7d32010a5">
+      <Item class="Folder" referent="RBX0016afdab4cb49f383a1fe27cccc272f">
         <Properties>
           <string name="Name">SimulatorClient</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBX4389065e7d514e02b98d0a29fd973af8">
+        <Item class="ModuleScript" referent="RBXcd4020b21341461791a31e4769da95c8">
           <Properties>
             <string name="Name">UI</string>
             <ProtectedString name="Source">local UI={}
@@ -1627,6 +1636,7 @@ local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
 local Glass=require(script.Parent.Glass)
 local PetCatalog=require(script.Parent.PetCatalog)
 local Presentation=require(script.Parent.Presentation)
+local Headings=require(script.Parent.Headings)
 local TweenService=game:GetService("TweenService")
 local palette=Glass.Colors
 local dark=Color3.fromRGB(22,30,48)
@@ -1666,47 +1676,51 @@ function UI.Build(player)
     gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling; gui.Parent=player:WaitForChild("PlayerGui")
     local refs={Gui=gui}
     local layout=Instance.new("Frame"); layout.Name="HudLayout"; layout.Size=UDim2.fromScale(1,1)
-    layout.BackgroundTransparency=1; layout.Parent=gui; refs.Layout=layout; gui=layout
+    layout.BackgroundTransparency=1; layout.Parent=gui; refs.Layout=layout
+    local hud=Instance.new("Frame"); hud.Name="HudContent"; hud.BackgroundTransparency=1; hud.Parent=layout
+    local hudScale=Instance.new("UIScale"); hudScale.Name="ResponsiveScale"; hudScale.Parent=hud
+    refs.HudContent=hud; gui=hud
     -- Independent edge anchors keep the world clear. Only opened menus cover the centre.
     local power=frame(gui,UDim2.fromOffset(180,88),UDim2.fromOffset(16,16),nil,palette.Mint); power.Name="PowerCard"
     Glass.Icon(power,"Power",palette.Mint,UDim2.fromOffset(12,14),32)
-    local powerTitle=label(power,UDim2.fromOffset(54,12),UDim2.fromOffset(114,17),"СИЛА",11,palette.Mint)
-    powerTitle.TextXAlignment=Enum.TextXAlignment.Left
+    local powerTitle=label(power,UDim2.fromOffset(54,12),UDim2.fromOffset(114,17),Headings.Text("Power"),14,palette.Mint)
+    powerTitle.TextXAlignment=Enum.TextXAlignment.Left; Headings.Style(powerTitle,palette.Mint)
     refs.Power=label(power,UDim2.fromOffset(54,29),UDim2.fromOffset(114,33),"0",29)
     refs.Power.TextXAlignment=Enum.TextXAlignment.Left
     refs.Power.TextScaled=true
     local powerFont=Instance.new("UITextSizeConstraint"); powerFont.MinTextSize=12; powerFont.MaxTextSize=29; powerFont.Parent=refs.Power
     refs.Level=label(power,UDim2.fromOffset(14,65),UDim2.fromOffset(152,17),"Уровень 0",12,palette.Muted)
     refs.Level.TextXAlignment=Enum.TextXAlignment.Left
-    local coins=frame(gui,UDim2.fromOffset(172,72),UDim2.new(0.5,0,0,16),Vector2.new(0.5,0),palette.Gold); coins.Name="CoinsCard"
-    Glass.Icon(coins,"Coins",palette.Gold,UDim2.fromOffset(12,19),32)
-    local coinTitle=label(coins,UDim2.fromOffset(54,12),UDim2.fromOffset(106,16),"МОНЕТЫ",11,palette.Gold)
-    coinTitle.TextXAlignment=Enum.TextXAlignment.Left
+    local coins=frame(gui,UDim2.fromOffset(164,64),UDim2.new(0.5,0,0,16),Vector2.new(0.5,0),palette.Gold); coins.Name="CoinsCard"
+    Glass.Icon(coins,"Coins",palette.Gold,UDim2.fromOffset(10,16),24)
+    local coinTitle=label(coins,UDim2.fromOffset(54,12),UDim2.fromOffset(106,16),Headings.Text("Coins"),14,palette.Gold)
+    coinTitle.TextXAlignment=Enum.TextXAlignment.Left; Headings.Style(coinTitle,palette.Gold)
     refs.Coins=label(coins,UDim2.fromOffset(54,29),UDim2.fromOffset(106,32),"0",28)
     refs.Coins.TextXAlignment=Enum.TextXAlignment.Left
     refs.Coins.TextScaled=true
     local coinFont=Instance.new("UITextSizeConstraint"); coinFont.MinTextSize=12; coinFont.MaxTextSize=28; coinFont.Parent=refs.Coins
     local multipliers=frame(gui,UDim2.fromOffset(164,64),UDim2.new(1,-12,0,16),Vector2.new(1,0),palette.Mint)
     multipliers.Name="MultiplierCard"
-    local multiplierTitle=label(multipliers,UDim2.fromOffset(10,6),UDim2.new(1,-20,0,14),"ОБЩИЙ МНОЖИТЕЛЬ",10,palette.Muted)
+    local multiplierTitle=label(multipliers,UDim2.fromOffset(10,6),UDim2.new(1,-20,0,14),Headings.Text("Total"),10,palette.Muted)
+    Headings.Style(multiplierTitle,palette.Mint)
     refs.PowerMultiplier=label(multipliers,UDim2.fromOffset(10,24),UDim2.new(1,-20,0,16),"Сила  x1.00",13,palette.Mint)
     refs.CoinMultiplier=label(multipliers,UDim2.fromOffset(10,42),UDim2.new(1,-20,0,16),"Монеты  x1.00",13,palette.Gold)
     local left=Instance.new("Frame"); left.Name="ActionDock"; left.Size=UDim2.fromOffset(152,186)
     left.Position=UDim2.new(0,16,0.5,0); left.AnchorPoint=Vector2.new(0,0.5); left.BackgroundTransparency=1; left.Parent=gui
-    refs.Shop=button(left,UDim2.fromOffset(0,0),UDim2.fromOffset(152,54),"Магазин",palette.Blue)
-    refs.Gifts=button(left,UDim2.fromOffset(0,66),UDim2.fromOffset(152,54),"Награды",palette.Gold)
-    refs.Pets=button(left,UDim2.fromOffset(0,132),UDim2.fromOffset(152,54),"Яйца и питомцы",palette.Mint)
+    refs.Shop=button(left,UDim2.fromOffset(0,0),UDim2.fromOffset(152,54),Headings.Text("Shop"),palette.Blue)
+    refs.Gifts=button(left,UDim2.fromOffset(0,66),UDim2.fromOffset(152,54),Headings.Text("Gifts"),palette.Gold)
+    refs.Pets=button(left,UDim2.fromOffset(0,132),UDim2.fromOffset(152,54),Headings.Text("Pets"),palette.Mint)
     for _,info in {{refs.Shop,"Shop",palette.Blue},{refs.Gifts,"Gifts",palette.Gold},{refs.Pets,"Pets",palette.Mint}} do
         info[1].AnchorPoint=Vector2.new(.5,.5)
         info[1].Position+=UDim2.fromOffset(76,27)
         local caption=info[1].Text; info[1].Text=""
         Glass.Icon(info[1],info[2],info[3]); local captionLabel=label(info[1],UDim2.fromOffset(50,0),UDim2.new(1,-58,0,54),caption,15)
-        captionLabel.Name="Caption"
+        captionLabel.Name="Caption"; captionLabel.Font=Enum.Font.GothamBlack
     end
     refs.Rebirth=button(gui,UDim2.new(1,-16,0.5,0),UDim2.fromOffset(164,88),"",palette.Violet)
     refs.Rebirth.AnchorPoint=Vector2.new(1,0.5)
     Glass.Icon(refs.Rebirth,"Rebirth",palette.Violet,UDim2.fromOffset(12,12),30)
-    label(refs.Rebirth,UDim2.fromOffset(48,13),UDim2.new(1,-56,0,27),"Перерождения",12,palette.Violet)
+    Headings.Style(label(refs.Rebirth,UDim2.fromOffset(48,13),UDim2.new(1,-56,0,27),Headings.Text("Rebirth"),12,palette.Violet),palette.Violet)
     refs.RebirthStats=label(refs.Rebirth,UDim2.fromOffset(12,48),UDim2.new(1,-24,0,27),"0 • x1.00",21)
     local notifyGifts=Glass.Notification(refs.Gifts,"right")
     local notifyRebirth=Glass.Notification(refs.Rebirth,"left")
@@ -1724,17 +1738,21 @@ function UI.Build(player)
     Glass.Style(refs.Notice,palette.Gold,13)
     refs.Notice.GlassTint:Destroy()
     refs.Notice.Visible=false
+    refs.Notice.Parent=layout
+    local noticeScale=Instance.new("UIScale"); noticeScale.Name="ResponsiveScale"; noticeScale.Parent=refs.Notice
     refs.Notice.ZIndex=60 -- Server validation feedback must remain readable above opened menus.
     Glass.Appear(power); Glass.Appear(coins,.06)
-    local shade=frame(gui,UDim2.fromScale(1,1),UDim2.fromScale(0,0))
+    local shade=frame(layout,UDim2.fromScale(1,1),UDim2.fromScale(0,0))
     shade.Name="MenuShade"; shade.BackgroundTransparency=1; shade.Active=true
     for _,child in shade:GetChildren() do child:Destroy() end
     shade.Visible=false; shade.ZIndex=20
     local blur=Instance.new("BlurEffect"); blur.Name="SimulatorMenuBlur"; blur.Size=0; blur.Parent=game:GetService("Lighting")
     local blurTween
-    local function focusMenus(open)
-        if blurTween then blurTween:Cancel() end
-        blurTween=TweenService:Create(blur,TweenInfo.new(.2),{Size=open and 20 or 0}); blurTween:Play()
+    local function focusMenus(open,animateBlur)
+        if animateBlur~=false then
+            if blurTween then blurTween:Cancel() end
+            blurTween=TweenService:Create(blur,TweenInfo.new(.2),{Size=open and 20 or 0}); blurTween:Play()
+        end
         for _,item in {power,coins,multipliers,left,refs.Rebirth} do item.Visible=not open end
         refs.Hint.Visible=false; refs.Notice.Visible=false; refs.Train.Visible=false
     end
@@ -1746,7 +1764,7 @@ function UI.Build(player)
         f.Name=name; f.Visible=false; f.ZIndex=21
         f.BackgroundTransparency=0.08
         local s=Instance.new("UIScale"); s.Parent=f; menuScales[#menuScales+1]={scale=s,height=height,frame=f}
-        label(f,UDim2.fromOffset(20,16),UDim2.new(1,-84,0,34),title,22)
+        Headings.Style(label(f,UDim2.fromOffset(20,16),UDim2.new(1,-84,0,34),Headings.Text(name),22),palette.Mint)
         local close=button(f,UDim2.new(1,-50,0,14),UDim2.fromOffset(36,36),"×",Color3.fromRGB(65,75,95))
         close.Name="Close"; close.Text=""
         close.SpecularRim:Destroy()
@@ -1782,8 +1800,9 @@ function UI.Build(player)
     refs.Catalog=PetCatalog.Build(pets)
     refs.Animation=Presentation.Build(layout)
     function refs.PlayResult(result,onDone)
-        focusMenus(true)
-        refs.Animation.Play(result,function()
+        if refs.Animation.Busy then return false end
+        focusMenus(true,result.Action~="Rebirth")
+        return refs.Animation.Play(result,function()
             focusMenus(refs.ActiveMenu~=nil)
             if onDone then onDone() end
         end)
@@ -1819,59 +1838,26 @@ function UI.Build(player)
     local function resize()
         local camera=workspace.CurrentCamera; if not camera then return end
         local v=refs.Layout.AbsoluteSize; if v.X&lt;1 then v=camera.ViewportSize end
-        local small=v.X&lt;640; local compact=small or v.Y&lt;460
+        -- 980x620 reference canvas reproduces the proportions approved in the screenshot.
+        local scale=math.min(v.X/980,v.Y/620)
+        local logical=Vector2.new(v.X/scale,v.Y/scale)
+        hudScale.Scale=scale; hud.Size=UDim2.fromOffset(logical.X,logical.Y)
+        refs.ResponsiveScale=scale
         local inset=game:GetService("GuiService"):GetGuiInset()
-        local top=inset.Y+12
-        coins.AnchorPoint=Vector2.new(1,0)
-        coins.Position=UDim2.new(1,-12,0,top+(compact and 48 or 64)+10)
-        local statWidth=small and math.min(164,(v.X-36)/2) or 180
+        local top=math.max(72,inset.Y/scale+12)
+        power.Position=UDim2.fromOffset(14,top)
+        coins.AnchorPoint=Vector2.new(1,0); coins.Position=UDim2.new(1,-12,0,top+74)
         multipliers.Position=UDim2.new(1,-12,0,top)
-        multipliers.Size=UDim2.fromOffset(small and statWidth or 164,compact and 48 or 64)
-        multiplierTitle.Position=UDim2.fromOffset(10,compact and 3 or 6)
-        refs.PowerMultiplier.Position=UDim2.fromOffset(10,compact and 17 or 24)
-        refs.CoinMultiplier.Position=UDim2.fromOffset(10,compact and 31 or 42)
-        refs.PowerMultiplier.TextSize=small and 12 or 13; refs.CoinMultiplier.TextSize=small and 12 or 13
-        power.Position=UDim2.fromOffset(12,top)
-        power.Size=UDim2.fromOffset(statWidth,compact and 72 or 88); coins.Size=UDim2.fromOffset(small and statWidth or 164,compact and 40 or 64)
-        refs.Power.Size=UDim2.new(1,-66,0,33); refs.Coins.Size=UDim2.new(1,-66,0,32)
-        powerTitle.Size=UDim2.new(1,-66,0,17); coinTitle.Size=UDim2.new(1,-66,0,16)
-        refs.Level.Size=UDim2.new(1,-28,0,17)
-        refs.Level.Position=UDim2.fromOffset(14,compact and 53 or 65)
-        coinTitle.Position=UDim2.fromOffset(46,compact and 3 or 9)
-        refs.Coins.Position=UDim2.fromOffset(46,compact and 16 or 26); refs.Coins.Size=UDim2.new(1,-58,0,compact and 22 or 32)
-        coins.Icon.Position=UDim2.fromOffset(10,compact and 8 or 16); coins.Icon.Size=UDim2.fromOffset(24,24)
-        local actionWidth=small and 138 or 152
-        local dockHeight=v.Y&lt;460 and 44 or 54
-        local dockGap=v.Y&lt;460 and 6 or 12
-        left.Size=UDim2.fromOffset(actionWidth,3*dockHeight+2*dockGap)
-        for index,b in {refs.Shop,refs.Gifts,refs.Pets} do
-            b.Size=UDim2.fromOffset(actionWidth,dockHeight)
-            b.Position=UDim2.fromOffset(actionWidth/2,(index-1)*(dockHeight+dockGap)+dockHeight/2)
-            b.Caption.Size=UDim2.new(1,-58,0,dockHeight)
-            b.Caption.TextSize=small and 14 or 15
-            b.Icon.Position=UDim2.fromOffset(12,(dockHeight-32)/2)
-        end
-        refs.Rebirth.Size=UDim2.fromOffset(small and 148 or 164,88)
-        local sideY=v.Y&lt;460 and 136 or 152
-        left.Position=UDim2.new(0,12,0,compact and math.max(sideY,top+82) or v.Y*.5); left.AnchorPoint=Vector2.new(0,compact and 0 or .5)
-        refs.Rebirth.Position=UDim2.new(1,-12,0,compact and top+108 or math.max(v.Y*.5,top+182)); refs.Rebirth.AnchorPoint=Vector2.new(1,compact and 0 or .5)
-        if v.Y&lt;460 then refs.Rebirth.Size=UDim2.fromOffset(small and 148 or 164,60); refs.RebirthStats.Position=UDim2.fromOffset(12,33) else refs.RebirthStats.Position=UDim2.fromOffset(12,48) end
-        -- Centre the animated button; half its height preserves the existing bottom inset.
-        refs.Train.Position=UDim2.new(.5,0,1,compact and -65 or -49)
-        refs.Train.Size=UDim2.fromOffset(v.Y&lt;460 and math.max(120,math.min(260,v.X-324)) or math.min(260,v.X-32),54)
-        -- Short landscape screens reserve the side-button lanes for touch input.
-        local width=math.min(420,v.X-32)
-        if v.Y&lt;460 and v.X&gt;=560 then width=math.min(width,v.X-360) end
-        refs.Hint.Size=UDim2.fromOffset(width,34); refs.Hint.Position=UDim2.new(0.5,-width/2,1,compact and -136 or -120)
-        refs.Notice.Size=UDim2.fromOffset(math.min(380,width),38); refs.Notice.Position=UDim2.new(0.5,-math.min(380,width)/2,1,compact and -182 or -166)
+        left.Position=UDim2.new(0,14,.5,0); left.AnchorPoint=Vector2.new(0,.5)
+        refs.Rebirth.Position=UDim2.new(1,-12,.5,0); refs.Rebirth.AnchorPoint=Vector2.new(1,.5)
+        refs.Train.Position=UDim2.new(.5,0,1,-49)
+        refs.Notice.Position=UDim2.new(.5,-190*scale,1,-166*scale); noticeScale.Scale=scale
         for _,entry in menuScales do
+            entry.scale.Scale=scale
             if entry.frame.Name=="Pets" then
-                local width=math.min(920,math.max(240,v.X-24))
-                entry.frame.Size=UDim2.fromOffset(width,math.min(580,math.max(230,v.Y-90)))
-                entry.scale.Scale=math.min(1,(v.Y-90)/entry.frame.Size.Y.Offset)
-                refs.Catalog.Resize(width)
-            else
-                entry.scale.Scale=math.min(1,(v.X-24)/350,(v.Y-90)/entry.height)
+                local width=math.min(920,logical.X-24)
+                entry.frame.Size=UDim2.fromOffset(width,math.min(580,logical.Y-40))
+                refs.Catalog.Resize(width,scale)
             end
         end
     end
@@ -1894,7 +1880,7 @@ return UI
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXd82acc30c5904b378125316315873a75">
+        <Item class="ModuleScript" referent="RBX1299d4dfb3a2409980060b7b1ea3bb25">
           <Properties>
             <string name="Name">Glass</string>
             <ProtectedString name="Source">local TweenService=game:GetService("TweenService")
@@ -2038,12 +2024,56 @@ return Glass
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXd945fdb232924f7f87ed423896879362">
+        <Item class="ModuleScript" referent="RBX93e435bcb3664060a3c14cea5e797951">
+          <Properties>
+            <string name="Name">Headings</string>
+            <ProtectedString name="Source">local Localization=game:GetService("LocalizationService")
+local H={}
+local labels={
+    Power={"СИЛА","POWER"}, Coins={"МОНЕТЫ","COINS"}, Total={"ОБЩИЙ МНОЖИТЕЛЬ","TOTAL MULTIPLIER"},
+    Shop={"Магазин","Shop"}, Gifts={"Награды","Rewards"}, Pets={"Яйца и питомцы","Eggs &amp; Pets"},
+    Rebirth={"Перерождение","Rebirth"}, Confirm={"ПОДТВЕРЖДЕНИЕ","CONFIRMATION"},
+    Eggs={"Выбор яйца","Egg selection"}, Inventory={"Питомцы","Pets"}, Paid={"Донатные предметы","Paid items"},
+    Cat={"Кот","Cat"}, Dog={"Пёс","Dog"}, Bunny={"Кролик","Bunny"},
+    Meadow={"Луговое яйцо","Meadow egg"}, Crystal={"Кристальное яйцо","Crystal egg"},
+    Upgraded={"Улучшенный","Upgraded"},
+    HatchOpening={"Яйцо открывается…","Hatching…"}, Crafting={"Совмещаем питомцев…","Combining pets…"},
+    Hatched={"Новый питомец!","New pet!"}, Crafted={"Питомец улучшен!","Pet upgraded!"},
+}
+function H.Language(locale)
+    local detected=Localization.SystemLocaleId
+    if detected=="" then detected=Localization.RobloxLocaleId end
+    return tostring(locale or detected):lower():sub(1,2)=="ru" and "ru" or "en"
+end
+function H.Text(key,locale)
+    local pair=labels[key]; return pair and pair[H.Language(locale)=="ru" and 1 or 2] or key
+end
+function H.Item(id,locale)
+    local base=id:gsub("_Upgraded$","")
+    return H.Text(base,locale)..(base~=id and " · "..H.Text("Upgraded",locale) or "")
+end
+function H.Style(label,color,size)
+    label:SetAttribute("HeadingStyle","GlassAccent")
+    label.Font=Enum.Font.GothamBlack; label.TextSize=size or label.TextSize
+    label.TextColor3=Color3.fromRGB(239,248,255)
+    local line=Instance.new("Frame"); line.Name="HeadingAccent"; line.AnchorPoint=Vector2.new(.5,1)
+    line.Position=UDim2.new(.5,0,1,2); line.Size=UDim2.fromOffset(42,2)
+    line.BackgroundColor3=color or Color3.fromRGB(104,239,202); line.BackgroundTransparency=.2
+    line.BorderSizePixel=0; line.Parent=label
+    local corner=Instance.new("UICorner"); corner.CornerRadius=UDim.new(1,0); corner.Parent=line
+    return label
+end
+return H
+</ProtectedString>
+          </Properties>
+        </Item>
+        <Item class="ModuleScript" referent="RBX840b33cf2f0a4db895d361b524037b86">
           <Properties>
             <string name="Name">PetCatalog</string>
             <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
 local Factory=require(game.ReplicatedStorage.SimulatorShared.ModelFactory)
 local Glass=require(script.Parent.Glass)
+local Headings=require(script.Parent.Headings)
 local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
 local Tween=game:GetService("TweenService")
 local Input=game:GetService("UserInputService")
@@ -2093,19 +2123,33 @@ function Catalog.Build(parent)
     local refs={EggCards={},PetCards={},PetButtons={},EggButtons={},PetRemoveButtons={},EditButtons={}}
     local panes,tabs,grids={},{},{}
     local state,width,selected={},parent.Size.X.Offset,nil
+    local responsiveScale,transition=1,0
+    local slideTweens={}
     local selectedCopies={}; local callbacks={}
     local inspector=Instance.new("Frame"); inspector.Name="Inspector"; inspector.AnchorPoint=Vector2.new(.5,.5)
     inspector.Visible=false; inspector.Parent=parent.Parent; inspector.ZIndex=22; Glass.Style(inspector,Glass.Colors.Violet)
     refs.Inspector=inspector
+    local inspectorScale=Instance.new("UIScale"); inspectorScale.Name="ResponsiveScale"; inspectorScale.Parent=inspector
     local title=text(inspector,UDim2.fromOffset(14,12),UDim2.new(1,-64,0,40),"",17,Glass.Colors.Mint)
-    local back=button(inspector,UDim2.new(1,-28,0,30),UDim2.fromOffset(34,34),"←")
+    Headings.Style(title,Glass.Colors.Mint)
+    local back=button(inspector,UDim2.new(1,-28,0,30),UDim2.fromOffset(36,36),"")
+    back.Name="Back"; back.SpecularRim:Destroy()
+    local glyph=Instance.new("Frame"); glyph.Name="BackGlyph"; glyph.BackgroundTransparency=1
+    glyph.AnchorPoint=Vector2.new(.5,.5); glyph.Position=UDim2.fromScale(.5,.5); glyph.Size=UDim2.fromScale(.75,.75); glyph.Parent=back
+    for _,info in {{1,.5,.5,0},{.6,.22,.28,-45},{.6,.22,.72,45}} do
+        local line=Instance.new("Frame"); line.AnchorPoint=Vector2.new(.5,.5)
+        line.Size=UDim2.new(info[1],0,0,3.5); line.Position=UDim2.fromScale(info[2],info[3]); line.Rotation=info[4]
+        line.BackgroundColor3=Glass.Colors.Text; line.BorderSizePixel=0; line.Parent=glyph
+        local corner=Instance.new("UICorner"); corner.CornerRadius=UDim.new(1,0); corner.Parent=line
+    end
+    refs.Back=back
     local description=text(inspector,UDim2.fromOffset(14,240),UDim2.new(1,-28,0,120),"",13)
     local primary=button(inspector,UDim2.new(.5,0,1,-80),UDim2.new(1,-28,0,42),"Экипировать")
     local combine=button(inspector,UDim2.new(.5,0,1,-30),UDim2.new(1,-28,0,42),"Совместить")
     refs.DetailPrimary=primary; refs.DetailCombine=combine; refs.DetailDescription=description
     refs.PetSummary=text(parent,UDim2.fromOffset(20,58),UDim2.new(1,-40,0,28),"Загрузка…",12)
     for i,info in {{"Eggs","Выбор яйца"},{"Inventory","Питомцы"},{"Paid","Донатные предметы"}} do
-        local name=info[1]; tabs[name]=button(parent,UDim2.fromOffset(70+(i-1)*105,109),UDim2.fromOffset(100,38),info[2])
+        local name=info[1]; tabs[name]=button(parent,UDim2.fromOffset(70+(i-1)*105,109),UDim2.fromOffset(100,38),Headings.Text(name))
         local pane=Instance.new("Frame"); pane.Name=name; pane.BackgroundTransparency=1
         pane.Position=UDim2.fromOffset(20,138); pane.Size=UDim2.new(1,-40,1,-152); pane.Parent=parent; panes[name]=pane
     end
@@ -2143,20 +2187,24 @@ function Catalog.Build(parent)
     end
     refs.ConfirmCraft=craft
     refs.SelectedCopiesCount=selectedCount
-    local function layout(animated)
+    local function layout(animated,closing)
+        for _,t in slideTweens do t:Cancel() end; slideTweens={}
         local split=selected~=nil; local mobile=width&lt;700
         local mainWidth=split and not mobile and math.floor((width-12)*.65) or width
         local detailWidth=math.max(240,width-mainWidth-12); if mobile then detailWidth=width end
         local h=parent.Size.Y.Offset
-        local mainPos=split and not mobile and UDim2.new(.5,-(detailWidth+12)/2,.5,0) or UDim2.fromScale(.5,.5)
-        local detailPos=mobile and UDim2.fromScale(.5,.5) or UDim2.new(.5,(mainWidth+12)/2,.5,0)
+        local mainPos=split and not mobile and UDim2.new(.5,-(detailWidth+12)*responsiveScale/2,.5,0) or UDim2.fromScale(.5,.5)
+        local detailPos=mobile and UDim2.fromScale(.5,.5) or UDim2.new(.5,(mainWidth+12)*responsiveScale/2,.5,0)
         if animated then
-            Tween:Create(parent,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Size=UDim2.fromOffset(mainWidth,h),Position=mainPos}):Play()
-            inspector.Position=detailPos+UDim2.fromOffset(28,0)
-            Tween:Create(inspector,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Position=detailPos}):Play()
+            local mainTween=Tween:Create(parent,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Size=UDim2.fromOffset(mainWidth,h),Position=mainPos})
+            local target
+            if closing then target=inspector.Position+UDim2.fromOffset(28*responsiveScale,0)
+            else inspector.Position=detailPos+UDim2.fromOffset(28*responsiveScale,0); target=detailPos end
+            local sideTween=Tween:Create(inspector,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Position=target})
+            slideTweens={mainTween,sideTween}; mainTween:Play(); sideTween:Play()
         else parent.Size=UDim2.fromOffset(mainWidth,h); parent.Position=mainPos; inspector.Position=detailPos end
-        inspector.Size=UDim2.fromOffset(detailWidth,h)
-        inspector.Visible=split and (not mobile or refs.CraftId==nil)
+        if not closing then inspector.Size=UDim2.fromOffset(detailWidth,h) end
+        if not closing then inspector.Visible=split and (not mobile or refs.CraftId==nil) end
         if split and mobile and refs.CraftId==nil then
             refs.HiddenByInspector=true; parent.Visible=false
         elseif refs.HiddenByInspector then refs.HiddenByInspector=nil; parent.Visible=true end
@@ -2171,13 +2219,21 @@ function Catalog.Build(parent)
         description.Position=UDim2.fromOffset(14,64+viewHeight); description.Size=UDim2.new(1,-28,0,math.max(30,h-viewHeight-182))
     end
     local refresh
-    function refs.Resize(newWidth) width=newWidth; layout(false) end
+    function refs.Resize(newWidth,scale) width=newWidth; responsiveScale=scale or 1; inspectorScale.Scale=responsiveScale; layout(false) end
     function refs.Reset()
+        transition+=1
         selected=nil; refs.CraftId=nil; selectedCopies={}; inspector.Visible=false
         layout(false)
     end
+    function refs.Return()
+        transition+=1; local version=transition
+        selected=nil; refs.CraftId=nil; selectedCopies={}
+        layout(true,true)
+        task.delay(.2,function() if transition==version and selected==nil then inspector.Visible=false end end)
+        if refresh then refresh() end
+    end
     function refs.Select(name)
-        refs.Reset()
+        if selected then refs.Return() else refs.Reset() end
         for key,pane in pairs(panes) do pane.Visible=key==name; tabs[key].GlassEdge.Transparency=key==name and .1 or .65 end
         refs.Selected=name
     end
@@ -2185,7 +2241,7 @@ function Catalog.Build(parent)
     local function detail()
         if not selected then return end
         local info=(selected.Egg and C.Eggs or C.PetTypes)[selected.Id]
-        title.Text=info.Name
+        title.Text=Headings.Item(selected.Id)
         local unlocked=not selected.Egg or (state.Level or 0)&gt;=info.MinLevel
         description.Text=not unlocked and "Недоступно: уровень "..info.MinLevel or
             (info.Rarity.."\n"..(selected.Egg and info.Cost.." монет" or ("Сила и монеты x%.2f"):format(1+info.Bonus)).."\n"..info.Description)
@@ -2198,6 +2254,7 @@ function Catalog.Build(parent)
         end
     end
     function refs.Inspect(id,isEgg)
+        transition+=1
         selected={Id=id,Egg=isEgg}; refs.CraftId=nil; selectedCopies={}
         local old=inspector:FindFirstChild("Picture"); if old then old:Destroy() end
         refs.DetailView=Catalog.View(inspector,id,isEgg,true)
@@ -2215,7 +2272,7 @@ function Catalog.Build(parent)
         if selectedCopies[key] then selectedCopies[key]=nil elseif selectedCount()&lt;3 then selectedCopies[key]=true else return false end
         refresh(); return true
     end
-    back.Activated:Connect(function() refs.Reset(); layout(true); refresh() end)
+    back.Activated:Connect(refs.Return)
     primary.Activated:Connect(function()
         if not selected or not primary.Active then return end
         if selected.Egg then emit("Hatch",selected.Id)
@@ -2233,7 +2290,7 @@ function Catalog.Build(parent)
     for index,id in C.EggOrder do
         local info=C.Eggs[id]; local f=card(refs.EggList,index)
         local view=Catalog.View(f,id,true); view.Position=UDim2.fromOffset(6,4); view.Size=UDim2.new(1,-12,0,52)
-        text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),info.Name,13,Glass.Colors.Mint)
+        text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),Headings.Item(id),13,Glass.Colors.Mint)
         local rarity=text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,18),info.Rarity,11,Glass.Colors.Gold)
         local locked=text(f,UDim2.fromOffset(6,109),UDim2.new(1,-12,0,24),info.Cost.." монет",12)
         local open=button(f,UDim2.new(.5,0,0,159),UDim2.new(1,-16,0,36),"Открыть")
@@ -2271,7 +2328,7 @@ function Catalog.Build(parent)
                         index+=1; local key=id..":"..copy; local f=card(refs.PetList,index)
                         f:SetAttribute("PetId",id); f:SetAttribute("Copy",copy)
                         local view=Catalog.View(f,id,false); view.Position=UDim2.fromOffset(6,4); view.Size=UDim2.new(1,-12,0,52)
-                        text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),info.Name,13,Glass.Colors.Mint)
+                        text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),Headings.Item(id),13,Glass.Colors.Mint)
                         text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,16),info.Rarity,11,Glass.Colors.Gold)
                         text(f,UDim2.fromOffset(6,106),UDim2.new(1,-12,0,18),("x%.2f"):format(1+info.Bonus),13)
                         local eq=copy&lt;=(equipped[id] or 0)
@@ -2314,7 +2371,7 @@ return Catalog
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX017175236cba4729b1e160d1e608b63e">
+        <Item class="ModuleScript" referent="RBX28683849d0c14564b5b1762bf262341e">
           <Properties>
             <string name="Name">Presentation</string>
             <ProtectedString name="Source">local Tween=game:GetService("TweenService")
@@ -2322,6 +2379,7 @@ local Run=game:GetService("RunService")
 local Catalog=require(script.Parent.PetCatalog)
 local C=require(game.ReplicatedStorage.SimulatorShared.Config)
 local Glass=require(script.Parent.Glass)
+local Headings=require(script.Parent.Headings)
 local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
 local Presentation={}
 function Presentation.Build(parent)
@@ -2331,16 +2389,51 @@ function Presentation.Build(parent)
     overlay.ZIndex=80; overlay.Active=true; overlay.Parent=parent
     local title=Instance.new("TextLabel"); title.Size=UDim2.new(1,-32,0,60); title.Position=UDim2.new(0,16,.15,0)
     title.TextColor3=Glass.Colors.Gold; title.TextSize=24; title.Font=Enum.Font.GothamBold; title.TextWrapped=true
-    title.BackgroundTransparency=1; title.Parent=overlay; TextStyle.Apply(title)
+    title.BackgroundTransparency=1; title.Parent=overlay; TextStyle.Apply(title); Headings.Style(title,Glass.Colors.Gold)
     local caption=title:Clone(); caption.Position=UDim2.new(0,16,.78,0); caption.TextSize=19; caption.Parent=overlay
+    local hero=Instance.new("TextLabel"); hero.Name="RebirthMultiplier"; hero.AnchorPoint=Vector2.new(.5,.5)
+    hero.Size=UDim2.fromScale(.75,.25); hero.Position=UDim2.fromScale(.5,.5); hero.BackgroundTransparency=1
+    hero.Font=Enum.Font.GothamBlack; hero.TextScaled=true; hero.TextColor3=Glass.Colors.Violet; hero.Visible=false; hero.Parent=overlay; TextStyle.Apply(hero)
+    local heroLimit=Instance.new("UITextSizeConstraint"); heroLimit.MinTextSize=18; heroLimit.MaxTextSize=120; heroLimit.Parent=hero
+    local heroScale=Instance.new("UIScale"); heroScale.Name="ZoomScale"; heroScale.Parent=hero
     local function clear() local old=overlay:FindFirstChild("Picture"); if old then old:Destroy() end end
     function api.Play(result,onDone)
         if api.Busy then return false end
         api.Busy=true; overlay.Visible=true; clear()
         local action,id=result.Action,result.Id
         local duration=action=="Rebirth" and 2 or 4
-        title.Text=action=="Hatch" and "Яйцо открывается…" or action=="PetCraft" and "Совмещаем питомцев…" or "Перерождение"
+        title.Text=Headings.Text(action=="Hatch" and "HatchOpening" or action=="PetCraft" and "Crafting" or "Rebirth")
         caption.Text=""
+        if action=="Rebirth" then
+            title.Visible=false; caption.Visible=false; overlay.BackgroundTransparency=1
+            hero.Visible=true; hero.Text=("x%.2f"):format(result.PreviousMultiplier or 1)
+            hero.TextColor3=Glass.Colors.Violet; hero.TextTransparency=1
+            hero.Position=UDim2.new(.5,0,.5,30); heroScale.Scale=.2
+            local blur=Instance.new("BlurEffect"); blur.Name="SimulatorRebirthBlur"; blur.Size=0; blur.Parent=game:GetService("Lighting")
+            task.spawn(function()
+                api.Phase="Approach"
+                Tween:Create(heroScale,TweenInfo.new(.25,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Scale=1}):Play()
+                Tween:Create(hero,TweenInfo.new(.25),{TextTransparency=0,Position=UDim2.fromScale(.5,.5)}):Play()
+                Tween:Create(blur,TweenInfo.new(.25),{Size=20}):Play(); task.wait(.25)
+                api.Phase="Old"; task.wait(.2)
+                if not overlay.Parent then blur:Destroy(); return end
+                api.Phase="Change"
+                local old=hero:Clone(); old.Name="PreviousMultiplier"; old.Parent=overlay
+                hero.Text=("x%.2f"):format(result.Multiplier or 1); hero.TextColor3=Glass.Colors.Gold; hero.TextTransparency=1
+                Tween:Create(old,TweenInfo.new(.1),{TextTransparency=1}):Play()
+                Tween:Create(hero,TweenInfo.new(.1),{TextTransparency=0,TextColor3=Glass.Colors.Violet}):Play()
+                task.wait(.1); old:Destroy()
+                api.Phase="New"; task.wait(1.15)
+                api.Phase="Exit"
+                Tween:Create(heroScale,TweenInfo.new(.3,Enum.EasingStyle.Quart,Enum.EasingDirection.In),{Scale=.2}):Play()
+                Tween:Create(hero,TweenInfo.new(.3),{TextTransparency=1,Position=UDim2.new(.5,0,.5,-30)}):Play()
+                Tween:Create(blur,TweenInfo.new(.3),{Size=0}):Play(); task.wait(.3)
+                blur:Destroy(); hero.Visible=false; overlay.Visible=false; title.Visible=true; caption.Visible=true
+                overlay.BackgroundTransparency=.15; api.Busy=false; api.Phase="Done"
+                if onDone then onDone() end
+            end)
+            return true
+        end
         local view,model
         local models={}
         if action~="Rebirth" then
@@ -2371,7 +2464,7 @@ function Presentation.Build(parent)
                     view,model=Catalog.View(overlay,id,false,false)
                     view.Position=UDim2.fromScale(.2,.26); view.Size=UDim2.fromScale(.6,.48)
                     local info=C.PetTypes[id]
-                    title.Text=action=="Hatch" and "Новый питомец!" or "Питомец улучшен!"
+                    title.Text=Headings.Text(action=="Hatch" and "Hatched" or "Crafted")
                     caption.Text=("%s\n%s · x%.2f"):format(info.Name,info.Rarity,1+info.Bonus)
                     local scale=Instance.new("UIScale"); scale.Scale=.65; scale.Parent=view
                     view.AnchorPoint=Vector2.new(.5,.5); view.Position=UDim2.fromScale(.5,.5)
@@ -2391,7 +2484,7 @@ return Presentation
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBX5e2cb605f6624f1fbcabd7d019f86baa">
+        <Item class="LocalScript" referent="RBXba9b0f06980645a193e2cb5657948130">
           <Properties>
             <string name="Name">Controller</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -2545,7 +2638,7 @@ end)
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBXeebafba926314b11969eb546d2acb9d2">
+        <Item class="LocalScript" referent="RBX420055e6270343ee8a3b253fa1360d56">
           <Properties>
             <string name="Name">WorldSigns</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -2622,7 +2715,7 @@ end
       </Item>
     </Item>
   </Item>
-  <Item class="StarterGui" referent="RBXa563102ae8a04724aeadf3a7d391780e">
+  <Item class="StarterGui" referent="RBXcdfeadf270a24c50bdb7a7d9a1dd7555">
     <Properties>
       <string name="Name">StarterGui</string>
     </Properties>

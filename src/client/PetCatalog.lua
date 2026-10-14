@@ -1,6 +1,7 @@
 local C=require(game.ReplicatedStorage.SimulatorShared.Config)
 local Factory=require(game.ReplicatedStorage.SimulatorShared.ModelFactory)
 local Glass=require(script.Parent.Glass)
+local Headings=require(script.Parent.Headings)
 local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
 local Tween=game:GetService("TweenService")
 local Input=game:GetService("UserInputService")
@@ -50,19 +51,33 @@ function Catalog.Build(parent)
     local refs={EggCards={},PetCards={},PetButtons={},EggButtons={},PetRemoveButtons={},EditButtons={}}
     local panes,tabs,grids={},{},{}
     local state,width,selected={},parent.Size.X.Offset,nil
+    local responsiveScale,transition=1,0
+    local slideTweens={}
     local selectedCopies={}; local callbacks={}
     local inspector=Instance.new("Frame"); inspector.Name="Inspector"; inspector.AnchorPoint=Vector2.new(.5,.5)
     inspector.Visible=false; inspector.Parent=parent.Parent; inspector.ZIndex=22; Glass.Style(inspector,Glass.Colors.Violet)
     refs.Inspector=inspector
+    local inspectorScale=Instance.new("UIScale"); inspectorScale.Name="ResponsiveScale"; inspectorScale.Parent=inspector
     local title=text(inspector,UDim2.fromOffset(14,12),UDim2.new(1,-64,0,40),"",17,Glass.Colors.Mint)
-    local back=button(inspector,UDim2.new(1,-28,0,30),UDim2.fromOffset(34,34),"←")
+    Headings.Style(title,Glass.Colors.Mint)
+    local back=button(inspector,UDim2.new(1,-28,0,30),UDim2.fromOffset(36,36),"")
+    back.Name="Back"; back.SpecularRim:Destroy()
+    local glyph=Instance.new("Frame"); glyph.Name="BackGlyph"; glyph.BackgroundTransparency=1
+    glyph.AnchorPoint=Vector2.new(.5,.5); glyph.Position=UDim2.fromScale(.5,.5); glyph.Size=UDim2.fromScale(.75,.75); glyph.Parent=back
+    for _,info in {{1,.5,.5,0},{.6,.22,.28,-45},{.6,.22,.72,45}} do
+        local line=Instance.new("Frame"); line.AnchorPoint=Vector2.new(.5,.5)
+        line.Size=UDim2.new(info[1],0,0,3.5); line.Position=UDim2.fromScale(info[2],info[3]); line.Rotation=info[4]
+        line.BackgroundColor3=Glass.Colors.Text; line.BorderSizePixel=0; line.Parent=glyph
+        local corner=Instance.new("UICorner"); corner.CornerRadius=UDim.new(1,0); corner.Parent=line
+    end
+    refs.Back=back
     local description=text(inspector,UDim2.fromOffset(14,240),UDim2.new(1,-28,0,120),"",13)
     local primary=button(inspector,UDim2.new(.5,0,1,-80),UDim2.new(1,-28,0,42),"Экипировать")
     local combine=button(inspector,UDim2.new(.5,0,1,-30),UDim2.new(1,-28,0,42),"Совместить")
     refs.DetailPrimary=primary; refs.DetailCombine=combine; refs.DetailDescription=description
     refs.PetSummary=text(parent,UDim2.fromOffset(20,58),UDim2.new(1,-40,0,28),"Загрузка…",12)
     for i,info in {{"Eggs","Выбор яйца"},{"Inventory","Питомцы"},{"Paid","Донатные предметы"}} do
-        local name=info[1]; tabs[name]=button(parent,UDim2.fromOffset(70+(i-1)*105,109),UDim2.fromOffset(100,38),info[2])
+        local name=info[1]; tabs[name]=button(parent,UDim2.fromOffset(70+(i-1)*105,109),UDim2.fromOffset(100,38),Headings.Text(name))
         local pane=Instance.new("Frame"); pane.Name=name; pane.BackgroundTransparency=1
         pane.Position=UDim2.fromOffset(20,138); pane.Size=UDim2.new(1,-40,1,-152); pane.Parent=parent; panes[name]=pane
     end
@@ -100,20 +115,24 @@ function Catalog.Build(parent)
     end
     refs.ConfirmCraft=craft
     refs.SelectedCopiesCount=selectedCount
-    local function layout(animated)
+    local function layout(animated,closing)
+        for _,t in slideTweens do t:Cancel() end; slideTweens={}
         local split=selected~=nil; local mobile=width<700
         local mainWidth=split and not mobile and math.floor((width-12)*.65) or width
         local detailWidth=math.max(240,width-mainWidth-12); if mobile then detailWidth=width end
         local h=parent.Size.Y.Offset
-        local mainPos=split and not mobile and UDim2.new(.5,-(detailWidth+12)/2,.5,0) or UDim2.fromScale(.5,.5)
-        local detailPos=mobile and UDim2.fromScale(.5,.5) or UDim2.new(.5,(mainWidth+12)/2,.5,0)
+        local mainPos=split and not mobile and UDim2.new(.5,-(detailWidth+12)*responsiveScale/2,.5,0) or UDim2.fromScale(.5,.5)
+        local detailPos=mobile and UDim2.fromScale(.5,.5) or UDim2.new(.5,(mainWidth+12)*responsiveScale/2,.5,0)
         if animated then
-            Tween:Create(parent,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Size=UDim2.fromOffset(mainWidth,h),Position=mainPos}):Play()
-            inspector.Position=detailPos+UDim2.fromOffset(28,0)
-            Tween:Create(inspector,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Position=detailPos}):Play()
+            local mainTween=Tween:Create(parent,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Size=UDim2.fromOffset(mainWidth,h),Position=mainPos})
+            local target
+            if closing then target=inspector.Position+UDim2.fromOffset(28*responsiveScale,0)
+            else inspector.Position=detailPos+UDim2.fromOffset(28*responsiveScale,0); target=detailPos end
+            local sideTween=Tween:Create(inspector,TweenInfo.new(.2,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Position=target})
+            slideTweens={mainTween,sideTween}; mainTween:Play(); sideTween:Play()
         else parent.Size=UDim2.fromOffset(mainWidth,h); parent.Position=mainPos; inspector.Position=detailPos end
-        inspector.Size=UDim2.fromOffset(detailWidth,h)
-        inspector.Visible=split and (not mobile or refs.CraftId==nil)
+        if not closing then inspector.Size=UDim2.fromOffset(detailWidth,h) end
+        if not closing then inspector.Visible=split and (not mobile or refs.CraftId==nil) end
         if split and mobile and refs.CraftId==nil then
             refs.HiddenByInspector=true; parent.Visible=false
         elseif refs.HiddenByInspector then refs.HiddenByInspector=nil; parent.Visible=true end
@@ -128,13 +147,21 @@ function Catalog.Build(parent)
         description.Position=UDim2.fromOffset(14,64+viewHeight); description.Size=UDim2.new(1,-28,0,math.max(30,h-viewHeight-182))
     end
     local refresh
-    function refs.Resize(newWidth) width=newWidth; layout(false) end
+    function refs.Resize(newWidth,scale) width=newWidth; responsiveScale=scale or 1; inspectorScale.Scale=responsiveScale; layout(false) end
     function refs.Reset()
+        transition+=1
         selected=nil; refs.CraftId=nil; selectedCopies={}; inspector.Visible=false
         layout(false)
     end
+    function refs.Return()
+        transition+=1; local version=transition
+        selected=nil; refs.CraftId=nil; selectedCopies={}
+        layout(true,true)
+        task.delay(.2,function() if transition==version and selected==nil then inspector.Visible=false end end)
+        if refresh then refresh() end
+    end
     function refs.Select(name)
-        refs.Reset()
+        if selected then refs.Return() else refs.Reset() end
         for key,pane in pairs(panes) do pane.Visible=key==name; tabs[key].GlassEdge.Transparency=key==name and .1 or .65 end
         refs.Selected=name
     end
@@ -142,7 +169,7 @@ function Catalog.Build(parent)
     local function detail()
         if not selected then return end
         local info=(selected.Egg and C.Eggs or C.PetTypes)[selected.Id]
-        title.Text=info.Name
+        title.Text=Headings.Item(selected.Id)
         local unlocked=not selected.Egg or (state.Level or 0)>=info.MinLevel
         description.Text=not unlocked and "Недоступно: уровень "..info.MinLevel or
             (info.Rarity.."\n"..(selected.Egg and info.Cost.." монет" or ("Сила и монеты x%.2f"):format(1+info.Bonus)).."\n"..info.Description)
@@ -155,6 +182,7 @@ function Catalog.Build(parent)
         end
     end
     function refs.Inspect(id,isEgg)
+        transition+=1
         selected={Id=id,Egg=isEgg}; refs.CraftId=nil; selectedCopies={}
         local old=inspector:FindFirstChild("Picture"); if old then old:Destroy() end
         refs.DetailView=Catalog.View(inspector,id,isEgg,true)
@@ -172,7 +200,7 @@ function Catalog.Build(parent)
         if selectedCopies[key] then selectedCopies[key]=nil elseif selectedCount()<3 then selectedCopies[key]=true else return false end
         refresh(); return true
     end
-    back.Activated:Connect(function() refs.Reset(); layout(true); refresh() end)
+    back.Activated:Connect(refs.Return)
     primary.Activated:Connect(function()
         if not selected or not primary.Active then return end
         if selected.Egg then emit("Hatch",selected.Id)
@@ -190,7 +218,7 @@ function Catalog.Build(parent)
     for index,id in C.EggOrder do
         local info=C.Eggs[id]; local f=card(refs.EggList,index)
         local view=Catalog.View(f,id,true); view.Position=UDim2.fromOffset(6,4); view.Size=UDim2.new(1,-12,0,52)
-        text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),info.Name,13,Glass.Colors.Mint)
+        text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),Headings.Item(id),13,Glass.Colors.Mint)
         local rarity=text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,18),info.Rarity,11,Glass.Colors.Gold)
         local locked=text(f,UDim2.fromOffset(6,109),UDim2.new(1,-12,0,24),info.Cost.." монет",12)
         local open=button(f,UDim2.new(.5,0,0,159),UDim2.new(1,-16,0,36),"Открыть")
@@ -228,7 +256,7 @@ function Catalog.Build(parent)
                         index+=1; local key=id..":"..copy; local f=card(refs.PetList,index)
                         f:SetAttribute("PetId",id); f:SetAttribute("Copy",copy)
                         local view=Catalog.View(f,id,false); view.Position=UDim2.fromOffset(6,4); view.Size=UDim2.new(1,-12,0,52)
-                        text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),info.Name,13,Glass.Colors.Mint)
+                        text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),Headings.Item(id),13,Glass.Colors.Mint)
                         text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,16),info.Rarity,11,Glass.Colors.Gold)
                         text(f,UDim2.fromOffset(6,106),UDim2.new(1,-12,0,18),("x%.2f"):format(1+info.Bonus),13)
                         local eq=copy<=(equipped[id] or 0)

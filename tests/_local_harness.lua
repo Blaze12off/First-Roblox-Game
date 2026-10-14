@@ -16,6 +16,7 @@ local C = {
     StoreName = "StrengthSimulator_v1",
     StudioStoreName = "StrengthSimulator_STUDIO_v1",
     StudioOffline = true, -- Studio-only sandbox; production ALWAYS uses DataStore.
+    SpawnPosition = Vector3.new(-16,4,12), -- Temporary spawn point, never a visible platform.
     AutoSaveSeconds = 45, LeaseSeconds = 180, Attempts = 4,
     MaxValue = 1000000000000, MaxLevel = 15, MaxRebirths = 10000,
     TrainCooldown = 0.8, BaseCoins = 8, BasePower = 5,

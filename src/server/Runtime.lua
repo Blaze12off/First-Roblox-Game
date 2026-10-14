@@ -15,6 +15,17 @@ local Pets=require(script.Parent.Pets)
 local PetVisuals=require(script.Parent.PetVisuals)
 local Runtime={sessions={},started=false}
 local dataService,remotes,map,mode
+local function loadCharacterAtSpawn(player)
+    local ok=pcall(function() player:LoadCharacterAsync() end)
+    if not ok or player.Parent~=Players then return false end
+    local character=player.Character
+    local root=character and character:WaitForChild("HumanoidRootPart",10)
+    if not root then return false end
+    -- LoadCharacterAsync finalizes the engine spawn transform; move only after it returns.
+    root.AssemblyLinearVelocity=Vector3.zero; root.AssemblyAngularVelocity=Vector3.zero
+    character:PivotTo(CFrame.new(C.SpawnPosition))
+    return true
+end
 local function stats(player,data)
     local folder=player:FindFirstChild("leaderstats")
     if not folder then
@@ -71,6 +82,7 @@ function Runtime.Dispatch(player,action,...)
             {RebirthToken=session.confirm.token,NextMultiplier=C.Multiplier({Rebirths=data.Rebirths+1})})
         return true
     end
+    local previousMultiplier=C.Multiplier(data)
     local ok,message,resultId
     if action=="Train" then
         local station=C.Stations[args[1]]
@@ -105,7 +117,7 @@ function Runtime.Dispatch(player,action,...)
     publish(player)
     local extra
     if action=="Hatch" or action=="PetCraft" or action=="Rebirth" then
-        extra={Result={Action=action,Id=resultId,Source=args[1],Duration=action=="Rebirth" and 2 or 4,Multiplier=C.Multiplier(data)}}
+        extra={Result={Action=action,Id=resultId,Source=args[1],Duration=action=="Rebirth" and 2 or 4,Multiplier=C.Multiplier(data),PreviousMultiplier=previousMultiplier}}
     end
     notice(player,message,extra)
     if action=="Train" and data.TotalTrainings==1 then Telemetry.Step(player,2,"FirstTraining") end
@@ -136,7 +148,6 @@ local function joined(player)
     if not data then player:Kick("Сессия данных истекла. Войди снова."); return end
     if Rewards.Reconcile(data) then dataService:Changed(player.UserId) end
     stats(player,data)
-    player.RespawnLocation=map.SimulatorSpawn
     player.CharacterAdded:Connect(function(char)
         local root=char:WaitForChild("HumanoidRootPart",10)
         local current=dataService:Get(player.UserId)
@@ -146,14 +157,14 @@ local function joined(player)
             humanoid.Died:Connect(function()
                 task.delay(3,function()
                     if player.Parent==Players and dataService:Get(player.UserId) then
-                        local loaded=pcall(function() player:LoadCharacterAsync() end)
+                        local loaded=loadCharacterAtSpawn(player)
                         if not loaded then player:Kick("Не удалось загрузить персонажа. Войди снова.") end
                     end
                 end)
             end)
         end
     end)
-    local loaded=pcall(function() player:LoadCharacterAsync() end)
+    local loaded=loadCharacterAtSpawn(player)
     if not loaded then player:Kick("Не удалось загрузить персонажа. Войди снова."); return end
     publish(player); Telemetry.Step(player,1,"Joined")
 end
