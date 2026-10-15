@@ -1,3 +1,4 @@
+local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local C=require(game.ReplicatedStorage.SimulatorShared.Config)
 local Factory=require(game.ReplicatedStorage.SimulatorShared.ModelFactory)
 local Glass=require(script.Parent.Glass)
@@ -237,10 +238,10 @@ function Catalog.Build(parent)
         local info=(selected.Egg and C.Eggs or C.PetTypes)[selected.Id]
         title.Text=Headings.Item(selected.Id)
         local unlocked=not selected.Egg or (state.Level or 0)>=info.MinLevel
-        description.Text=not unlocked and "Недоступно: уровень "..info.MinLevel or
-            (rarity(info,selected.Egg).."\n"..(selected.Egg and info.Cost.." монет" or ("Сила и монеты x%.2f"):format(1+info.Bonus)).."\n"..info.Description)
+        description.Text=not unlocked and "Недоступно: уровень "..number(info.MinLevel) or
+            (rarity(info,selected.Egg).."\n"..(selected.Egg and number(info.Cost).." монет" or ("Сила и монеты x%.2f"):format(1+info.Bonus)).."\n"..info.Description)
         description.TextColor3=rarityColor(info)
-        if selected.Egg then primary.Text="Открыть · "..info.Cost.." монет"; primary.Active=unlocked; combine.Visible=false
+        if selected.Egg then primary.Text="Открыть · "..number(info.Cost).." монет"; primary.Active=unlocked; combine.Visible=false
         else
             local owned=(state.Pets or {})[selected.Id] or 0; local eq=(state.EquippedPets or {})[selected.Id] or 0
             primary.Text=eq>0 and "Снять" or "Экипировать"; primary.Active=owned>0
@@ -287,7 +288,7 @@ function Catalog.Build(parent)
         local view=Catalog.View(f,id,true); view.Position=UDim2.fromOffset(6,4); view.Size=UDim2.new(1,-12,0,52)
         text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),Headings.Item(id),13,Glass.Colors.Mint)
         local rarity=text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,18),info.Rarity,11,rarityColor(info))
-        local locked=text(f,UDim2.fromOffset(6,109),UDim2.new(1,-12,0,24),info.Cost.." монет",12)
+        local locked=text(f,UDim2.fromOffset(6,109),UDim2.new(1,-12,0,24),number(info.Cost).." монет",12)
         local open=button(f,UDim2.new(.5,0,0,159),UDim2.new(1,-16,0,36),"Открыть")
         local edit=button(f,UDim2.new(.5,0,0,198),UDim2.new(1,-16,0,32),"Редактировать")
         open.Activated:Connect(function() if open.Active then emit("Hatch",id) end end)
@@ -299,12 +300,12 @@ function Catalog.Build(parent)
     refresh=function()
         local owned,equipped,totalEq=state.Pets or {},state.EquippedPets or {},0
         local total=0; for _,amount in pairs(owned) do total+=amount end; for _,amount in pairs(equipped) do totalEq+=amount end
-        refs.PetSummary.Text=("Получено %d/%d · экипировано %d/3 · x%.2f"):format(total,C.MaxPets,totalEq,state.PetMultiplier or 1)
+        refs.PetSummary.Text=("Получено %s/%s · экипировано %s/3 · x%.2f"):format(number(total),number(C.MaxPets),number(totalEq),state.PetMultiplier or 1)
         refs.EquipBest.Text=refs.CraftId and ("Совместить · выбрано %d/3"):format(selectedCount()) or "Экипировать лучшее"
         for id,item in pairs(refs.EggCards) do
             local unlocked=(state.Level or 0)>=C.Eggs[id].MinLevel
             item.Button.Active=unlocked; item.Button.Text=unlocked and "Открыть" or "Недоступно"
-            item.Locked.Text=unlocked and C.Eggs[id].Cost.." монет" or "Недоступно · уровень "..C.Eggs[id].MinLevel
+            item.Locked.Text=unlocked and number(C.Eggs[id].Cost).." монет" or "Недоступно · уровень "..number(C.Eggs[id].MinLevel)
         end
         -- Rebuild only when counts/equipment/craft selections change; preserve scroll on state ticks.
         local parts={refs.CraftId or ""}

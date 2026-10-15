@@ -2,6 +2,7 @@ local Players=game:GetService("Players")
 local player=Players.LocalPlayer
 local C=require(game.ReplicatedStorage:WaitForChild("SimulatorShared"):WaitForChild("Config"))
 local UI=require(script.Parent.UI)
+local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local refs=UI.Build(player)
 -- The edge HUD renders the training hint; keep the prompt's E/gamepad input without duplicate default UI.
 local function styleTrainingPrompt(obj)
@@ -35,20 +36,20 @@ local function cooldownText(last,seconds,title,now)
     local remaining=last==0 and 0 or math.max(0,last+seconds-now)
     if remaining==0 then return title.." • забрать" end
     local hours=math.floor(remaining/3600); local minutes=math.floor(remaining%3600/60)
-    return ("%s • %dч %dм"):format(title,hours,minutes)
+    return ("%s • %sч %sм"):format(title,number(hours),number(minutes))
 end
 local function render()
     if not state then return end
     renderMultipliers()
-    refs.Power.Text=tostring(state.Power)
-    refs.Coins.Text=tostring(state.Coins)
+    refs.Power.Text=number(state.Power)
+    refs.Coins.Text=number(state.Coins)
     refs.Catalog.Update(state)
-    refs.Level.Text="Уровень "..state.Level
-    refs.RebirthStats.Text=("%d • x%.2f"):format(state.Rebirths,state.Multiplier)
-    refs.Bonus.Text=("Постоянный бонус: x%.2f  •  Рекорд: %d"):format(state.Multiplier,state.LifetimePower)
-    refs.Goal.Text=("До Rebirth: %d / %d силы\n%d / %d монет"):format(state.Power,state.RequiredPower,state.Coins,state.RequiredCoins)
+    refs.Level.Text="Уровень "..number(state.Level)
+    refs.RebirthStats.Text=("%s • x%.2f"):format(number(state.Rebirths),state.Multiplier)
+    refs.Bonus.Text=("Постоянный бонус: x%.2f  •  Рекорд: %s"):format(state.Multiplier,number(state.LifetimePower))
+    refs.Goal.Text=("До Rebirth: %s / %s силы\n%s / %s монет"):format(number(state.Power),number(state.RequiredPower),number(state.Coins),number(state.RequiredCoins))
     refs.Progress(math.min(1,state.Power/state.RequiredPower,state.Coins/state.RequiredCoins))
-    refs.Upgrade.Text=state.UpgradeCost>0 and ("Улучшение: "..state.UpgradeCost.." монет") or "Уровень тренировки: максимум"
+    refs.Upgrade.Text=state.UpgradeCost>0 and ("Улучшение: "..number(state.UpgradeCost).." монет") or "Уровень тренировки: максимум"
     local now=os.time()+(serverOffset or 0)
     local rewardsReady=state.TotalTrainings>=C.RewardMinTrainings
     local dailyReady=rewardsReady and (state.LastDaily==0 or now>=state.LastDaily+C.DailySeconds)

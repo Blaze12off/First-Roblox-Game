@@ -6,9 +6,39 @@ for _,name in {"Schema","PlayerData","Progression","Rebirth","Rewards","Security
 local Vector3={new=function(x,y,z) return {X=x,Y=y,Z=z} end,zero={X=0,Y=0,Z=0}}
 local nextGuid=0
 local Http={GenerateGUID=function() nextGuid+=1; return "test-guid-"..nextGuid end}
-local game={ReplicatedStorage={SimulatorShared={Config="Config"}},ServerScriptService={Simulator=root}}
+local game={ReplicatedStorage={SimulatorShared={Config="Config",NumberFormat="NumberFormat"}},ServerScriptService={Simulator=root}}
 function game:GetService(name) assert(name=="HttpService","unexpected engine service"); return Http end
 local task={wait=function() error("Unexpected real task.wait in unit tests") end}
+moduleFactories["NumberFormat"] = function()
+local require=getModule; local script={Parent=root}
+-- Display only: economy, validation and saved values always use the original numbers.
+local N={}
+local suffixes={"K","M","B","T","Qa","Qi","Sx","Sp","Oc","No","Dc"}
+local function digits(value)
+    return (string.format("%.2f",value):gsub("0+$",""):gsub("%.$",""))
+end
+function N.Compact(value)
+    if type(value)~="number" or value~=value or math.abs(value)==math.huge then return "—" end
+    local sign=value<0 and "-" or ""
+    local n=math.abs(value)
+    if n<1000 then
+        local rounded=math.floor(n*100+.5)/100
+        if rounded<1000 then return (rounded==0 and "" or sign)..digits(rounded) end
+    end
+    local tier,scaled=0,n
+    while scaled>=1000 do scaled/=1000; tier+=1 end
+    scaled=math.floor(scaled*100+.5)/100
+    if scaled>=1000 then scaled/=1000; tier+=1 end
+    if suffixes[tier] then return sign..digits(scaled)..suffixes[tier] end
+    local exponent=math.floor(math.log10(n))
+    local mantissa=n/10^exponent
+    mantissa=math.floor(mantissa*100+.5)/100
+    if mantissa>=10 then mantissa/=10; exponent+=1 end
+    return sign..digits(mantissa).."E+"..exponent
+end
+return N
+
+end
 moduleFactories["Config"] = function()
 local require=getModule; local script={Parent=root}
 -- Balance lives here. No secrets and no client-supplied reward values.
@@ -268,6 +298,7 @@ end
 moduleFactories["Progression"] = function()
 local require=getModule; local script={Parent=root}
 local C = require(game.ReplicatedStorage.SimulatorShared.Config)
+local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local P = {}
 function P.Train(data, stationId)
     local station = C.Stations[stationId]
@@ -277,14 +308,14 @@ function P.Train(data, stationId)
     data.Coins = math.min(C.MaxValue, data.Coins+coins)
     data.LifetimePower = math.min(C.MaxValue, data.LifetimePower+power)
     data.TotalTrainings = math.min(C.MaxValue, data.TotalTrainings+1)
-    return true, ("+%d силы, +%d монет"):format(power, coins)
+    return true, ("+%s силы, +%s монет"):format(number(power),number(coins))
 end
 function P.Upgrade(data)
     if data.Level >= C.MaxLevel then return false, "Максимальный уровень тренировки." end
     local cost=C.UpgradeCost(data.Level)
     if data.Coins < cost then return false, "Не хватает монет на улучшение." end
     data.Coins-=cost; data.Level+=1
-    return true, "Тренировка усилена! Уровень "..data.Level
+    return true, "Тренировка усилена! Уровень "..number(data.Level)
 end
 return P
 
@@ -307,6 +338,7 @@ end
 moduleFactories["Rewards"] = function()
 local require=getModule; local script={Parent=root}
 local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local Rewards={}
 function Rewards.Reconcile(data)
     local changed=false
@@ -325,7 +357,7 @@ function Rewards.Claim(data, kind, now)
     local _, perTraining=C.Gains(data, 1)
     local reward=perTraining*count
     data[key]=now; data.Coins=math.min(C.MaxValue, data.Coins+reward)
-    return true, ("Награда: +%d монет"):format(reward)
+    return true, ("Награда: +%s монет"):format(number(reward))
 end
 function Rewards.Equip(data, cosmetic)
     if cosmetic~="" and not data.Cosmetics[cosmetic] then return false, "Косметика ещё не открыта." end
@@ -403,6 +435,7 @@ return S
 end
 moduleFactories["Pets"] = function()
 local require=getModule; local script={Parent=root}
+local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local C = require(game.ReplicatedStorage.SimulatorShared.Config)
 local Pets = {}
 function Pets.Count(data)
@@ -419,7 +452,7 @@ end
 function Pets.Hatch(data, eggId, roll)
     local egg = C.Eggs[eggId]
     if not egg then return false, "Неизвестное яйцо." end
-    if data.Level < egg.MinLevel then return false, "Яйцо недоступно: нужен уровень "..egg.MinLevel.."." end
+    if data.Level < egg.MinLevel then return false, "Яйцо недоступно: нужен уровень "..number(egg.MinLevel).."." end
     if Pets.Count(data) >= C.MaxPets then return false, "Инвентарь питомцев заполнен (50)." end
     if data.Coins < egg.Cost then return false, "Не хватает монет на яйцо." end
     local value = roll and roll() or math.random()

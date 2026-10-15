@@ -18,13 +18,13 @@ for _,name in {"Schema","PlayerData","Progression","Rebirth","Rewards","Security
 local Vector3={new=function(x,y,z) return {X=x,Y=y,Z=z} end,zero={X=0,Y=0,Z=0}}
 local nextGuid=0
 local Http={GenerateGUID=function() nextGuid+=1; return "test-guid-"..nextGuid end}
-local game={ReplicatedStorage={SimulatorShared={Config="Config"}},ServerScriptService={Simulator=root}}
+local game={ReplicatedStorage={SimulatorShared={Config="Config",NumberFormat="NumberFormat"}},ServerScriptService={Simulator=root}}
 function game:GetService(name) assert(name=="HttpService","unexpected engine service"); return Http end
 local task={wait=function() error("Unexpected real task.wait in unit tests") end}
 '@
 $builder=New-Object System.Text.StringBuilder
 $null=$builder.AppendLine($header)
-$sources=[ordered]@{Config='src\shared\Config.lua';Schema='src\server\Schema.lua';PlayerData='src\server\PlayerData.lua';Progression='src\server\Progression.lua';Rebirth='src\server\Rebirth.lua';Rewards='src\server\Rewards.lua';Security='src\server\Security.lua';Pets='src\server\Pets.lua';Spec='tests\Spec.lua'}
+$sources=[ordered]@{NumberFormat='src\shared\NumberFormat.lua';Config='src\shared\Config.lua';Schema='src\server\Schema.lua';PlayerData='src\server\PlayerData.lua';Progression='src\server\Progression.lua';Rebirth='src\server\Rebirth.lua';Rewards='src\server\Rewards.lua';Security='src\server\Security.lua';Pets='src\server\Pets.lua';Spec='tests\Spec.lua'}
 foreach($name in $sources.Keys){
     $null=$builder.AppendLine(('moduleFactories["'+$name+'"] = function()'))
     $null=$builder.AppendLine('local require=getModule; local script={Parent=root}')
@@ -44,3 +44,5 @@ $harness=Join-Path $PSScriptRoot '_local_harness.lua'
 [System.IO.File]::WriteAllText($harness,$builder.ToString(),(New-Object System.Text.UTF8Encoding($false)))
 & $runtime $harness
 if($LASTEXITCODE -ne 0){throw 'Unit suite failed'}
+& $runtime (Join-Path $PSScriptRoot 'NumberFormat.spec.lua')
+if($LASTEXITCODE -ne 0){throw 'Number formatting suite failed'}

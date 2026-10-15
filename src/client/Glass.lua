@@ -1,4 +1,5 @@
 local TweenService=game:GetService("TweenService")
+local compactNumber=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local Glass={}
 Glass.Colors={Base=Color3.fromRGB(24,37,59),Text=Color3.fromRGB(242,248,255),Muted=Color3.fromRGB(171,193,217),
     Mint=Color3.fromRGB(104,239,202),Gold=Color3.fromRGB(255,212,119),Blue=Color3.fromRGB(114,198,255),Violet=Color3.fromRGB(199,167,255)}
@@ -117,7 +118,7 @@ function Glass.Notification(button,side)
         count=math.max(0,math.floor(count))
         if count==previous then return end
         previous=count; button:SetAttribute("NotificationCount",count)
-        number.Text=count>99 and "99+" or tostring(count); badge.Visible=count>0
+        number.Text=compactNumber(count); badge.Visible=count>0
         if surfaceTween then surfaceTween:Cancel() end
         if edgeTween then edgeTween:Cancel() end
         surfaceTween=TweenService:Create(button,TweenInfo.new(.2),{

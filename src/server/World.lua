@@ -1,3 +1,4 @@
+local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local C=require(game.ReplicatedStorage.SimulatorShared.Config)
 local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
 local LeaderboardTemplate=require(script.Parent.LeaderboardTemplate)
@@ -60,11 +61,11 @@ function World.Build()
         local egg=ModelFactory.Build(id,true); egg.Name=id.."Shell"; egg.Parent=map
         egg:PivotTo(CFrame.new(info.Position+Vector3.new(0,2.6,0)))
         local prompt=Instance.new("ProximityPrompt"); prompt.Name="EggPrompt"
-        prompt.ActionText="Яйца и питомцы"; prompt.ObjectText=info.Name.." • "..info.Cost.." монет"
+        prompt.ActionText="Яйца и питомцы"; prompt.ObjectText=info.Name.." • "..number(info.Cost).." монет"
         prompt.KeyboardKeyCode=Enum.KeyCode.E; prompt.MaxActivationDistance=C.EggDistance
         prompt.Exclusivity=Enum.ProximityPromptExclusivity.OneGlobally
         prompt.RequiresLineOfSight=false; prompt.Parent=stand
-        sign(map,id.."EggSign",info.Position+Vector3.new(0,6,0),info.Name.."\n"..info.Cost.." монет • нажми E",color)
+        sign(map,id.."EggSign",info.Position+Vector3.new(0,6,0),info.Name.."\n"..number(info.Cost).." монет • нажми E",color)
     end
     sign(map,"Milestone",Vector3.new(24,7,-13),"НАГРАДЫ ЗА ПРОГРЕСС\n1 Rebirth: аура • 10 Rebirth: неоновый след",Color3.fromRGB(120,223,255))
     for _, z in {-37,37} do

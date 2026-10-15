@@ -1,3 +1,4 @@
+local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local C = require(game.ReplicatedStorage.SimulatorShared.Config)
 local Pets = {}
 function Pets.Count(data)
@@ -14,7 +15,7 @@ end
 function Pets.Hatch(data, eggId, roll)
     local egg = C.Eggs[eggId]
     if not egg then return false, "Неизвестное яйцо." end
-    if data.Level < egg.MinLevel then return false, "Яйцо недоступно: нужен уровень "..egg.MinLevel.."." end
+    if data.Level < egg.MinLevel then return false, "Яйцо недоступно: нужен уровень "..number(egg.MinLevel).."." end
     if Pets.Count(data) >= C.MaxPets then return false, "Инвентарь питомцев заполнен (50)." end
     if data.Coins < egg.Cost then return false, "Не хватает монет на яйцо." end
     local value = roll and roll() or math.random()

@@ -1,4 +1,5 @@
 local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local Rewards={}
 function Rewards.Reconcile(data)
     local changed=false
@@ -17,7 +18,7 @@ function Rewards.Claim(data, kind, now)
     local _, perTraining=C.Gains(data, 1)
     local reward=perTraining*count
     data[key]=now; data.Coins=math.min(C.MaxValue, data.Coins+reward)
-    return true, ("Награда: +%d монет"):format(reward)
+    return true, ("Награда: +%s монет"):format(number(reward))
 end
 function Rewards.Equip(data, cosmetic)
     if cosmetic~="" and not data.Cosmetics[cosmetic] then return false, "Косметика ещё не открыта." end
