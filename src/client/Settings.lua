@@ -100,10 +100,17 @@ function S.Build(refs,menu)
     local top=button(refs.Layout,"Настройки",UDim2.fromOffset(226,34),UDim2.fromOffset(104,36)); top.Name="SettingsButton"; top.ZIndex=70; api.Button=top
     local function positionTop()
         local width=refs.Layout.AbsoluteSize.X
-        local compact=width<800
-        top.Position=UDim2.fromOffset(math.min(compact and 226 or 268,width-60),compact and 34 or 44)
+        local inset=game:GetService("GuiService").TopbarInset
+        -- Follow Roblox's occupied top bar, including changes to chat/device layout.
+        local x=inset.Min.X+8+top.Size.X.Offset/2
+        -- Compact Roblox controls sit at y=34 inside the 58px available strip.
+        local y=inset.Min.Y+math.max(34,inset.Height/2)
+        if inset.Height<=0 then x=width<800 and 222 or 252; y=width<800 and 34 or 44 end
+        top.Position=UDim2.fromOffset(math.min(x,width-60),y)
     end
     refs.Layout:GetPropertyChangedSignal("AbsoluteSize"):Connect(positionTop); positionTop()
+    local topbarChanged=game:GetService("GuiService"):GetPropertyChangedSignal("TopbarInset"):Connect(positionTop)
+    refs.Gui.Destroying:Connect(function() topbarChanged:Disconnect() end)
     top.Activated:Connect(function() if refs.ActiveMenu=="Settings" then refs.Close() else refs.Open("Settings") end end)
     local red,green=Color3.fromRGB(239,83,104),Color3.fromRGB(91,222,169)
     local function toggle(parent,key,caption,y,get,set)
