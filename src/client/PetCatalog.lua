@@ -31,9 +31,12 @@ function Catalog.View(parent,id,isEgg,interactive)
     local world=Instance.new("WorldModel"); world.Parent=view
     local model=Factory.Build(id,isEgg); model.Parent=world
     local camera=Instance.new("Camera"); camera.FieldOfView=40; camera.Parent=view; view.CurrentCamera=camera
+    local bounds,size=model:GetBoundingBox()
+    local target=bounds.Position
+    local distance=math.max(4.2,math.max(size.X,size.Y,size.Z)*.65/math.tan(math.rad(camera.FieldOfView/2)))
     local yaw,pitch=0,.15
     local function rotate()
-        camera.CFrame=CFrame.lookAt(Vector3.new(math.sin(yaw)*6,1+pitch*4,-math.cos(yaw)*6),Vector3.new(0,.2,0))
+        camera.CFrame=CFrame.lookAt(target+Vector3.new(math.sin(yaw)*distance,.7+pitch*3,-math.cos(yaw)*distance),target)
     end
     rotate()
     if interactive then
@@ -129,14 +132,10 @@ function Catalog.Build(parent)
         end
     end
     for _,grid in grids do grid:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(phoneLists) end
-    local function card(scroll,index,placeholder)
-        local f=Instance.new("Frame"); f.Name=placeholder and "Placeholder"..index or "Card"..index
+    local function card(scroll,index)
+        local f=Instance.new("Frame"); f.Name="Card"..index
         f.LayoutOrder=index; f.Parent=scroll; Glass.Style(f,Glass.Colors.Mint,12)
-        if placeholder then f:SetAttribute("Placeholder",true); f.BackgroundTransparency=.55 end
         return f
-    end
-    local function placeholders(scroll)
-        for i=1,15 do card(scroll,1000+i,true) end
     end
     local function emit(action,id,copies) if callbacks.Action then callbacks.Action(action,id,copies) end end
     local function selectedCount() local count=0; for _ in pairs(selectedCopies) do count+=1 end; return count end
@@ -295,7 +294,6 @@ function Catalog.Build(parent)
         edit.Activated:Connect(function() refs.Inspect(id,true) end)
         refs.EggButtons[id]=open; refs.EggCards[id]={Button=open,Locked=locked,Rarity=rarity}; refs.EditButtons[id]=edit
     end
-    placeholders(refs.EggList); placeholders(refs.PaidList)
     local signature
     refresh=function()
         local owned,equipped,totalEq=state.Pets or {},state.EquippedPets or {},0
@@ -349,7 +347,6 @@ function Catalog.Build(parent)
                     end
                 end
             end
-            placeholders(refs.PetList)
         end
         detail()
     end

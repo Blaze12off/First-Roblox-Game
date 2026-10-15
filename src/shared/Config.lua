@@ -29,15 +29,21 @@ local C = {
     PetTypes = {
         Cat = {Name = "Кот", Bonus = 0.10, Rarity="Обычная", Description="Верный спутник для первых тренировок.", Color = {255, 182, 103}},
         Dog = {Name = "Пёс", Bonus = 0.20, Rarity="Редкая", Description="Помогает быстрее набирать силу и монеты.", Color = {111, 190, 255}},
-        Bunny = {Name = "Кролик", Bonus = 0.35, Rarity="Эпическая", Description="Самый сильный спутник из тестовых яиц.", Color = {211, 151, 255}},
+        Bunny = {Name = "Кролик", Bonus = 0.35, Rarity="Эпическая", Description="Лунный кролик с длинными ушами и пушистым хвостом.", Color = {211, 151, 255}},
+        Fox = {Name="Звёздный лис", Bonus=.60, Rarity="Мифическая", Description="Маленький хранитель созвездий с белой манишкой и двумя звёздными хвостами.", Color={245,123,164}},
+        Phoenix = {Name="Солнечный феникс", Bonus=1.00, Rarity="Легендарная", Description="Золотая птица с огненными крыльями и тройным хвостом.", Color={255,176,65}},
+        Axolotl = {Name="Аксолотль Бездны", Bonus=1.75, Rarity="Секретная", Description="Тёмный водный спутник со светящимися бирюзовыми жабрами.", Color={61,61,114}},
+        Dragon = {Name="Небесный дракон", Bonus=3.00, Rarity="Божественная", Description="Жемчужный дракон с золотыми рогами, крыльями и небесным ореолом.", Color={225,239,255}},
     },
-    PetOrder = {"Cat", "Dog", "Bunny"},
-    EggOrder = {"Meadow", "Crystal"},
+    PetOrder = {"Cat", "Dog", "Bunny", "Fox", "Phoenix", "Axolotl", "Dragon"},
+    EggOrder = {"Meadow", "Crystal", "Celestial"},
     Eggs = {
         Meadow = {Name = "Луговое яйцо", Description = "Первое яйцо для твоей команды. Кот 60% • Пёс 30% • Кролик 10%.", MinLevel = 0, Cost = 80, Position = Vector3.new(-31, 0.8, -8),
             Color = {112, 228, 180}, Weights = {Cat = 60, Dog = 30, Bunny = 10}},
         Crystal = {Name = "Кристальное яйцо", Description = "Больше шансов на редкого питомца. Кот 20% • Пёс 45% • Кролик 35%.", MinLevel = 0, Cost = 240, Position = Vector3.new(-31, 0.8, 3),
             Color = {180, 143, 255}, Weights = {Cat = 20, Dog = 45, Bunny = 35}},
+        Celestial = {Name="Небесное яйцо", Description="Звёздный лис 55% • Солнечный феникс 30% • Аксолотль Бездны 12% • Небесный дракон 3%.", MinLevel=0, Cost=2500, Position=Vector3.new(-31,.8,-19),
+            Color={216,232,255}, Weights={Fox=55,Phoenix=30,Axolotl=12,Dragon=3}},
     },
     Stations = {
         Basic = {Position = Vector3.new(-16, 1, 0), MinLevel = 0, Multiplier = 1},
@@ -53,6 +59,7 @@ for _,id in C.PetOrder do
     table.insert(C.InventoryOrder,id.."_Upgraded")
 end
 C.Eggs.Meadow.Rarity="Обычная"; C.Eggs.Crystal.Rarity="Редкая"
+C.Eggs.Celestial.Rarity="Божественная"
 function C.Multiplier(data)
     return 1 + math.min(data.Rebirths, C.RebirthBonusCap) * C.RebirthBonus
 end

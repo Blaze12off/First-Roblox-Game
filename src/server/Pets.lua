@@ -23,13 +23,16 @@ function Pets.Hatch(data, eggId, roll)
         return false, "Не удалось открыть яйцо. Монеты не списаны."
     end
     local total = 0
-    for _, id in C.PetOrder do total += egg.Weights[id] end
+    for _, id in C.PetOrder do total += egg.Weights[id] or 0 end
+    if total<=0 then return false,"В этом яйце пока нет питомцев. Монеты не списаны." end
     local threshold, selected = 0, nil
     for _, id in C.PetOrder do
-        threshold += egg.Weights[id] / total
+        local weight=egg.Weights[id] or 0
+        if weight<=0 then continue end
+        selected=id -- Last eligible drop also handles floating-point rounding at the upper boundary.
+        threshold += weight / total
         if value < threshold then selected = id; break end
     end
-    selected = selected or C.PetOrder[#C.PetOrder]
     data.Coins -= egg.Cost
     data.Pets[selected] = (data.Pets[selected] or 0) + 1
     if Pets.EquippedCount(data) < C.PetEquipSlots then

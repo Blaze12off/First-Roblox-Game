@@ -61,9 +61,7 @@ $null=Add-Part $preview 'AdvancedPlaza' @(28,0.2,26) @(24,0.1,0) @(67,49,96)
 $null=Add-Part $preview 'Path' @(6,0.2,7) @(7,0.05,0) @(100,109,134)
 $null=Add-Part $preview 'Basic' @(8,1,8) @(-16,1,0) @(65,220,183)
 $null=Add-Part $preview 'Advanced' @(8,1,8) @(24,1,0) @(160,116,255)
-$spawn=Add-Part $preview 'SimulatorSpawn' @(6,0.4,6) @(-16,0.4,12) @(79,206,183) 'SpawnLocation'
-Add-Property $spawn 'bool' 'Neutral' 'true'
-Add-Property $spawn 'float' 'Duration' '0'
+# No visible spawn platform, including the editor preview. Runtime relocates to Config.SpawnPosition.
 $null = Add-Item $root 'Players' 'Players'
 $lighting = Add-Item $root 'Lighting' 'Lighting'
 Add-Property $lighting 'float' 'ClockTime' '14'

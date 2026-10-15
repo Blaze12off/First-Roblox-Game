@@ -12,6 +12,37 @@ local Spec={}
 function Spec.Run()
     local count=0
     local function check(value,message) assert(value,message); count+=1 end
+    local obtainable={}
+    for _,eggId in C.EggOrder do
+        local egg=C.Eggs[eggId]; local total=0
+        for id,weight in egg.Weights do
+            check(C.PetTypes[id] and not C.PetTypes[id].Upgraded and weight>0,"valid base egg drop "..id)
+            total+=weight
+        end
+        check(total==100,"published egg odds sum to 100 "..eggId)
+        local threshold=0
+        for _,id in C.PetOrder do
+            local weight=egg.Weights[id] or 0
+            if weight>0 then
+                local sample=Schema.New(); sample.Coins=egg.Cost
+                local ok,_,drop=Pets.Hatch(sample,eggId,function() return (threshold+weight/2)/total end)
+                check(ok and drop==id and sample.Coins==0 and sample.Pets[id]==1,"paid midpoint drop "..eggId..id)
+                check(Schema.Validate(sample)~=nil,"new drop profile validates "..id)
+                obtainable[C.PetTypes[id].Rarity]=true
+                threshold+=weight
+            end
+        end
+        local sample=Schema.New(); sample.Coins=egg.Cost
+        local ok,_,drop=Pets.Hatch(sample,eggId,function() return 1-1e-12 end)
+        check(ok and (egg.Weights[drop] or 0)>0,"upper endpoint never selects a zero-weight pet")
+    end
+    for _,rarity in C.Rarities do check(obtainable[rarity],"each rarity obtainable "..rarity) end
+    for _,id in C.PetOrder do
+        local sample=Schema.New(); sample.Pets={[id]=3}; sample.EquippedPets={[id]=3}
+        check(Pets.Craft(sample,id,{1,2,3}),"craft each species "..id)
+        check(math.abs(C.PetMultiplier(sample)-(1+C.PetTypes[id].Bonus)*4)<1e-9,"fourfold coefficient "..id)
+        check(Schema.Validate(sample)~=nil and Pets.EquipBest(sample),"new crafted species survives validation and best equip")
+    end
     local best=Schema.New()
     check(not Pets.EquipBest(best),"empty best selection rejected")
     best.Pets={Cat=5,Dog=2,Bunny=2}; best.EquippedPets={Cat=3}

@@ -72,15 +72,21 @@ local C = {
     PetTypes = {
         Cat = {Name = "Кот", Bonus = 0.10, Rarity="Обычная", Description="Верный спутник для первых тренировок.", Color = {255, 182, 103}},
         Dog = {Name = "Пёс", Bonus = 0.20, Rarity="Редкая", Description="Помогает быстрее набирать силу и монеты.", Color = {111, 190, 255}},
-        Bunny = {Name = "Кролик", Bonus = 0.35, Rarity="Эпическая", Description="Самый сильный спутник из тестовых яиц.", Color = {211, 151, 255}},
+        Bunny = {Name = "Кролик", Bonus = 0.35, Rarity="Эпическая", Description="Лунный кролик с длинными ушами и пушистым хвостом.", Color = {211, 151, 255}},
+        Fox = {Name="Звёздный лис", Bonus=.60, Rarity="Мифическая", Description="Маленький хранитель созвездий с белой манишкой и двумя звёздными хвостами.", Color={245,123,164}},
+        Phoenix = {Name="Солнечный феникс", Bonus=1.00, Rarity="Легендарная", Description="Золотая птица с огненными крыльями и тройным хвостом.", Color={255,176,65}},
+        Axolotl = {Name="Аксолотль Бездны", Bonus=1.75, Rarity="Секретная", Description="Тёмный водный спутник со светящимися бирюзовыми жабрами.", Color={61,61,114}},
+        Dragon = {Name="Небесный дракон", Bonus=3.00, Rarity="Божественная", Description="Жемчужный дракон с золотыми рогами, крыльями и небесным ореолом.", Color={225,239,255}},
     },
-    PetOrder = {"Cat", "Dog", "Bunny"},
-    EggOrder = {"Meadow", "Crystal"},
+    PetOrder = {"Cat", "Dog", "Bunny", "Fox", "Phoenix", "Axolotl", "Dragon"},
+    EggOrder = {"Meadow", "Crystal", "Celestial"},
     Eggs = {
         Meadow = {Name = "Луговое яйцо", Description = "Первое яйцо для твоей команды. Кот 60% • Пёс 30% • Кролик 10%.", MinLevel = 0, Cost = 80, Position = Vector3.new(-31, 0.8, -8),
             Color = {112, 228, 180}, Weights = {Cat = 60, Dog = 30, Bunny = 10}},
         Crystal = {Name = "Кристальное яйцо", Description = "Больше шансов на редкого питомца. Кот 20% • Пёс 45% • Кролик 35%.", MinLevel = 0, Cost = 240, Position = Vector3.new(-31, 0.8, 3),
             Color = {180, 143, 255}, Weights = {Cat = 20, Dog = 45, Bunny = 35}},
+        Celestial = {Name="Небесное яйцо", Description="Звёздный лис 55% • Солнечный феникс 30% • Аксолотль Бездны 12% • Небесный дракон 3%.", MinLevel=0, Cost=2500, Position=Vector3.new(-31,.8,-19),
+            Color={216,232,255}, Weights={Fox=55,Phoenix=30,Axolotl=12,Dragon=3}},
     },
     Stations = {
         Basic = {Position = Vector3.new(-16, 1, 0), MinLevel = 0, Multiplier = 1},
@@ -96,6 +102,7 @@ for _,id in C.PetOrder do
     table.insert(C.InventoryOrder,id.."_Upgraded")
 end
 C.Eggs.Meadow.Rarity="Обычная"; C.Eggs.Crystal.Rarity="Редкая"
+C.Eggs.Celestial.Rarity="Божественная"
 function C.Multiplier(data)
     return 1 + math.min(data.Rebirths, C.RebirthBonusCap) * C.RebirthBonus
 end
@@ -460,13 +467,16 @@ function Pets.Hatch(data, eggId, roll)
         return false, "Не удалось открыть яйцо. Монеты не списаны."
     end
     local total = 0
-    for _, id in C.PetOrder do total += egg.Weights[id] end
+    for _, id in C.PetOrder do total += egg.Weights[id] or 0 end
+    if total<=0 then return false,"В этом яйце пока нет питомцев. Монеты не списаны." end
     local threshold, selected = 0, nil
     for _, id in C.PetOrder do
-        threshold += egg.Weights[id] / total
+        local weight=egg.Weights[id] or 0
+        if weight<=0 then continue end
+        selected=id -- Last eligible drop also handles floating-point rounding at the upper boundary.
+        threshold += weight / total
         if value < threshold then selected = id; break end
     end
-    selected = selected or C.PetOrder[#C.PetOrder]
     data.Coins -= egg.Cost
     data.Pets[selected] = (data.Pets[selected] or 0) + 1
     if Pets.EquippedCount(data) < C.PetEquipSlots then
@@ -553,6 +563,37 @@ local Spec={}
 function Spec.Run()
     local count=0
     local function check(value,message) assert(value,message); count+=1 end
+    local obtainable={}
+    for _,eggId in C.EggOrder do
+        local egg=C.Eggs[eggId]; local total=0
+        for id,weight in egg.Weights do
+            check(C.PetTypes[id] and not C.PetTypes[id].Upgraded and weight>0,"valid base egg drop "..id)
+            total+=weight
+        end
+        check(total==100,"published egg odds sum to 100 "..eggId)
+        local threshold=0
+        for _,id in C.PetOrder do
+            local weight=egg.Weights[id] or 0
+            if weight>0 then
+                local sample=Schema.New(); sample.Coins=egg.Cost
+                local ok,_,drop=Pets.Hatch(sample,eggId,function() return (threshold+weight/2)/total end)
+                check(ok and drop==id and sample.Coins==0 and sample.Pets[id]==1,"paid midpoint drop "..eggId..id)
+                check(Schema.Validate(sample)~=nil,"new drop profile validates "..id)
+                obtainable[C.PetTypes[id].Rarity]=true
+                threshold+=weight
+            end
+        end
+        local sample=Schema.New(); sample.Coins=egg.Cost
+        local ok,_,drop=Pets.Hatch(sample,eggId,function() return 1-1e-12 end)
+        check(ok and (egg.Weights[drop] or 0)>0,"upper endpoint never selects a zero-weight pet")
+    end
+    for _,rarity in C.Rarities do check(obtainable[rarity],"each rarity obtainable "..rarity) end
+    for _,id in C.PetOrder do
+        local sample=Schema.New(); sample.Pets={[id]=3}; sample.EquippedPets={[id]=3}
+        check(Pets.Craft(sample,id,{1,2,3}),"craft each species "..id)
+        check(math.abs(C.PetMultiplier(sample)-(1+C.PetTypes[id].Bonus)*4)<1e-9,"fourfold coefficient "..id)
+        check(Schema.Validate(sample)~=nil and Pets.EquipBest(sample),"new crafted species survives validation and best equip")
+    end
     local best=Schema.New()
     check(not Pets.EquipBest(best),"empty best selection rejected")
     best.Pets={Cat=5,Dog=2,Bunny=2}; best.EquippedPets={Cat=3}

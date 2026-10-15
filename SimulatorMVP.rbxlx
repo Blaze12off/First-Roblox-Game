@@ -1,18 +1,18 @@
 <roblox version="4">
-  <Item class="Workspace" referent="RBX654c72298408435fb7cc04c9f9cccd02">
+  <Item class="Workspace" referent="RBXad0b727c533f49a68b3bdcfed84f6244">
     <Properties>
       <string name="Name">Workspace</string>
     </Properties>
-    <Item class="Terrain" referent="RBX4b0e9713ba4048a183394514ed995fca">
+    <Item class="Terrain" referent="RBXfb0d3f8d4ba5450aadeb33a0642816cb">
       <Properties>
         <string name="Name">Terrain</string>
       </Properties>
     </Item>
-    <Item class="Folder" referent="RBXdc480ca5be6245a49e256c3fcbf757b1">
+    <Item class="Folder" referent="RBXa533342e247642e5a0c27e656dc7c4b5">
       <Properties>
         <string name="Name">SimulatorWorld</string>
       </Properties>
-      <Item class="Part" referent="RBX9dc4947ad40348499066fd0b17df6d86">
+      <Item class="Part" referent="RBX28a577f10a6a42f08644262ec4a3facd">
         <Properties>
           <string name="Name">Ground</string>
           <bool name="Anchored">true</bool>
@@ -41,7 +41,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX6220b8041c3947e3a8dbaa349b7c8461">
+      <Item class="Part" referent="RBX67d689ddc9ab4ee89e4fa9b081a42c90">
         <Properties>
           <string name="Name">StartingPlaza</string>
           <bool name="Anchored">true</bool>
@@ -70,7 +70,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX9ad60e58cd3041eb9553c3e4b336b330">
+      <Item class="Part" referent="RBXfd9826da1a6f4cbcabd6cc4eee60113c">
         <Properties>
           <string name="Name">AdvancedPlaza</string>
           <bool name="Anchored">true</bool>
@@ -99,7 +99,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXb73f29eaf51243ee96be2c47aa373155">
+      <Item class="Part" referent="RBXf89998527edc49b0acfc154653d6b758">
         <Properties>
           <string name="Name">Path</string>
           <bool name="Anchored">true</bool>
@@ -128,7 +128,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX90eb72b003ce443b8f43c0f49befa056">
+      <Item class="Part" referent="RBX3ebe7d36b6e34100bae6b52a2596e256">
         <Properties>
           <string name="Name">Basic</string>
           <bool name="Anchored">true</bool>
@@ -157,7 +157,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXb77ef737462c458da28a8d9a77444032">
+      <Item class="Part" referent="RBXcf3c81ef925f478784c8fe3162dbcc33">
         <Properties>
           <string name="Name">Advanced</string>
           <bool name="Anchored">true</bool>
@@ -186,60 +186,29 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="SpawnLocation" referent="RBXea7120e846c743808094fec4c90785d9">
-        <Properties>
-          <string name="Name">SimulatorSpawn</string>
-          <bool name="Anchored">true</bool>
-          <bool name="CanCollide">true</bool>
-          <token name="TopSurface">0</token>
-          <token name="BottomSurface">0</token>
-          <Color3uint8 name="Color3uint8">4283420343</Color3uint8>
-          <Vector3 name="size">
-            <X>6</X>
-            <Y>0.4</Y>
-            <Z>6</Z>
-          </Vector3>
-          <CoordinateFrame name="CFrame">
-            <X>-16</X>
-            <Y>0.4</Y>
-            <Z>12</Z>
-            <R00>1</R00>
-            <R01>0</R01>
-            <R02>0</R02>
-            <R10>0</R10>
-            <R11>1</R11>
-            <R12>0</R12>
-            <R20>0</R20>
-            <R21>0</R21>
-            <R22>1</R22>
-          </CoordinateFrame>
-          <bool name="Neutral">true</bool>
-          <float name="Duration">0</float>
-        </Properties>
-      </Item>
     </Item>
   </Item>
-  <Item class="Players" referent="RBXd12f26b4a238435a9b25ca3493294637">
+  <Item class="Players" referent="RBX9a5e6e1dca3f40cd9272a96b915762e1">
     <Properties>
       <string name="Name">Players</string>
     </Properties>
   </Item>
-  <Item class="Lighting" referent="RBX4a79a0d8e1ad44b59e365d681b107d8b">
+  <Item class="Lighting" referent="RBXfa8803f77dfa4afe9a973af166cc87f5">
     <Properties>
       <string name="Name">Lighting</string>
       <float name="ClockTime">14</float>
       <float name="Brightness">2</float>
     </Properties>
   </Item>
-  <Item class="ReplicatedStorage" referent="RBX3994116278774f46a46787a8462d15f5">
+  <Item class="ReplicatedStorage" referent="RBXd8923aca1eb4424a9b22a6ae931b544e">
     <Properties>
       <string name="Name">ReplicatedStorage</string>
     </Properties>
-    <Item class="Folder" referent="RBXb46decafa85f4f64873a777463bcfdca">
+    <Item class="Folder" referent="RBXa6aefb2592f64a56a73986895d9d4992">
       <Properties>
         <string name="Name">SimulatorShared</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBX16f761cf8c8b45d7ae9ad6b04c7b7e5c">
+      <Item class="ModuleScript" referent="RBX81bdaab784954151ab5ad2d3ebf0a216">
         <Properties>
           <string name="Name">Config</string>
           <ProtectedString name="Source">-- Balance lives here. No secrets and no client-supplied reward values.
@@ -273,15 +242,21 @@ local C = {
     PetTypes = {
         Cat = {Name = "Кот", Bonus = 0.10, Rarity="Обычная", Description="Верный спутник для первых тренировок.", Color = {255, 182, 103}},
         Dog = {Name = "Пёс", Bonus = 0.20, Rarity="Редкая", Description="Помогает быстрее набирать силу и монеты.", Color = {111, 190, 255}},
-        Bunny = {Name = "Кролик", Bonus = 0.35, Rarity="Эпическая", Description="Самый сильный спутник из тестовых яиц.", Color = {211, 151, 255}},
+        Bunny = {Name = "Кролик", Bonus = 0.35, Rarity="Эпическая", Description="Лунный кролик с длинными ушами и пушистым хвостом.", Color = {211, 151, 255}},
+        Fox = {Name="Звёздный лис", Bonus=.60, Rarity="Мифическая", Description="Маленький хранитель созвездий с белой манишкой и двумя звёздными хвостами.", Color={245,123,164}},
+        Phoenix = {Name="Солнечный феникс", Bonus=1.00, Rarity="Легендарная", Description="Золотая птица с огненными крыльями и тройным хвостом.", Color={255,176,65}},
+        Axolotl = {Name="Аксолотль Бездны", Bonus=1.75, Rarity="Секретная", Description="Тёмный водный спутник со светящимися бирюзовыми жабрами.", Color={61,61,114}},
+        Dragon = {Name="Небесный дракон", Bonus=3.00, Rarity="Божественная", Description="Жемчужный дракон с золотыми рогами, крыльями и небесным ореолом.", Color={225,239,255}},
     },
-    PetOrder = {"Cat", "Dog", "Bunny"},
-    EggOrder = {"Meadow", "Crystal"},
+    PetOrder = {"Cat", "Dog", "Bunny", "Fox", "Phoenix", "Axolotl", "Dragon"},
+    EggOrder = {"Meadow", "Crystal", "Celestial"},
     Eggs = {
         Meadow = {Name = "Луговое яйцо", Description = "Первое яйцо для твоей команды. Кот 60% • Пёс 30% • Кролик 10%.", MinLevel = 0, Cost = 80, Position = Vector3.new(-31, 0.8, -8),
             Color = {112, 228, 180}, Weights = {Cat = 60, Dog = 30, Bunny = 10}},
         Crystal = {Name = "Кристальное яйцо", Description = "Больше шансов на редкого питомца. Кот 20% • Пёс 45% • Кролик 35%.", MinLevel = 0, Cost = 240, Position = Vector3.new(-31, 0.8, 3),
             Color = {180, 143, 255}, Weights = {Cat = 20, Dog = 45, Bunny = 35}},
+        Celestial = {Name="Небесное яйцо", Description="Звёздный лис 55% • Солнечный феникс 30% • Аксолотль Бездны 12% • Небесный дракон 3%.", MinLevel=0, Cost=2500, Position=Vector3.new(-31,.8,-19),
+            Color={216,232,255}, Weights={Fox=55,Phoenix=30,Axolotl=12,Dragon=3}},
     },
     Stations = {
         Basic = {Position = Vector3.new(-16, 1, 0), MinLevel = 0, Multiplier = 1},
@@ -297,6 +272,7 @@ for _,id in C.PetOrder do
     table.insert(C.InventoryOrder,id.."_Upgraded")
 end
 C.Eggs.Meadow.Rarity="Обычная"; C.Eggs.Crystal.Rarity="Редкая"
+C.Eggs.Celestial.Rarity="Божественная"
 function C.Multiplier(data)
     return 1 + math.min(data.Rebirths, C.RebirthBonusCap) * C.RebirthBonus
 end
@@ -327,7 +303,7 @@ return table.freeze(C)
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX04ef99ff79f54635a6ac53fb07523616">
+      <Item class="ModuleScript" referent="RBX66b449ca871444c1b9a7798c849d232b">
         <Properties>
           <string name="Name">NumberFormat</string>
           <ProtectedString name="Source">-- Display only: economy, validation and saved values always use the original numbers.
@@ -359,7 +335,7 @@ return N
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXf28d8d1b1ff24896b94028706b338250">
+      <Item class="ModuleScript" referent="RBX2acfab32132f41e099fe78840ec59e20">
         <Properties>
           <string name="Name">TextStyle</string>
           <ProtectedString name="Source">-- Template rule: floating text must stay legible over bright platforms.
@@ -373,43 +349,183 @@ return TextStyle
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX4dcc3dc83a3243e6a1d2c29af2063dc8">
+      <Item class="ModuleScript" referent="RBX66333484c3284b378ca2a3391d8db036">
         <Properties>
           <string name="Name">ModelFactory</string>
           <ProtectedString name="Source">local C=require(script.Parent.Config)
 local Factory={}
-local function part(model,name,size,position,color)
-    local p=Instance.new("Part"); p.Name=name; p.Size=size; p.Position=position; p.Color=color
-    p.Anchored=true; p.CanCollide=false; p.CanTouch=false; p.CanQuery=false
-    p.Material=Enum.Material.SmoothPlastic; p.Parent=model; return p
+local V=Vector3.new
+local rgb=Color3.fromRGB
+local cream=rgb(255,240,215)
+local gold=rgb(255,205,93)
+local dark=rgb(22,28,51)
+local white=rgb(255,255,255)
+-- Entirely original primitive models. No external assets, scripts or asset permissions.
+local function piece(model,name,size,pos,color,shape,rotation,glow)
+    local p=Instance.new("Part"); p.Name=name; p.Size=size
+    p.CFrame=CFrame.new(pos)*(rotation or CFrame.identity); p.Color=color
+    p.Anchored=true; p.CanCollide=false; p.CanTouch=false; p.CanQuery=false; p.CastShadow=not glow
+    p.Material=glow and Enum.Material.Neon or Enum.Material.SmoothPlastic
+    p.TopSurface=Enum.SurfaceType.Smooth; p.BottomSurface=Enum.SurfaceType.Smooth
+    if shape=="Round" then
+        p.Size=Vector3.one
+        local mesh=Instance.new("SpecialMesh"); mesh.MeshType=Enum.MeshType.Sphere; mesh.Scale=size; mesh.Parent=p
+    elseif shape=="Wedge" then
+        local mesh=Instance.new("SpecialMesh"); mesh.MeshType=Enum.MeshType.Wedge; mesh.Scale=Vector3.one; mesh.Parent=p
+    end
+    p.Parent=model; return p
 end
-local function ellipsoid(model,name,size,position,color)
-    local p=part(model,name,Vector3.one,position,color)
-    local mesh=Instance.new("SpecialMesh"); mesh.MeshType=Enum.MeshType.Sphere; mesh.Scale=size; mesh.Parent=p
-    return p
+local function turn(x,y,z) return CFrame.Angles(math.rad(x),math.rad(y),math.rad(z)) end
+local function halo(model,y,radius,color)
+    for i=1,16 do
+        local a=(i-1)*math.pi*2/16
+        piece(model,"Halo",V(.12,.12,.12),V(math.cos(a)*radius,y,math.sin(a)*radius),color,"Round",nil,true)
+    end
 end
-function Factory.Build(id,isEgg)
-    local info=(isEgg and C.Eggs or C.PetTypes)[id]; assert(info,"Unknown model")
-    local model=Instance.new("Model"); model.Name=id
-    local color=Color3.fromRGB(table.unpack(info.Color))
-    if isEgg then
-        -- Sphere mesh with independent axes: a continuous oval shell, not PartType.Ball's round body.
-        model.PrimaryPart=ellipsoid(model,"ShellBase",Vector3.new(2.1,3.0,2.1),Vector3.zero,color)
-        for _,x in {-.55,.55} do
-            ellipsoid(model,"Spot",Vector3.new(.30,.42,.10),Vector3.new(x,-.4,-.99),color:Lerp(Color3.new(1,1,1),.4))
-        end
-    else
-        model.PrimaryPart=part(model,"Body",Vector3.new(1.6,1.5,1.5),Vector3.zero,color)
-        local bunny=(info.BaseId or id)=="Bunny"
-        for _,x in {-.48,.48} do
-            part(model,"Ear",Vector3.new(.38,bunny and 1.3 or .55,.45),Vector3.new(x,bunny and 1.15 or .87,0),color)
-            part(model,"Eye",Vector3.new(.20,.25,.12),Vector3.new(x*.7,.18,-.78),Color3.fromRGB(22,30,48))
-        end
-        part(model,"Nose",Vector3.new(.22,.16,.14),Vector3.new(0,-.13,-.8),Color3.fromRGB(255,125,161))
-        if info.Upgraded then
-            part(model,"Crown",Vector3.new(1.2,.25,1),Vector3.new(0,.85,0),Color3.fromRGB(255,212,119))
+local function crystal(model,pos,size,color,rotation)
+    -- Four right triangles meet at the centre: a pointed diamond silhouette in XY.
+    -- Opposing wedges at one position would instead fill a rectangular box.
+    local basis=CFrame.new(pos)*(rotation or CFrame.identity)
+    for _,s in {-1,1} do
+        for _,t in {-1,1} do
+            local localFrame=CFrame.new(s*size.X/4,t*size.Y/4,0)
+                *turn(0,0,t&lt;0 and 180 or 0)*turn(0,-90*s*t,0)
+            local frame=basis*localFrame
+            piece(model,"CrystalFacet",V(size.Z,size.Y/2,size.X/2),frame.Position,
+                color:Lerp(white,s==t and .12 or 0),"Wedge",frame.Rotation)
         end
     end
+end
+local function egg(model,id,color)
+    -- Broad lower shell and narrower crown meet inside the shell: egg silhouette, no exposed core.
+    local shell=piece(model,"ShellBase",V(2.10,2.55,2.10),V(0,-.25,0),color,"Round")
+    piece(model,"ShellCrown",V(1.68,2.45,1.68),V(0,.35,0),color,"Round")
+    if id=="Meadow" then
+        for i,pos in {V(-.55,-.4,-.88),V(.48,.05,-.87),V(.1,-.85,-.82)} do
+            piece(model,"ShellSpot"..i,V(.32,.42,.16),pos,cream,"Round",turn(-10,0,i*20))
+        end
+        for _,s in {-1,1} do
+            piece(model,"Leaf",V(.5,.16,.95),V(s*.24,1.57,0),rgb(66,169,116),"Round",turn(0,s*30,s*22))
+        end
+        piece(model,"Stem",V(.15,.35,.15),V(0,1.62,0),rgb(76,121,74),"Round")
+    elseif id=="Crystal" then
+        for i=1,5 do
+            local a=i*math.pi*2/5
+            crystal(model,V(math.cos(a)*.83,-.57,math.sin(a)*.83),V(.32,.8,.35),rgb(123,225,255),turn(0,-math.deg(a),20))
+        end
+        crystal(model,V(0,1.55,0),V(.42,.7,.42),rgb(218,248,255))
+        crystal(model,V(0,.25,-.91),V(.36,.65,.16),rgb(235,226,255))
+    else
+        halo(model,1.84,.68,gold)
+        for _,s in {-1,1} do
+            for i=1,3 do
+                piece(model,"ShellWing",V(.3,.18,.76-i*.09),V(s*(.89+i*.16),.15-i*.16,.05),cream,"Round",turn(0,0,-s*28))
+            end
+        end
+        crystal(model,V(0,.3,-.93),V(.32,.6,.17),gold)
+        for _,s in {-1,1} do
+            piece(model,"Star",V(.15,.28,.12),V(s*.53,-.45,-.91),gold,"Round",nil,true)
+        end
+    end
+    return shell
+end
+local function pet(model,id,color,upgraded)
+    local body=piece(model,"Body",V(1.65,1.5,1.5),V(0,0,0),color,"Round")
+    local accent=id=="Axolotl" and rgb(92,246,218) or cream
+    piece(model,"Muzzle",V(1.15,.65,.30),V(0,-.28,-.65),accent,"Round")
+    for _,s in {-1,1} do
+        -- Contrasting eye whites, pupils and highlights remain readable on small cards.
+        piece(model,"EyeWhite",V(.36,.43,.14),V(s*.36,.16,-.69),white,"Round")
+        piece(model,"Eye",V(.22,.29,.12),V(s*.36,.13,-.77),dark,"Round")
+        piece(model,"EyeShine",V(.075,.085,.045),V(s*.36-.045,.21,-.827),white,"Round")
+        piece(model,"Blush",V(.2,.1,.05),V(s*.60,-.18,-.66),rgb(255,148,172),"Round")
+        piece(model,"Foot",V(.4,.25,.5),V(s*.47,-.69,-.37),accent,"Round")
+    end
+    if id=="Phoenix" then
+        piece(model,"Beak",V(.36,.27,.36),V(0,-.14,-.85),gold,"Wedge",turn(180,0,0))
+    else
+        piece(model,"Nose",V(.18,.13,.12),V(0,-.18,-.83),id=="Dog" and dark or rgb(231,115,150),"Round")
+        piece(model,"Mouth",V(.17,.055,.045),V(0,-.36,-.82),dark,"Round")
+    end
+    if id=="Cat" or id=="Fox" then
+        for _,s in {-1,1} do
+            piece(model,"PointedEar",V(.5,.7,.44),V(s*.48,.82,-.05),color,"Wedge",turn(0,90,s*-12))
+            piece(model,"InnerEar",V(.25,.35,.08),V(s*.48,.85,-.29),rgb(255,190,201),"Wedge",turn(0,90,s*-12))
+            if id=="Cat" then
+                for i=1,2 do piece(model,"Whisker",V(.35,.035,.035),V(s*.72,-.25-i*.1,-.65),cream,nil,turn(0,0,s*(i*16-24))) end
+            else
+                piece(model,"CheekTuft",V(.42,.38,.28),V(s*.73,-.24,-.37),cream,"Wedge",turn(0,0,s*-28))
+            end
+        end
+        if id=="Cat" then
+            piece(model,"Tail",V(.35,.8,.35),V(.58,.05,.78),color,"Round",turn(25,0,-20))
+            piece(model,"TailTip",V(.36,.33,.35),V(.72,.4,.93),cream,"Round")
+            for i=-1,1 do piece(model,"ForeheadStripe",V(.13,.32,.07),V(i*.24,.5,-.59),rgb(205,125,67),"Round",turn(15,0,0)) end
+        else
+            for _,s in {-1,1} do
+                piece(model,"TwinTail",V(.65,.55,1.2),V(s*.62,-.05,.78),color,"Round",turn(25,s*26,0))
+                piece(model,"StarTailTip",V(.55,.46,.45),V(s*.85,.19,1.18),cream,"Round")
+            end
+            crystal(model,V(0,.56,-.62),V(.17,.32,.10),gold)
+        end
+    elseif id=="Dog" then
+        for _,s in {-1,1} do piece(model,"FloppyEar",V(.48,1.0,.45),V(s*.77,.30,-.03),rgb(61,125,202),"Round",turn(0,0,s*16)) end
+        piece(model,"EyePatch",V(.5,.58,.11),V(.37,.17,-.66),rgb(61,125,202),"Round")
+        piece(model,"Tail",V(.25,.5,.28),V(0,.12,.8),color,"Round",turn(35,0,0))
+        piece(model,"Collar",V(.85,.13,.22),V(0,-.57,-.66),rgb(55,113,195),"Round")
+        piece(model,"Tag",V(.18,.22,.1),V(0,-.62,-.8),gold,"Round")
+    elseif id=="Bunny" then
+        for _,s in {-1,1} do
+            piece(model,"LongEar",V(.38,1.18,.36),V(s*.39,1.03,0),color,"Round",turn(0,0,s*-12))
+            piece(model,"InnerEar",V(.20,.80,.09),V(s*.40,1.07,-.17),rgb(255,200,222),"Round",turn(0,0,s*-12))
+        end
+        piece(model,"CottonTail",V(.65,.65,.65),V(0,-.22,.76),cream,"Round")
+        for _,s in {-1,1} do piece(model,"FrontTooth",V(.1,.15,.09),V(s*.065,-.34,-.87),white) end
+    elseif id=="Phoenix" then
+        for _,s in {-1,1} do
+            for i=1,3 do
+                piece(model,"FlameWing",V(.68,.3,.6),V(s*(.7+i*.22),.08-i*.17,.12),i==3 and gold or rgb(255,110+i*20,59),"Round",turn(0,s*20,-s*32))
+            end
+        end
+        for i=-1,1 do
+            piece(model,"FlameCrest",V(.25,.75-math.abs(i)*.15,.3),V(i*.27,.86,.03),rgb(255,111,57),"Round",turn(-12,0,-i*20))
+            piece(model,"FlameTail",V(.25,.23,1.05),V(i*.27,-.2,.94),rgb(255,108,65),"Round",turn(-15,i*18,0))
+        end
+    elseif id=="Axolotl" then
+        for _,s in {-1,1} do
+            for i=-1,1 do
+                piece(model,"GlowGill",V(.70,.16,.18),V(s*.95,.18+i*.29,0),accent,"Round",turn(0,0,s*i*32),true)
+                piece(model,"GillTip",V(.22,.25,.22),V(s*(1.22-math.abs(i)*.06),.18+i*.40,0),rgb(166,255,239),"Round")
+            end
+        end
+        piece(model,"FinTail",V(.26,.65,1.20),V(0,-.18,.98),accent,"Round",turn(-12,0,0))
+        for i=-1,1 do piece(model,"StarFreckle",V(.07,.07,.05),V(i*.22,.48,-.61),accent,"Round",nil,true) end
+    elseif id=="Dragon" then
+        for _,s in {-1,1} do
+            piece(model,"Horn",V(.25,.70,.25),V(s*.5,.89,.03),gold,"Round",turn(15,0,s*-20))
+            for i=1,3 do
+                piece(model,"WingFeather",V(.70,.19,.75),V(s*(.65+i*.20),.10-i*.17,.18),i==3 and gold or rgb(157,205,246),"Round",turn(0,s*22,-s*28))
+            end
+        end
+        halo(model,1.48,.55,gold)
+        piece(model,"DragonTail",V(.4,.37,1.25),V(0,-.27,1.02),color,"Round",turn(-10,0,0))
+        crystal(model,V(0,-.16,1.62),V(.35,.40,.38),gold)
+        crystal(model,V(0,.44,-.63),V(.23,.34,.10),rgb(106,215,244))
+    end
+    if upgraded then
+        -- Keep species ears/horns visible: a floating three-point crown above the silhouette.
+        local y=id=="Bunny" and 1.88 or id=="Dragon" and 1.80 or 1.50
+        piece(model,"CrownBand",V(.75,.13,.48),V(0,y,0),gold)
+        for i=-1,1 do crystal(model,V(i*.25,y+.18,0),V(.16,.35,.22),gold) end
+        for _,s in {-1,1} do piece(model,"UpgradeGem",V(.14,.14,.08),V(s*.59,-.42,-.71),gold,"Round",nil,true) end
+    end
+    return body
+end
+function Factory.Build(id,isEgg)
+    local info=(isEgg and C.Eggs or C.PetTypes)[id]; assert(info,"Unknown model: "..tostring(id))
+    local model=Instance.new("Model"); model.Name=id
+    local color=rgb(table.unpack(info.Color))
+    model.PrimaryPart=isEgg and egg(model,id,color) or pet(model,info.BaseId or id,color,info.Upgraded)
     return model
 end
 return Factory
@@ -418,15 +534,15 @@ return Factory
       </Item>
     </Item>
   </Item>
-  <Item class="ServerScriptService" referent="RBX5d3eedf0b5ff42d5a58b9cc78b1e0a00">
+  <Item class="ServerScriptService" referent="RBX548ed60c51cd48289149246a978d0098">
     <Properties>
       <string name="Name">ServerScriptService</string>
     </Properties>
-    <Item class="Folder" referent="RBX0b73ff54563a4af4b67311b0e810941f">
+    <Item class="Folder" referent="RBX2ea4ec50c7374d70b69f3c91df6098bd">
       <Properties>
         <string name="Name">Simulator</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBX5cb94038e761468ab07b470b519cc4be">
+      <Item class="ModuleScript" referent="RBX4d505c75c443402689927eedd93b4c00">
         <Properties>
           <string name="Name">Schema</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -492,7 +608,7 @@ return Schema
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX4afc3ec21a87466e8b9d9d058ef84257">
+      <Item class="ModuleScript" referent="RBX7d6142835a294147b5a3251ae26af87b">
         <Properties>
           <string name="Name">PlayerData</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -600,7 +716,7 @@ return PlayerData
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXb0c23d90add24afa89e883e16450e224">
+      <Item class="ModuleScript" referent="RBX72df95547b2341b4b07110027170ceef">
         <Properties>
           <string name="Name">Progression</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -627,7 +743,7 @@ return P
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXc3d2de94482b4924a210e8e1fe68652a">
+      <Item class="ModuleScript" referent="RBXa03d8353c2af4af18000c09b9472e265">
         <Properties>
           <string name="Name">Rebirth</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -644,7 +760,7 @@ return R
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXe36d3a06997443b2ba9fe7244a03c226">
+      <Item class="ModuleScript" referent="RBX2cc35163df2d48e99dafd750300f5bd5">
         <Properties>
           <string name="Name">Rewards</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -698,7 +814,7 @@ return Rewards
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX2d61000f3dce4b45b57c62ea632254ee">
+      <Item class="ModuleScript" referent="RBXe2533c0d5194405a8d9623debfdf60a5">
         <Properties>
           <string name="Name">Pets</string>
           <ProtectedString name="Source">local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
@@ -726,13 +842,16 @@ function Pets.Hatch(data, eggId, roll)
         return false, "Не удалось открыть яйцо. Монеты не списаны."
     end
     local total = 0
-    for _, id in C.PetOrder do total += egg.Weights[id] end
+    for _, id in C.PetOrder do total += egg.Weights[id] or 0 end
+    if total&lt;=0 then return false,"В этом яйце пока нет питомцев. Монеты не списаны." end
     local threshold, selected = 0, nil
     for _, id in C.PetOrder do
-        threshold += egg.Weights[id] / total
+        local weight=egg.Weights[id] or 0
+        if weight&lt;=0 then continue end
+        selected=id -- Last eligible drop also handles floating-point rounding at the upper boundary.
+        threshold += weight / total
         if value &lt; threshold then selected = id; break end
     end
-    selected = selected or C.PetOrder[#C.PetOrder]
     data.Coins -= egg.Cost
     data.Pets[selected] = (data.Pets[selected] or 0) + 1
     if Pets.EquippedCount(data) &lt; C.PetEquipSlots then
@@ -804,51 +923,44 @@ return Pets
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX9f610cefb5734907a3c72001a58401c8">
+      <Item class="ModuleScript" referent="RBX2ee55228053744678496e0e3b20a6123">
         <Properties>
           <string name="Name">PetVisuals</string>
-          <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
-local TextStyle = require(game.ReplicatedStorage.SimulatorShared.TextStyle)
-local Visuals = {}
-function Visuals.Apply(player, data)
-    local character = player.Character
+          <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local Factory=require(game.ReplicatedStorage.SimulatorShared.ModelFactory)
+local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
+local Visuals={}
+function Visuals.Apply(player,data)
+    local character=player.Character
     if not character then return end
-    local previous = character:FindFirstChild("SimulatorPet")
+    local previous=character:FindFirstChild("SimulatorPet")
     if previous then previous:Destroy() end
-    local root = character:FindFirstChild("HumanoidRootPart")
+    local root=character:FindFirstChild("HumanoidRootPart")
     if not root then return end
     local folder=Instance.new("Folder"); folder.Name="SimulatorPet"; folder.Parent=character
     local slot=0
     for _,id in C.InventoryOrder do
-      for _=1,data.EquippedPets[id] or 0 do
-    slot+=1
-    local info=C.PetTypes[id]
-    local model = Instance.new("Model"); model.Name = id..slot; model.Parent = folder
-    local offset=({Vector3.new(-3,-.6,2),Vector3.new(3,-.6,2),Vector3.new(0,-.6,4)})[slot]
-    local origin = root.CFrame * CFrame.new(offset)
-    local function piece(name, size, offset, color)
-        local p = Instance.new("Part"); p.Name = name; p.Size = size; p.Color = color
-        p.Material = Enum.Material.SmoothPlastic; p.CanCollide = false; p.CanTouch = false
-        p.CanQuery = false; p.Massless = true; p.CFrame = origin * CFrame.new(offset); p.Parent = model
-        local weld = Instance.new("WeldConstraint"); weld.Part0 = root; weld.Part1 = p; weld.Parent = p
-        return p
-    end
-    local color = Color3.fromRGB(table.unpack(info.Color))
-    local body = piece("Body", Vector3.new(1.6, 1.5, 1.5), Vector3.zero, color)
-    model.PrimaryPart = body
-    for _, x in {-.48, .48} do
-        piece("Ear", Vector3.new(.38, (info.BaseId or id) == "Bunny" and 1.3 or .55, .45),
-            Vector3.new(x, (info.BaseId or id) == "Bunny" and 1.15 or .87, 0), color)
-        piece("Eye", Vector3.new(.20, .25, .12), Vector3.new(x * .7, .18, -.78), Color3.fromRGB(22, 30, 48))
-    end
-    piece("Nose", Vector3.new(.22, .16, .14), Vector3.new(0, -.13, -.8), Color3.fromRGB(255, 125, 161))
-    if info.Upgraded then piece("Crown",Vector3.new(1.2,.25,1),Vector3.new(0,.85,0),Color3.fromRGB(255,212,119)) end
-    local tag = Instance.new("BillboardGui"); tag.Size = UDim2.fromOffset(140, 30)
-    tag.StudsOffset = Vector3.new(0, 2.2, 0); tag.MaxDistance = 18; tag.Parent = body
-    local text = Instance.new("TextLabel"); text.Size = UDim2.fromScale(1, 1)
-    text.BackgroundTransparency = 1; text.Font = Enum.Font.GothamBold; text.TextSize = 14
-    text.TextColor3 = color; text.Text = info.Name; text.Parent = tag; TextStyle.Apply(text)
-      end
+        for _=1,data.EquippedPets[id] or 0 do
+            slot+=1
+            local offset=({Vector3.new(-3,-.6,2),Vector3.new(3,-.6,2),Vector3.new(0,-.6,4)})[slot]
+            if not offset then continue end -- Also bound rendering if supplied a malformed team.
+            local info=C.PetTypes[id]
+            local model=Factory.Build(id,false); model.Name=id..slot; model.Parent=folder
+            model:SetAttribute("OwnerUserId",player.UserId)
+            model:PivotTo(root.CFrame*CFrame.new(offset))
+            for _,p in model:GetDescendants() do
+                if p:IsA("BasePart") then
+                    p.Anchored=false; p.Massless=true
+                    local weld=Instance.new("WeldConstraint"); weld.Part0=root; weld.Part1=p; weld.Parent=p
+                end
+            end
+            local tag=Instance.new("BillboardGui"); tag.Size=UDim2.fromOffset(160,30)
+            tag.StudsOffset=Vector3.new(0,2.6,0); tag.MaxDistance=18; tag.Parent=model.PrimaryPart
+            local text=Instance.new("TextLabel"); text.Size=UDim2.fromScale(1,1)
+            text.BackgroundTransparency=1; text.Font=Enum.Font.GothamBold; text.TextSize=14
+            text.TextColor3=Color3.fromRGB(table.unpack(info.Color)); text.Text=info.Name; text.Parent=tag
+            TextStyle.Apply(text)
+        end
     end
     if slot==0 then folder:Destroy() end
 end
@@ -856,7 +968,7 @@ return Visuals
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX6766387f221a4ada952ecd92f6a425fb">
+      <Item class="ModuleScript" referent="RBXdcaaeb8e488847ac80e26bdc5aba5ac9">
         <Properties>
           <string name="Name">Security</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -904,7 +1016,7 @@ return S
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXa4183893357b4a83b0ee04fd1ab8e8bd">
+      <Item class="ModuleScript" referent="RBX0304f475db864b679d8e14e5bf61a948">
         <Properties>
           <string name="Name">LeaderboardTemplate</string>
           <ProtectedString name="Source">-- Visual draft only: each ranking row is a separate solid plaque, no live data.
@@ -989,7 +1101,7 @@ return Board
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXf1d7186498bc463a95516922799c5eec">
+      <Item class="ModuleScript" referent="RBX3a58a70c087e4cd8afc040b6e956aec2">
         <Properties>
           <string name="Name">World</string>
           <ProtectedString name="Source">local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
@@ -1076,7 +1188,7 @@ return World
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXa6f388b5f66b4d83b933131ac1de8d58">
+      <Item class="ModuleScript" referent="RBXe281f1ef55604698ab8566eda0d7385d">
         <Properties>
           <string name="Name">Network</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1103,7 +1215,7 @@ return Network
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX29418471d5b44a4e8d3f9b5131fe5a13">
+      <Item class="ModuleScript" referent="RBXaaff0d264e034571a15e4ca78a048c3a">
         <Properties>
           <string name="Name">Telemetry</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1122,7 +1234,7 @@ return Telemetry
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX20d5cbf1a9c843778f4871d4be8e6afd">
+      <Item class="ModuleScript" referent="RBXe3acedeb71f3479ebc40f613c9138c49">
         <Properties>
           <string name="Name">Runtime</string>
           <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -1355,18 +1467,18 @@ return Runtime
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Script" referent="RBX8eb8db62df094ec190f243964903f1d5">
+      <Item class="Script" referent="RBXcd9bd6483b554c018030fbba19c69d71">
         <Properties>
           <string name="Name">Bootstrap</string>
           <ProtectedString name="Source">require(script.Parent.Runtime).Start()
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Folder" referent="RBXc80942fabce24bca946fecc3417e1a60">
+      <Item class="Folder" referent="RBX9de7ccfa2068489c90e97f1ea5cb103a">
         <Properties>
           <string name="Name">Tests</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBX807b08b67ebf4384abf37e084086dfce">
+        <Item class="ModuleScript" referent="RBXc7ad7f276cf642df80ecfa9550914e7a">
           <Properties>
             <string name="Name">Spec</string>
             <ProtectedString name="Source">-- Server-only deterministic tests. No production DataStore, no real user records.
@@ -1383,6 +1495,37 @@ local Spec={}
 function Spec.Run()
     local count=0
     local function check(value,message) assert(value,message); count+=1 end
+    local obtainable={}
+    for _,eggId in C.EggOrder do
+        local egg=C.Eggs[eggId]; local total=0
+        for id,weight in egg.Weights do
+            check(C.PetTypes[id] and not C.PetTypes[id].Upgraded and weight&gt;0,"valid base egg drop "..id)
+            total+=weight
+        end
+        check(total==100,"published egg odds sum to 100 "..eggId)
+        local threshold=0
+        for _,id in C.PetOrder do
+            local weight=egg.Weights[id] or 0
+            if weight&gt;0 then
+                local sample=Schema.New(); sample.Coins=egg.Cost
+                local ok,_,drop=Pets.Hatch(sample,eggId,function() return (threshold+weight/2)/total end)
+                check(ok and drop==id and sample.Coins==0 and sample.Pets[id]==1,"paid midpoint drop "..eggId..id)
+                check(Schema.Validate(sample)~=nil,"new drop profile validates "..id)
+                obtainable[C.PetTypes[id].Rarity]=true
+                threshold+=weight
+            end
+        end
+        local sample=Schema.New(); sample.Coins=egg.Cost
+        local ok,_,drop=Pets.Hatch(sample,eggId,function() return 1-1e-12 end)
+        check(ok and (egg.Weights[drop] or 0)&gt;0,"upper endpoint never selects a zero-weight pet")
+    end
+    for _,rarity in C.Rarities do check(obtainable[rarity],"each rarity obtainable "..rarity) end
+    for _,id in C.PetOrder do
+        local sample=Schema.New(); sample.Pets={[id]=3}; sample.EquippedPets={[id]=3}
+        check(Pets.Craft(sample,id,{1,2,3}),"craft each species "..id)
+        check(math.abs(C.PetMultiplier(sample)-(1+C.PetTypes[id].Bonus)*4)&lt;1e-9,"fourfold coefficient "..id)
+        check(Schema.Validate(sample)~=nil and Pets.EquipBest(sample),"new crafted species survives validation and best equip")
+    end
     local best=Schema.New()
     check(not Pets.EquipBest(best),"empty best selection rejected")
     best.Pets={Cat=5,Dog=2,Bunny=2}; best.EquippedPets={Cat=3}
@@ -1595,7 +1738,7 @@ return Spec
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX957a12b1f9234be299f92893676747af">
+        <Item class="ModuleScript" referent="RBXdd680a652e024b65863777e8a1cd760c">
           <Properties>
             <string name="Name">Integration</string>
             <ProtectedString name="Source">-- SERVER Command Bar in a fresh Play. Only runs in Studio sandbox.
@@ -1664,19 +1807,19 @@ return Integration
       </Item>
     </Item>
   </Item>
-  <Item class="StarterPlayer" referent="RBX2df122265c33482d89f103539796faca">
+  <Item class="StarterPlayer" referent="RBX1fb51979b3784a17942f3ee7b237fdb0">
     <Properties>
       <string name="Name">StarterPlayer</string>
     </Properties>
-    <Item class="StarterPlayerScripts" referent="RBX4186371e4bc94d139abec6aef57fdb57">
+    <Item class="StarterPlayerScripts" referent="RBX00822a7c46bd419ea02843f7097ff7ca">
       <Properties>
         <string name="Name">StarterPlayerScripts</string>
       </Properties>
-      <Item class="Folder" referent="RBX308d9f2e8c9c48daab4c152c8091a1f8">
+      <Item class="Folder" referent="RBX03f9a434c4a14f47be420d6d4219ead0">
         <Properties>
           <string name="Name">SimulatorClient</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBXa313904762af4f3a913b7d43b7addcfa">
+        <Item class="ModuleScript" referent="RBX5c2e52dd9be647388fad605e4853cf40">
           <Properties>
             <string name="Name">UI</string>
             <ProtectedString name="Source">local UI={}
@@ -2038,7 +2181,7 @@ return UI
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX739b717fde78471db4c880d73c073eba">
+        <Item class="ModuleScript" referent="RBX3086eff2c07e4501b1bdee52dd8204db">
           <Properties>
             <string name="Name">Glass</string>
             <ProtectedString name="Source">local TweenService=game:GetService("TweenService")
@@ -2183,7 +2326,7 @@ return Glass
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXec8e136b4e2d464781d0e2cd583b95fe">
+        <Item class="ModuleScript" referent="RBX4c9f369f9bbb412eb5f1fb21c4864107">
           <Properties>
             <string name="Name">Headings</string>
             <ProtectedString name="Source">local Localization=game:GetService("LocalizationService")
@@ -2195,7 +2338,10 @@ local labels={
     Rebirth={"Перерождение","Rebirth"}, Confirm={"ПОДТВЕРЖДЕНИЕ","CONFIRMATION"},
     Eggs={"Выбор яйца","Egg selection"}, Inventory={"Питомцы","Pets"}, Paid={"Донатные предметы","Paid items"},
     Cat={"Кот","Cat"}, Dog={"Пёс","Dog"}, Bunny={"Кролик","Bunny"},
+    Fox={"Звёздный лис","Star Fox"}, Phoenix={"Солнечный феникс","Solar Phoenix"},
+    Axolotl={"Аксолотль Бездны","Void Axolotl"}, Dragon={"Небесный дракон","Celestial Dragon"},
     Meadow={"Луговое яйцо","Meadow egg"}, Crystal={"Кристальное яйцо","Crystal egg"},
+    Celestial={"Небесное яйцо","Celestial egg"},
     Upgraded={"Улучшенный","Upgraded"},
     HatchOpening={"Яйцо открывается…","Hatching…"}, Crafting={"Совмещаем питомцев…","Combining pets…"},
     Hatched={"Новый питомец!","New pet!"}, Crafted={"Питомец улучшен!","Pet upgraded!"},
@@ -2223,7 +2369,7 @@ return H
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXd4e6f4f3253d478282f25a759862e98b">
+        <Item class="ModuleScript" referent="RBXa49b7a417c81442c99965ec3f88deef0">
           <Properties>
             <string name="Name">Settings</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -2398,7 +2544,7 @@ return S
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX86b720db0b9642f8912ee30ddab2c0de">
+        <Item class="ModuleScript" referent="RBX0b2e0ea82e4f4fd3afc0ebf62f64dd7e">
           <Properties>
             <string name="Name">PetCatalog</string>
             <ProtectedString name="Source">local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
@@ -2434,9 +2580,12 @@ function Catalog.View(parent,id,isEgg,interactive)
     local world=Instance.new("WorldModel"); world.Parent=view
     local model=Factory.Build(id,isEgg); model.Parent=world
     local camera=Instance.new("Camera"); camera.FieldOfView=40; camera.Parent=view; view.CurrentCamera=camera
+    local bounds,size=model:GetBoundingBox()
+    local target=bounds.Position
+    local distance=math.max(4.2,math.max(size.X,size.Y,size.Z)*.65/math.tan(math.rad(camera.FieldOfView/2)))
     local yaw,pitch=0,.15
     local function rotate()
-        camera.CFrame=CFrame.lookAt(Vector3.new(math.sin(yaw)*6,1+pitch*4,-math.cos(yaw)*6),Vector3.new(0,.2,0))
+        camera.CFrame=CFrame.lookAt(target+Vector3.new(math.sin(yaw)*distance,.7+pitch*3,-math.cos(yaw)*distance),target)
     end
     rotate()
     if interactive then
@@ -2532,14 +2681,10 @@ function Catalog.Build(parent)
         end
     end
     for _,grid in grids do grid:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(phoneLists) end
-    local function card(scroll,index,placeholder)
-        local f=Instance.new("Frame"); f.Name=placeholder and "Placeholder"..index or "Card"..index
+    local function card(scroll,index)
+        local f=Instance.new("Frame"); f.Name="Card"..index
         f.LayoutOrder=index; f.Parent=scroll; Glass.Style(f,Glass.Colors.Mint,12)
-        if placeholder then f:SetAttribute("Placeholder",true); f.BackgroundTransparency=.55 end
         return f
-    end
-    local function placeholders(scroll)
-        for i=1,15 do card(scroll,1000+i,true) end
     end
     local function emit(action,id,copies) if callbacks.Action then callbacks.Action(action,id,copies) end end
     local function selectedCount() local count=0; for _ in pairs(selectedCopies) do count+=1 end; return count end
@@ -2698,7 +2843,6 @@ function Catalog.Build(parent)
         edit.Activated:Connect(function() refs.Inspect(id,true) end)
         refs.EggButtons[id]=open; refs.EggCards[id]={Button=open,Locked=locked,Rarity=rarity}; refs.EditButtons[id]=edit
     end
-    placeholders(refs.EggList); placeholders(refs.PaidList)
     local signature
     refresh=function()
         local owned,equipped,totalEq=state.Pets or {},state.EquippedPets or {},0
@@ -2752,7 +2896,6 @@ function Catalog.Build(parent)
                     end
                 end
             end
-            placeholders(refs.PetList)
         end
         detail()
     end
@@ -2770,7 +2913,7 @@ return Catalog
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXa9477c66c1ab4165bce86f65bbe6a153">
+        <Item class="ModuleScript" referent="RBX02849bde90fe43bdb176d2b768e6212b">
           <Properties>
             <string name="Name">Presentation</string>
             <ProtectedString name="Source">local Tween=game:GetService("TweenService")
@@ -2883,7 +3026,7 @@ return Presentation
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBX1c8f9b11abd54ea19b7b4e6ade9e6745">
+        <Item class="LocalScript" referent="RBX165f44902ea74a088e07160b0de3bf82">
           <Properties>
             <string name="Name">Controller</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -3038,7 +3181,7 @@ end)
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBX80fd05220f5647a1845efd3b5e90576c">
+        <Item class="LocalScript" referent="RBXc0aeb135360a48819213bff10f60ec2c">
           <Properties>
             <string name="Name">WorldSigns</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -3115,7 +3258,7 @@ end
       </Item>
     </Item>
   </Item>
-  <Item class="StarterGui" referent="RBX037d0ba2ee944d7b9ef98566bd7ab70f">
+  <Item class="StarterGui" referent="RBX2bfef0aa566e4bca8e91a34f89d07c38">
     <Properties>
       <string name="Name">StarterGui</string>
     </Properties>
