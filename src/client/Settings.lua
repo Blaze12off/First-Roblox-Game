@@ -160,7 +160,7 @@ function S.Build(refs,menu)
     end
     api.Pages.Graphics.CanvasSize=UDim2.fromOffset(0,174)
     toggle(api.Pages.Interface,"AllHUD","Весь интерфейс",0,function() return S.AllHUD end,api.SetAllHUD)
-    for i,info in {{"Power","Сила"},{"Coins","Монеты"},{"Multiplier","Общий множитель"},{"Shop","Магазин"},{"Gifts","Награды"},{"Pets","Яйца и питомцы"},{"Rebirth","Перерождение"},{"Train","Нижняя кнопка"},{"Hint","Подсказка"}} do
+    for i,info in {{"Power","Прыжок"},{"Coins","Монеты"},{"Multiplier","Общий множитель"},{"Shop","Магазин"},{"Gifts","Награды"},{"Pets","Яйца и питомцы"},{"Rebirth","Перерождение"},{"Train","Нижняя кнопка"},{"Hint","Подсказка"}} do
         local key=info[1]; toggle(api.Pages.Interface,key,info[2],i*54,function() return refs.ShouldShow(key) end,function(v) api.SetHUD(key,v) end)
     end
     api.Pages.Interface.CanvasSize=UDim2.fromOffset(0,550)

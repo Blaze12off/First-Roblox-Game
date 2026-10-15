@@ -1,8 +1,9 @@
 local Localization=game:GetService("LocalizationService")
 local H={}
+local C=require(game.ReplicatedStorage.SimulatorShared.Config)
 local labels={
     Settings={"Настройки","Settings"},
-    Power={"СИЛА","POWER"}, Coins={"МОНЕТЫ","COINS"}, Total={"ОБЩИЙ МНОЖИТЕЛЬ","TOTAL MULTIPLIER"},
+    Power={"ПРЫЖОК","JUMP"}, Coins={"МОНЕТЫ","COINS"}, Total={"ОБЩИЙ МНОЖИТЕЛЬ","TOTAL MULTIPLIER"},
     Shop={"Магазин","Shop"}, Gifts={"Награды","Rewards"}, Pets={"Яйца и питомцы","Eggs & Pets"},
     Rebirth={"Перерождение","Rebirth"}, Confirm={"ПОДТВЕРЖДЕНИЕ","CONFIRMATION"},
     Eggs={"Выбор яйца","Egg selection"}, Inventory={"Питомцы","Pets"}, Paid={"Донатные предметы","Paid items"},
@@ -24,6 +25,13 @@ function H.Text(key,locale)
     local pair=labels[key]; return pair and pair[H.Language(locale)=="ru" and 1 or 2] or key
 end
 function H.Item(id,locale)
+    local egg=C.Eggs[id]
+    if egg and not labels[id] then return egg.Name end
+    local pet=C.PetTypes[id]
+    if pet and pet.Zone and pet.Zone>1 then
+        local zoneLabel=H.Language(locale)=="ru" and "Ур. " or "Lv. "
+        return H.Text(pet.Species,locale).." · "..zoneLabel..pet.Zone..(pet.Upgraded and " · "..H.Text("Upgraded",locale) or "")
+    end
     local base=id:gsub("_Upgraded$","")
     return H.Text(base,locale)..(base~=id and " · "..H.Text("Upgraded",locale) or "")
 end

@@ -8,8 +8,8 @@ function Network.Create()
     return {Action=action,State=state,Notice=notice}
 end
 function Network.Snapshot(data, mode, saveStatus)
-    local power,coins=C.Requirements(data.Rebirths)
-    return {Coins=data.Coins, Power=data.Power, Level=data.Level, Rebirths=data.Rebirths,
+    local power,coins,xp=C.Requirements(data.Rebirths)
+    return {Zone=data.Zone,PracticeXP=data.PracticeXP,AvailablePractice=C.AvailablePractice(data),JumpHeight=C.JumpHeight(data),RequiredPractice=xp,MaxRebirths=C.MaxAffordableRebirths(data),Coins=data.Coins, Power=data.Power, Level=data.Level, Rebirths=data.Rebirths,
         LifetimePower=data.LifetimePower, Multiplier=C.Multiplier(data),
         UpgradeCost=data.Level<C.MaxLevel and C.UpgradeCost(data.Level) or 0,
         RequiredPower=power, RequiredCoins=coins, TotalTrainings=data.TotalTrainings,

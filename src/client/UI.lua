@@ -71,7 +71,7 @@ function UI.Build(player)
     multipliers.Name="MultiplierCard"
     local multiplierTitle=label(multipliers,UDim2.fromOffset(8,4),UDim2.new(1,-16,0,18),Headings.Text("Total"),12,palette.Muted)
     Headings.Style(multiplierTitle,palette.Mint)
-    refs.PowerMultiplier=label(multipliers,UDim2.fromOffset(10,24),UDim2.new(1,-20,0,16),"Сила  x1.00",13,palette.Mint)
+    refs.PowerMultiplier=label(multipliers,UDim2.fromOffset(10,24),UDim2.new(1,-20,0,16),"Прыжок  x1.00",13,palette.Mint)
     refs.CoinMultiplier=label(multipliers,UDim2.fromOffset(10,42),UDim2.new(1,-20,0,16),"Монеты  x1.00",13,palette.Gold)
     local left=Instance.new("Frame"); left.Name="ActionDock"; left.Size=UDim2.fromOffset(152,186)
     left.Position=UDim2.new(0,16,0.5,0); left.AnchorPoint=Vector2.new(0,0.5); left.BackgroundTransparency=1; left.Parent=gui
@@ -101,7 +101,7 @@ function UI.Build(player)
     refs.Train.Text=""
     refs.InteractCaption=label(refs.Train,UDim2.fromOffset(50,0),UDim2.new(1,-58,1,0),"Тренироваться · E",16)
     refs.Train.Visible=false
-    refs.Hint=label(gui,UDim2.new(0.5,-210,1,-120),UDim2.fromOffset(420,34),"Подойди к зелёной платформе и нажми E.",13,palette.Muted)
+    refs.Hint=label(gui,UDim2.new(0.5,-210,1,-120),UDim2.fromOffset(420,34),"Прыгай или тренируйся у площадки по E.",13,palette.Muted)
     refs.Notice=label(gui,UDim2.new(0.5,-190,1,-166),UDim2.fromOffset(380,38),"",15,palette.Gold)
     Glass.Style(refs.Notice,palette.Gold,13)
     refs.Notice.GlassTint:Destroy()
@@ -171,7 +171,7 @@ function UI.Build(player)
         end
     end
     local shop=menu("Shop","МАГАЗИН",272)
-    label(shop,UDim2.fromOffset(20,64),UDim2.fromOffset(310,42),"Улучшения усиливают тренировку.\nУровень 3 открывает новую станцию.",15)
+    label(shop,UDim2.fromOffset(20,64),UDim2.fromOffset(310,42),"Улучшения ускоряют рост прыжка.\nЗоны открываются у порталов за опыт и монеты.",15)
     refs.Upgrade=button(shop,UDim2.fromOffset(20,122),UDim2.fromOffset(310,48),"Улучшение: 25 монет")
     refs.Cosmetic=button(shop,UDim2.fromOffset(20,184),UDim2.fromOffset(310,62),"Косметика: за Rebirth",Color3.fromRGB(84,95,131))
     local pets=menu("Pets","ЯЙЦА И ПИТОМЦЫ",580,920)
@@ -189,11 +189,11 @@ function UI.Build(player)
     local gifts=menu("Gifts","НАГРАДЫ",250)
     label(gifts,UDim2.fromOffset(20,62),UDim2.fromOffset(310,42),"Бонусы за возвращение.\nПропуск дня не сбрасывает прогресс.",15)
     refs.Daily=button(gifts,UDim2.fromOffset(20,118),UDim2.fromOffset(310,48),"Ежедневная награда")
-    refs.Weekly=button(gifts,UDim2.fromOffset(20,180),UDim2.fromOffset(310,48),"Недельная награда")
-    local rebirth=menu("Rebirth","ПЕРЕРОЖДЕНИЕ",342)
+    refs.Weekly=button(gifts,UDim2.fromOffset(20,196),UDim2.fromOffset(310,48),"Недельная награда")
+    local rebirth=menu("Rebirth","ПЕРЕРОЖДЕНИЕ",414)
     refs.Bonus=label(rebirth,UDim2.fromOffset(20,62),UDim2.fromOffset(310,40),"Постоянный бонус: x1.00",16)
-    refs.Goal=label(rebirth,UDim2.fromOffset(20,114),UDim2.fromOffset(310,52),"200 силы и 150 монет",18)
-    local bar=frame(rebirth,UDim2.fromOffset(310,10),UDim2.fromOffset(20,180))
+    refs.Goal=label(rebirth,UDim2.fromOffset(20,114),UDim2.fromOffset(310,70),"Прыжок, монеты и опыт",18)
+    local bar=frame(rebirth,UDim2.fromOffset(310,10),UDim2.fromOffset(20,196))
     bar.BackgroundColor3=Color3.fromRGB(50,62,85)
     refs.Fill=frame(bar,UDim2.fromScale(0,1),UDim2.fromScale(0,0),nil,Color3.fromRGB(105,226,193))
     for _,child in refs.Fill:GetChildren() do child:Destroy() end
@@ -206,8 +206,16 @@ function UI.Build(player)
         progressTween=TweenService:Create(refs.Fill,TweenInfo.new(.22,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Size=UDim2.fromScale(value,1)})
         progressTween:Play()
     end
-    label(rebirth,UDim2.fromOffset(20,202),UDim2.fromOffset(310,54),"Сбросятся сила, монеты и уровень.\nРекорд, косметика и бонус сохранятся.",15)
-    refs.Prepare=button(rebirth,UDim2.fromOffset(20,274),UDim2.fromOffset(310,48),"Переродиться…",Color3.fromRGB(131,82,189))
+    local batch=Instance.new("Frame"); batch.Name="BatchSelector"; batch.BackgroundTransparency=1
+    batch.Position=UDim2.fromOffset(20,220); batch.Size=UDim2.fromOffset(310,38); batch.Parent=rebirth
+    refs.BatchButtons={}; refs.BatchAmount=1
+    for i,amount in {1,5,10,"MAX"} do
+        local b=button(batch,UDim2.fromScale((i-.5)/4,.5),UDim2.new(.25,-5,1,0),tostring(amount),palette.Violet)
+        b.AnchorPoint=Vector2.new(.5,.5); b.Position=UDim2.fromScale((i-.5)/4,.5)
+        refs.BatchButtons[amount]=b
+    end
+    label(rebirth,UDim2.fromOffset(20,270),UDim2.fromOffset(310,58),"Прыжок и усиления сбросятся. Цена монет и опыта суммируется. Зоны и питомцы сохранятся.",14)
+    refs.Prepare=button(rebirth,UDim2.fromOffset(20,344),UDim2.fromOffset(310,48),"Переродиться…",Color3.fromRGB(131,82,189))
     local confirmation=menu("Confirm","ПОДТВЕРЖДЕНИЕ",350)
     refs.Dialog=label(confirmation,UDim2.fromOffset(20,62),UDim2.fromOffset(310,148),"",17)
     refs.Confirm=button(confirmation,UDim2.fromOffset(20,226),UDim2.fromOffset(310,48),"Подтвердить",Color3.fromRGB(131,82,189))

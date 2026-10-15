@@ -93,6 +93,14 @@ function Catalog.Build(parent)
     detailBody.CanvasSize=UDim2.fromOffset(0,390); detailBody.ScrollingDirection=Enum.ScrollingDirection.Y
     detailBody.ScrollBarThickness=4; detailBody.BackgroundTransparency=1; detailBody.BorderSizePixel=0
     detailBody.Visible=false; detailBody.Parent=inspector
+    local odds=Instance.new("Frame"); odds.Name="DropOdds"; odds.BackgroundTransparency=1
+    odds.Position=UDim2.fromOffset(10,58); odds.Size=UDim2.new(1,-20,1,-66); odds.Visible=false; odds.ZIndex=24; odds.Parent=inspector
+    local oddsList=Instance.new("ScrollingFrame"); oddsList.Name="Drops"; oddsList.Size=UDim2.new(1,0,1,-50)
+    oddsList.BackgroundTransparency=1; oddsList.BorderSizePixel=0; oddsList.ScrollBarThickness=4
+    oddsList.ScrollingDirection=Enum.ScrollingDirection.Y; oddsList.AutomaticCanvasSize=Enum.AutomaticSize.Y; oddsList.CanvasSize=UDim2.new(); oddsList.Parent=odds
+    local oddsLayout=Instance.new("UIListLayout"); oddsLayout.Padding=UDim.new(0,6); oddsLayout.SortOrder=Enum.SortOrder.LayoutOrder; oddsLayout.Parent=oddsList
+    local oddsReturn=button(odds,UDim2.new(.5,0,1,-23),UDim2.new(1,-8,0,40),"К яйцу")
+    refs.OddsPanel=odds; refs.OddsList=oddsList
     refs.PetSummary=text(parent,UDim2.fromOffset(20,58),UDim2.new(1,-40,0,28),"Загрузка…",12)
     local phoneBody=Instance.new("ScrollingFrame"); phoneBody.Name="PhoneCatalogBody"
     phoneBody.Position=UDim2.fromOffset(0,56); phoneBody.Size=UDim2.new(1,0,1,-62)
@@ -209,18 +217,28 @@ function Catalog.Build(parent)
         end
     end
     local refresh
+    local function oddsMode()
+        local active=selected and selected.Odds==true
+        odds.Visible=active or false
+        description.Visible=not active; primary.Visible=not active
+        if active then
+            combine.Visible=false; detailBody.Visible=false
+            local picture=inspector:FindFirstChild("Picture") or detailBody:FindFirstChild("Picture")
+            if picture then picture.Visible=false end
+        end
+    end
     function refs.Resize(newWidth,scale,newCentre,isPhone)
         width=newWidth; responsiveScale=scale or 1; centre=newCentre or centre; phoneLayout=isPhone==true
-        inspectorScale.Scale=responsiveScale; layout(false)
+        inspectorScale.Scale=responsiveScale; layout(false); oddsMode()
     end
     function refs.Reset()
         transition+=1
-        selected=nil; refs.CraftId=nil; selectedCopies={}; inspector.Visible=false
+        selected=nil; refs.CraftId=nil; selectedCopies={}; inspector.Visible=false; odds.Visible=false
         layout(false)
     end
     function refs.Return()
         transition+=1; local version=transition
-        selected=nil; refs.CraftId=nil; selectedCopies={}
+        selected=nil; refs.CraftId=nil; selectedCopies={}; odds.Visible=false
         layout(true,true)
         task.delay(.2,function() if transition==version and selected==nil then inspector.Visible=false end end)
         if refresh then refresh() end
@@ -235,12 +253,12 @@ function Catalog.Build(parent)
     local function detail()
         if not selected then return end
         local info=(selected.Egg and C.Eggs or C.PetTypes)[selected.Id]
-        title.Text=Headings.Item(selected.Id)
-        local unlocked=not selected.Egg or (state.Level or 0)>=info.MinLevel
-        description.Text=not unlocked and "Недоступно: уровень "..number(info.MinLevel) or
-            (rarity(info,selected.Egg).."\n"..(selected.Egg and number(info.Cost).." монет" or ("Сила и монеты x%.2f"):format(1+info.Bonus)).."\n"..info.Description)
+        title.Text=selected.Odds and "Шансы выпадения" or Headings.Item(selected.Id)
+        local unlocked=not selected.Egg or ((state.Level or 0)>=info.MinLevel and (state.Zone or 1)>=(info.Zone or 1))
+        description.Text=not unlocked and "Недоступно: зона "..number(info.Zone or 1) or
+            (rarity(info,selected.Egg).."\n"..(selected.Egg and number(info.Cost).." монет" or ("Прыжок и монеты x%.2f"):format(1+info.Bonus)).."\n"..info.Description)
         description.TextColor3=rarityColor(info)
-        if selected.Egg then primary.Text="Открыть · "..number(info.Cost).." монет"; primary.Active=unlocked; combine.Visible=false
+        if selected.Egg then primary.Text="Открыть · "..number(info.Cost).." монет"; primary.Active=unlocked; combine.Visible=true; combine.Active=unlocked; combine.Text="Шансы выпадения"
         else
             local owned=(state.Pets or {})[selected.Id] or 0; local eq=(state.EquippedPets or {})[selected.Id] or 0
             primary.Text=eq>0 and "Снять" or "Экипировать"; primary.Active=owned>0
@@ -253,8 +271,28 @@ function Catalog.Build(parent)
         selected={Id=id,Egg=isEgg}; refs.CraftId=nil; selectedCopies={}
         local old=inspector:FindFirstChild("Picture") or detailBody:FindFirstChild("Picture"); if old then old:Destroy() end
         refs.DetailView=Catalog.View(inspector,id,isEgg,true)
-        detail(); layout(true)
+        detail(); layout(true); oddsMode()
     end
+    function refs.ShowOdds(id)
+        local egg=C.Eggs[id]
+        if not egg or (state.Zone or 1)<egg.Zone or (state.Level or 0)<egg.MinLevel then return false end
+        refs.Inspect(id,true); selected.Odds=true
+        for _,obj in oddsList:GetChildren() do if obj:IsA("Frame") then obj:Destroy() end end
+        local index=0; local total=0
+        for _,weight in egg.Weights do total+=weight end
+        for _,petId in C.PetOrder do
+            local weight=egg.Weights[petId] or 0
+            if weight>0 then
+                index+=1
+                local row=Instance.new("Frame"); row.Name=petId; row.Size=UDim2.new(1,-6,0,90); row.LayoutOrder=index; row.Parent=oddsList; Glass.Style(row,rarityColor(C.PetTypes[petId]),10)
+                local view=Catalog.View(row,petId,false,false); view.Position=UDim2.fromOffset(0,4); view.Size=UDim2.new(.38,0,0,78)
+                local name=text(row,UDim2.new(.38,2,0,7),UDim2.new(.62,-8,0,42),Headings.Item(petId),12,rarityColor(C.PetTypes[petId]))
+                text(row,UDim2.new(.38,2,0,51),UDim2.new(.62,-8,0,28),string.format("%.2f%% · x%.2f",weight/total*100,1+C.PetTypes[petId].Bonus),13)
+            end
+        end
+        oddsList.CanvasPosition=Vector2.zero; title.Text="Шансы выпадения"; oddsMode(); return true
+    end
+    oddsReturn.Activated:Connect(function() if selected then refs.Inspect(selected.Id,true) end end)
     function refs.BeginCraft(id)
         local info=C.PetTypes[id]
         if not info or info.Upgraded or ((state.Pets or {})[id] or 0)<3 then return false end
@@ -274,7 +312,8 @@ function Catalog.Build(parent)
         else emit(((state.EquippedPets or {})[selected.Id] or 0)>0 and "PetUnequip" or "PetEquip",selected.Id) end
     end)
     combine.Activated:Connect(function()
-        if not selected or selected.Egg or not combine.Active then return end
+        if not selected or not combine.Active then return end
+        if selected.Egg then refs.ShowOdds(selected.Id); return end
         if refs.CraftId then craft()
         else refs.BeginCraft(selected.Id) end
     end)
@@ -286,13 +325,15 @@ function Catalog.Build(parent)
         local info=C.Eggs[id]; local f=card(refs.EggList,index)
         local view=Catalog.View(f,id,true); view.Position=UDim2.fromOffset(6,4); view.Size=UDim2.new(1,-12,0,52)
         text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),Headings.Item(id),13,Glass.Colors.Mint)
-        local rarity=text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,18),info.Rarity,11,rarityColor(info))
+        local rarity=text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,18),"Зона "..info.Zone.." · "..(info.Category==1 and "Обычное" or "Редкое"),11,rarityColor(info))
         local locked=text(f,UDim2.fromOffset(6,109),UDim2.new(1,-12,0,24),number(info.Cost).." монет",12)
-        local open=button(f,UDim2.new(.5,0,0,159),UDim2.new(1,-16,0,36),"Открыть")
+        local open=button(f,UDim2.new(.5,0,0,132),UDim2.new(1,-16,0,30),"Открыть")
+        local chance=button(f,UDim2.new(.5,0,0,166),UDim2.new(1,-16,0,30),"Шансы выпадения")
+        chance.Activated:Connect(function() if chance.Active then refs.ShowOdds(id) end end)
         local edit=button(f,UDim2.new(.5,0,0,198),UDim2.new(1,-16,0,32),"Редактировать")
         open.Activated:Connect(function() if open.Active then emit("Hatch",id) end end)
         edit.Activated:Connect(function() refs.Inspect(id,true) end)
-        refs.EggButtons[id]=open; refs.EggCards[id]={Button=open,Locked=locked,Rarity=rarity}; refs.EditButtons[id]=edit
+        refs.EggButtons[id]=open; refs.EggCards[id]={Button=open,Locked=locked,Rarity=rarity,Chance=chance}; refs.EditButtons[id]=edit
     end
     local signature
     refresh=function()
@@ -301,9 +342,9 @@ function Catalog.Build(parent)
         refs.PetSummary.Text=("Получено %s/%s · экипировано %s/3 · x%.2f"):format(number(total),number(C.MaxPets),number(totalEq),state.PetMultiplier or 1)
         refs.EquipBest.Text=refs.CraftId and ("Совместить · выбрано %d/3"):format(selectedCount()) or "Экипировать лучшее"
         for id,item in pairs(refs.EggCards) do
-            local unlocked=(state.Level or 0)>=C.Eggs[id].MinLevel
-            item.Button.Active=unlocked; item.Button.Text=unlocked and "Открыть" or "Недоступно"
-            item.Locked.Text=unlocked and number(C.Eggs[id].Cost).." монет" or "Недоступно · уровень "..number(C.Eggs[id].MinLevel)
+            local unlocked=(state.Level or 0)>=C.Eggs[id].MinLevel and (state.Zone or 1)>=C.Eggs[id].Zone
+            item.Button.Active=unlocked; item.Chance.Active=unlocked; item.Button.Text=unlocked and "Открыть · "..number(C.Eggs[id].Cost).." монет" or "Недоступно"
+            item.Locked.Text=""
         end
         -- Rebuild only when counts/equipment/craft selections change; preserve scroll on state ticks.
         local parts={refs.CraftId or ""}
@@ -348,7 +389,7 @@ function Catalog.Build(parent)
                 end
             end
         end
-        detail()
+        detail(); oddsMode()
     end
     function refs.Update(snapshot)
         state=snapshot

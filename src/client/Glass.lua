@@ -32,7 +32,7 @@ function Glass.Icon(parent,kind,accent,position,size)
         s.BackgroundColor3=accent; s.BorderSizePixel=0; s.Parent=f; if round then corner(s,round) end; return s
     end
     if kind=="Power" then
-        shape(.22,.25,.13,.5,3); shape(.65,.25,.13,.5,3); shape(.35,.44,.3,.12,2)
+        local stem=shape(.45,.32,.1,.5,2); local a=shape(.29,.32,.27,.08,2); a.Rotation=-45; local b=shape(.45,.32,.27,.08,2); b.Rotation=45
     elseif kind=="Coins" then
         local disc=shape(.23,.23,.54,.54,50); disc.BackgroundTransparency=.1
         local line=shape(.47,.32,.06,.36,2); line.BackgroundColor3=Glass.Colors.Base
@@ -51,10 +51,25 @@ function Glass.Icon(parent,kind,accent,position,size)
         local a=shape(.3,.26,.19,.1,3); a.Rotation=30
         local b=shape(.51,.26,.19,.1,3); b.Rotation=-30
     else
-        local ring=shape(.25,.25,.5,.5,50); ring.BackgroundTransparency=1
-        local outline=Instance.new("UIStroke"); outline.Color=accent; outline.Thickness=2; outline.Parent=ring
-        local tip1=shape(.55,.18,.22,.07,2); tip1.Rotation=22
-        local tip2=shape(.7,.22,.07,.22,2); tip2.Rotation=22
+        -- Two curved arrows: one solid, one hollow, both in the HUD theme.
+        for arrow=0,1 do
+            local hollow=arrow==1
+            for i=0,10 do
+                local angle=math.rad(25+i*12+arrow*180)
+                local seg=shape(.5+math.cos(angle)*.25-.06,.5+math.sin(angle)*.25-.04,.12,.08,2)
+                seg.Rotation=math.deg(angle)+90
+                if hollow then
+                    seg.BackgroundTransparency=1
+                    local edge=Instance.new("UIStroke"); edge.Color=accent; edge.Thickness=1; edge.Parent=seg
+                end
+            end
+            local angle=math.rad(145+arrow*180)
+            local x,y=.5+math.cos(angle)*.25,.5+math.sin(angle)*.25
+            for _,side in {-1,1} do
+                local tip=shape(x-.09,y-.025,.18,.05,2); tip.Rotation=math.deg(angle)+90+side*36
+                if hollow then tip.BackgroundTransparency=1; local e=Instance.new("UIStroke"); e.Color=accent; e.Thickness=1; e.Parent=tip end
+            end
+        end
     end
     return f
 end

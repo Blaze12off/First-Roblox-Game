@@ -52,8 +52,8 @@ local C = {
     TrainCooldown = 0, BaseCoins = 8, BasePower = 5,
     UpgradeBase = 25, UpgradeGrowth = 1.6,
     CoinLevelBonus = 0.15, PowerLevelBonus = 0.20,
-    RebirthBonus = 0.12, RebirthBonusCap = 25,
-    RebirthPower = 200, RebirthCoins = 150,
+    RebirthBonus = 0.08, RebirthBonusCap = 10000,
+    RebirthPower = 2500, RebirthCoins = 2000, RebirthPractice = 90, MaxBatchRebirths=100,
     RebirthRequirementGrowth = 0.08, RequirementGrowthCap = 10,
     DailySeconds = 86400, WeeklySeconds = 604800,
     DailyTrainingEquivalent = 8, WeeklyTrainingEquivalent = 25,
@@ -71,7 +71,7 @@ local C = {
     RarityColors = { ["Обычная"]={195,208,224},["Редкая"]={100,185,255},["Эпическая"]={192,125,255},["Мифическая"]={255,103,153},["Легендарная"]={255,203,77},["Секретная"]={93,241,220},["Божественная"]={255,241,181} },
     PetTypes = {
         Cat = {Name = "Кот", Bonus = 0.10, Rarity="Обычная", Description="Верный спутник для первых тренировок.", Color = {255, 182, 103}},
-        Dog = {Name = "Пёс", Bonus = 0.20, Rarity="Редкая", Description="Помогает быстрее набирать силу и монеты.", Color = {111, 190, 255}},
+        Dog = {Name = "Пёс", Bonus = 0.20, Rarity="Редкая", Description="Помогает быстрее увеличивать прыжок и получать монеты.", Color = {111, 190, 255}},
         Bunny = {Name = "Кролик", Bonus = 0.35, Rarity="Эпическая", Description="Лунный кролик с длинными ушами и пушистым хвостом.", Color = {211, 151, 255}},
         Fox = {Name="Звёздный лис", Bonus=.60, Rarity="Мифическая", Description="Маленький хранитель созвездий с белой манишкой и двумя звёздными хвостами.", Color={245,123,164}},
         Phoenix = {Name="Солнечный феникс", Bonus=1.00, Rarity="Легендарная", Description="Золотая птица с огненными крыльями и тройным хвостом.", Color={255,176,65}},
@@ -79,30 +79,62 @@ local C = {
         Dragon = {Name="Небесный дракон", Bonus=3.00, Rarity="Божественная", Description="Жемчужный дракон с золотыми рогами, крыльями и небесным ореолом.", Color={225,239,255}},
     },
     PetOrder = {"Cat", "Dog", "Bunny", "Fox", "Phoenix", "Axolotl", "Dragon"},
-    EggOrder = {"Meadow", "Crystal", "Celestial"},
-    Eggs = {
-        Meadow = {Name = "Луговое яйцо", Description = "Первое яйцо для твоей команды. Кот 60% • Пёс 30% • Кролик 10%.", MinLevel = 0, Cost = 80, Position = Vector3.new(-31, 0.8, -8),
-            Color = {112, 228, 180}, Weights = {Cat = 60, Dog = 30, Bunny = 10}},
-        Crystal = {Name = "Кристальное яйцо", Description = "Больше шансов на редкого питомца. Кот 20% • Пёс 45% • Кролик 35%.", MinLevel = 0, Cost = 240, Position = Vector3.new(-31, 0.8, 3),
-            Color = {180, 143, 255}, Weights = {Cat = 20, Dog = 45, Bunny = 35}},
-        Celestial = {Name="Небесное яйцо", Description="Звёздный лис 55% • Солнечный феникс 30% • Аксолотль Бездны 12% • Небесный дракон 3%.", MinLevel=0, Cost=2500, Position=Vector3.new(-31,.8,-19),
-            Color={216,232,255}, Weights={Fox=55,Phoenix=30,Axolotl=12,Dragon=3}},
+    EggOrder = {},
+    Eggs = {},
+    BaseJumpHeight=7.2, StartJumpRatio=.05, JumpPointsPerBase=2500, MaxJumpHeight=120,
+    Zones={
+        {Name="Луг",XP=0,Cost=0,Scale=1,Color={112,228,180},Eggs={"Meadow","Crystal"}},
+        {Name="Лес",XP=600,Cost=80000,Scale=1.6,Color={109,207,141},Eggs={"Moss","Amber"}},
+        {Name="Ледник",XP=1800,Cost=1300000,Scale=2.7,Color={135,219,255},Eggs={"Frost","Aurora"}},
+        {Name="Вулкан",XP=3600,Cost=9000000,Scale=4.5,Color={255,143,93},Eggs={"Lava","Ember"}},
+        {Name="Небеса",XP=6000,Cost=45000000,Scale=7.5,Color={224,224,255},Eggs={"Star","Celestial"}},
     },
     Stations = {
         Basic = {Position = Vector3.new(-16, 1, 0), MinLevel = 0, Multiplier = 1},
         Advanced = {Position = Vector3.new(24, 1, 0), MinLevel = 3, Multiplier = 1.25},
     },
 }
+-- Legacy species IDs remain valid; later biomes add stronger variants.
+local species=table.clone(C.PetOrder)
+local themes={"", "Лесной ","Ледяной ","Огненный ","Небесный "}
+local eggNames={Meadow="Луговое яйцо",Crystal="Кристальное яйцо",Moss="Моховое яйцо",Amber="Янтарное яйцо",
+ Frost="Ледяное яйцо",Aurora="Полярное яйцо",Lava="Лавовое яйцо",Ember="Пламенное яйцо",Star="Звёздное яйцо",Celestial="Небесное яйцо"}
+for zone,info in C.Zones do
+    info.Position=Vector3.new((zone-1)*120-16,4,12)
+    if zone>1 then C.Stations["Zone"..zone]={Position=Vector3.new((zone-1)*120-16,1,0),MinLevel=0,MinZone=zone,Multiplier=1+(zone-1)*.15} end
+    for _,id in species do
+        if zone>1 then
+            local base=C.PetTypes[id]; local key=id.."_Z"..zone
+            C.PetTypes[key]={Name=themes[zone]..base.Name,Bonus=(1+base.Bonus)*info.Scale-1,
+                Rarity=base.Rarity,Description="Спутник зоны «"..info.Name.."». "..base.Description,
+                Color={math.floor((base.Color[1]+info.Color[1])/2),math.floor((base.Color[2]+info.Color[2])/2),math.floor((base.Color[3]+info.Color[3])/2)},Species=id,Zone=zone}
+            table.insert(C.PetOrder,key)
+        else C.PetTypes[id].Species=id; C.PetTypes[id].Zone=1 end
+    end
+    for category,id in info.Eggs do
+        local weights=category==1 and {Cat=55,Dog=30,Bunny=12,Fox=2.5,Phoenix=.5} or {Dog=20,Bunny=35,Fox=28,Phoenix=12,Axolotl=4,Dragon=1}
+        local keyed={}
+        for pet,weight in weights do keyed[zone==1 and pet or pet.."_Z"..zone]=weight end
+        C.Eggs[id]={Name=eggNames[id],Description=category==1 and "Спутники для начала исследования этой зоны." or "Повышенные шансы редких спутников этой зоны.",
+            MinLevel=0,Zone=zone,Category=category,Cost=({120,1500,10000,65000,400000})[zone]*(category==1 and 1 or 4),
+            Position=Vector3.new((zone-1)*120-31,.8,category==1 and -8 or 3),Color=category==1 and info.Color or {math.min(255,info.Color[1]+25),math.max(90,info.Color[2]-35),255},
+            Weights=keyed,Rarity=category==1 and "Обычная" or "Эпическая",ModelStyle=category==1 and "Meadow" or zone==5 and "Celestial" or "Crystal"}
+        table.insert(C.EggOrder,id)
+    end
+end
 C.InventoryOrder=table.clone(C.PetOrder)
 for _,id in C.PetOrder do
     local base=C.PetTypes[id]
     C.PetTypes[id.."_Upgraded"]={Name=base.Name.." · Улучшенный",Bonus=(1+base.Bonus)*4-1,
         Rarity=base.Rarity,Description="Совмещён из трёх одинаковых питомцев. Множитель увеличен в 4 раза.",
-        Color=base.Color,BaseId=id,Upgraded=true}
+        Color=base.Color,BaseId=id,Species=base.Species,Zone=base.Zone,Upgraded=true}
     table.insert(C.InventoryOrder,id.."_Upgraded")
 end
-C.Eggs.Meadow.Rarity="Обычная"; C.Eggs.Crystal.Rarity="Редкая"
-C.Eggs.Celestial.Rarity="Божественная"
+-- Serialized Power keys now hold jump training points, preserving old records.
+function C.JumpHeight(data)
+    return math.min(C.MaxJumpHeight,C.BaseJumpHeight*(C.StartJumpRatio+math.sqrt(math.max(0,data.Power)/C.JumpPointsPerBase)))
+end
+function C.AvailablePractice(data) return math.max(0,(data.PracticeXP or 0)-(data.RebirthXPSpent or 0)) end
 function C.Multiplier(data)
     return 1 + math.min(data.Rebirths, C.RebirthBonusCap) * C.RebirthBonus
 end
@@ -110,13 +142,30 @@ function C.UpgradeCost(level)
     return math.floor(C.UpgradeBase * C.UpgradeGrowth ^ level)
 end
 function C.Requirements(rebirths)
-    local factor = 1 + math.min(rebirths, C.RequirementGrowthCap) * C.RebirthRequirementGrowth
-    return math.floor(C.RebirthPower * factor), math.floor(C.RebirthCoins * factor)
+    local n=rebirths+1
+    return math.floor(C.RebirthPower*n^1.45),math.floor(C.RebirthCoins*n^1.4),math.floor(C.RebirthPractice*n^.5)
+end
+function C.BatchRequirements(rebirths,amount)
+    if type(amount)~="number" or amount%1~=0 or amount<1 or amount>C.MaxBatchRebirths or rebirths+amount>C.MaxRebirths then return nil end
+    local power,coins,xp=0,0,0
+    for i=0,amount-1 do
+        local p,c,x=C.Requirements(rebirths+i); power+=p; coins+=c; xp+=x
+    end
+    return power,coins,xp
+end
+function C.MaxAffordableRebirths(data)
+    local power,coins,xp=0,0,0; local count=0
+    for i=0,math.min(C.MaxBatchRebirths,C.MaxRebirths-data.Rebirths)-1 do
+        local p,c,x=C.Requirements(data.Rebirths+i); power+=p; coins+=c; xp+=x
+        if power>data.Power or coins>data.Coins or xp>C.AvailablePractice(data) then break end
+        count+=1
+    end
+    return count
 end
 function C.TrainingMultipliers(data, stationMultiplier)
     local m = C.Multiplier(data) * (stationMultiplier or 1) * C.PetMultiplier(data)
-    return (1 + data.Level * C.PowerLevelBonus) * m,
-        (1 + data.Level * C.CoinLevelBonus) * m
+    return (1 + data.Level * C.PowerLevelBonus) * m * (1+((data.Zone or 1)-1)*.25),
+        (1 + data.Level * C.CoinLevelBonus) * m * (1+((data.Zone or 1)-1)*.25)
 end
 function C.Gains(data, stationMultiplier)
     local power, coins = C.TrainingMultipliers(data, stationMultiplier)
@@ -137,7 +186,7 @@ local require=getModule; local script={Parent=root}
 local C = require(game.ReplicatedStorage.SimulatorShared.Config)
 local Schema = {}
 function Schema.New()
-    return {Version = 4, Coins = 0, Power = 0, Level = 0, Rebirths = 0,
+    return {Version = 5, Zone=1, PracticeXP=0, RebirthXPSpent=0, Coins = 0, Power = 0, Level = 0, Rebirths = 0,
         LifetimePower = 0, TotalTrainings = 0, LastDaily = 0, LastWeekly = 0,
         Cosmetics = {}, Equipped = "", Pets = {}, EquippedPets = {}}
 end
@@ -153,7 +202,10 @@ local function integer(value, maximum)
 end
 -- Corrupt/unknown records fail closed. Defaults only come from a genuinely absent key.
 function Schema.Validate(raw)
-    if type(raw) ~= "table" or (raw.Version ~= 1 and raw.Version ~= 2 and raw.Version ~= 3 and raw.Version ~= 4) then return nil end
+    if type(raw) ~= "table" or (raw.Version ~= 1 and raw.Version ~= 2 and raw.Version ~= 3 and raw.Version ~= 4 and raw.Version ~= 5) then return nil end
+    if raw.Version==5 then
+        if not integer(raw.Zone,5) or raw.Zone<1 or not integer(raw.PracticeXP,C.MaxValue) or not integer(raw.RebirthXPSpent,raw.PracticeXP) then return nil end
+    end
     local limits = {Coins=C.MaxValue, Power=C.MaxValue, Level=C.MaxLevel,
         Rebirths=C.MaxRebirths, LifetimePower=C.MaxValue, TotalTrainings=C.MaxValue,
         LastDaily=100000000000, LastWeekly=100000000000}
@@ -185,7 +237,7 @@ function Schema.Validate(raw)
     end
     local clean = Schema.New()
     for key in pairs(clean) do
-        if key ~= "Version" and key ~= "EquippedPets" and (raw.Version >= 2 or key ~= "Pets") then
+        if key ~= "Version" and key ~= "EquippedPets" and (raw.Version>=5 or (key~="Zone" and key~="PracticeXP" and key~="RebirthXPSpent")) and (raw.Version >= 2 or key ~= "Pets") then
             clean[key] = Schema.Copy(raw[key])
         end
     end
@@ -309,13 +361,13 @@ local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compac
 local P = {}
 function P.Train(data, stationId)
     local station = C.Stations[stationId]
-    if not station or data.Level < station.MinLevel then return false, "Станция откроется на уровне 3." end
+    if not station or (data.Zone or 1)<(station.MinZone or 1) or data.Level < station.MinLevel then return false, "Станция откроется на уровне 3." end
     local power, coins = C.Gains(data, station.Multiplier)
     data.Power = math.min(C.MaxValue, data.Power+power)
     data.Coins = math.min(C.MaxValue, data.Coins+coins)
     data.LifetimePower = math.min(C.MaxValue, data.LifetimePower+power)
     data.TotalTrainings = math.min(C.MaxValue, data.TotalTrainings+1)
-    return true, ("+%s силы, +%s монет"):format(number(power),number(coins))
+    return true, ("+%s прыжка, +%s монет"):format(number(power),number(coins))
 end
 function P.Upgrade(data)
     if data.Level >= C.MaxLevel then return false, "Максимальный уровень тренировки." end
@@ -324,20 +376,37 @@ function P.Upgrade(data)
     data.Coins-=cost; data.Level+=1
     return true, "Тренировка усилена! Уровень "..number(data.Level)
 end
+function P.Practice(data,seconds)
+    if type(seconds)~="number" or seconds~=seconds or seconds<0 or seconds>1 then return false end
+    data.PracticeXP=math.min(C.MaxValue,data.PracticeXP+math.floor(seconds))
+    return true
+end
+function P.UnlockZone(data,zone)
+    if type(zone)~="number" or zone%1~=0 or zone~=(data.Zone or 1)+1 or not C.Zones[zone] then return false,"Открывай зоны по порядку." end
+    local target=C.Zones[zone]
+    if data.PracticeXP<target.XP or data.Coins<target.Cost then return false,"Нужны опыт и монеты: "..number(target.XP).." опыта / "..number(target.Cost).." монет." end
+    data.Coins-=target.Cost; data.Zone=zone
+    return true,"Открыта зона «"..target.Name.."»!"
+end
+function P.ApplyJump(player,data)
+    local humanoid=player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+    if humanoid then humanoid.UseJumpPower=false; humanoid.JumpHeight=C.JumpHeight(data) end
+end
 return P
 
 end
 moduleFactories["Rebirth"] = function()
 local require=getModule; local script={Parent=root}
-local C = require(game.ReplicatedStorage.SimulatorShared.Config)
-local R = {}
-function R.Apply(data)
-    if data.Rebirths>=C.MaxRebirths then return false, "Достигнут предел перерождений MVP." end
-    local power, coins=C.Requirements(data.Rebirths)
-    if data.Power<power or data.Coins<coins then return false, "Для перерождения нужны сила и монеты." end
-    -- Lifetime score, reward timestamps and cosmetics deliberately survive the reset.
-    data.Power=0; data.Coins=0; data.Level=0; data.Rebirths+=1
-    return true, ("Перерождение! Постоянный бонус: x%.2f"):format(C.Multiplier(data))
+local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local R={}
+function R.Apply(data,amount)
+    amount=amount or 1
+    local power,coins,xp=C.BatchRequirements(data.Rebirths,amount)
+    if not power then return false,"Недопустимое количество перерождений." end
+    if data.Power<power or data.Coins<coins or C.AvailablePractice(data)<xp then return false,"Не хватает прыжка, монет или опыта тренировки." end
+    data.Power=0; data.Coins-=coins; data.Level=0
+    data.RebirthXPSpent+=xp; data.Rebirths+=amount
+    return true,("Перерождений: %d! Постоянный бонус x%.2f"):format(amount,C.Multiplier(data))
 end
 return R
 
@@ -413,6 +482,9 @@ function S.Allow(limiter, action, now, cooldown)
 end
 function S.Valid(action, args)
     if type(action)~="string" or #action>16 then return false end
+    if action=="Jump" then return args.n==0 end
+    if action=="Zone" then return args.n==1 and type(args[1])=="number" and args[1]%1==0 and args[1]>=1 and args[1]<=5 end
+    if action=="PrepareRebirth" then return args.n==0 or (args.n==1 and type(args[1])=="number" and args[1]%1==0 and args[1]>=1 and args[1]<=C.MaxBatchRebirths) end
     if action=="Train" then return args.n==1 and type(args[1])=="string" and C.Stations[args[1]]~=nil end
     if action=="Equip" then return args.n==1 and (args[1]=="" or args[1]=="BronzeAura" or args[1]=="NeonTrail") end
     if action=="Hatch" then return args.n==1 and type(args[1])=="string" and C.Eggs[args[1]]~=nil end
@@ -459,6 +531,7 @@ end
 function Pets.Hatch(data, eggId, roll)
     local egg = C.Eggs[eggId]
     if not egg then return false, "Неизвестное яйцо." end
+    if (data.Zone or 1)<(egg.Zone or 1) then return false,"Яйцо недоступно: сначала открой зону "..number(egg.Zone).."." end
     if data.Level < egg.MinLevel then return false, "Яйцо недоступно: нужен уровень "..number(egg.MinLevel).."." end
     if Pets.Count(data) >= C.MaxPets then return false, "Инвентарь питомцев заполнен (50)." end
     if data.Coins < egg.Cost then return false, "Не хватает монет на яйцо." end
@@ -575,7 +648,7 @@ function Spec.Run()
         for _,id in C.PetOrder do
             local weight=egg.Weights[id] or 0
             if weight>0 then
-                local sample=Schema.New(); sample.Coins=egg.Cost
+                local sample=Schema.New(); sample.Zone=5; sample.Coins=egg.Cost
                 local ok,_,drop=Pets.Hatch(sample,eggId,function() return (threshold+weight/2)/total end)
                 check(ok and drop==id and sample.Coins==0 and sample.Pets[id]==1,"paid midpoint drop "..eggId..id)
                 check(Schema.Validate(sample)~=nil,"new drop profile validates "..id)
@@ -583,7 +656,7 @@ function Spec.Run()
                 threshold+=weight
             end
         end
-        local sample=Schema.New(); sample.Coins=egg.Cost
+        local sample=Schema.New(); sample.Zone=5; sample.Coins=egg.Cost
         local ok,_,drop=Pets.Hatch(sample,eggId,function() return 1-1e-12 end)
         check(ok and (egg.Weights[drop] or 0)>0,"upper endpoint never selects a zero-weight pet")
     end
@@ -621,7 +694,7 @@ function Spec.Run()
     check(not S.Valid("PetCraft",table.pack("Cat",{1,2,2})) and not S.Valid("PetCraft",table.pack("Cat_Upgraded",{1,2,3})),"craft invalid selection and variant rejected")
     local legacy=Schema.New(); legacy.Version=3; legacy.Coins=123; legacy.Pets={Cat=2}; legacy.EquippedPets={Cat=1}
     local upgradedSchema=Schema.Validate(legacy)
-    check(upgradedSchema and upgradedSchema.Version==4 and upgradedSchema.Coins==123 and upgradedSchema.EquippedPets.Cat==1,"v3 migration preserves progress and team")
+    check(upgradedSchema and upgradedSchema.Version==5 and upgradedSchema.Coins==123 and upgradedSchema.EquippedPets.Cat==1,"v3 migration preserves progress and team")
     local d=Schema.New()
     check(Schema.Validate(d)~=nil,"default schema")
     local interactions={}
@@ -635,7 +708,7 @@ function Spec.Run()
     end
     local old=Schema.New(); old.Version=1; old.Pets=nil; old.EquippedPet=nil; old.Coins=123
     local migrated=Schema.Validate(old)
-    check(migrated and migrated.Version==4 and migrated.Coins==123 and next(migrated.Pets)==nil,"migrate old profile without progress loss")
+    check(migrated and migrated.Version==5 and migrated.Coins==123 and next(migrated.Pets)==nil,"migrate old profile without progress loss")
     local petData=Schema.New()
     check(not Pets.Hatch(petData,"Meadow"),"no coins no hatch")
     petData.Coins=1000
@@ -644,7 +717,7 @@ function Spec.Run()
     for _,case in {{0,"Cat"},{.6,"Dog"},{.9,"Bunny"}} do
         local before=petData.Coins
         local ok,_,id=Pets.Hatch(petData,"Meadow",function() return case[1] end)
-        check(ok and id==case[2] and petData.Coins==before-80,"weighted hatch and exact cost")
+        check(ok and id==case[2] and petData.Coins==before-C.Eggs.Meadow.Cost,"weighted hatch and exact cost")
     end
     check(Pets.Count(petData)==3 and petData.EquippedPets.Cat==1,"auto equip first and inventory count")
     Pets.Equip(petData,"")
@@ -654,13 +727,13 @@ function Spec.Run()
     local bonusData=Schema.New(); bonusData.Level=3; bonusData.Rebirths=2
     bonusData.Pets.Bunny=1; bonusData.EquippedPets.Bunny=1
     local totalPower,totalCoins=C.TrainingMultipliers(bonusData,1.25)
-    check(math.abs(totalPower-3.348)<.000001 and math.abs(totalCoins-3.034125)<.000001,"separate total multipliers combine all active bonuses")
+    check(math.abs(totalPower-1.6*1.16*1.25*1.35)<.000001 and math.abs(totalCoins-1.45*1.16*1.25*1.35)<.000001,"separate total multipliers combine all active bonuses")
     local gainPower,gainCoins=C.Gains(bonusData,1.25)
     check(gainPower==math.floor(C.BasePower*totalPower) and gainCoins==math.floor(C.BaseCoins*totalCoins),"HUD multipliers match server gain formula")
     check(Schema.Validate(petData)~=nil,"pet profile valid")
     local v2=Schema.Copy(petData); v2.Version=2; v2.EquippedPets=nil; v2.EquippedPet="Bunny"
     local v3=Schema.Validate(v2)
-    check(v3 and v3.Version==4 and v3.EquippedPets.Bunny==1 and v3.Pets.Bunny==1,"migrate v2 equipment")
+    check(v3 and v3.Version==5 and v3.EquippedPets.Bunny==1 and v3.Pets.Bunny==1,"migrate v2 equipment")
     local team=Schema.New(); team.Pets.Cat=4
     check(Pets.Equip(team,"Cat") and Pets.Equip(team,"Cat") and Pets.Equip(team,"Cat"),"three owned copies can equip")
     check(not Pets.Equip(team,"Cat") and Pets.EquippedCount(team)==3,"fourth ordinary slot denied")
@@ -672,7 +745,7 @@ function Spec.Run()
     local lockedOk=Pets.Hatch(lockedData,"Meadow")
     C.Eggs.Meadow.MinLevel=minLevel
     check(not lockedOk and lockedData.Coins==1000,"locked egg never charges")
-    petData.Power=200; petData.Coins=150
+    petData.Power=C.Requirements(0); petData.Coins=2000; petData.PracticeXP=90
     check(R.Apply(petData) and petData.Pets.Bunny==1 and petData.EquippedPets.Bunny==1,"rebirth preserves pets")
     check(Pets.Equip(petData,"") and C.PetMultiplier(petData)==1,"unequip removes bonus")
     check(not Pets.Equip(Schema.New(),"Dog"),"cannot equip unowned pet")
@@ -693,12 +766,12 @@ function Spec.Run()
     for _=1,3 do P.Train(d,"Basic") end
     check(P.Upgrade(d) and d.Level==1 and d.Coins==7,"deduct exact cost")
     check(not R.Apply(d),"early rebirth rejected")
-    d.Power=200; d.Coins=150; d.LastDaily=100; d.Cosmetics.BronzeAura=true; d.Equipped="BronzeAura"
+    d.Power=C.Requirements(0); d.Coins=2000; d.PracticeXP=90; d.LastDaily=100; d.Cosmetics.BronzeAura=true; d.Equipped="BronzeAura"
     local lifetime=d.LifetimePower
     check(R.Apply(d),"rebirth allowed")
     check(d.Power==0 and d.Coins==0 and d.Level==0 and d.Rebirths==1,"reset only cycle fields")
     check(d.LifetimePower==lifetime and d.LastDaily==100 and d.Equipped=="BronzeAura","preserve persistent fields")
-    check(C.Multiplier(d)==1.12,"controlled permanent bonus")
+    check(C.Multiplier(d)==1.08,"controlled permanent bonus")
     d.Rebirths=10; check(Rewards.Reconcile(d) and d.Cosmetics.NeonTrail,"milestone")
     check(not Rewards.Reconcile(d),"milestone idempotent")
     check(not Rewards.Equip(Schema.New(),"NeonTrail"),"unowned cosmetic rejected")
@@ -748,7 +821,7 @@ function Spec.Run()
     local a=Data.new(store,opts)
     check(a:Load(77),"load new player")
     a:Get(77).Pets.Bunny=2; a:Get(77).EquippedPets.Bunny=1; a:Get(77).Pets.Cat_Upgraded=1; a:Get(77).EquippedPets.Cat_Upgraded=1
-    a:Get(77).Coins=250; a:Changed(77)
+    a:Get(77).Coins=250; a:Get(77).Zone=3; a:Get(77).PracticeXP=1800; a:Get(77).RebirthXPSpent=90; a:Changed(77)
     store.doubleCallback=true
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"callback retry safe")
     local b=Data.new(store,{now=opts.now,wait=opts.wait,token="B"})
@@ -763,6 +836,7 @@ function Spec.Run()
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"commit response lost retry safe")
     check(a:Save(77,true) and store.records.Player_77.Session==nil,"release lock")
     check(b:Load(77) and b:Get(77).Coins==250,"reload persisted progress")
+    check(b:Get(77).Zone==3 and b:Get(77).PracticeXP==1800 and b:Get(77).RebirthXPSpent==90,"new zone and XP persistence roundtrip")
     check(b:Get(77).Pets.Bunny==2 and b:Get(77).EquippedPets.Bunny==1,"pet save reload roundtrip")
     check(b:Get(77).Pets.Cat_Upgraded==1 and b:Get(77).EquippedPets.Cat_Upgraded==1,"upgraded pet persistence roundtrip")
     b:Get(77).Coins=400; b:Changed(77); check(b:Save(77,false),"second session saves")
@@ -782,25 +856,44 @@ function Spec.Run()
     offline.closing=true; check(offline:Get(1)==nil and not offline:Load(2),"shutdown freezes operations")
     check(offline:Save(1,true),"shutdown release")
 
-    local balance={}; d=Schema.New()
-    for cycle=1,26 do
-        local powerReq,coinReq=C.Requirements(d.Rebirths)
-        local actions=0
-        -- A simple player strategy: buy levels 1..3 while still building power.
-        while d.Power<powerReq or d.Coins<coinReq do
-            local station=d.Level>=3 and "Advanced" or "Basic"
-            P.Train(d,station); actions+=1
-            if d.Level<3 and d.Power<powerReq and d.Coins>=C.UpgradeCost(d.Level) then P.Upgrade(d) end
-            assert(actions<500,"unreachable rebirth")
+    local v4=Schema.New(); v4.Version=4; v4.Zone=nil; v4.PracticeXP=nil; v4.RebirthXPSpent=nil
+    v4.Power=12345; v4.Pets={Dragon_Upgraded=1}; v4.EquippedPets={Dragon_Upgraded=1}
+    local migrated4=Schema.Validate(v4)
+    check(migrated4 and migrated4.Version==5 and migrated4.Zone==1 and migrated4.PracticeXP==0 and migrated4.Power==12345 and migrated4.EquippedPets.Dragon_Upgraded==1,"v4 migration keeps jump progress and legacy pets")
+    local invalid=Schema.New(); invalid.RebirthXPSpent=1; check(not Schema.Validate(invalid),"cannot spend more XP than earned")
+    invalid=Schema.New(); invalid.Zone=6; check(not Schema.Validate(invalid),"unknown zone rejected")
+    check(S.Valid("PrepareRebirth",table.pack(5)) and not S.Valid("PrepareRebirth",table.pack(101)) and not S.Valid("PrepareRebirth",table.pack(0/0)),"strict batch prepare arguments")
+    check(math.abs(C.JumpHeight(Schema.New())-C.BaseJumpHeight*.05)<1e-9,"initial jump is five percent of baseline")
+    local growth=Schema.New(); local before=C.JumpHeight(growth); P.Train(growth,"Basic")
+    check(C.JumpHeight(growth)>before,"training actually increases jump height")
+    growth.Power=C.MaxValue; check(C.JumpHeight(growth)==C.MaxJumpHeight,"physics height capped")
+    local priceP,priceC,priceX=C.BatchRequirements(2,5); local p,c,x=0,0,0
+    for i=2,6 do local a,b,d=C.Requirements(i); p+=a;c+=b;x+=d end
+    check(priceP==p and priceC==c and priceX==x,"bulk includes exact sum of every ascending cost")
+    local batch=Schema.New(); batch.Rebirths=2; batch.Power=p; batch.Coins=c+123; batch.PracticeXP=x; batch.Zone=3; batch.Level=7
+    check(C.MaxAffordableRebirths(batch)==5,"maximum affordability includes XP and following costs")
+    check(R.Apply(batch,5) and batch.Rebirths==7 and batch.Coins==123 and batch.Power==0 and batch.Level==0 and batch.RebirthXPSpent==x and batch.Zone==3,"bulk atomic reset preserves zone and exact change")
+    check(not R.Apply(batch,5),"bulk replay lacks resources")
+    for _,bad in {0,-1,.5,101,math.huge,0/0,"5"} do check(C.BatchRequirements(0,bad)==nil,"invalid bulk quantity") end
+    check(C.BatchRequirements(C.MaxRebirths-1,2)==nil,"bulk respects rebirth cap")
+    local zone=Schema.New(); zone.Coins=10000000; zone.PracticeXP=1799
+    check(not P.UnlockZone(zone,3),"cannot skip a zone")
+    check(P.UnlockZone(zone,2),"unlock second zone")
+    check(not P.UnlockZone(zone,3),"third zone requires at least 1800 active XP")
+    P.Practice(zone,1); check(P.UnlockZone(zone,3) and zone.Zone==3,"third zone at activity threshold")
+    check(not P.Practice(zone,10000) and not P.Practice(zone,-1),"XP rejects unbounded time")
+    local locked=Schema.New(); locked.Coins=C.MaxValue
+    check(not Pets.Hatch(locked,"Celestial") and locked.Coins==C.MaxValue,"zone lock cannot be bypassed by coins")
+    for i=1,5 do
+        check(#C.Zones[i].Eggs==2,"two eggs per zone")
+        for _,id in C.Zones[i].Eggs do
+            check(C.Eggs[id].Zone==i,"egg belongs to advertised zone")
+            for pet in C.Eggs[id].Weights do check(C.PetTypes[pet].Zone==i,"drop belongs to same zone") end
         end
-        balance[cycle]=actions -- Click pacing belongs to the player, not a training timer.
-        check(R.Apply(d),"balance cycle "..cycle)
+        if i>1 then check(C.PetTypes["Cat_Z"..i].Bonus>C.PetTypes[i==2 and "Cat" or "Cat_Z"..(i-1)].Bonus,"later pets stronger") end
     end
-    check(balance[1]<=90 and balance[2]<=balance[1]*1.2,"early pacing")
-    check(balance[26]<balance[1],"later cycles moderately faster")
-    print(("SIMULATOR_SPEC_PASS %d assertions; cycle_clicks [1]=%.0f [2]=%.0f [10]=%.0f [26]=%.0f")
-        :format(count,balance[1],balance[2],balance[10],balance[26]))
-    return {Assertions=count,Balance=balance}
+    print(("SIMULATOR_SPEC_PASS %d assertions; jump bulk zones migration leases pets"):format(count))
+    return {Assertions=count}
 end
 return Spec
 

@@ -38,23 +38,40 @@ function World.Build()
     part(map,"AdvancedPlaza",Vector3.new(28,0.2,26),Vector3.new(24,0.1,0),Color3.fromRGB(67,49,96))
     -- Join x=4..10 exactly: no overlap with either plaza, and a 0.05 stud step below them.
     part(map,"Path",Vector3.new(6,0.2,7),Vector3.new(7,0.05,0),Color3.fromRGB(100,109,134))
+    for zone=2,#C.Zones do
+        local info=C.Zones[zone]; local x=(zone-1)*120
+        part(map,"GroundZ"..zone,Vector3.new(100,2,80),Vector3.new(x+4,-1,0),Color3.fromRGB(30,40,62))
+        part(map,"PlazaZ"..zone,Vector3.new(32,.2,26),Vector3.new(x-12,.1,0),Color3.fromRGB(table.unpack(info.Color)):Lerp(Color3.fromRGB(25,35,55),.65))
+        sign(map,"ZoneTitle"..zone,Vector3.new(x-16,8,-15),"УРОВЕНЬ "..zone.." · "..info.Name,Color3.fromRGB(table.unpack(info.Color)))
+    end
+    local function gate(name,target,pos,returning)
+        local info=C.Zones[target]; local color=Color3.fromRGB(table.unpack(info.Color))
+        local base=part(map,name,Vector3.new(6,.5,6),pos,color); base:SetAttribute("TargetZone",target)
+        for _,side in {-1,1} do part(map,name.."Post",Vector3.new(.5,7,.5),pos+Vector3.new(side*3,3.5,0),color) end
+        part(map,name.."Arch",Vector3.new(6.5,.5,.5),pos+Vector3.new(0,7,0),color)
+        local prompt=Instance.new("ProximityPrompt"); prompt.Name="ZonePrompt"; prompt.KeyboardKeyCode=Enum.KeyCode.E
+        prompt.ActionText="Перейти / открыть"; prompt.ObjectText="Уровень "..target.." · "..info.Name; prompt.MaxActivationDistance=8
+        prompt.RequiresLineOfSight=false; prompt.Exclusivity=Enum.ProximityPromptExclusivity.OneGlobally; prompt.Parent=base
+        sign(map,name.."Label",pos+Vector3.new(0,8,0),"УРОВЕНЬ "..target.." · "..info.Name..(returning and "\nНазад · E" or "\n"..number(info.XP).." опыта · "..number(info.Cost).." монет · E"),color)
+    end
+    for zone=2,#C.Zones do
+        gate("ZoneGate"..zone,zone,Vector3.new((zone-2)*120+40,.45,12),false)
+        gate("ZoneReturn"..zone,zone-1,Vector3.new((zone-1)*120-31,.45,24),true)
+    end
     for id, info in pairs(C.Stations) do
         local color=id=="Basic" and Color3.fromRGB(65,220,183) or Color3.fromRGB(160,116,255)
         local pad=part(map,id,Vector3.new(8,1,8),info.Position,color); pad.Material=Enum.Material.Neon
         local prompt=Instance.new("ProximityPrompt"); prompt.Name="TrainPrompt"
-        prompt.ActionText="Тренироваться"; prompt.ObjectText=id=="Basic" and "Сила" or "Сила x1.25 • уровень 3"
+        prompt.ActionText="Тренироваться"; prompt.ObjectText="Тренировка прыжка"
         prompt.KeyboardKeyCode=Enum.KeyCode.E; prompt.HoldDuration=0; prompt.MaxActivationDistance=C.TrainDistance
         prompt.Exclusivity=Enum.ProximityPromptExclusivity.OneGlobally
         prompt.RequiresLineOfSight=false; prompt.Parent=pad
-        sign(map,id.."Sign",info.Position+Vector3.new(0,6,-7),id=="Basic" and "ТРЕНИРОВКА СИЛЫ\nНажми E у платформы" or "ПРОДВИНУТАЯ ЗОНА\nУровень 3 • +25% за тренировку",color)
-        -- Simple equipment built from primitives, no external models/scripts.
-        local bar=part(map,id.."Bar",Vector3.new(6,0.3,0.3),info.Position+Vector3.new(0,2,-2),Color3.fromRGB(160,175,188))
-        for _, x in {-2.5,2.5} do
-            local weight=part(map,id.."Weight"..x,Vector3.new(0.8,2,2),bar.Position+Vector3.new(x,0,0),Color3.fromRGB(30,34,44))
-            weight.Shape=Enum.PartType.Ball
-        end
+        sign(map,id.."Sign",info.Position+Vector3.new(0,6,-7),"ТРЕНИРОВКА ПРЫЖКА\nПрыгай или нажимай E",color)
+        -- Springboard instead of strength-training barbells.
+        part(map,id.."Spring",Vector3.new(3,.4,3),info.Position+Vector3.new(0,.7,0),Color3.fromRGB(210,231,246))
+
     end
-    sign(map,"Welcome",Vector3.new(-34,7,14),"СИЛА → МОНЕТЫ → УЛУЧШЕНИЯ\nПерерождение даёт постоянный бонус",Color3.fromRGB(245,210,106))
+    sign(map,"Welcome",Vector3.new(-34,7,14),"ПРЫЖКИ → ПИТОМЦЫ → НОВЫЕ ЗОНЫ\nПерерождение даёт постоянный бонус",Color3.fromRGB(245,210,106))
     for _,id in C.EggOrder do
         local info=C.Eggs[id]; local color=Color3.fromRGB(table.unpack(info.Color))
         local stand=part(map,"Egg"..id,Vector3.new(5,1.6,5),info.Position,color)

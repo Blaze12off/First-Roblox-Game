@@ -24,7 +24,7 @@ function Spec.Run()
         for _,id in C.PetOrder do
             local weight=egg.Weights[id] or 0
             if weight>0 then
-                local sample=Schema.New(); sample.Coins=egg.Cost
+                local sample=Schema.New(); sample.Zone=5; sample.Coins=egg.Cost
                 local ok,_,drop=Pets.Hatch(sample,eggId,function() return (threshold+weight/2)/total end)
                 check(ok and drop==id and sample.Coins==0 and sample.Pets[id]==1,"paid midpoint drop "..eggId..id)
                 check(Schema.Validate(sample)~=nil,"new drop profile validates "..id)
@@ -32,7 +32,7 @@ function Spec.Run()
                 threshold+=weight
             end
         end
-        local sample=Schema.New(); sample.Coins=egg.Cost
+        local sample=Schema.New(); sample.Zone=5; sample.Coins=egg.Cost
         local ok,_,drop=Pets.Hatch(sample,eggId,function() return 1-1e-12 end)
         check(ok and (egg.Weights[drop] or 0)>0,"upper endpoint never selects a zero-weight pet")
     end
@@ -70,7 +70,7 @@ function Spec.Run()
     check(not S.Valid("PetCraft",table.pack("Cat",{1,2,2})) and not S.Valid("PetCraft",table.pack("Cat_Upgraded",{1,2,3})),"craft invalid selection and variant rejected")
     local legacy=Schema.New(); legacy.Version=3; legacy.Coins=123; legacy.Pets={Cat=2}; legacy.EquippedPets={Cat=1}
     local upgradedSchema=Schema.Validate(legacy)
-    check(upgradedSchema and upgradedSchema.Version==4 and upgradedSchema.Coins==123 and upgradedSchema.EquippedPets.Cat==1,"v3 migration preserves progress and team")
+    check(upgradedSchema and upgradedSchema.Version==5 and upgradedSchema.Coins==123 and upgradedSchema.EquippedPets.Cat==1,"v3 migration preserves progress and team")
     local d=Schema.New()
     check(Schema.Validate(d)~=nil,"default schema")
     local interactions={}
@@ -84,7 +84,7 @@ function Spec.Run()
     end
     local old=Schema.New(); old.Version=1; old.Pets=nil; old.EquippedPet=nil; old.Coins=123
     local migrated=Schema.Validate(old)
-    check(migrated and migrated.Version==4 and migrated.Coins==123 and next(migrated.Pets)==nil,"migrate old profile without progress loss")
+    check(migrated and migrated.Version==5 and migrated.Coins==123 and next(migrated.Pets)==nil,"migrate old profile without progress loss")
     local petData=Schema.New()
     check(not Pets.Hatch(petData,"Meadow"),"no coins no hatch")
     petData.Coins=1000
@@ -93,7 +93,7 @@ function Spec.Run()
     for _,case in {{0,"Cat"},{.6,"Dog"},{.9,"Bunny"}} do
         local before=petData.Coins
         local ok,_,id=Pets.Hatch(petData,"Meadow",function() return case[1] end)
-        check(ok and id==case[2] and petData.Coins==before-80,"weighted hatch and exact cost")
+        check(ok and id==case[2] and petData.Coins==before-C.Eggs.Meadow.Cost,"weighted hatch and exact cost")
     end
     check(Pets.Count(petData)==3 and petData.EquippedPets.Cat==1,"auto equip first and inventory count")
     Pets.Equip(petData,"")
@@ -103,13 +103,13 @@ function Spec.Run()
     local bonusData=Schema.New(); bonusData.Level=3; bonusData.Rebirths=2
     bonusData.Pets.Bunny=1; bonusData.EquippedPets.Bunny=1
     local totalPower,totalCoins=C.TrainingMultipliers(bonusData,1.25)
-    check(math.abs(totalPower-3.348)<.000001 and math.abs(totalCoins-3.034125)<.000001,"separate total multipliers combine all active bonuses")
+    check(math.abs(totalPower-1.6*1.16*1.25*1.35)<.000001 and math.abs(totalCoins-1.45*1.16*1.25*1.35)<.000001,"separate total multipliers combine all active bonuses")
     local gainPower,gainCoins=C.Gains(bonusData,1.25)
     check(gainPower==math.floor(C.BasePower*totalPower) and gainCoins==math.floor(C.BaseCoins*totalCoins),"HUD multipliers match server gain formula")
     check(Schema.Validate(petData)~=nil,"pet profile valid")
     local v2=Schema.Copy(petData); v2.Version=2; v2.EquippedPets=nil; v2.EquippedPet="Bunny"
     local v3=Schema.Validate(v2)
-    check(v3 and v3.Version==4 and v3.EquippedPets.Bunny==1 and v3.Pets.Bunny==1,"migrate v2 equipment")
+    check(v3 and v3.Version==5 and v3.EquippedPets.Bunny==1 and v3.Pets.Bunny==1,"migrate v2 equipment")
     local team=Schema.New(); team.Pets.Cat=4
     check(Pets.Equip(team,"Cat") and Pets.Equip(team,"Cat") and Pets.Equip(team,"Cat"),"three owned copies can equip")
     check(not Pets.Equip(team,"Cat") and Pets.EquippedCount(team)==3,"fourth ordinary slot denied")
@@ -121,7 +121,7 @@ function Spec.Run()
     local lockedOk=Pets.Hatch(lockedData,"Meadow")
     C.Eggs.Meadow.MinLevel=minLevel
     check(not lockedOk and lockedData.Coins==1000,"locked egg never charges")
-    petData.Power=200; petData.Coins=150
+    petData.Power=C.Requirements(0); petData.Coins=2000; petData.PracticeXP=90
     check(R.Apply(petData) and petData.Pets.Bunny==1 and petData.EquippedPets.Bunny==1,"rebirth preserves pets")
     check(Pets.Equip(petData,"") and C.PetMultiplier(petData)==1,"unequip removes bonus")
     check(not Pets.Equip(Schema.New(),"Dog"),"cannot equip unowned pet")
@@ -142,12 +142,12 @@ function Spec.Run()
     for _=1,3 do P.Train(d,"Basic") end
     check(P.Upgrade(d) and d.Level==1 and d.Coins==7,"deduct exact cost")
     check(not R.Apply(d),"early rebirth rejected")
-    d.Power=200; d.Coins=150; d.LastDaily=100; d.Cosmetics.BronzeAura=true; d.Equipped="BronzeAura"
+    d.Power=C.Requirements(0); d.Coins=2000; d.PracticeXP=90; d.LastDaily=100; d.Cosmetics.BronzeAura=true; d.Equipped="BronzeAura"
     local lifetime=d.LifetimePower
     check(R.Apply(d),"rebirth allowed")
     check(d.Power==0 and d.Coins==0 and d.Level==0 and d.Rebirths==1,"reset only cycle fields")
     check(d.LifetimePower==lifetime and d.LastDaily==100 and d.Equipped=="BronzeAura","preserve persistent fields")
-    check(C.Multiplier(d)==1.12,"controlled permanent bonus")
+    check(C.Multiplier(d)==1.08,"controlled permanent bonus")
     d.Rebirths=10; check(Rewards.Reconcile(d) and d.Cosmetics.NeonTrail,"milestone")
     check(not Rewards.Reconcile(d),"milestone idempotent")
     check(not Rewards.Equip(Schema.New(),"NeonTrail"),"unowned cosmetic rejected")
@@ -197,7 +197,7 @@ function Spec.Run()
     local a=Data.new(store,opts)
     check(a:Load(77),"load new player")
     a:Get(77).Pets.Bunny=2; a:Get(77).EquippedPets.Bunny=1; a:Get(77).Pets.Cat_Upgraded=1; a:Get(77).EquippedPets.Cat_Upgraded=1
-    a:Get(77).Coins=250; a:Changed(77)
+    a:Get(77).Coins=250; a:Get(77).Zone=3; a:Get(77).PracticeXP=1800; a:Get(77).RebirthXPSpent=90; a:Changed(77)
     store.doubleCallback=true
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"callback retry safe")
     local b=Data.new(store,{now=opts.now,wait=opts.wait,token="B"})
@@ -212,6 +212,7 @@ function Spec.Run()
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"commit response lost retry safe")
     check(a:Save(77,true) and store.records.Player_77.Session==nil,"release lock")
     check(b:Load(77) and b:Get(77).Coins==250,"reload persisted progress")
+    check(b:Get(77).Zone==3 and b:Get(77).PracticeXP==1800 and b:Get(77).RebirthXPSpent==90,"new zone and XP persistence roundtrip")
     check(b:Get(77).Pets.Bunny==2 and b:Get(77).EquippedPets.Bunny==1,"pet save reload roundtrip")
     check(b:Get(77).Pets.Cat_Upgraded==1 and b:Get(77).EquippedPets.Cat_Upgraded==1,"upgraded pet persistence roundtrip")
     b:Get(77).Coins=400; b:Changed(77); check(b:Save(77,false),"second session saves")
@@ -231,24 +232,43 @@ function Spec.Run()
     offline.closing=true; check(offline:Get(1)==nil and not offline:Load(2),"shutdown freezes operations")
     check(offline:Save(1,true),"shutdown release")
 
-    local balance={}; d=Schema.New()
-    for cycle=1,26 do
-        local powerReq,coinReq=C.Requirements(d.Rebirths)
-        local actions=0
-        -- A simple player strategy: buy levels 1..3 while still building power.
-        while d.Power<powerReq or d.Coins<coinReq do
-            local station=d.Level>=3 and "Advanced" or "Basic"
-            P.Train(d,station); actions+=1
-            if d.Level<3 and d.Power<powerReq and d.Coins>=C.UpgradeCost(d.Level) then P.Upgrade(d) end
-            assert(actions<500,"unreachable rebirth")
+    local v4=Schema.New(); v4.Version=4; v4.Zone=nil; v4.PracticeXP=nil; v4.RebirthXPSpent=nil
+    v4.Power=12345; v4.Pets={Dragon_Upgraded=1}; v4.EquippedPets={Dragon_Upgraded=1}
+    local migrated4=Schema.Validate(v4)
+    check(migrated4 and migrated4.Version==5 and migrated4.Zone==1 and migrated4.PracticeXP==0 and migrated4.Power==12345 and migrated4.EquippedPets.Dragon_Upgraded==1,"v4 migration keeps jump progress and legacy pets")
+    local invalid=Schema.New(); invalid.RebirthXPSpent=1; check(not Schema.Validate(invalid),"cannot spend more XP than earned")
+    invalid=Schema.New(); invalid.Zone=6; check(not Schema.Validate(invalid),"unknown zone rejected")
+    check(S.Valid("PrepareRebirth",table.pack(5)) and not S.Valid("PrepareRebirth",table.pack(101)) and not S.Valid("PrepareRebirth",table.pack(0/0)),"strict batch prepare arguments")
+    check(math.abs(C.JumpHeight(Schema.New())-C.BaseJumpHeight*.05)<1e-9,"initial jump is five percent of baseline")
+    local growth=Schema.New(); local before=C.JumpHeight(growth); P.Train(growth,"Basic")
+    check(C.JumpHeight(growth)>before,"training actually increases jump height")
+    growth.Power=C.MaxValue; check(C.JumpHeight(growth)==C.MaxJumpHeight,"physics height capped")
+    local priceP,priceC,priceX=C.BatchRequirements(2,5); local p,c,x=0,0,0
+    for i=2,6 do local a,b,d=C.Requirements(i); p+=a;c+=b;x+=d end
+    check(priceP==p and priceC==c and priceX==x,"bulk includes exact sum of every ascending cost")
+    local batch=Schema.New(); batch.Rebirths=2; batch.Power=p; batch.Coins=c+123; batch.PracticeXP=x; batch.Zone=3; batch.Level=7
+    check(C.MaxAffordableRebirths(batch)==5,"maximum affordability includes XP and following costs")
+    check(R.Apply(batch,5) and batch.Rebirths==7 and batch.Coins==123 and batch.Power==0 and batch.Level==0 and batch.RebirthXPSpent==x and batch.Zone==3,"bulk atomic reset preserves zone and exact change")
+    check(not R.Apply(batch,5),"bulk replay lacks resources")
+    for _,bad in {0,-1,.5,101,math.huge,0/0,"5"} do check(C.BatchRequirements(0,bad)==nil,"invalid bulk quantity") end
+    check(C.BatchRequirements(C.MaxRebirths-1,2)==nil,"bulk respects rebirth cap")
+    local zone=Schema.New(); zone.Coins=10000000; zone.PracticeXP=1799
+    check(not P.UnlockZone(zone,3),"cannot skip a zone")
+    check(P.UnlockZone(zone,2),"unlock second zone")
+    check(not P.UnlockZone(zone,3),"third zone requires at least 1800 active XP")
+    P.Practice(zone,1); check(P.UnlockZone(zone,3) and zone.Zone==3,"third zone at activity threshold")
+    check(not P.Practice(zone,10000) and not P.Practice(zone,-1),"XP rejects unbounded time")
+    local locked=Schema.New(); locked.Coins=C.MaxValue
+    check(not Pets.Hatch(locked,"Celestial") and locked.Coins==C.MaxValue,"zone lock cannot be bypassed by coins")
+    for i=1,5 do
+        check(#C.Zones[i].Eggs==2,"two eggs per zone")
+        for _,id in C.Zones[i].Eggs do
+            check(C.Eggs[id].Zone==i,"egg belongs to advertised zone")
+            for pet in C.Eggs[id].Weights do check(C.PetTypes[pet].Zone==i,"drop belongs to same zone") end
         end
-        balance[cycle]=actions -- Click pacing belongs to the player, not a training timer.
-        check(R.Apply(d),"balance cycle "..cycle)
+        if i>1 then check(C.PetTypes["Cat_Z"..i].Bonus>C.PetTypes[i==2 and "Cat" or "Cat_Z"..(i-1)].Bonus,"later pets stronger") end
     end
-    check(balance[1]<=90 and balance[2]<=balance[1]*1.2,"early pacing")
-    check(balance[26]<balance[1],"later cycles moderately faster")
-    print(("SIMULATOR_SPEC_PASS %d assertions; cycle_clicks [1]=%.0f [2]=%.0f [10]=%.0f [26]=%.0f")
-        :format(count,balance[1],balance[2],balance[10],balance[26]))
-    return {Assertions=count,Balance=balance}
+    print(("SIMULATOR_SPEC_PASS %d assertions; jump bulk zones migration leases pets"):format(count))
+    return {Assertions=count}
 end
 return Spec

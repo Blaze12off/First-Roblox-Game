@@ -43,9 +43,8 @@ local function crystal(model,pos,size,color,rotation)
     end
 end
 local function egg(model,id,color)
-    -- Broad lower shell and narrower crown meet inside the shell: egg silhouette, no exposed core.
-    local shell=piece(model,"ShellBase",V(2.10,2.55,2.10),V(0,-.25,0),color,"Round")
-    piece(model,"ShellCrown",V(1.68,2.45,1.68),V(0,.35,0),color,"Round")
+    -- A SINGLE smooth oval shell, without an overlapping crown or seam.
+    local shell=piece(model,"ShellBase",V(2.10,3.10,2.10),V(0,0,0),color,"Round")
     if id=="Meadow" then
         for i,pos in {V(-.55,-.4,-.88),V(.48,.05,-.87),V(.1,-.85,-.82)} do
             piece(model,"ShellSpot"..i,V(.32,.42,.16),pos,cream,"Round",turn(-10,0,i*20))
@@ -171,7 +170,7 @@ function Factory.Build(id,isEgg)
     local info=(isEgg and C.Eggs or C.PetTypes)[id]; assert(info,"Unknown model: "..tostring(id))
     local model=Instance.new("Model"); model.Name=id
     local color=rgb(table.unpack(info.Color))
-    model.PrimaryPart=isEgg and egg(model,id,color) or pet(model,info.BaseId or id,color,info.Upgraded)
+    model.PrimaryPart=isEgg and egg(model,info.ModelStyle or id,color) or pet(model,info.Species or info.BaseId or id,color,info.Upgraded)
     return model
 end
 return Factory

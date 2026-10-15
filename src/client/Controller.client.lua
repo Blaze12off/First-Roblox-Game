@@ -17,7 +17,7 @@ local stationFactor=1
 local function renderMultipliers()
     if not state then return end
     local power,coins=C.TrainingMultipliers(state,stationFactor)
-    refs.PowerMultiplier.Text=("Сила  x%.2f"):format(power)
+    refs.PowerMultiplier.Text=("Прыжок  x%.2f"):format(power)
     refs.CoinMultiplier.Text=("Монеты  x%.2f"):format(coins)
 end
 local noticeVersion=0
@@ -41,27 +41,31 @@ end
 local function render()
     if not state then return end
     renderMultipliers()
-    refs.Power.Text=number(state.Power)
+    refs.Power.Text=number(state.JumpHeight).." studs"
     refs.Coins.Text=number(state.Coins)
     refs.Catalog.Update(state)
-    refs.Level.Text="Уровень "..number(state.Level)
+    refs.Level.Text="Зона "..number(state.Zone).." · Опыт "..number(state.PracticeXP)
     refs.RebirthStats.Text=("%s • x%.2f"):format(number(state.Rebirths),state.Multiplier)
     refs.Bonus.Text=("Постоянный бонус: x%.2f  •  Рекорд: %s"):format(state.Multiplier,number(state.LifetimePower))
-    refs.Goal.Text=("До Rebirth: %s / %s силы\n%s / %s монет"):format(number(state.Power),number(state.RequiredPower),number(state.Coins),number(state.RequiredCoins))
-    refs.Progress(math.min(1,state.Power/state.RequiredPower,state.Coins/state.RequiredCoins))
+    local batch=refs.BatchAmount=="MAX" and math.max(1,state.MaxRebirths) or refs.BatchAmount
+    local needPower,needCoins,needXP=C.BatchRequirements(state.Rebirths,batch)
+    needPower,needCoins,needXP=needPower or math.huge,needCoins or math.huge,needXP or math.huge
+    refs.Prepare.Text="Переродиться · "..batch
+    refs.Goal.Text=("Запас прыжка: %s / %s\nМонеты: %s / %s\nОпыт: %s / %s"):format(number(state.Power),number(needPower),number(state.Coins),number(needCoins),number(state.AvailablePractice),number(needXP))
+    refs.Progress(math.min(1,state.Power/needPower,state.Coins/needCoins,state.AvailablePractice/needXP))
     refs.Upgrade.Text=state.UpgradeCost>0 and ("Улучшение: "..number(state.UpgradeCost).." монет") or "Уровень тренировки: максимум"
     local now=os.time()+(serverOffset or 0)
     local rewardsReady=state.TotalTrainings>=C.RewardMinTrainings
     local dailyReady=rewardsReady and (state.LastDaily==0 or now>=state.LastDaily+C.DailySeconds)
     local weeklyReady=rewardsReady and (state.LastWeekly==0 or now>=state.LastWeekly+C.WeeklySeconds)
-    local rebirthReady=state.Rebirths<C.MaxRebirths and state.Power>=state.RequiredPower and state.Coins>=state.RequiredCoins
-    refs.Notifications((dailyReady and 1 or 0)+(weeklyReady and 1 or 0),rebirthReady and 1 or 0)
+    local rebirthReady=state.MaxRebirths>0
+    refs.Notifications((dailyReady and 1 or 0)+(weeklyReady and 1 or 0),rebirthReady and state.MaxRebirths or 0)
     refs.Daily.Text=cooldownText(state.LastDaily,C.DailySeconds,"Ежедневная",now)
     refs.Weekly.Text=cooldownText(state.LastWeekly,C.WeeklySeconds,"Недельная",now)
     refs.Cosmetic.Text=state.NeonTrail and ("Неоновый след • "..(state.Equipped=="NeonTrail" and "выключить" or "включить"))
         or state.BronzeAura and ("Бронзовая аура • "..(state.Equipped=="BronzeAura" and "выключить" or "включить"))
         or "Косметика: аура за 1, след за 10 Rebirth"
-    if state.TotalTrainings==0 then refs.Hint.Text=game:GetService("UserInputService").TouchEnabled and "Подойди к зелёной платформе и нажми «Тренироваться»." or "Подойди к зелёной платформе и нажми E."
+    if state.TotalTrainings==0 then refs.Hint.Text=game:GetService("UserInputService").TouchEnabled and "Подойди к площадке прыжков и нажми «Тренироваться»." or "Прыгай или тренируйся у площадки по E."
     elseif state.Level==0 then refs.Hint.Text="Открой магазин: первое улучшение стоит 25 монет."
     else refs.Hint.Text="" end
     refs.Hint.Visible=refs.Hint.Text~="" and not refs.Animation.Busy and refs.ShouldShow("Hint")
@@ -97,7 +101,12 @@ refs.Upgrade.Activated:Connect(function() request("Upgrade") end)
 refs.Catalog.SetCallbacks({Action=function(name,id,copies)
     if copies then request(name,id,copies) elseif id then request(name,id) else request(name) end
 end})
-refs.Prepare.Activated:Connect(function() request("PrepareRebirth") end)
+for amount,b in refs.BatchButtons do
+    b.Activated:Connect(function() refs.BatchAmount=amount; render() end)
+end
+refs.Prepare.Activated:Connect(function()
+    if state then request("PrepareRebirth",refs.BatchAmount=="MAX" and math.max(1,state.MaxRebirths) or refs.BatchAmount) end
+end)
 refs.Daily.Activated:Connect(function() request("Daily") end)
 refs.Weekly.Activated:Connect(function() request("Weekly") end)
 refs.Cosmetic.Activated:Connect(function()
@@ -146,4 +155,28 @@ task.spawn(function()
     -- Initial State may arrive before the client listener. Retry only synchronization.
     while not state do action:FireServer("Sync"); task.wait(2) end
     while refs.Gui.Parent do task.wait(1); render() end
+end)
+
+local function jumping(character)
+    local human=character:WaitForChild("Humanoid")
+    human.Jumping:Connect(function(active)
+        if active then task.defer(function()
+            if character==player.Character then request("Jump") end
+        end) end
+    end)
+end
+player.CharacterAdded:Connect(jumping)
+if player.Character then task.spawn(jumping,player.Character) end
+
+-- Explicit state transition also supports very short starter jumps and mobile JumpRequest.
+local function startJump()
+    local human=player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+    if human and human.Health>0 and human.FloorMaterial~=Enum.Material.Air and human:GetState()~=Enum.HumanoidStateType.Jumping then
+        human:ChangeState(Enum.HumanoidStateType.Jumping)
+    end
+end
+local jumpInput=game:GetService("UserInputService")
+jumpInput.JumpRequest:Connect(startJump)
+jumpInput.InputBegan:Connect(function(input,processed)
+    if not processed and input.KeyCode==Enum.KeyCode.Space then startJump() end
 end)

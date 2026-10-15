@@ -1,7 +1,7 @@
 local C = require(game.ReplicatedStorage.SimulatorShared.Config)
 local Schema = {}
 function Schema.New()
-    return {Version = 4, Coins = 0, Power = 0, Level = 0, Rebirths = 0,
+    return {Version = 5, Zone=1, PracticeXP=0, RebirthXPSpent=0, Coins = 0, Power = 0, Level = 0, Rebirths = 0,
         LifetimePower = 0, TotalTrainings = 0, LastDaily = 0, LastWeekly = 0,
         Cosmetics = {}, Equipped = "", Pets = {}, EquippedPets = {}}
 end
@@ -17,7 +17,10 @@ local function integer(value, maximum)
 end
 -- Corrupt/unknown records fail closed. Defaults only come from a genuinely absent key.
 function Schema.Validate(raw)
-    if type(raw) ~= "table" or (raw.Version ~= 1 and raw.Version ~= 2 and raw.Version ~= 3 and raw.Version ~= 4) then return nil end
+    if type(raw) ~= "table" or (raw.Version ~= 1 and raw.Version ~= 2 and raw.Version ~= 3 and raw.Version ~= 4 and raw.Version ~= 5) then return nil end
+    if raw.Version==5 then
+        if not integer(raw.Zone,5) or raw.Zone<1 or not integer(raw.PracticeXP,C.MaxValue) or not integer(raw.RebirthXPSpent,raw.PracticeXP) then return nil end
+    end
     local limits = {Coins=C.MaxValue, Power=C.MaxValue, Level=C.MaxLevel,
         Rebirths=C.MaxRebirths, LifetimePower=C.MaxValue, TotalTrainings=C.MaxValue,
         LastDaily=100000000000, LastWeekly=100000000000}
@@ -49,7 +52,7 @@ function Schema.Validate(raw)
     end
     local clean = Schema.New()
     for key in pairs(clean) do
-        if key ~= "Version" and key ~= "EquippedPets" and (raw.Version >= 2 or key ~= "Pets") then
+        if key ~= "Version" and key ~= "EquippedPets" and (raw.Version>=5 or (key~="Zone" and key~="PracticeXP" and key~="RebirthXPSpent")) and (raw.Version >= 2 or key ~= "Pets") then
             clean[key] = Schema.Copy(raw[key])
         end
     end

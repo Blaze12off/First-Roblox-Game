@@ -15,6 +15,9 @@ function S.Allow(limiter, action, now, cooldown)
 end
 function S.Valid(action, args)
     if type(action)~="string" or #action>16 then return false end
+    if action=="Jump" then return args.n==0 end
+    if action=="Zone" then return args.n==1 and type(args[1])=="number" and args[1]%1==0 and args[1]>=1 and args[1]<=5 end
+    if action=="PrepareRebirth" then return args.n==0 or (args.n==1 and type(args[1])=="number" and args[1]%1==0 and args[1]>=1 and args[1]<=C.MaxBatchRebirths) end
     if action=="Train" then return args.n==1 and type(args[1])=="string" and C.Stations[args[1]]~=nil end
     if action=="Equip" then return args.n==1 and (args[1]=="" or args[1]=="BronzeAura" or args[1]=="NeonTrail") end
     if action=="Hatch" then return args.n==1 and type(args[1])=="string" and C.Eggs[args[1]]~=nil end

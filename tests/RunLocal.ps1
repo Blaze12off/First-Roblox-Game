@@ -52,3 +52,10 @@ $auditCode=$builder.ToString()+"`nlocal audit=(function()`n"+$auditSource+"`nend
 [System.IO.File]::WriteAllText($audit,$auditCode,(New-Object System.Text.UTF8Encoding($false)))
 & $runtime $audit
 if($LASTEXITCODE -ne 0){throw 'Hatch distribution audit failed'}
+
+$balanceSource=[System.IO.File]::ReadAllText((Join-Path $PSScriptRoot 'JumpBalance.spec.lua'))
+$balance=Join-Path $PSScriptRoot '_jump_balance.tmp'
+$balanceCode=$builder.ToString()+"`nlocal simulate=(function()`n"+$balanceSource+"`nend)()`nsimulate(getModule(`"Config`"),getModule(`"Schema`"),getModule(`"Progression`"),getModule(`"Pets`"),getModule(`"Rebirth`"))`n"
+[System.IO.File]::WriteAllText($balance,$balanceCode,(New-Object System.Text.UTF8Encoding($false)))
+& $runtime $balance
+if($LASTEXITCODE -ne 0){throw 'Jump balance simulation failed'}

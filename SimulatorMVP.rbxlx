@@ -1,18 +1,18 @@
 <roblox version="4">
-  <Item class="Workspace" referent="RBXad0b727c533f49a68b3bdcfed84f6244">
+  <Item class="Workspace" referent="RBXfcd83c01686248169750a4e02708d684">
     <Properties>
       <string name="Name">Workspace</string>
     </Properties>
-    <Item class="Terrain" referent="RBXfb0d3f8d4ba5450aadeb33a0642816cb">
+    <Item class="Terrain" referent="RBX8286fccc9fcd4c47914f581c65507e5a">
       <Properties>
         <string name="Name">Terrain</string>
       </Properties>
     </Item>
-    <Item class="Folder" referent="RBXa533342e247642e5a0c27e656dc7c4b5">
+    <Item class="Folder" referent="RBX7fcd6517fe5546bfa20bc6dd02261ee9">
       <Properties>
         <string name="Name">SimulatorWorld</string>
       </Properties>
-      <Item class="Part" referent="RBX28a577f10a6a42f08644262ec4a3facd">
+      <Item class="Part" referent="RBX12e7e7aeba854f18bfeecfbb0be98c79">
         <Properties>
           <string name="Name">Ground</string>
           <bool name="Anchored">true</bool>
@@ -41,7 +41,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX67d689ddc9ab4ee89e4fa9b081a42c90">
+      <Item class="Part" referent="RBXd844c6865e984eb1a05108273f3c9931">
         <Properties>
           <string name="Name">StartingPlaza</string>
           <bool name="Anchored">true</bool>
@@ -70,7 +70,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXfd9826da1a6f4cbcabd6cc4eee60113c">
+      <Item class="Part" referent="RBX40fb979795b9431db73c349767d16936">
         <Properties>
           <string name="Name">AdvancedPlaza</string>
           <bool name="Anchored">true</bool>
@@ -99,7 +99,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXf89998527edc49b0acfc154653d6b758">
+      <Item class="Part" referent="RBXd000d8ad0255441ca4a5497185a11fa4">
         <Properties>
           <string name="Name">Path</string>
           <bool name="Anchored">true</bool>
@@ -128,7 +128,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX3ebe7d36b6e34100bae6b52a2596e256">
+      <Item class="Part" referent="RBX80faf5cc5d0047888b4be85d7a9cb529">
         <Properties>
           <string name="Name">Basic</string>
           <bool name="Anchored">true</bool>
@@ -157,7 +157,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXcf3c81ef925f478784c8fe3162dbcc33">
+      <Item class="Part" referent="RBXbadbc181f309473e983a3cbfb59cea86">
         <Properties>
           <string name="Name">Advanced</string>
           <bool name="Anchored">true</bool>
@@ -188,27 +188,27 @@
       </Item>
     </Item>
   </Item>
-  <Item class="Players" referent="RBX9a5e6e1dca3f40cd9272a96b915762e1">
+  <Item class="Players" referent="RBXe79cd6c2d2f84610910de8d5d88d7b92">
     <Properties>
       <string name="Name">Players</string>
     </Properties>
   </Item>
-  <Item class="Lighting" referent="RBXfa8803f77dfa4afe9a973af166cc87f5">
+  <Item class="Lighting" referent="RBX393a776c13684844815923b1a99eee3c">
     <Properties>
       <string name="Name">Lighting</string>
       <float name="ClockTime">14</float>
       <float name="Brightness">2</float>
     </Properties>
   </Item>
-  <Item class="ReplicatedStorage" referent="RBXd8923aca1eb4424a9b22a6ae931b544e">
+  <Item class="ReplicatedStorage" referent="RBX448d6144de2241a4a13e6772a1194e09">
     <Properties>
       <string name="Name">ReplicatedStorage</string>
     </Properties>
-    <Item class="Folder" referent="RBXa6aefb2592f64a56a73986895d9d4992">
+    <Item class="Folder" referent="RBX3019f13432c04d3f8c5c8e8d4d247960">
       <Properties>
         <string name="Name">SimulatorShared</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBX81bdaab784954151ab5ad2d3ebf0a216">
+      <Item class="ModuleScript" referent="RBXd2c2ce8dc25643fe91649dd035c397c1">
         <Properties>
           <string name="Name">Config</string>
           <ProtectedString name="Source">-- Balance lives here. No secrets and no client-supplied reward values.
@@ -222,8 +222,8 @@ local C = {
     TrainCooldown = 0, BaseCoins = 8, BasePower = 5,
     UpgradeBase = 25, UpgradeGrowth = 1.6,
     CoinLevelBonus = 0.15, PowerLevelBonus = 0.20,
-    RebirthBonus = 0.12, RebirthBonusCap = 25,
-    RebirthPower = 200, RebirthCoins = 150,
+    RebirthBonus = 0.08, RebirthBonusCap = 10000,
+    RebirthPower = 2500, RebirthCoins = 2000, RebirthPractice = 90, MaxBatchRebirths=100,
     RebirthRequirementGrowth = 0.08, RequirementGrowthCap = 10,
     DailySeconds = 86400, WeeklySeconds = 604800,
     DailyTrainingEquivalent = 8, WeeklyTrainingEquivalent = 25,
@@ -241,7 +241,7 @@ local C = {
     RarityColors = { ["Обычная"]={195,208,224},["Редкая"]={100,185,255},["Эпическая"]={192,125,255},["Мифическая"]={255,103,153},["Легендарная"]={255,203,77},["Секретная"]={93,241,220},["Божественная"]={255,241,181} },
     PetTypes = {
         Cat = {Name = "Кот", Bonus = 0.10, Rarity="Обычная", Description="Верный спутник для первых тренировок.", Color = {255, 182, 103}},
-        Dog = {Name = "Пёс", Bonus = 0.20, Rarity="Редкая", Description="Помогает быстрее набирать силу и монеты.", Color = {111, 190, 255}},
+        Dog = {Name = "Пёс", Bonus = 0.20, Rarity="Редкая", Description="Помогает быстрее увеличивать прыжок и получать монеты.", Color = {111, 190, 255}},
         Bunny = {Name = "Кролик", Bonus = 0.35, Rarity="Эпическая", Description="Лунный кролик с длинными ушами и пушистым хвостом.", Color = {211, 151, 255}},
         Fox = {Name="Звёздный лис", Bonus=.60, Rarity="Мифическая", Description="Маленький хранитель созвездий с белой манишкой и двумя звёздными хвостами.", Color={245,123,164}},
         Phoenix = {Name="Солнечный феникс", Bonus=1.00, Rarity="Легендарная", Description="Золотая птица с огненными крыльями и тройным хвостом.", Color={255,176,65}},
@@ -249,30 +249,62 @@ local C = {
         Dragon = {Name="Небесный дракон", Bonus=3.00, Rarity="Божественная", Description="Жемчужный дракон с золотыми рогами, крыльями и небесным ореолом.", Color={225,239,255}},
     },
     PetOrder = {"Cat", "Dog", "Bunny", "Fox", "Phoenix", "Axolotl", "Dragon"},
-    EggOrder = {"Meadow", "Crystal", "Celestial"},
-    Eggs = {
-        Meadow = {Name = "Луговое яйцо", Description = "Первое яйцо для твоей команды. Кот 60% • Пёс 30% • Кролик 10%.", MinLevel = 0, Cost = 80, Position = Vector3.new(-31, 0.8, -8),
-            Color = {112, 228, 180}, Weights = {Cat = 60, Dog = 30, Bunny = 10}},
-        Crystal = {Name = "Кристальное яйцо", Description = "Больше шансов на редкого питомца. Кот 20% • Пёс 45% • Кролик 35%.", MinLevel = 0, Cost = 240, Position = Vector3.new(-31, 0.8, 3),
-            Color = {180, 143, 255}, Weights = {Cat = 20, Dog = 45, Bunny = 35}},
-        Celestial = {Name="Небесное яйцо", Description="Звёздный лис 55% • Солнечный феникс 30% • Аксолотль Бездны 12% • Небесный дракон 3%.", MinLevel=0, Cost=2500, Position=Vector3.new(-31,.8,-19),
-            Color={216,232,255}, Weights={Fox=55,Phoenix=30,Axolotl=12,Dragon=3}},
+    EggOrder = {},
+    Eggs = {},
+    BaseJumpHeight=7.2, StartJumpRatio=.05, JumpPointsPerBase=2500, MaxJumpHeight=120,
+    Zones={
+        {Name="Луг",XP=0,Cost=0,Scale=1,Color={112,228,180},Eggs={"Meadow","Crystal"}},
+        {Name="Лес",XP=600,Cost=80000,Scale=1.6,Color={109,207,141},Eggs={"Moss","Amber"}},
+        {Name="Ледник",XP=1800,Cost=1300000,Scale=2.7,Color={135,219,255},Eggs={"Frost","Aurora"}},
+        {Name="Вулкан",XP=3600,Cost=9000000,Scale=4.5,Color={255,143,93},Eggs={"Lava","Ember"}},
+        {Name="Небеса",XP=6000,Cost=45000000,Scale=7.5,Color={224,224,255},Eggs={"Star","Celestial"}},
     },
     Stations = {
         Basic = {Position = Vector3.new(-16, 1, 0), MinLevel = 0, Multiplier = 1},
         Advanced = {Position = Vector3.new(24, 1, 0), MinLevel = 3, Multiplier = 1.25},
     },
 }
+-- Legacy species IDs remain valid; later biomes add stronger variants.
+local species=table.clone(C.PetOrder)
+local themes={"", "Лесной ","Ледяной ","Огненный ","Небесный "}
+local eggNames={Meadow="Луговое яйцо",Crystal="Кристальное яйцо",Moss="Моховое яйцо",Amber="Янтарное яйцо",
+ Frost="Ледяное яйцо",Aurora="Полярное яйцо",Lava="Лавовое яйцо",Ember="Пламенное яйцо",Star="Звёздное яйцо",Celestial="Небесное яйцо"}
+for zone,info in C.Zones do
+    info.Position=Vector3.new((zone-1)*120-16,4,12)
+    if zone&gt;1 then C.Stations["Zone"..zone]={Position=Vector3.new((zone-1)*120-16,1,0),MinLevel=0,MinZone=zone,Multiplier=1+(zone-1)*.15} end
+    for _,id in species do
+        if zone&gt;1 then
+            local base=C.PetTypes[id]; local key=id.."_Z"..zone
+            C.PetTypes[key]={Name=themes[zone]..base.Name,Bonus=(1+base.Bonus)*info.Scale-1,
+                Rarity=base.Rarity,Description="Спутник зоны «"..info.Name.."». "..base.Description,
+                Color={math.floor((base.Color[1]+info.Color[1])/2),math.floor((base.Color[2]+info.Color[2])/2),math.floor((base.Color[3]+info.Color[3])/2)},Species=id,Zone=zone}
+            table.insert(C.PetOrder,key)
+        else C.PetTypes[id].Species=id; C.PetTypes[id].Zone=1 end
+    end
+    for category,id in info.Eggs do
+        local weights=category==1 and {Cat=55,Dog=30,Bunny=12,Fox=2.5,Phoenix=.5} or {Dog=20,Bunny=35,Fox=28,Phoenix=12,Axolotl=4,Dragon=1}
+        local keyed={}
+        for pet,weight in weights do keyed[zone==1 and pet or pet.."_Z"..zone]=weight end
+        C.Eggs[id]={Name=eggNames[id],Description=category==1 and "Спутники для начала исследования этой зоны." or "Повышенные шансы редких спутников этой зоны.",
+            MinLevel=0,Zone=zone,Category=category,Cost=({120,1500,10000,65000,400000})[zone]*(category==1 and 1 or 4),
+            Position=Vector3.new((zone-1)*120-31,.8,category==1 and -8 or 3),Color=category==1 and info.Color or {math.min(255,info.Color[1]+25),math.max(90,info.Color[2]-35),255},
+            Weights=keyed,Rarity=category==1 and "Обычная" or "Эпическая",ModelStyle=category==1 and "Meadow" or zone==5 and "Celestial" or "Crystal"}
+        table.insert(C.EggOrder,id)
+    end
+end
 C.InventoryOrder=table.clone(C.PetOrder)
 for _,id in C.PetOrder do
     local base=C.PetTypes[id]
     C.PetTypes[id.."_Upgraded"]={Name=base.Name.." · Улучшенный",Bonus=(1+base.Bonus)*4-1,
         Rarity=base.Rarity,Description="Совмещён из трёх одинаковых питомцев. Множитель увеличен в 4 раза.",
-        Color=base.Color,BaseId=id,Upgraded=true}
+        Color=base.Color,BaseId=id,Species=base.Species,Zone=base.Zone,Upgraded=true}
     table.insert(C.InventoryOrder,id.."_Upgraded")
 end
-C.Eggs.Meadow.Rarity="Обычная"; C.Eggs.Crystal.Rarity="Редкая"
-C.Eggs.Celestial.Rarity="Божественная"
+-- Serialized Power keys now hold jump training points, preserving old records.
+function C.JumpHeight(data)
+    return math.min(C.MaxJumpHeight,C.BaseJumpHeight*(C.StartJumpRatio+math.sqrt(math.max(0,data.Power)/C.JumpPointsPerBase)))
+end
+function C.AvailablePractice(data) return math.max(0,(data.PracticeXP or 0)-(data.RebirthXPSpent or 0)) end
 function C.Multiplier(data)
     return 1 + math.min(data.Rebirths, C.RebirthBonusCap) * C.RebirthBonus
 end
@@ -280,13 +312,30 @@ function C.UpgradeCost(level)
     return math.floor(C.UpgradeBase * C.UpgradeGrowth ^ level)
 end
 function C.Requirements(rebirths)
-    local factor = 1 + math.min(rebirths, C.RequirementGrowthCap) * C.RebirthRequirementGrowth
-    return math.floor(C.RebirthPower * factor), math.floor(C.RebirthCoins * factor)
+    local n=rebirths+1
+    return math.floor(C.RebirthPower*n^1.45),math.floor(C.RebirthCoins*n^1.4),math.floor(C.RebirthPractice*n^.5)
+end
+function C.BatchRequirements(rebirths,amount)
+    if type(amount)~="number" or amount%1~=0 or amount&lt;1 or amount&gt;C.MaxBatchRebirths or rebirths+amount&gt;C.MaxRebirths then return nil end
+    local power,coins,xp=0,0,0
+    for i=0,amount-1 do
+        local p,c,x=C.Requirements(rebirths+i); power+=p; coins+=c; xp+=x
+    end
+    return power,coins,xp
+end
+function C.MaxAffordableRebirths(data)
+    local power,coins,xp=0,0,0; local count=0
+    for i=0,math.min(C.MaxBatchRebirths,C.MaxRebirths-data.Rebirths)-1 do
+        local p,c,x=C.Requirements(data.Rebirths+i); power+=p; coins+=c; xp+=x
+        if power&gt;data.Power or coins&gt;data.Coins or xp&gt;C.AvailablePractice(data) then break end
+        count+=1
+    end
+    return count
 end
 function C.TrainingMultipliers(data, stationMultiplier)
     local m = C.Multiplier(data) * (stationMultiplier or 1) * C.PetMultiplier(data)
-    return (1 + data.Level * C.PowerLevelBonus) * m,
-        (1 + data.Level * C.CoinLevelBonus) * m
+    return (1 + data.Level * C.PowerLevelBonus) * m * (1+((data.Zone or 1)-1)*.25),
+        (1 + data.Level * C.CoinLevelBonus) * m * (1+((data.Zone or 1)-1)*.25)
 end
 function C.Gains(data, stationMultiplier)
     local power, coins = C.TrainingMultipliers(data, stationMultiplier)
@@ -303,7 +352,7 @@ return table.freeze(C)
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX66b449ca871444c1b9a7798c849d232b">
+      <Item class="ModuleScript" referent="RBXdac389692ecf4d939efa6ace2a7bbe6e">
         <Properties>
           <string name="Name">NumberFormat</string>
           <ProtectedString name="Source">-- Display only: economy, validation and saved values always use the original numbers.
@@ -335,7 +384,7 @@ return N
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX2acfab32132f41e099fe78840ec59e20">
+      <Item class="ModuleScript" referent="RBXd19788b95f1d4d9ba5267cadb0bbaa5d">
         <Properties>
           <string name="Name">TextStyle</string>
           <ProtectedString name="Source">-- Template rule: floating text must stay legible over bright platforms.
@@ -349,7 +398,7 @@ return TextStyle
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX66333484c3284b378ca2a3391d8db036">
+      <Item class="ModuleScript" referent="RBX32626b1c1937435a8dc1618963e3f693">
         <Properties>
           <string name="Name">ModelFactory</string>
           <ProtectedString name="Source">local C=require(script.Parent.Config)
@@ -397,9 +446,8 @@ local function crystal(model,pos,size,color,rotation)
     end
 end
 local function egg(model,id,color)
-    -- Broad lower shell and narrower crown meet inside the shell: egg silhouette, no exposed core.
-    local shell=piece(model,"ShellBase",V(2.10,2.55,2.10),V(0,-.25,0),color,"Round")
-    piece(model,"ShellCrown",V(1.68,2.45,1.68),V(0,.35,0),color,"Round")
+    -- A SINGLE smooth oval shell, without an overlapping crown or seam.
+    local shell=piece(model,"ShellBase",V(2.10,3.10,2.10),V(0,0,0),color,"Round")
     if id=="Meadow" then
         for i,pos in {V(-.55,-.4,-.88),V(.48,.05,-.87),V(.1,-.85,-.82)} do
             piece(model,"ShellSpot"..i,V(.32,.42,.16),pos,cream,"Round",turn(-10,0,i*20))
@@ -525,7 +573,7 @@ function Factory.Build(id,isEgg)
     local info=(isEgg and C.Eggs or C.PetTypes)[id]; assert(info,"Unknown model: "..tostring(id))
     local model=Instance.new("Model"); model.Name=id
     local color=rgb(table.unpack(info.Color))
-    model.PrimaryPart=isEgg and egg(model,id,color) or pet(model,info.BaseId or id,color,info.Upgraded)
+    model.PrimaryPart=isEgg and egg(model,info.ModelStyle or id,color) or pet(model,info.Species or info.BaseId or id,color,info.Upgraded)
     return model
 end
 return Factory
@@ -534,21 +582,21 @@ return Factory
       </Item>
     </Item>
   </Item>
-  <Item class="ServerScriptService" referent="RBX548ed60c51cd48289149246a978d0098">
+  <Item class="ServerScriptService" referent="RBX0f02bdb8c1d24f62a5e731275dd741bd">
     <Properties>
       <string name="Name">ServerScriptService</string>
     </Properties>
-    <Item class="Folder" referent="RBX2ea4ec50c7374d70b69f3c91df6098bd">
+    <Item class="Folder" referent="RBXd1fe40ec7e594221baa6d22f90692036">
       <Properties>
         <string name="Name">Simulator</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBX4d505c75c443402689927eedd93b4c00">
+      <Item class="ModuleScript" referent="RBX1bcdc47e12a24e01bc73f884a9c6887d">
         <Properties>
           <string name="Name">Schema</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
 local Schema = {}
 function Schema.New()
-    return {Version = 4, Coins = 0, Power = 0, Level = 0, Rebirths = 0,
+    return {Version = 5, Zone=1, PracticeXP=0, RebirthXPSpent=0, Coins = 0, Power = 0, Level = 0, Rebirths = 0,
         LifetimePower = 0, TotalTrainings = 0, LastDaily = 0, LastWeekly = 0,
         Cosmetics = {}, Equipped = "", Pets = {}, EquippedPets = {}}
 end
@@ -564,7 +612,10 @@ local function integer(value, maximum)
 end
 -- Corrupt/unknown records fail closed. Defaults only come from a genuinely absent key.
 function Schema.Validate(raw)
-    if type(raw) ~= "table" or (raw.Version ~= 1 and raw.Version ~= 2 and raw.Version ~= 3 and raw.Version ~= 4) then return nil end
+    if type(raw) ~= "table" or (raw.Version ~= 1 and raw.Version ~= 2 and raw.Version ~= 3 and raw.Version ~= 4 and raw.Version ~= 5) then return nil end
+    if raw.Version==5 then
+        if not integer(raw.Zone,5) or raw.Zone&lt;1 or not integer(raw.PracticeXP,C.MaxValue) or not integer(raw.RebirthXPSpent,raw.PracticeXP) then return nil end
+    end
     local limits = {Coins=C.MaxValue, Power=C.MaxValue, Level=C.MaxLevel,
         Rebirths=C.MaxRebirths, LifetimePower=C.MaxValue, TotalTrainings=C.MaxValue,
         LastDaily=100000000000, LastWeekly=100000000000}
@@ -596,7 +647,7 @@ function Schema.Validate(raw)
     end
     local clean = Schema.New()
     for key in pairs(clean) do
-        if key ~= "Version" and key ~= "EquippedPets" and (raw.Version &gt;= 2 or key ~= "Pets") then
+        if key ~= "Version" and key ~= "EquippedPets" and (raw.Version&gt;=5 or (key~="Zone" and key~="PracticeXP" and key~="RebirthXPSpent")) and (raw.Version &gt;= 2 or key ~= "Pets") then
             clean[key] = Schema.Copy(raw[key])
         end
     end
@@ -608,7 +659,7 @@ return Schema
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX7d6142835a294147b5a3251ae26af87b">
+      <Item class="ModuleScript" referent="RBXe0f5e3d37fc749fd977d57f4b90484d2">
         <Properties>
           <string name="Name">PlayerData</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -716,7 +767,7 @@ return PlayerData
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX72df95547b2341b4b07110027170ceef">
+      <Item class="ModuleScript" referent="RBX5b6886f32f7141b68b9a8e0e91a9c9e2">
         <Properties>
           <string name="Name">Progression</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -724,13 +775,13 @@ local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compac
 local P = {}
 function P.Train(data, stationId)
     local station = C.Stations[stationId]
-    if not station or data.Level &lt; station.MinLevel then return false, "Станция откроется на уровне 3." end
+    if not station or (data.Zone or 1)&lt;(station.MinZone or 1) or data.Level &lt; station.MinLevel then return false, "Станция откроется на уровне 3." end
     local power, coins = C.Gains(data, station.Multiplier)
     data.Power = math.min(C.MaxValue, data.Power+power)
     data.Coins = math.min(C.MaxValue, data.Coins+coins)
     data.LifetimePower = math.min(C.MaxValue, data.LifetimePower+power)
     data.TotalTrainings = math.min(C.MaxValue, data.TotalTrainings+1)
-    return true, ("+%s силы, +%s монет"):format(number(power),number(coins))
+    return true, ("+%s прыжка, +%s монет"):format(number(power),number(coins))
 end
 function P.Upgrade(data)
     if data.Level &gt;= C.MaxLevel then return false, "Максимальный уровень тренировки." end
@@ -739,28 +790,45 @@ function P.Upgrade(data)
     data.Coins-=cost; data.Level+=1
     return true, "Тренировка усилена! Уровень "..number(data.Level)
 end
+function P.Practice(data,seconds)
+    if type(seconds)~="number" or seconds~=seconds or seconds&lt;0 or seconds&gt;1 then return false end
+    data.PracticeXP=math.min(C.MaxValue,data.PracticeXP+math.floor(seconds))
+    return true
+end
+function P.UnlockZone(data,zone)
+    if type(zone)~="number" or zone%1~=0 or zone~=(data.Zone or 1)+1 or not C.Zones[zone] then return false,"Открывай зоны по порядку." end
+    local target=C.Zones[zone]
+    if data.PracticeXP&lt;target.XP or data.Coins&lt;target.Cost then return false,"Нужны опыт и монеты: "..number(target.XP).." опыта / "..number(target.Cost).." монет." end
+    data.Coins-=target.Cost; data.Zone=zone
+    return true,"Открыта зона «"..target.Name.."»!"
+end
+function P.ApplyJump(player,data)
+    local humanoid=player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+    if humanoid then humanoid.UseJumpPower=false; humanoid.JumpHeight=C.JumpHeight(data) end
+end
 return P
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXa03d8353c2af4af18000c09b9472e265">
+      <Item class="ModuleScript" referent="RBXbf0279e929cf48c290e7fd2785750002">
         <Properties>
           <string name="Name">Rebirth</string>
-          <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
-local R = {}
-function R.Apply(data)
-    if data.Rebirths&gt;=C.MaxRebirths then return false, "Достигнут предел перерождений MVP." end
-    local power, coins=C.Requirements(data.Rebirths)
-    if data.Power&lt;power or data.Coins&lt;coins then return false, "Для перерождения нужны сила и монеты." end
-    -- Lifetime score, reward timestamps and cosmetics deliberately survive the reset.
-    data.Power=0; data.Coins=0; data.Level=0; data.Rebirths+=1
-    return true, ("Перерождение! Постоянный бонус: x%.2f"):format(C.Multiplier(data))
+          <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local R={}
+function R.Apply(data,amount)
+    amount=amount or 1
+    local power,coins,xp=C.BatchRequirements(data.Rebirths,amount)
+    if not power then return false,"Недопустимое количество перерождений." end
+    if data.Power&lt;power or data.Coins&lt;coins or C.AvailablePractice(data)&lt;xp then return false,"Не хватает прыжка, монет или опыта тренировки." end
+    data.Power=0; data.Coins-=coins; data.Level=0
+    data.RebirthXPSpent+=xp; data.Rebirths+=amount
+    return true,("Перерождений: %d! Постоянный бонус x%.2f"):format(amount,C.Multiplier(data))
 end
 return R
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX2cc35163df2d48e99dafd750300f5bd5">
+      <Item class="ModuleScript" referent="RBX0b9e6da0a68246c3bee9b0da3879d94b">
         <Properties>
           <string name="Name">Rewards</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -814,7 +882,7 @@ return Rewards
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXe2533c0d5194405a8d9623debfdf60a5">
+      <Item class="ModuleScript" referent="RBX3075c4f39f76499bbc35f6806d540c45">
         <Properties>
           <string name="Name">Pets</string>
           <ProtectedString name="Source">local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
@@ -834,6 +902,7 @@ end
 function Pets.Hatch(data, eggId, roll)
     local egg = C.Eggs[eggId]
     if not egg then return false, "Неизвестное яйцо." end
+    if (data.Zone or 1)&lt;(egg.Zone or 1) then return false,"Яйцо недоступно: сначала открой зону "..number(egg.Zone).."." end
     if data.Level &lt; egg.MinLevel then return false, "Яйцо недоступно: нужен уровень "..number(egg.MinLevel).."." end
     if Pets.Count(data) &gt;= C.MaxPets then return false, "Инвентарь питомцев заполнен (50)." end
     if data.Coins &lt; egg.Cost then return false, "Не хватает монет на яйцо." end
@@ -923,7 +992,7 @@ return Pets
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX2ee55228053744678496e0e3b20a6123">
+      <Item class="ModuleScript" referent="RBX987fa724dbb54958b2b8899aaf581f3b">
         <Properties>
           <string name="Name">PetVisuals</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -968,7 +1037,7 @@ return Visuals
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXdcaaeb8e488847ac80e26bdc5aba5ac9">
+      <Item class="ModuleScript" referent="RBXc647d5d94dd740c98df809f441e09d59">
         <Properties>
           <string name="Name">Security</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -988,6 +1057,9 @@ function S.Allow(limiter, action, now, cooldown)
 end
 function S.Valid(action, args)
     if type(action)~="string" or #action&gt;16 then return false end
+    if action=="Jump" then return args.n==0 end
+    if action=="Zone" then return args.n==1 and type(args[1])=="number" and args[1]%1==0 and args[1]&gt;=1 and args[1]&lt;=5 end
+    if action=="PrepareRebirth" then return args.n==0 or (args.n==1 and type(args[1])=="number" and args[1]%1==0 and args[1]&gt;=1 and args[1]&lt;=C.MaxBatchRebirths) end
     if action=="Train" then return args.n==1 and type(args[1])=="string" and C.Stations[args[1]]~=nil end
     if action=="Equip" then return args.n==1 and (args[1]=="" or args[1]=="BronzeAura" or args[1]=="NeonTrail") end
     if action=="Hatch" then return args.n==1 and type(args[1])=="string" and C.Eggs[args[1]]~=nil end
@@ -1016,7 +1088,7 @@ return S
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX0304f475db864b679d8e14e5bf61a948">
+      <Item class="ModuleScript" referent="RBX5057b5323320450f9304bbb1bf3b38ae">
         <Properties>
           <string name="Name">LeaderboardTemplate</string>
           <ProtectedString name="Source">-- Visual draft only: each ranking row is a separate solid plaque, no live data.
@@ -1101,7 +1173,7 @@ return Board
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX3a58a70c087e4cd8afc040b6e956aec2">
+      <Item class="ModuleScript" referent="RBX7edb1aed29884b67886dfd9790d424bd">
         <Properties>
           <string name="Name">World</string>
           <ProtectedString name="Source">local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
@@ -1144,23 +1216,40 @@ function World.Build()
     part(map,"AdvancedPlaza",Vector3.new(28,0.2,26),Vector3.new(24,0.1,0),Color3.fromRGB(67,49,96))
     -- Join x=4..10 exactly: no overlap with either plaza, and a 0.05 stud step below them.
     part(map,"Path",Vector3.new(6,0.2,7),Vector3.new(7,0.05,0),Color3.fromRGB(100,109,134))
+    for zone=2,#C.Zones do
+        local info=C.Zones[zone]; local x=(zone-1)*120
+        part(map,"GroundZ"..zone,Vector3.new(100,2,80),Vector3.new(x+4,-1,0),Color3.fromRGB(30,40,62))
+        part(map,"PlazaZ"..zone,Vector3.new(32,.2,26),Vector3.new(x-12,.1,0),Color3.fromRGB(table.unpack(info.Color)):Lerp(Color3.fromRGB(25,35,55),.65))
+        sign(map,"ZoneTitle"..zone,Vector3.new(x-16,8,-15),"УРОВЕНЬ "..zone.." · "..info.Name,Color3.fromRGB(table.unpack(info.Color)))
+    end
+    local function gate(name,target,pos,returning)
+        local info=C.Zones[target]; local color=Color3.fromRGB(table.unpack(info.Color))
+        local base=part(map,name,Vector3.new(6,.5,6),pos,color); base:SetAttribute("TargetZone",target)
+        for _,side in {-1,1} do part(map,name.."Post",Vector3.new(.5,7,.5),pos+Vector3.new(side*3,3.5,0),color) end
+        part(map,name.."Arch",Vector3.new(6.5,.5,.5),pos+Vector3.new(0,7,0),color)
+        local prompt=Instance.new("ProximityPrompt"); prompt.Name="ZonePrompt"; prompt.KeyboardKeyCode=Enum.KeyCode.E
+        prompt.ActionText="Перейти / открыть"; prompt.ObjectText="Уровень "..target.." · "..info.Name; prompt.MaxActivationDistance=8
+        prompt.RequiresLineOfSight=false; prompt.Exclusivity=Enum.ProximityPromptExclusivity.OneGlobally; prompt.Parent=base
+        sign(map,name.."Label",pos+Vector3.new(0,8,0),"УРОВЕНЬ "..target.." · "..info.Name..(returning and "\nНазад · E" or "\n"..number(info.XP).." опыта · "..number(info.Cost).." монет · E"),color)
+    end
+    for zone=2,#C.Zones do
+        gate("ZoneGate"..zone,zone,Vector3.new((zone-2)*120+40,.45,12),false)
+        gate("ZoneReturn"..zone,zone-1,Vector3.new((zone-1)*120-31,.45,24),true)
+    end
     for id, info in pairs(C.Stations) do
         local color=id=="Basic" and Color3.fromRGB(65,220,183) or Color3.fromRGB(160,116,255)
         local pad=part(map,id,Vector3.new(8,1,8),info.Position,color); pad.Material=Enum.Material.Neon
         local prompt=Instance.new("ProximityPrompt"); prompt.Name="TrainPrompt"
-        prompt.ActionText="Тренироваться"; prompt.ObjectText=id=="Basic" and "Сила" or "Сила x1.25 • уровень 3"
+        prompt.ActionText="Тренироваться"; prompt.ObjectText="Тренировка прыжка"
         prompt.KeyboardKeyCode=Enum.KeyCode.E; prompt.HoldDuration=0; prompt.MaxActivationDistance=C.TrainDistance
         prompt.Exclusivity=Enum.ProximityPromptExclusivity.OneGlobally
         prompt.RequiresLineOfSight=false; prompt.Parent=pad
-        sign(map,id.."Sign",info.Position+Vector3.new(0,6,-7),id=="Basic" and "ТРЕНИРОВКА СИЛЫ\nНажми E у платформы" or "ПРОДВИНУТАЯ ЗОНА\nУровень 3 • +25% за тренировку",color)
-        -- Simple equipment built from primitives, no external models/scripts.
-        local bar=part(map,id.."Bar",Vector3.new(6,0.3,0.3),info.Position+Vector3.new(0,2,-2),Color3.fromRGB(160,175,188))
-        for _, x in {-2.5,2.5} do
-            local weight=part(map,id.."Weight"..x,Vector3.new(0.8,2,2),bar.Position+Vector3.new(x,0,0),Color3.fromRGB(30,34,44))
-            weight.Shape=Enum.PartType.Ball
-        end
+        sign(map,id.."Sign",info.Position+Vector3.new(0,6,-7),"ТРЕНИРОВКА ПРЫЖКА\nПрыгай или нажимай E",color)
+        -- Springboard instead of strength-training barbells.
+        part(map,id.."Spring",Vector3.new(3,.4,3),info.Position+Vector3.new(0,.7,0),Color3.fromRGB(210,231,246))
+
     end
-    sign(map,"Welcome",Vector3.new(-34,7,14),"СИЛА → МОНЕТЫ → УЛУЧШЕНИЯ\nПерерождение даёт постоянный бонус",Color3.fromRGB(245,210,106))
+    sign(map,"Welcome",Vector3.new(-34,7,14),"ПРЫЖКИ → ПИТОМЦЫ → НОВЫЕ ЗОНЫ\nПерерождение даёт постоянный бонус",Color3.fromRGB(245,210,106))
     for _,id in C.EggOrder do
         local info=C.Eggs[id]; local color=Color3.fromRGB(table.unpack(info.Color))
         local stand=part(map,"Egg"..id,Vector3.new(5,1.6,5),info.Position,color)
@@ -1188,7 +1277,7 @@ return World
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXe281f1ef55604698ab8566eda0d7385d">
+      <Item class="ModuleScript" referent="RBXa10c179e5a6d49dd9e9332a8b2f084ca">
         <Properties>
           <string name="Name">Network</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1201,8 +1290,8 @@ function Network.Create()
     return {Action=action,State=state,Notice=notice}
 end
 function Network.Snapshot(data, mode, saveStatus)
-    local power,coins=C.Requirements(data.Rebirths)
-    return {Coins=data.Coins, Power=data.Power, Level=data.Level, Rebirths=data.Rebirths,
+    local power,coins,xp=C.Requirements(data.Rebirths)
+    return {Zone=data.Zone,PracticeXP=data.PracticeXP,AvailablePractice=C.AvailablePractice(data),JumpHeight=C.JumpHeight(data),RequiredPractice=xp,MaxRebirths=C.MaxAffordableRebirths(data),Coins=data.Coins, Power=data.Power, Level=data.Level, Rebirths=data.Rebirths,
         LifetimePower=data.LifetimePower, Multiplier=C.Multiplier(data),
         UpgradeCost=data.Level&lt;C.MaxLevel and C.UpgradeCost(data.Level) or 0,
         RequiredPower=power, RequiredCoins=coins, TotalTrainings=data.TotalTrainings,
@@ -1215,7 +1304,7 @@ return Network
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXaaff0d264e034571a15e4ca78a048c3a">
+      <Item class="ModuleScript" referent="RBX1b9d458d3aa44249947e582c9fa4055a">
         <Properties>
           <string name="Name">Telemetry</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1234,7 +1323,7 @@ return Telemetry
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXe3acedeb71f3479ebc40f613c9138c49">
+      <Item class="ModuleScript" referent="RBX12b8c4c24d3a4088a73458764694f44e">
         <Properties>
           <string name="Name">Runtime</string>
           <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -1253,6 +1342,7 @@ local Telemetry=require(script.Parent.Telemetry)
 local Pets=require(script.Parent.Pets)
 local PetVisuals=require(script.Parent.PetVisuals)
 local Runtime={sessions={},started=false}
+local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local dataService,remotes,map,mode
 local function loadCharacterAtSpawn(player)
     local ok=pcall(function() player:LoadCharacterAsync() end)
@@ -1262,16 +1352,17 @@ local function loadCharacterAtSpawn(player)
     if not root then return false end
     -- LoadCharacterAsync finalizes the engine spawn transform; move only after it returns.
     root.AssemblyLinearVelocity=Vector3.zero; root.AssemblyAngularVelocity=Vector3.zero
-    character:PivotTo(CFrame.new(C.SpawnPosition))
+    local saved=dataService and dataService:Get(player.UserId)
+    character:PivotTo(CFrame.new(saved and C.Zones[saved.Zone].Position or C.SpawnPosition))
     return true
 end
 local function stats(player,data)
     local folder=player:FindFirstChild("leaderstats")
     if not folder then
         folder=Instance.new("Folder"); folder.Name="leaderstats"; folder.Parent=player
-        for _, name in {"Rebirths","LifetimePower"} do local n=Instance.new("NumberValue"); n.Name=name; n.Parent=folder end
+        for _, name in {"Rebirths","JumpRecord"} do local n=Instance.new("NumberValue"); n.Name=name; n.Parent=folder end
     end
-    folder.Rebirths.Value=data.Rebirths; folder.LifetimePower.Value=data.LifetimePower
+    folder.Rebirths.Value=data.Rebirths; folder.JumpRecord.Value=data.LifetimePower
 end
 local function publish(player)
     local data=dataService:Get(player.UserId)
@@ -1289,11 +1380,11 @@ function Runtime.Dispatch(player,action,...)
     local session=Runtime.sessions[player.UserId]
     if not session then return false,"loading" end
     local now=os.clock()
-    local limiter=action=="Train" and session.trainLimiter or session.limiter
+    local limiter=(action=="Train" or action=="Jump") and session.trainLimiter or session.limiter
     if not Security.Allow(limiter,"Request",now,0) then return false,"rate" end
     local args=table.pack(...)
     if not Security.Valid(action,args) then return false,"arguments" end
-    local cooldown=action=="Train" and C.TrainCooldown or action=="Hatch" and C.HatchCooldown or action=="PetCraft" and C.CraftCooldown or action=="Rebirth" and 2 or action=="Sync" and 1 or C.ActionCooldown
+    local cooldown=action=="Jump" and .35 or action=="Train" and C.TrainCooldown or action=="Hatch" and C.HatchCooldown or action=="PetCraft" and C.CraftCooldown or action=="Rebirth" and 2 or action=="Sync" and 1 or C.ActionCooldown
     local last=session.actionTimes[action]
     if last and now-last&lt;cooldown then return false,"cooldown" end
     session.actionTimes[action]=now
@@ -1313,23 +1404,48 @@ function Runtime.Dispatch(player,action,...)
         notice(player,"Яйца открываются за игровые монеты.",{OpenPets=true,EggId=selected}); return true
     end
     if action=="PrepareRebirth" then
-        local power,coins=C.Requirements(data.Rebirths)
-        if data.Power&lt;power or data.Coins&lt;coins or data.Rebirths&gt;=C.MaxRebirths then
-            notice(player,"Пока не хватает силы или монет для перерождения."); return false,"conditions"
+        local amount=args[1] or 1
+        local power,coins,xp=C.BatchRequirements(data.Rebirths,amount)
+        if not power or data.Power&lt;power or data.Coins&lt;coins or C.AvailablePractice(data)&lt;xp then
+            notice(player,"Пока не хватает прыжка, монет или опыта для этой суммы."); return false,"conditions"
         end
-        session.confirm={token=HttpService:GenerateGUID(false),expires=now+20,rebirths=data.Rebirths}
-        notice(player,"Перерождение сбросит силу, монеты и уровень. Косметика и рекорд сохранятся.",
-            {RebirthToken=session.confirm.token,NextMultiplier=C.Multiplier({Rebirths=data.Rebirths+1})})
+        session.confirm={token=HttpService:GenerateGUID(false),expires=now+20,rebirths=data.Rebirths,amount=amount}
+        notice(player,("Перерождений: %d. Требуется %s прыжка, списание %s монет и %s опыта. Прыжок и улучшения сбросятся; зоны и питомцы сохранятся."):format(amount,number(power),number(coins),number(xp)),
+            {RebirthToken=session.confirm.token,NextMultiplier=C.Multiplier({Rebirths=data.Rebirths+amount})})
         return true
     end
     local previousMultiplier=C.Multiplier(data)
     local ok,message,resultId
-    if action=="Train" then
+    if action=="Zone" then
+        local target
+        for _,gate in map:GetChildren() do if gate:GetAttribute("TargetZone")==args[1] and Security.Near(player,gate,8) then target=gate; break end end
+        if not target then return false,"distance" end
+        if args[1]&lt;=data.Zone then ok,message=true,"Переход в зону."
+        else ok,message=Progression.UnlockZone(data,args[1]) end
+        if ok then player.Character:PivotTo(CFrame.new(C.Zones[args[1]].Position)) end
+    elseif action=="Jump" then
+        local char=player.Character; local human=char and char:FindFirstChildOfClass("Humanoid")
+        local root=char and char:FindFirstChild("HumanoidRootPart")
+        if not human or human.Health&lt;=0 or not root then return false,"not_jumping" end
+        -- Input can reach the server before the network-owned character's physics update.
+        -- Wait briefly for actual upward motion; a remote alone never grants a reward.
+        local params=RaycastParams.new(); params.FilterType=Enum.RaycastFilterType.Exclude; params.FilterDescendantsInstances={char}
+        local groundRay=Vector3.new(0,-(human.HipHeight+root.Size.Y/2+3),0)
+        local groundAtRequest=workspace:Raycast(root.Position,groundRay,params)
+        local initialY=root.Position.Y; local launched=false
+        for _=1,6 do
+            if root.AssemblyLinearVelocity.Y&gt;1 or root.Position.Y&gt;initialY+.03 then launched=true; break end
+            task.wait(.025)
+        end
+        if not launched or player.Character~=char or human.Health&lt;=0 or dataService:Get(player.UserId)~=data then return false,"not_jumping" end
+        if not groundAtRequest and not workspace:Raycast(root.Position,groundRay,params) then return false,"not_ground_launch" end
+        ok,message=Progression.Train(data,"Basic"); session.lastPractice=now
+    elseif action=="Train" then
         local station=C.Stations[args[1]]
         local pad=map:FindFirstChild(args[1])
         if not pad or not Security.Near(player,pad,C.TrainDistance) then return false,"distance" end
         if data.Level&lt;station.MinLevel then notice(player,"Продвинутая станция: нужен уровень 3."); return false,"level" end
-        ok,message=Progression.Train(data,args[1])
+        ok,message=Progression.Train(data,args[1]); if ok then session.lastPractice=now end
     elseif action=="Hatch" then
         local stand=map:FindFirstChild("Egg"..args[1])
         if not stand or not Security.Near(player,stand,C.EggDistance) then
@@ -1346,7 +1462,7 @@ function Runtime.Dispatch(player,action,...)
         session.confirm=nil -- Single use, expires, bound to this player's current cycle.
         if not confirmation or confirmation.token~=args[1] or confirmation.expires&lt;now
             or confirmation.rebirths~=data.Rebirths then return false,"confirmation" end
-        ok,message=Rebirth.Apply(data)
+        ok,message=Rebirth.Apply(data,confirmation.amount)
     elseif action=="Daily" or action=="Weekly" then ok,message=Rewards.Claim(data,action,os.time())
     elseif action=="Equip" then ok,message=Rewards.Equip(data,args[1]) end
     if not ok then notice(player,message or "Действие недоступно."); return false,"conditions" end
@@ -1354,6 +1470,7 @@ function Runtime.Dispatch(player,action,...)
     dataService:Changed(player.UserId)
     if action=="Equip" or action=="Rebirth" then Rewards.ApplyCharacter(player,data) end
     if action=="PetEquip" or action=="PetUnequip" or action=="PetEquipBest" or action=="Hatch" or action=="PetCraft" then PetVisuals.Apply(player,data) end
+    Progression.ApplyJump(player,data)
     publish(player)
     local extra
     if action=="Hatch" or action=="PetCraft" or action=="Rebirth" then
@@ -1391,7 +1508,7 @@ local function joined(player)
     player.CharacterAdded:Connect(function(char)
         local root=char:WaitForChild("HumanoidRootPart",10)
         local current=dataService:Get(player.UserId)
-        if root and current then Rewards.ApplyCharacter(player,current); PetVisuals.Apply(player,current) end
+        if root and current then Rewards.ApplyCharacter(player,current); PetVisuals.Apply(player,current); Progression.ApplyJump(player,current) end
         local humanoid=char:WaitForChild("Humanoid",10)
         if humanoid then
             humanoid.Died:Connect(function()
@@ -1406,7 +1523,14 @@ local function joined(player)
     end)
     local loaded=loadCharacterAtSpawn(player)
     if not loaded then player:Kick("Не удалось загрузить персонажа. Войди снова."); return end
+    Progression.ApplyJump(player,data)
+    if data.Zone&gt;1 then player.Character:PivotTo(CFrame.new(C.Zones[data.Zone].Position)) end
     publish(player); Telemetry.Step(player,1,"Joined")
+end
+-- Test access is server-only and fails closed outside an offline Studio sandbox.
+function Runtime.StudioProfile(player)
+    assert(RunService:IsStudio() and mode=="sandbox","Studio sandbox only")
+    return dataService:Get(player.UserId)
 end
 function Runtime.Start()
     assert(not Runtime.started,"Runtime already started"); Runtime.started=true
@@ -1424,6 +1548,10 @@ function Runtime.Start()
     end
     for id in pairs(C.Eggs) do
         map["Egg"..id].EggPrompt.Triggered:Connect(function(player) Runtime.Dispatch(player,"PetMenu") end)
+    end
+    for _,gate in map:GetChildren() do
+        local target=gate:GetAttribute("TargetZone")
+        if target then gate.ZonePrompt.Triggered:Connect(function(player) Runtime.Dispatch(player,"Zone",target) end) end
     end
     Players.PlayerAdded:Connect(joined)
     Players.PlayerRemoving:Connect(function(player)
@@ -1443,6 +1571,19 @@ function Runtime.Start()
             for _,player in Players:GetPlayers() do
                 if Runtime.sessions[player.UserId] and not dataService:Get(player.UserId) then
                     player:Kick("Защита данных: сохранение недоступно или сессия истекла. Войди снова позже.")
+                end
+            end
+        end
+    end)
+    task.spawn(function()
+        while not dataService.closing do
+            task.wait(1)
+            for _,player in Players:GetPlayers() do
+                local session=Runtime.sessions[player.UserId]; local data=dataService:Get(player.UserId)
+                local human=player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+                -- At most one XP per elapsed second; no AFK/offline/click-rate or pet multiplier.
+                if data and session and human and human.Health&gt;0 and session.lastPractice and os.clock()-session.lastPractice&lt;=1.5 then
+                    Progression.Practice(data,1); dataService:Changed(player.UserId); publish(player)
                 end
             end
         end
@@ -1467,18 +1608,18 @@ return Runtime
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Script" referent="RBXcd9bd6483b554c018030fbba19c69d71">
+      <Item class="Script" referent="RBXe9f7b288895d4839bf2dc86ec6207a11">
         <Properties>
           <string name="Name">Bootstrap</string>
           <ProtectedString name="Source">require(script.Parent.Runtime).Start()
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Folder" referent="RBX9de7ccfa2068489c90e97f1ea5cb103a">
+      <Item class="Folder" referent="RBXb1a454a91ae040a4ae708c8e27493646">
         <Properties>
           <string name="Name">Tests</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBXc7ad7f276cf642df80ecfa9550914e7a">
+        <Item class="ModuleScript" referent="RBXfd5b9126ffcd4a04b7687fd9adf0ed79">
           <Properties>
             <string name="Name">Spec</string>
             <ProtectedString name="Source">-- Server-only deterministic tests. No production DataStore, no real user records.
@@ -1507,7 +1648,7 @@ function Spec.Run()
         for _,id in C.PetOrder do
             local weight=egg.Weights[id] or 0
             if weight&gt;0 then
-                local sample=Schema.New(); sample.Coins=egg.Cost
+                local sample=Schema.New(); sample.Zone=5; sample.Coins=egg.Cost
                 local ok,_,drop=Pets.Hatch(sample,eggId,function() return (threshold+weight/2)/total end)
                 check(ok and drop==id and sample.Coins==0 and sample.Pets[id]==1,"paid midpoint drop "..eggId..id)
                 check(Schema.Validate(sample)~=nil,"new drop profile validates "..id)
@@ -1515,7 +1656,7 @@ function Spec.Run()
                 threshold+=weight
             end
         end
-        local sample=Schema.New(); sample.Coins=egg.Cost
+        local sample=Schema.New(); sample.Zone=5; sample.Coins=egg.Cost
         local ok,_,drop=Pets.Hatch(sample,eggId,function() return 1-1e-12 end)
         check(ok and (egg.Weights[drop] or 0)&gt;0,"upper endpoint never selects a zero-weight pet")
     end
@@ -1553,7 +1694,7 @@ function Spec.Run()
     check(not S.Valid("PetCraft",table.pack("Cat",{1,2,2})) and not S.Valid("PetCraft",table.pack("Cat_Upgraded",{1,2,3})),"craft invalid selection and variant rejected")
     local legacy=Schema.New(); legacy.Version=3; legacy.Coins=123; legacy.Pets={Cat=2}; legacy.EquippedPets={Cat=1}
     local upgradedSchema=Schema.Validate(legacy)
-    check(upgradedSchema and upgradedSchema.Version==4 and upgradedSchema.Coins==123 and upgradedSchema.EquippedPets.Cat==1,"v3 migration preserves progress and team")
+    check(upgradedSchema and upgradedSchema.Version==5 and upgradedSchema.Coins==123 and upgradedSchema.EquippedPets.Cat==1,"v3 migration preserves progress and team")
     local d=Schema.New()
     check(Schema.Validate(d)~=nil,"default schema")
     local interactions={}
@@ -1567,7 +1708,7 @@ function Spec.Run()
     end
     local old=Schema.New(); old.Version=1; old.Pets=nil; old.EquippedPet=nil; old.Coins=123
     local migrated=Schema.Validate(old)
-    check(migrated and migrated.Version==4 and migrated.Coins==123 and next(migrated.Pets)==nil,"migrate old profile without progress loss")
+    check(migrated and migrated.Version==5 and migrated.Coins==123 and next(migrated.Pets)==nil,"migrate old profile without progress loss")
     local petData=Schema.New()
     check(not Pets.Hatch(petData,"Meadow"),"no coins no hatch")
     petData.Coins=1000
@@ -1576,7 +1717,7 @@ function Spec.Run()
     for _,case in {{0,"Cat"},{.6,"Dog"},{.9,"Bunny"}} do
         local before=petData.Coins
         local ok,_,id=Pets.Hatch(petData,"Meadow",function() return case[1] end)
-        check(ok and id==case[2] and petData.Coins==before-80,"weighted hatch and exact cost")
+        check(ok and id==case[2] and petData.Coins==before-C.Eggs.Meadow.Cost,"weighted hatch and exact cost")
     end
     check(Pets.Count(petData)==3 and petData.EquippedPets.Cat==1,"auto equip first and inventory count")
     Pets.Equip(petData,"")
@@ -1586,13 +1727,13 @@ function Spec.Run()
     local bonusData=Schema.New(); bonusData.Level=3; bonusData.Rebirths=2
     bonusData.Pets.Bunny=1; bonusData.EquippedPets.Bunny=1
     local totalPower,totalCoins=C.TrainingMultipliers(bonusData,1.25)
-    check(math.abs(totalPower-3.348)&lt;.000001 and math.abs(totalCoins-3.034125)&lt;.000001,"separate total multipliers combine all active bonuses")
+    check(math.abs(totalPower-1.6*1.16*1.25*1.35)&lt;.000001 and math.abs(totalCoins-1.45*1.16*1.25*1.35)&lt;.000001,"separate total multipliers combine all active bonuses")
     local gainPower,gainCoins=C.Gains(bonusData,1.25)
     check(gainPower==math.floor(C.BasePower*totalPower) and gainCoins==math.floor(C.BaseCoins*totalCoins),"HUD multipliers match server gain formula")
     check(Schema.Validate(petData)~=nil,"pet profile valid")
     local v2=Schema.Copy(petData); v2.Version=2; v2.EquippedPets=nil; v2.EquippedPet="Bunny"
     local v3=Schema.Validate(v2)
-    check(v3 and v3.Version==4 and v3.EquippedPets.Bunny==1 and v3.Pets.Bunny==1,"migrate v2 equipment")
+    check(v3 and v3.Version==5 and v3.EquippedPets.Bunny==1 and v3.Pets.Bunny==1,"migrate v2 equipment")
     local team=Schema.New(); team.Pets.Cat=4
     check(Pets.Equip(team,"Cat") and Pets.Equip(team,"Cat") and Pets.Equip(team,"Cat"),"three owned copies can equip")
     check(not Pets.Equip(team,"Cat") and Pets.EquippedCount(team)==3,"fourth ordinary slot denied")
@@ -1604,7 +1745,7 @@ function Spec.Run()
     local lockedOk=Pets.Hatch(lockedData,"Meadow")
     C.Eggs.Meadow.MinLevel=minLevel
     check(not lockedOk and lockedData.Coins==1000,"locked egg never charges")
-    petData.Power=200; petData.Coins=150
+    petData.Power=C.Requirements(0); petData.Coins=2000; petData.PracticeXP=90
     check(R.Apply(petData) and petData.Pets.Bunny==1 and petData.EquippedPets.Bunny==1,"rebirth preserves pets")
     check(Pets.Equip(petData,"") and C.PetMultiplier(petData)==1,"unequip removes bonus")
     check(not Pets.Equip(Schema.New(),"Dog"),"cannot equip unowned pet")
@@ -1625,12 +1766,12 @@ function Spec.Run()
     for _=1,3 do P.Train(d,"Basic") end
     check(P.Upgrade(d) and d.Level==1 and d.Coins==7,"deduct exact cost")
     check(not R.Apply(d),"early rebirth rejected")
-    d.Power=200; d.Coins=150; d.LastDaily=100; d.Cosmetics.BronzeAura=true; d.Equipped="BronzeAura"
+    d.Power=C.Requirements(0); d.Coins=2000; d.PracticeXP=90; d.LastDaily=100; d.Cosmetics.BronzeAura=true; d.Equipped="BronzeAura"
     local lifetime=d.LifetimePower
     check(R.Apply(d),"rebirth allowed")
     check(d.Power==0 and d.Coins==0 and d.Level==0 and d.Rebirths==1,"reset only cycle fields")
     check(d.LifetimePower==lifetime and d.LastDaily==100 and d.Equipped=="BronzeAura","preserve persistent fields")
-    check(C.Multiplier(d)==1.12,"controlled permanent bonus")
+    check(C.Multiplier(d)==1.08,"controlled permanent bonus")
     d.Rebirths=10; check(Rewards.Reconcile(d) and d.Cosmetics.NeonTrail,"milestone")
     check(not Rewards.Reconcile(d),"milestone idempotent")
     check(not Rewards.Equip(Schema.New(),"NeonTrail"),"unowned cosmetic rejected")
@@ -1680,7 +1821,7 @@ function Spec.Run()
     local a=Data.new(store,opts)
     check(a:Load(77),"load new player")
     a:Get(77).Pets.Bunny=2; a:Get(77).EquippedPets.Bunny=1; a:Get(77).Pets.Cat_Upgraded=1; a:Get(77).EquippedPets.Cat_Upgraded=1
-    a:Get(77).Coins=250; a:Changed(77)
+    a:Get(77).Coins=250; a:Get(77).Zone=3; a:Get(77).PracticeXP=1800; a:Get(77).RebirthXPSpent=90; a:Changed(77)
     store.doubleCallback=true
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"callback retry safe")
     local b=Data.new(store,{now=opts.now,wait=opts.wait,token="B"})
@@ -1695,6 +1836,7 @@ function Spec.Run()
     check(a:Save(77,false) and store.records.Player_77.Data.Coins==250,"commit response lost retry safe")
     check(a:Save(77,true) and store.records.Player_77.Session==nil,"release lock")
     check(b:Load(77) and b:Get(77).Coins==250,"reload persisted progress")
+    check(b:Get(77).Zone==3 and b:Get(77).PracticeXP==1800 and b:Get(77).RebirthXPSpent==90,"new zone and XP persistence roundtrip")
     check(b:Get(77).Pets.Bunny==2 and b:Get(77).EquippedPets.Bunny==1,"pet save reload roundtrip")
     check(b:Get(77).Pets.Cat_Upgraded==1 and b:Get(77).EquippedPets.Cat_Upgraded==1,"upgraded pet persistence roundtrip")
     b:Get(77).Coins=400; b:Changed(77); check(b:Save(77,false),"second session saves")
@@ -1714,31 +1856,50 @@ function Spec.Run()
     offline.closing=true; check(offline:Get(1)==nil and not offline:Load(2),"shutdown freezes operations")
     check(offline:Save(1,true),"shutdown release")
 
-    local balance={}; d=Schema.New()
-    for cycle=1,26 do
-        local powerReq,coinReq=C.Requirements(d.Rebirths)
-        local actions=0
-        -- A simple player strategy: buy levels 1..3 while still building power.
-        while d.Power&lt;powerReq or d.Coins&lt;coinReq do
-            local station=d.Level&gt;=3 and "Advanced" or "Basic"
-            P.Train(d,station); actions+=1
-            if d.Level&lt;3 and d.Power&lt;powerReq and d.Coins&gt;=C.UpgradeCost(d.Level) then P.Upgrade(d) end
-            assert(actions&lt;500,"unreachable rebirth")
+    local v4=Schema.New(); v4.Version=4; v4.Zone=nil; v4.PracticeXP=nil; v4.RebirthXPSpent=nil
+    v4.Power=12345; v4.Pets={Dragon_Upgraded=1}; v4.EquippedPets={Dragon_Upgraded=1}
+    local migrated4=Schema.Validate(v4)
+    check(migrated4 and migrated4.Version==5 and migrated4.Zone==1 and migrated4.PracticeXP==0 and migrated4.Power==12345 and migrated4.EquippedPets.Dragon_Upgraded==1,"v4 migration keeps jump progress and legacy pets")
+    local invalid=Schema.New(); invalid.RebirthXPSpent=1; check(not Schema.Validate(invalid),"cannot spend more XP than earned")
+    invalid=Schema.New(); invalid.Zone=6; check(not Schema.Validate(invalid),"unknown zone rejected")
+    check(S.Valid("PrepareRebirth",table.pack(5)) and not S.Valid("PrepareRebirth",table.pack(101)) and not S.Valid("PrepareRebirth",table.pack(0/0)),"strict batch prepare arguments")
+    check(math.abs(C.JumpHeight(Schema.New())-C.BaseJumpHeight*.05)&lt;1e-9,"initial jump is five percent of baseline")
+    local growth=Schema.New(); local before=C.JumpHeight(growth); P.Train(growth,"Basic")
+    check(C.JumpHeight(growth)&gt;before,"training actually increases jump height")
+    growth.Power=C.MaxValue; check(C.JumpHeight(growth)==C.MaxJumpHeight,"physics height capped")
+    local priceP,priceC,priceX=C.BatchRequirements(2,5); local p,c,x=0,0,0
+    for i=2,6 do local a,b,d=C.Requirements(i); p+=a;c+=b;x+=d end
+    check(priceP==p and priceC==c and priceX==x,"bulk includes exact sum of every ascending cost")
+    local batch=Schema.New(); batch.Rebirths=2; batch.Power=p; batch.Coins=c+123; batch.PracticeXP=x; batch.Zone=3; batch.Level=7
+    check(C.MaxAffordableRebirths(batch)==5,"maximum affordability includes XP and following costs")
+    check(R.Apply(batch,5) and batch.Rebirths==7 and batch.Coins==123 and batch.Power==0 and batch.Level==0 and batch.RebirthXPSpent==x and batch.Zone==3,"bulk atomic reset preserves zone and exact change")
+    check(not R.Apply(batch,5),"bulk replay lacks resources")
+    for _,bad in {0,-1,.5,101,math.huge,0/0,"5"} do check(C.BatchRequirements(0,bad)==nil,"invalid bulk quantity") end
+    check(C.BatchRequirements(C.MaxRebirths-1,2)==nil,"bulk respects rebirth cap")
+    local zone=Schema.New(); zone.Coins=10000000; zone.PracticeXP=1799
+    check(not P.UnlockZone(zone,3),"cannot skip a zone")
+    check(P.UnlockZone(zone,2),"unlock second zone")
+    check(not P.UnlockZone(zone,3),"third zone requires at least 1800 active XP")
+    P.Practice(zone,1); check(P.UnlockZone(zone,3) and zone.Zone==3,"third zone at activity threshold")
+    check(not P.Practice(zone,10000) and not P.Practice(zone,-1),"XP rejects unbounded time")
+    local locked=Schema.New(); locked.Coins=C.MaxValue
+    check(not Pets.Hatch(locked,"Celestial") and locked.Coins==C.MaxValue,"zone lock cannot be bypassed by coins")
+    for i=1,5 do
+        check(#C.Zones[i].Eggs==2,"two eggs per zone")
+        for _,id in C.Zones[i].Eggs do
+            check(C.Eggs[id].Zone==i,"egg belongs to advertised zone")
+            for pet in C.Eggs[id].Weights do check(C.PetTypes[pet].Zone==i,"drop belongs to same zone") end
         end
-        balance[cycle]=actions -- Click pacing belongs to the player, not a training timer.
-        check(R.Apply(d),"balance cycle "..cycle)
+        if i&gt;1 then check(C.PetTypes["Cat_Z"..i].Bonus&gt;C.PetTypes[i==2 and "Cat" or "Cat_Z"..(i-1)].Bonus,"later pets stronger") end
     end
-    check(balance[1]&lt;=90 and balance[2]&lt;=balance[1]*1.2,"early pacing")
-    check(balance[26]&lt;balance[1],"later cycles moderately faster")
-    print(("SIMULATOR_SPEC_PASS %d assertions; cycle_clicks [1]=%.0f [2]=%.0f [10]=%.0f [26]=%.0f")
-        :format(count,balance[1],balance[2],balance[10],balance[26]))
-    return {Assertions=count,Balance=balance}
+    print(("SIMULATOR_SPEC_PASS %d assertions; jump bulk zones migration leases pets"):format(count))
+    return {Assertions=count}
 end
 return Spec
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXdd680a652e024b65863777e8a1cd760c">
+        <Item class="ModuleScript" referent="RBX4335e4f8d0244da4be2643d013d03634">
           <Properties>
             <string name="Name">Integration</string>
             <ProtectedString name="Source">-- SERVER Command Bar in a fresh Play. Only runs in Studio sandbox.
@@ -1807,19 +1968,19 @@ return Integration
       </Item>
     </Item>
   </Item>
-  <Item class="StarterPlayer" referent="RBX1fb51979b3784a17942f3ee7b237fdb0">
+  <Item class="StarterPlayer" referent="RBX89b0ecafc1684c1a9e7d70d73faf8a23">
     <Properties>
       <string name="Name">StarterPlayer</string>
     </Properties>
-    <Item class="StarterPlayerScripts" referent="RBX00822a7c46bd419ea02843f7097ff7ca">
+    <Item class="StarterPlayerScripts" referent="RBXe4dd658171934c24988f19ea2e90845a">
       <Properties>
         <string name="Name">StarterPlayerScripts</string>
       </Properties>
-      <Item class="Folder" referent="RBX03f9a434c4a14f47be420d6d4219ead0">
+      <Item class="Folder" referent="RBXa09fa6db1aa840c7b7b99c5d9d9092f2">
         <Properties>
           <string name="Name">SimulatorClient</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBX5c2e52dd9be647388fad605e4853cf40">
+        <Item class="ModuleScript" referent="RBX8e034e3609f747c09b0e2bb5f9a917be">
           <Properties>
             <string name="Name">UI</string>
             <ProtectedString name="Source">local UI={}
@@ -1895,7 +2056,7 @@ function UI.Build(player)
     multipliers.Name="MultiplierCard"
     local multiplierTitle=label(multipliers,UDim2.fromOffset(8,4),UDim2.new(1,-16,0,18),Headings.Text("Total"),12,palette.Muted)
     Headings.Style(multiplierTitle,palette.Mint)
-    refs.PowerMultiplier=label(multipliers,UDim2.fromOffset(10,24),UDim2.new(1,-20,0,16),"Сила  x1.00",13,palette.Mint)
+    refs.PowerMultiplier=label(multipliers,UDim2.fromOffset(10,24),UDim2.new(1,-20,0,16),"Прыжок  x1.00",13,palette.Mint)
     refs.CoinMultiplier=label(multipliers,UDim2.fromOffset(10,42),UDim2.new(1,-20,0,16),"Монеты  x1.00",13,palette.Gold)
     local left=Instance.new("Frame"); left.Name="ActionDock"; left.Size=UDim2.fromOffset(152,186)
     left.Position=UDim2.new(0,16,0.5,0); left.AnchorPoint=Vector2.new(0,0.5); left.BackgroundTransparency=1; left.Parent=gui
@@ -1925,7 +2086,7 @@ function UI.Build(player)
     refs.Train.Text=""
     refs.InteractCaption=label(refs.Train,UDim2.fromOffset(50,0),UDim2.new(1,-58,1,0),"Тренироваться · E",16)
     refs.Train.Visible=false
-    refs.Hint=label(gui,UDim2.new(0.5,-210,1,-120),UDim2.fromOffset(420,34),"Подойди к зелёной платформе и нажми E.",13,palette.Muted)
+    refs.Hint=label(gui,UDim2.new(0.5,-210,1,-120),UDim2.fromOffset(420,34),"Прыгай или тренируйся у площадки по E.",13,palette.Muted)
     refs.Notice=label(gui,UDim2.new(0.5,-190,1,-166),UDim2.fromOffset(380,38),"",15,palette.Gold)
     Glass.Style(refs.Notice,palette.Gold,13)
     refs.Notice.GlassTint:Destroy()
@@ -1995,7 +2156,7 @@ function UI.Build(player)
         end
     end
     local shop=menu("Shop","МАГАЗИН",272)
-    label(shop,UDim2.fromOffset(20,64),UDim2.fromOffset(310,42),"Улучшения усиливают тренировку.\nУровень 3 открывает новую станцию.",15)
+    label(shop,UDim2.fromOffset(20,64),UDim2.fromOffset(310,42),"Улучшения ускоряют рост прыжка.\nЗоны открываются у порталов за опыт и монеты.",15)
     refs.Upgrade=button(shop,UDim2.fromOffset(20,122),UDim2.fromOffset(310,48),"Улучшение: 25 монет")
     refs.Cosmetic=button(shop,UDim2.fromOffset(20,184),UDim2.fromOffset(310,62),"Косметика: за Rebirth",Color3.fromRGB(84,95,131))
     local pets=menu("Pets","ЯЙЦА И ПИТОМЦЫ",580,920)
@@ -2013,11 +2174,11 @@ function UI.Build(player)
     local gifts=menu("Gifts","НАГРАДЫ",250)
     label(gifts,UDim2.fromOffset(20,62),UDim2.fromOffset(310,42),"Бонусы за возвращение.\nПропуск дня не сбрасывает прогресс.",15)
     refs.Daily=button(gifts,UDim2.fromOffset(20,118),UDim2.fromOffset(310,48),"Ежедневная награда")
-    refs.Weekly=button(gifts,UDim2.fromOffset(20,180),UDim2.fromOffset(310,48),"Недельная награда")
-    local rebirth=menu("Rebirth","ПЕРЕРОЖДЕНИЕ",342)
+    refs.Weekly=button(gifts,UDim2.fromOffset(20,196),UDim2.fromOffset(310,48),"Недельная награда")
+    local rebirth=menu("Rebirth","ПЕРЕРОЖДЕНИЕ",414)
     refs.Bonus=label(rebirth,UDim2.fromOffset(20,62),UDim2.fromOffset(310,40),"Постоянный бонус: x1.00",16)
-    refs.Goal=label(rebirth,UDim2.fromOffset(20,114),UDim2.fromOffset(310,52),"200 силы и 150 монет",18)
-    local bar=frame(rebirth,UDim2.fromOffset(310,10),UDim2.fromOffset(20,180))
+    refs.Goal=label(rebirth,UDim2.fromOffset(20,114),UDim2.fromOffset(310,70),"Прыжок, монеты и опыт",18)
+    local bar=frame(rebirth,UDim2.fromOffset(310,10),UDim2.fromOffset(20,196))
     bar.BackgroundColor3=Color3.fromRGB(50,62,85)
     refs.Fill=frame(bar,UDim2.fromScale(0,1),UDim2.fromScale(0,0),nil,Color3.fromRGB(105,226,193))
     for _,child in refs.Fill:GetChildren() do child:Destroy() end
@@ -2030,8 +2191,16 @@ function UI.Build(player)
         progressTween=TweenService:Create(refs.Fill,TweenInfo.new(.22,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Size=UDim2.fromScale(value,1)})
         progressTween:Play()
     end
-    label(rebirth,UDim2.fromOffset(20,202),UDim2.fromOffset(310,54),"Сбросятся сила, монеты и уровень.\nРекорд, косметика и бонус сохранятся.",15)
-    refs.Prepare=button(rebirth,UDim2.fromOffset(20,274),UDim2.fromOffset(310,48),"Переродиться…",Color3.fromRGB(131,82,189))
+    local batch=Instance.new("Frame"); batch.Name="BatchSelector"; batch.BackgroundTransparency=1
+    batch.Position=UDim2.fromOffset(20,220); batch.Size=UDim2.fromOffset(310,38); batch.Parent=rebirth
+    refs.BatchButtons={}; refs.BatchAmount=1
+    for i,amount in {1,5,10,"MAX"} do
+        local b=button(batch,UDim2.fromScale((i-.5)/4,.5),UDim2.new(.25,-5,1,0),tostring(amount),palette.Violet)
+        b.AnchorPoint=Vector2.new(.5,.5); b.Position=UDim2.fromScale((i-.5)/4,.5)
+        refs.BatchButtons[amount]=b
+    end
+    label(rebirth,UDim2.fromOffset(20,270),UDim2.fromOffset(310,58),"Прыжок и усиления сбросятся. Цена монет и опыта суммируется. Зоны и питомцы сохранятся.",14)
+    refs.Prepare=button(rebirth,UDim2.fromOffset(20,344),UDim2.fromOffset(310,48),"Переродиться…",Color3.fromRGB(131,82,189))
     local confirmation=menu("Confirm","ПОДТВЕРЖДЕНИЕ",350)
     refs.Dialog=label(confirmation,UDim2.fromOffset(20,62),UDim2.fromOffset(310,148),"",17)
     refs.Confirm=button(confirmation,UDim2.fromOffset(20,226),UDim2.fromOffset(310,48),"Подтвердить",Color3.fromRGB(131,82,189))
@@ -2181,7 +2350,7 @@ return UI
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX3086eff2c07e4501b1bdee52dd8204db">
+        <Item class="ModuleScript" referent="RBX2bf20ee63bd249bc80bfcdf664f294db">
           <Properties>
             <string name="Name">Glass</string>
             <ProtectedString name="Source">local TweenService=game:GetService("TweenService")
@@ -2218,7 +2387,7 @@ function Glass.Icon(parent,kind,accent,position,size)
         s.BackgroundColor3=accent; s.BorderSizePixel=0; s.Parent=f; if round then corner(s,round) end; return s
     end
     if kind=="Power" then
-        shape(.22,.25,.13,.5,3); shape(.65,.25,.13,.5,3); shape(.35,.44,.3,.12,2)
+        local stem=shape(.45,.32,.1,.5,2); local a=shape(.29,.32,.27,.08,2); a.Rotation=-45; local b=shape(.45,.32,.27,.08,2); b.Rotation=45
     elseif kind=="Coins" then
         local disc=shape(.23,.23,.54,.54,50); disc.BackgroundTransparency=.1
         local line=shape(.47,.32,.06,.36,2); line.BackgroundColor3=Glass.Colors.Base
@@ -2237,10 +2406,25 @@ function Glass.Icon(parent,kind,accent,position,size)
         local a=shape(.3,.26,.19,.1,3); a.Rotation=30
         local b=shape(.51,.26,.19,.1,3); b.Rotation=-30
     else
-        local ring=shape(.25,.25,.5,.5,50); ring.BackgroundTransparency=1
-        local outline=Instance.new("UIStroke"); outline.Color=accent; outline.Thickness=2; outline.Parent=ring
-        local tip1=shape(.55,.18,.22,.07,2); tip1.Rotation=22
-        local tip2=shape(.7,.22,.07,.22,2); tip2.Rotation=22
+        -- Two curved arrows: one solid, one hollow, both in the HUD theme.
+        for arrow=0,1 do
+            local hollow=arrow==1
+            for i=0,10 do
+                local angle=math.rad(25+i*12+arrow*180)
+                local seg=shape(.5+math.cos(angle)*.25-.06,.5+math.sin(angle)*.25-.04,.12,.08,2)
+                seg.Rotation=math.deg(angle)+90
+                if hollow then
+                    seg.BackgroundTransparency=1
+                    local edge=Instance.new("UIStroke"); edge.Color=accent; edge.Thickness=1; edge.Parent=seg
+                end
+            end
+            local angle=math.rad(145+arrow*180)
+            local x,y=.5+math.cos(angle)*.25,.5+math.sin(angle)*.25
+            for _,side in {-1,1} do
+                local tip=shape(x-.09,y-.025,.18,.05,2); tip.Rotation=math.deg(angle)+90+side*36
+                if hollow then tip.BackgroundTransparency=1; local e=Instance.new("UIStroke"); e.Color=accent; e.Thickness=1; e.Parent=tip end
+            end
+        end
     end
     return f
 end
@@ -2326,14 +2510,15 @@ return Glass
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX4c9f369f9bbb412eb5f1fb21c4864107">
+        <Item class="ModuleScript" referent="RBXa8e2f0766655420dacb02ac6b51ee12e">
           <Properties>
             <string name="Name">Headings</string>
             <ProtectedString name="Source">local Localization=game:GetService("LocalizationService")
 local H={}
+local C=require(game.ReplicatedStorage.SimulatorShared.Config)
 local labels={
     Settings={"Настройки","Settings"},
-    Power={"СИЛА","POWER"}, Coins={"МОНЕТЫ","COINS"}, Total={"ОБЩИЙ МНОЖИТЕЛЬ","TOTAL MULTIPLIER"},
+    Power={"ПРЫЖОК","JUMP"}, Coins={"МОНЕТЫ","COINS"}, Total={"ОБЩИЙ МНОЖИТЕЛЬ","TOTAL MULTIPLIER"},
     Shop={"Магазин","Shop"}, Gifts={"Награды","Rewards"}, Pets={"Яйца и питомцы","Eggs &amp; Pets"},
     Rebirth={"Перерождение","Rebirth"}, Confirm={"ПОДТВЕРЖДЕНИЕ","CONFIRMATION"},
     Eggs={"Выбор яйца","Egg selection"}, Inventory={"Питомцы","Pets"}, Paid={"Донатные предметы","Paid items"},
@@ -2355,6 +2540,13 @@ function H.Text(key,locale)
     local pair=labels[key]; return pair and pair[H.Language(locale)=="ru" and 1 or 2] or key
 end
 function H.Item(id,locale)
+    local egg=C.Eggs[id]
+    if egg and not labels[id] then return egg.Name end
+    local pet=C.PetTypes[id]
+    if pet and pet.Zone and pet.Zone&gt;1 then
+        local zoneLabel=H.Language(locale)=="ru" and "Ур. " or "Lv. "
+        return H.Text(pet.Species,locale).." · "..zoneLabel..pet.Zone..(pet.Upgraded and " · "..H.Text("Upgraded",locale) or "")
+    end
     local base=id:gsub("_Upgraded$","")
     return H.Text(base,locale)..(base~=id and " · "..H.Text("Upgraded",locale) or "")
 end
@@ -2369,7 +2561,7 @@ return H
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXa49b7a417c81442c99965ec3f88deef0">
+        <Item class="ModuleScript" referent="RBXcd8deb58dbab4e4e86bfd0e396841f14">
           <Properties>
             <string name="Name">Settings</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -2534,7 +2726,7 @@ function S.Build(refs,menu)
     end
     api.Pages.Graphics.CanvasSize=UDim2.fromOffset(0,174)
     toggle(api.Pages.Interface,"AllHUD","Весь интерфейс",0,function() return S.AllHUD end,api.SetAllHUD)
-    for i,info in {{"Power","Сила"},{"Coins","Монеты"},{"Multiplier","Общий множитель"},{"Shop","Магазин"},{"Gifts","Награды"},{"Pets","Яйца и питомцы"},{"Rebirth","Перерождение"},{"Train","Нижняя кнопка"},{"Hint","Подсказка"}} do
+    for i,info in {{"Power","Прыжок"},{"Coins","Монеты"},{"Multiplier","Общий множитель"},{"Shop","Магазин"},{"Gifts","Награды"},{"Pets","Яйца и питомцы"},{"Rebirth","Перерождение"},{"Train","Нижняя кнопка"},{"Hint","Подсказка"}} do
         local key=info[1]; toggle(api.Pages.Interface,key,info[2],i*54,function() return refs.ShouldShow(key) end,function(v) api.SetHUD(key,v) end)
     end
     api.Pages.Interface.CanvasSize=UDim2.fromOffset(0,550)
@@ -2544,7 +2736,7 @@ return S
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX0b2e0ea82e4f4fd3afc0ebf62f64dd7e">
+        <Item class="ModuleScript" referent="RBXa15e8365d6b24da68aadb3cab9818e35">
           <Properties>
             <string name="Name">PetCatalog</string>
             <ProtectedString name="Source">local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
@@ -2642,6 +2834,14 @@ function Catalog.Build(parent)
     detailBody.CanvasSize=UDim2.fromOffset(0,390); detailBody.ScrollingDirection=Enum.ScrollingDirection.Y
     detailBody.ScrollBarThickness=4; detailBody.BackgroundTransparency=1; detailBody.BorderSizePixel=0
     detailBody.Visible=false; detailBody.Parent=inspector
+    local odds=Instance.new("Frame"); odds.Name="DropOdds"; odds.BackgroundTransparency=1
+    odds.Position=UDim2.fromOffset(10,58); odds.Size=UDim2.new(1,-20,1,-66); odds.Visible=false; odds.ZIndex=24; odds.Parent=inspector
+    local oddsList=Instance.new("ScrollingFrame"); oddsList.Name="Drops"; oddsList.Size=UDim2.new(1,0,1,-50)
+    oddsList.BackgroundTransparency=1; oddsList.BorderSizePixel=0; oddsList.ScrollBarThickness=4
+    oddsList.ScrollingDirection=Enum.ScrollingDirection.Y; oddsList.AutomaticCanvasSize=Enum.AutomaticSize.Y; oddsList.CanvasSize=UDim2.new(); oddsList.Parent=odds
+    local oddsLayout=Instance.new("UIListLayout"); oddsLayout.Padding=UDim.new(0,6); oddsLayout.SortOrder=Enum.SortOrder.LayoutOrder; oddsLayout.Parent=oddsList
+    local oddsReturn=button(odds,UDim2.new(.5,0,1,-23),UDim2.new(1,-8,0,40),"К яйцу")
+    refs.OddsPanel=odds; refs.OddsList=oddsList
     refs.PetSummary=text(parent,UDim2.fromOffset(20,58),UDim2.new(1,-40,0,28),"Загрузка…",12)
     local phoneBody=Instance.new("ScrollingFrame"); phoneBody.Name="PhoneCatalogBody"
     phoneBody.Position=UDim2.fromOffset(0,56); phoneBody.Size=UDim2.new(1,0,1,-62)
@@ -2758,18 +2958,28 @@ function Catalog.Build(parent)
         end
     end
     local refresh
+    local function oddsMode()
+        local active=selected and selected.Odds==true
+        odds.Visible=active or false
+        description.Visible=not active; primary.Visible=not active
+        if active then
+            combine.Visible=false; detailBody.Visible=false
+            local picture=inspector:FindFirstChild("Picture") or detailBody:FindFirstChild("Picture")
+            if picture then picture.Visible=false end
+        end
+    end
     function refs.Resize(newWidth,scale,newCentre,isPhone)
         width=newWidth; responsiveScale=scale or 1; centre=newCentre or centre; phoneLayout=isPhone==true
-        inspectorScale.Scale=responsiveScale; layout(false)
+        inspectorScale.Scale=responsiveScale; layout(false); oddsMode()
     end
     function refs.Reset()
         transition+=1
-        selected=nil; refs.CraftId=nil; selectedCopies={}; inspector.Visible=false
+        selected=nil; refs.CraftId=nil; selectedCopies={}; inspector.Visible=false; odds.Visible=false
         layout(false)
     end
     function refs.Return()
         transition+=1; local version=transition
-        selected=nil; refs.CraftId=nil; selectedCopies={}
+        selected=nil; refs.CraftId=nil; selectedCopies={}; odds.Visible=false
         layout(true,true)
         task.delay(.2,function() if transition==version and selected==nil then inspector.Visible=false end end)
         if refresh then refresh() end
@@ -2784,12 +2994,12 @@ function Catalog.Build(parent)
     local function detail()
         if not selected then return end
         local info=(selected.Egg and C.Eggs or C.PetTypes)[selected.Id]
-        title.Text=Headings.Item(selected.Id)
-        local unlocked=not selected.Egg or (state.Level or 0)&gt;=info.MinLevel
-        description.Text=not unlocked and "Недоступно: уровень "..number(info.MinLevel) or
-            (rarity(info,selected.Egg).."\n"..(selected.Egg and number(info.Cost).." монет" or ("Сила и монеты x%.2f"):format(1+info.Bonus)).."\n"..info.Description)
+        title.Text=selected.Odds and "Шансы выпадения" or Headings.Item(selected.Id)
+        local unlocked=not selected.Egg or ((state.Level or 0)&gt;=info.MinLevel and (state.Zone or 1)&gt;=(info.Zone or 1))
+        description.Text=not unlocked and "Недоступно: зона "..number(info.Zone or 1) or
+            (rarity(info,selected.Egg).."\n"..(selected.Egg and number(info.Cost).." монет" or ("Прыжок и монеты x%.2f"):format(1+info.Bonus)).."\n"..info.Description)
         description.TextColor3=rarityColor(info)
-        if selected.Egg then primary.Text="Открыть · "..number(info.Cost).." монет"; primary.Active=unlocked; combine.Visible=false
+        if selected.Egg then primary.Text="Открыть · "..number(info.Cost).." монет"; primary.Active=unlocked; combine.Visible=true; combine.Active=unlocked; combine.Text="Шансы выпадения"
         else
             local owned=(state.Pets or {})[selected.Id] or 0; local eq=(state.EquippedPets or {})[selected.Id] or 0
             primary.Text=eq&gt;0 and "Снять" or "Экипировать"; primary.Active=owned&gt;0
@@ -2802,8 +3012,28 @@ function Catalog.Build(parent)
         selected={Id=id,Egg=isEgg}; refs.CraftId=nil; selectedCopies={}
         local old=inspector:FindFirstChild("Picture") or detailBody:FindFirstChild("Picture"); if old then old:Destroy() end
         refs.DetailView=Catalog.View(inspector,id,isEgg,true)
-        detail(); layout(true)
+        detail(); layout(true); oddsMode()
     end
+    function refs.ShowOdds(id)
+        local egg=C.Eggs[id]
+        if not egg or (state.Zone or 1)&lt;egg.Zone or (state.Level or 0)&lt;egg.MinLevel then return false end
+        refs.Inspect(id,true); selected.Odds=true
+        for _,obj in oddsList:GetChildren() do if obj:IsA("Frame") then obj:Destroy() end end
+        local index=0; local total=0
+        for _,weight in egg.Weights do total+=weight end
+        for _,petId in C.PetOrder do
+            local weight=egg.Weights[petId] or 0
+            if weight&gt;0 then
+                index+=1
+                local row=Instance.new("Frame"); row.Name=petId; row.Size=UDim2.new(1,-6,0,90); row.LayoutOrder=index; row.Parent=oddsList; Glass.Style(row,rarityColor(C.PetTypes[petId]),10)
+                local view=Catalog.View(row,petId,false,false); view.Position=UDim2.fromOffset(0,4); view.Size=UDim2.new(.38,0,0,78)
+                local name=text(row,UDim2.new(.38,2,0,7),UDim2.new(.62,-8,0,42),Headings.Item(petId),12,rarityColor(C.PetTypes[petId]))
+                text(row,UDim2.new(.38,2,0,51),UDim2.new(.62,-8,0,28),string.format("%.2f%% · x%.2f",weight/total*100,1+C.PetTypes[petId].Bonus),13)
+            end
+        end
+        oddsList.CanvasPosition=Vector2.zero; title.Text="Шансы выпадения"; oddsMode(); return true
+    end
+    oddsReturn.Activated:Connect(function() if selected then refs.Inspect(selected.Id,true) end end)
     function refs.BeginCraft(id)
         local info=C.PetTypes[id]
         if not info or info.Upgraded or ((state.Pets or {})[id] or 0)&lt;3 then return false end
@@ -2823,7 +3053,8 @@ function Catalog.Build(parent)
         else emit(((state.EquippedPets or {})[selected.Id] or 0)&gt;0 and "PetUnequip" or "PetEquip",selected.Id) end
     end)
     combine.Activated:Connect(function()
-        if not selected or selected.Egg or not combine.Active then return end
+        if not selected or not combine.Active then return end
+        if selected.Egg then refs.ShowOdds(selected.Id); return end
         if refs.CraftId then craft()
         else refs.BeginCraft(selected.Id) end
     end)
@@ -2835,13 +3066,15 @@ function Catalog.Build(parent)
         local info=C.Eggs[id]; local f=card(refs.EggList,index)
         local view=Catalog.View(f,id,true); view.Position=UDim2.fromOffset(6,4); view.Size=UDim2.new(1,-12,0,52)
         text(f,UDim2.fromOffset(6,57),UDim2.new(1,-12,0,30),Headings.Item(id),13,Glass.Colors.Mint)
-        local rarity=text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,18),info.Rarity,11,rarityColor(info))
+        local rarity=text(f,UDim2.fromOffset(6,89),UDim2.new(1,-12,0,18),"Зона "..info.Zone.." · "..(info.Category==1 and "Обычное" or "Редкое"),11,rarityColor(info))
         local locked=text(f,UDim2.fromOffset(6,109),UDim2.new(1,-12,0,24),number(info.Cost).." монет",12)
-        local open=button(f,UDim2.new(.5,0,0,159),UDim2.new(1,-16,0,36),"Открыть")
+        local open=button(f,UDim2.new(.5,0,0,132),UDim2.new(1,-16,0,30),"Открыть")
+        local chance=button(f,UDim2.new(.5,0,0,166),UDim2.new(1,-16,0,30),"Шансы выпадения")
+        chance.Activated:Connect(function() if chance.Active then refs.ShowOdds(id) end end)
         local edit=button(f,UDim2.new(.5,0,0,198),UDim2.new(1,-16,0,32),"Редактировать")
         open.Activated:Connect(function() if open.Active then emit("Hatch",id) end end)
         edit.Activated:Connect(function() refs.Inspect(id,true) end)
-        refs.EggButtons[id]=open; refs.EggCards[id]={Button=open,Locked=locked,Rarity=rarity}; refs.EditButtons[id]=edit
+        refs.EggButtons[id]=open; refs.EggCards[id]={Button=open,Locked=locked,Rarity=rarity,Chance=chance}; refs.EditButtons[id]=edit
     end
     local signature
     refresh=function()
@@ -2850,9 +3083,9 @@ function Catalog.Build(parent)
         refs.PetSummary.Text=("Получено %s/%s · экипировано %s/3 · x%.2f"):format(number(total),number(C.MaxPets),number(totalEq),state.PetMultiplier or 1)
         refs.EquipBest.Text=refs.CraftId and ("Совместить · выбрано %d/3"):format(selectedCount()) or "Экипировать лучшее"
         for id,item in pairs(refs.EggCards) do
-            local unlocked=(state.Level or 0)&gt;=C.Eggs[id].MinLevel
-            item.Button.Active=unlocked; item.Button.Text=unlocked and "Открыть" or "Недоступно"
-            item.Locked.Text=unlocked and number(C.Eggs[id].Cost).." монет" or "Недоступно · уровень "..number(C.Eggs[id].MinLevel)
+            local unlocked=(state.Level or 0)&gt;=C.Eggs[id].MinLevel and (state.Zone or 1)&gt;=C.Eggs[id].Zone
+            item.Button.Active=unlocked; item.Chance.Active=unlocked; item.Button.Text=unlocked and "Открыть · "..number(C.Eggs[id].Cost).." монет" or "Недоступно"
+            item.Locked.Text=""
         end
         -- Rebuild only when counts/equipment/craft selections change; preserve scroll on state ticks.
         local parts={refs.CraftId or ""}
@@ -2897,7 +3130,7 @@ function Catalog.Build(parent)
                 end
             end
         end
-        detail()
+        detail(); oddsMode()
     end
     function refs.Update(snapshot)
         state=snapshot
@@ -2913,7 +3146,7 @@ return Catalog
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX02849bde90fe43bdb176d2b768e6212b">
+        <Item class="ModuleScript" referent="RBXa0a0e75a5aa84c89b795910c894f594b">
           <Properties>
             <string name="Name">Presentation</string>
             <ProtectedString name="Source">local Tween=game:GetService("TweenService")
@@ -3026,7 +3259,7 @@ return Presentation
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBX165f44902ea74a088e07160b0de3bf82">
+        <Item class="LocalScript" referent="RBX53330c6c98e4478ca377e4dd75bffb11">
           <Properties>
             <string name="Name">Controller</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -3048,7 +3281,7 @@ local stationFactor=1
 local function renderMultipliers()
     if not state then return end
     local power,coins=C.TrainingMultipliers(state,stationFactor)
-    refs.PowerMultiplier.Text=("Сила  x%.2f"):format(power)
+    refs.PowerMultiplier.Text=("Прыжок  x%.2f"):format(power)
     refs.CoinMultiplier.Text=("Монеты  x%.2f"):format(coins)
 end
 local noticeVersion=0
@@ -3072,27 +3305,31 @@ end
 local function render()
     if not state then return end
     renderMultipliers()
-    refs.Power.Text=number(state.Power)
+    refs.Power.Text=number(state.JumpHeight).." studs"
     refs.Coins.Text=number(state.Coins)
     refs.Catalog.Update(state)
-    refs.Level.Text="Уровень "..number(state.Level)
+    refs.Level.Text="Зона "..number(state.Zone).." · Опыт "..number(state.PracticeXP)
     refs.RebirthStats.Text=("%s • x%.2f"):format(number(state.Rebirths),state.Multiplier)
     refs.Bonus.Text=("Постоянный бонус: x%.2f  •  Рекорд: %s"):format(state.Multiplier,number(state.LifetimePower))
-    refs.Goal.Text=("До Rebirth: %s / %s силы\n%s / %s монет"):format(number(state.Power),number(state.RequiredPower),number(state.Coins),number(state.RequiredCoins))
-    refs.Progress(math.min(1,state.Power/state.RequiredPower,state.Coins/state.RequiredCoins))
+    local batch=refs.BatchAmount=="MAX" and math.max(1,state.MaxRebirths) or refs.BatchAmount
+    local needPower,needCoins,needXP=C.BatchRequirements(state.Rebirths,batch)
+    needPower,needCoins,needXP=needPower or math.huge,needCoins or math.huge,needXP or math.huge
+    refs.Prepare.Text="Переродиться · "..batch
+    refs.Goal.Text=("Запас прыжка: %s / %s\nМонеты: %s / %s\nОпыт: %s / %s"):format(number(state.Power),number(needPower),number(state.Coins),number(needCoins),number(state.AvailablePractice),number(needXP))
+    refs.Progress(math.min(1,state.Power/needPower,state.Coins/needCoins,state.AvailablePractice/needXP))
     refs.Upgrade.Text=state.UpgradeCost&gt;0 and ("Улучшение: "..number(state.UpgradeCost).." монет") or "Уровень тренировки: максимум"
     local now=os.time()+(serverOffset or 0)
     local rewardsReady=state.TotalTrainings&gt;=C.RewardMinTrainings
     local dailyReady=rewardsReady and (state.LastDaily==0 or now&gt;=state.LastDaily+C.DailySeconds)
     local weeklyReady=rewardsReady and (state.LastWeekly==0 or now&gt;=state.LastWeekly+C.WeeklySeconds)
-    local rebirthReady=state.Rebirths&lt;C.MaxRebirths and state.Power&gt;=state.RequiredPower and state.Coins&gt;=state.RequiredCoins
-    refs.Notifications((dailyReady and 1 or 0)+(weeklyReady and 1 or 0),rebirthReady and 1 or 0)
+    local rebirthReady=state.MaxRebirths&gt;0
+    refs.Notifications((dailyReady and 1 or 0)+(weeklyReady and 1 or 0),rebirthReady and state.MaxRebirths or 0)
     refs.Daily.Text=cooldownText(state.LastDaily,C.DailySeconds,"Ежедневная",now)
     refs.Weekly.Text=cooldownText(state.LastWeekly,C.WeeklySeconds,"Недельная",now)
     refs.Cosmetic.Text=state.NeonTrail and ("Неоновый след • "..(state.Equipped=="NeonTrail" and "выключить" or "включить"))
         or state.BronzeAura and ("Бронзовая аура • "..(state.Equipped=="BronzeAura" and "выключить" or "включить"))
         or "Косметика: аура за 1, след за 10 Rebirth"
-    if state.TotalTrainings==0 then refs.Hint.Text=game:GetService("UserInputService").TouchEnabled and "Подойди к зелёной платформе и нажми «Тренироваться»." or "Подойди к зелёной платформе и нажми E."
+    if state.TotalTrainings==0 then refs.Hint.Text=game:GetService("UserInputService").TouchEnabled and "Подойди к площадке прыжков и нажми «Тренироваться»." or "Прыгай или тренируйся у площадки по E."
     elseif state.Level==0 then refs.Hint.Text="Открой магазин: первое улучшение стоит 25 монет."
     else refs.Hint.Text="" end
     refs.Hint.Visible=refs.Hint.Text~="" and not refs.Animation.Busy and refs.ShouldShow("Hint")
@@ -3128,7 +3365,12 @@ refs.Upgrade.Activated:Connect(function() request("Upgrade") end)
 refs.Catalog.SetCallbacks({Action=function(name,id,copies)
     if copies then request(name,id,copies) elseif id then request(name,id) else request(name) end
 end})
-refs.Prepare.Activated:Connect(function() request("PrepareRebirth") end)
+for amount,b in refs.BatchButtons do
+    b.Activated:Connect(function() refs.BatchAmount=amount; render() end)
+end
+refs.Prepare.Activated:Connect(function()
+    if state then request("PrepareRebirth",refs.BatchAmount=="MAX" and math.max(1,state.MaxRebirths) or refs.BatchAmount) end
+end)
 refs.Daily.Activated:Connect(function() request("Daily") end)
 refs.Weekly.Activated:Connect(function() request("Weekly") end)
 refs.Cosmetic.Activated:Connect(function()
@@ -3178,10 +3420,34 @@ task.spawn(function()
     while not state do action:FireServer("Sync"); task.wait(2) end
     while refs.Gui.Parent do task.wait(1); render() end
 end)
+
+local function jumping(character)
+    local human=character:WaitForChild("Humanoid")
+    human.Jumping:Connect(function(active)
+        if active then task.defer(function()
+            if character==player.Character then request("Jump") end
+        end) end
+    end)
+end
+player.CharacterAdded:Connect(jumping)
+if player.Character then task.spawn(jumping,player.Character) end
+
+-- Explicit state transition also supports very short starter jumps and mobile JumpRequest.
+local function startJump()
+    local human=player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+    if human and human.Health&gt;0 and human.FloorMaterial~=Enum.Material.Air and human:GetState()~=Enum.HumanoidStateType.Jumping then
+        human:ChangeState(Enum.HumanoidStateType.Jumping)
+    end
+end
+local jumpInput=game:GetService("UserInputService")
+jumpInput.JumpRequest:Connect(startJump)
+jumpInput.InputBegan:Connect(function(input,processed)
+    if not processed and input.KeyCode==Enum.KeyCode.Space then startJump() end
+end)
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBXc0aeb135360a48819213bff10f60ec2c">
+        <Item class="LocalScript" referent="RBXf0d61de4fade40528b46f3cedd9b41fb">
           <Properties>
             <string name="Name">WorldSigns</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -3258,7 +3524,7 @@ end
       </Item>
     </Item>
   </Item>
-  <Item class="StarterGui" referent="RBX2bfef0aa566e4bca8e91a34f89d07c38">
+  <Item class="StarterGui" referent="RBX2f0863ab21cc484ea026996ddea22c3a">
     <Properties>
       <string name="Name">StarterGui</string>
     </Properties>

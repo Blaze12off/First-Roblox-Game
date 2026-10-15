@@ -14,6 +14,7 @@ local Telemetry=require(script.Parent.Telemetry)
 local Pets=require(script.Parent.Pets)
 local PetVisuals=require(script.Parent.PetVisuals)
 local Runtime={sessions={},started=false}
+local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local dataService,remotes,map,mode
 local function loadCharacterAtSpawn(player)
     local ok=pcall(function() player:LoadCharacterAsync() end)
@@ -23,16 +24,17 @@ local function loadCharacterAtSpawn(player)
     if not root then return false end
     -- LoadCharacterAsync finalizes the engine spawn transform; move only after it returns.
     root.AssemblyLinearVelocity=Vector3.zero; root.AssemblyAngularVelocity=Vector3.zero
-    character:PivotTo(CFrame.new(C.SpawnPosition))
+    local saved=dataService and dataService:Get(player.UserId)
+    character:PivotTo(CFrame.new(saved and C.Zones[saved.Zone].Position or C.SpawnPosition))
     return true
 end
 local function stats(player,data)
     local folder=player:FindFirstChild("leaderstats")
     if not folder then
         folder=Instance.new("Folder"); folder.Name="leaderstats"; folder.Parent=player
-        for _, name in {"Rebirths","LifetimePower"} do local n=Instance.new("NumberValue"); n.Name=name; n.Parent=folder end
+        for _, name in {"Rebirths","JumpRecord"} do local n=Instance.new("NumberValue"); n.Name=name; n.Parent=folder end
     end
-    folder.Rebirths.Value=data.Rebirths; folder.LifetimePower.Value=data.LifetimePower
+    folder.Rebirths.Value=data.Rebirths; folder.JumpRecord.Value=data.LifetimePower
 end
 local function publish(player)
     local data=dataService:Get(player.UserId)
@@ -50,11 +52,11 @@ function Runtime.Dispatch(player,action,...)
     local session=Runtime.sessions[player.UserId]
     if not session then return false,"loading" end
     local now=os.clock()
-    local limiter=action=="Train" and session.trainLimiter or session.limiter
+    local limiter=(action=="Train" or action=="Jump") and session.trainLimiter or session.limiter
     if not Security.Allow(limiter,"Request",now,0) then return false,"rate" end
     local args=table.pack(...)
     if not Security.Valid(action,args) then return false,"arguments" end
-    local cooldown=action=="Train" and C.TrainCooldown or action=="Hatch" and C.HatchCooldown or action=="PetCraft" and C.CraftCooldown or action=="Rebirth" and 2 or action=="Sync" and 1 or C.ActionCooldown
+    local cooldown=action=="Jump" and .35 or action=="Train" and C.TrainCooldown or action=="Hatch" and C.HatchCooldown or action=="PetCraft" and C.CraftCooldown or action=="Rebirth" and 2 or action=="Sync" and 1 or C.ActionCooldown
     local last=session.actionTimes[action]
     if last and now-last<cooldown then return false,"cooldown" end
     session.actionTimes[action]=now
@@ -74,23 +76,48 @@ function Runtime.Dispatch(player,action,...)
         notice(player,"Яйца открываются за игровые монеты.",{OpenPets=true,EggId=selected}); return true
     end
     if action=="PrepareRebirth" then
-        local power,coins=C.Requirements(data.Rebirths)
-        if data.Power<power or data.Coins<coins or data.Rebirths>=C.MaxRebirths then
-            notice(player,"Пока не хватает силы или монет для перерождения."); return false,"conditions"
+        local amount=args[1] or 1
+        local power,coins,xp=C.BatchRequirements(data.Rebirths,amount)
+        if not power or data.Power<power or data.Coins<coins or C.AvailablePractice(data)<xp then
+            notice(player,"Пока не хватает прыжка, монет или опыта для этой суммы."); return false,"conditions"
         end
-        session.confirm={token=HttpService:GenerateGUID(false),expires=now+20,rebirths=data.Rebirths}
-        notice(player,"Перерождение сбросит силу, монеты и уровень. Косметика и рекорд сохранятся.",
-            {RebirthToken=session.confirm.token,NextMultiplier=C.Multiplier({Rebirths=data.Rebirths+1})})
+        session.confirm={token=HttpService:GenerateGUID(false),expires=now+20,rebirths=data.Rebirths,amount=amount}
+        notice(player,("Перерождений: %d. Требуется %s прыжка, списание %s монет и %s опыта. Прыжок и улучшения сбросятся; зоны и питомцы сохранятся."):format(amount,number(power),number(coins),number(xp)),
+            {RebirthToken=session.confirm.token,NextMultiplier=C.Multiplier({Rebirths=data.Rebirths+amount})})
         return true
     end
     local previousMultiplier=C.Multiplier(data)
     local ok,message,resultId
-    if action=="Train" then
+    if action=="Zone" then
+        local target
+        for _,gate in map:GetChildren() do if gate:GetAttribute("TargetZone")==args[1] and Security.Near(player,gate,8) then target=gate; break end end
+        if not target then return false,"distance" end
+        if args[1]<=data.Zone then ok,message=true,"Переход в зону."
+        else ok,message=Progression.UnlockZone(data,args[1]) end
+        if ok then player.Character:PivotTo(CFrame.new(C.Zones[args[1]].Position)) end
+    elseif action=="Jump" then
+        local char=player.Character; local human=char and char:FindFirstChildOfClass("Humanoid")
+        local root=char and char:FindFirstChild("HumanoidRootPart")
+        if not human or human.Health<=0 or not root then return false,"not_jumping" end
+        -- Input can reach the server before the network-owned character's physics update.
+        -- Wait briefly for actual upward motion; a remote alone never grants a reward.
+        local params=RaycastParams.new(); params.FilterType=Enum.RaycastFilterType.Exclude; params.FilterDescendantsInstances={char}
+        local groundRay=Vector3.new(0,-(human.HipHeight+root.Size.Y/2+3),0)
+        local groundAtRequest=workspace:Raycast(root.Position,groundRay,params)
+        local initialY=root.Position.Y; local launched=false
+        for _=1,6 do
+            if root.AssemblyLinearVelocity.Y>1 or root.Position.Y>initialY+.03 then launched=true; break end
+            task.wait(.025)
+        end
+        if not launched or player.Character~=char or human.Health<=0 or dataService:Get(player.UserId)~=data then return false,"not_jumping" end
+        if not groundAtRequest and not workspace:Raycast(root.Position,groundRay,params) then return false,"not_ground_launch" end
+        ok,message=Progression.Train(data,"Basic"); session.lastPractice=now
+    elseif action=="Train" then
         local station=C.Stations[args[1]]
         local pad=map:FindFirstChild(args[1])
         if not pad or not Security.Near(player,pad,C.TrainDistance) then return false,"distance" end
         if data.Level<station.MinLevel then notice(player,"Продвинутая станция: нужен уровень 3."); return false,"level" end
-        ok,message=Progression.Train(data,args[1])
+        ok,message=Progression.Train(data,args[1]); if ok then session.lastPractice=now end
     elseif action=="Hatch" then
         local stand=map:FindFirstChild("Egg"..args[1])
         if not stand or not Security.Near(player,stand,C.EggDistance) then
@@ -107,7 +134,7 @@ function Runtime.Dispatch(player,action,...)
         session.confirm=nil -- Single use, expires, bound to this player's current cycle.
         if not confirmation or confirmation.token~=args[1] or confirmation.expires<now
             or confirmation.rebirths~=data.Rebirths then return false,"confirmation" end
-        ok,message=Rebirth.Apply(data)
+        ok,message=Rebirth.Apply(data,confirmation.amount)
     elseif action=="Daily" or action=="Weekly" then ok,message=Rewards.Claim(data,action,os.time())
     elseif action=="Equip" then ok,message=Rewards.Equip(data,args[1]) end
     if not ok then notice(player,message or "Действие недоступно."); return false,"conditions" end
@@ -115,6 +142,7 @@ function Runtime.Dispatch(player,action,...)
     dataService:Changed(player.UserId)
     if action=="Equip" or action=="Rebirth" then Rewards.ApplyCharacter(player,data) end
     if action=="PetEquip" or action=="PetUnequip" or action=="PetEquipBest" or action=="Hatch" or action=="PetCraft" then PetVisuals.Apply(player,data) end
+    Progression.ApplyJump(player,data)
     publish(player)
     local extra
     if action=="Hatch" or action=="PetCraft" or action=="Rebirth" then
@@ -152,7 +180,7 @@ local function joined(player)
     player.CharacterAdded:Connect(function(char)
         local root=char:WaitForChild("HumanoidRootPart",10)
         local current=dataService:Get(player.UserId)
-        if root and current then Rewards.ApplyCharacter(player,current); PetVisuals.Apply(player,current) end
+        if root and current then Rewards.ApplyCharacter(player,current); PetVisuals.Apply(player,current); Progression.ApplyJump(player,current) end
         local humanoid=char:WaitForChild("Humanoid",10)
         if humanoid then
             humanoid.Died:Connect(function()
@@ -167,7 +195,14 @@ local function joined(player)
     end)
     local loaded=loadCharacterAtSpawn(player)
     if not loaded then player:Kick("Не удалось загрузить персонажа. Войди снова."); return end
+    Progression.ApplyJump(player,data)
+    if data.Zone>1 then player.Character:PivotTo(CFrame.new(C.Zones[data.Zone].Position)) end
     publish(player); Telemetry.Step(player,1,"Joined")
+end
+-- Test access is server-only and fails closed outside an offline Studio sandbox.
+function Runtime.StudioProfile(player)
+    assert(RunService:IsStudio() and mode=="sandbox","Studio sandbox only")
+    return dataService:Get(player.UserId)
 end
 function Runtime.Start()
     assert(not Runtime.started,"Runtime already started"); Runtime.started=true
@@ -185,6 +220,10 @@ function Runtime.Start()
     end
     for id in pairs(C.Eggs) do
         map["Egg"..id].EggPrompt.Triggered:Connect(function(player) Runtime.Dispatch(player,"PetMenu") end)
+    end
+    for _,gate in map:GetChildren() do
+        local target=gate:GetAttribute("TargetZone")
+        if target then gate.ZonePrompt.Triggered:Connect(function(player) Runtime.Dispatch(player,"Zone",target) end) end
     end
     Players.PlayerAdded:Connect(joined)
     Players.PlayerRemoving:Connect(function(player)
@@ -204,6 +243,19 @@ function Runtime.Start()
             for _,player in Players:GetPlayers() do
                 if Runtime.sessions[player.UserId] and not dataService:Get(player.UserId) then
                     player:Kick("Защита данных: сохранение недоступно или сессия истекла. Войди снова позже.")
+                end
+            end
+        end
+    end)
+    task.spawn(function()
+        while not dataService.closing do
+            task.wait(1)
+            for _,player in Players:GetPlayers() do
+                local session=Runtime.sessions[player.UserId]; local data=dataService:Get(player.UserId)
+                local human=player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+                -- At most one XP per elapsed second; no AFK/offline/click-rate or pet multiplier.
+                if data and session and human and human.Health>0 and session.lastPractice and os.clock()-session.lastPractice<=1.5 then
+                    Progression.Practice(data,1); dataService:Changed(player.UserId); publish(player)
                 end
             end
         end
