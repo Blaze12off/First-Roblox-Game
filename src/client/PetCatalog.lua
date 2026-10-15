@@ -57,6 +57,7 @@ function Catalog.Build(parent)
     local panes,tabs,grids={},{},{}
     local state,width,selected={},parent.Size.X.Offset,nil
     local responsiveScale,transition=1,0
+    local phoneLayout=false
     local slideTweens={}
     local centre=UDim2.fromScale(.5,.5)
     local selectedCopies={}; local callbacks={}
@@ -83,7 +84,17 @@ function Catalog.Build(parent)
     local primary=button(inspector,UDim2.new(.5,0,1,-80),UDim2.new(1,-28,0,42),"Экипировать")
     local combine=button(inspector,UDim2.new(.5,0,1,-30),UDim2.new(1,-28,0,42),"Совместить")
     refs.DetailPrimary=primary; refs.DetailCombine=combine; refs.DetailDescription=description
+    local detailBody=Instance.new("ScrollingFrame"); detailBody.Name="PhoneBody"
+    detailBody.Position=UDim2.fromOffset(0,56); detailBody.Size=UDim2.new(1,0,1,-62)
+    detailBody.CanvasSize=UDim2.fromOffset(0,390); detailBody.ScrollingDirection=Enum.ScrollingDirection.Y
+    detailBody.ScrollBarThickness=4; detailBody.BackgroundTransparency=1; detailBody.BorderSizePixel=0
+    detailBody.Visible=false; detailBody.Parent=inspector
     refs.PetSummary=text(parent,UDim2.fromOffset(20,58),UDim2.new(1,-40,0,28),"Загрузка…",12)
+    local phoneBody=Instance.new("ScrollingFrame"); phoneBody.Name="PhoneCatalogBody"
+    phoneBody.Position=UDim2.fromOffset(0,56); phoneBody.Size=UDim2.new(1,0,1,-62)
+    phoneBody.BackgroundTransparency=1; phoneBody.BorderSizePixel=0; phoneBody.ScrollBarThickness=4
+    phoneBody.ScrollingDirection=Enum.ScrollingDirection.Y; phoneBody.AutomaticCanvasSize=Enum.AutomaticSize.Y
+    phoneBody.CanvasSize=UDim2.new(); phoneBody.Visible=false; phoneBody.Parent=parent
     for i,info in {{"Eggs","Выбор яйца"},{"Inventory","Питомцы"},{"Paid","Донатные предметы"}} do
         local name=info[1]; tabs[name]=button(parent,UDim2.fromOffset(70+(i-1)*105,109),UDim2.fromOffset(100,38),Headings.Text(name))
         local pane=Instance.new("Frame"); pane.Name=name; pane.BackgroundTransparency=1
@@ -104,6 +115,19 @@ function Catalog.Build(parent)
     refs.PetList.Position=UDim2.fromOffset(0,48); refs.PetList.Size=UDim2.new(1,0,1,-48)
     text(panes.Paid,UDim2.fromOffset(4,0),UDim2.new(1,-8,0,44),"Донатные предметы — скоро",13,Glass.Colors.Muted)
     refs.PaidList.Position=UDim2.fromOffset(0,48); refs.PaidList.Size=UDim2.new(1,0,1,-48)
+    local function phoneLists()
+        for _,scroll in {refs.EggList,refs.PetList,refs.PaidList} do
+            scroll.ScrollingEnabled=not phoneLayout
+            if phoneLayout then
+                local content=scroll:FindFirstChildOfClass("UIGridLayout").AbsoluteContentSize.Y+12
+                scroll.Size=UDim2.new(1,0,0,content)
+                scroll.Parent.Size=UDim2.new(1,-40,0,content+scroll.Position.Y.Offset)
+            else
+                scroll.Size=UDim2.new(1,0,1,-scroll.Position.Y.Offset)
+            end
+        end
+    end
+    for _,grid in grids do grid:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(phoneLists) end
     local function card(scroll,index,placeholder)
         local f=Instance.new("Frame"); f.Name=placeholder and "Placeholder"..index or "Card"..index
         f.LayoutOrder=index; f.Parent=scroll; Glass.Style(f,Glass.Colors.Mint,12)
@@ -145,18 +169,50 @@ function Catalog.Build(parent)
         if split and mobile and refs.CraftId==nil then
             refs.HiddenByInspector=true; parent.Visible=false
         elseif refs.HiddenByInspector then refs.HiddenByInspector=nil; parent.Visible=true end
-        local columns=math.min(split and 3 or 5,math.max(1,math.floor((mainWidth-42)/85)))
+        local columns=phoneLayout and math.min(2,math.max(1,math.floor((mainWidth-42)/156)))
+            or math.min(split and 3 or 5,math.max(1,math.floor((mainWidth-42)/85)))
         local cell=math.floor((mainWidth-54-(columns-1)*8)/columns)
         for _,grid in grids do grid.FillDirectionMaxCells=columns; grid.CellSize=UDim2.fromOffset(cell,216) end
         local tabWidth=(mainWidth-56)/3
-        for i,name in {"Eggs","Inventory","Paid"} do tabs[name].Position=UDim2.fromOffset(20+tabWidth/2+(i-1)*(tabWidth+8),109); tabs[name].Size=UDim2.fromOffset(tabWidth,38) end
-        local picture=inspector:FindFirstChild("Picture")
+        phoneBody.Visible=phoneLayout
+        for i,name in {"Eggs","Inventory","Paid"} do
+            tabs[name].Parent=phoneLayout and phoneBody or parent
+            tabs[name].Position=UDim2.fromOffset(20+tabWidth/2+(i-1)*(tabWidth+8),phoneLayout and 56 or 109)
+            tabs[name].Size=UDim2.fromOffset(tabWidth,38)
+            tabs[name].Text=phoneLayout and name=="Paid" and "Донат" or Headings.Text(name)
+            tabs[name].TextSize=phoneLayout and 14 or 12
+        end
+        for _,pane in panes do
+            pane.Parent=phoneLayout and phoneBody or parent
+            pane.Position=UDim2.fromOffset(20,phoneLayout and 82 or 138); pane.Size=UDim2.new(1,-40,1,-152)
+        end
+        refs.PetSummary.Parent=phoneLayout and phoneBody or parent
+        refs.PetSummary.Position=UDim2.fromOffset(20,phoneLayout and 0 or 58)
+        refs.PetSummary.Size=UDim2.new(1,-40,0,phoneLayout and 34 or 28)
+        phoneLists()
+        local picture=inspector:FindFirstChild("Picture") or detailBody:FindFirstChild("Picture")
         local viewHeight=math.max(65,math.min(190,h*.34))
         if picture then picture.Position=UDim2.fromOffset(12,60); picture.Size=UDim2.new(1,-24,0,viewHeight) end
         description.Position=UDim2.fromOffset(14,64+viewHeight); description.Size=UDim2.new(1,-28,0,math.max(30,h-viewHeight-182))
+        detailBody.Visible=phoneLayout
+        for _,obj in {description,primary,combine} do obj.Parent=phoneLayout and detailBody or inspector end
+        if phoneLayout then
+            if picture then picture.Parent=detailBody; picture.Position=UDim2.fromOffset(12,0); picture.Size=UDim2.new(1,-24,0,110) end
+            description.Position=UDim2.fromOffset(14,116); description.Size=UDim2.new(1,-28,0,148)
+            primary.Position=UDim2.new(.5,0,0,292); primary.Size=UDim2.new(1,-28,0,44)
+            combine.Position=UDim2.new(.5,0,0,348); combine.Size=UDim2.new(1,-28,0,44)
+            back.Size=UDim2.fromOffset(44,44)
+        else
+            if picture then picture.Parent=inspector end
+            primary.Position=UDim2.new(.5,0,1,-80); combine.Position=UDim2.new(.5,0,1,-30)
+            back.Size=UDim2.fromOffset(36,36)
+        end
     end
     local refresh
-    function refs.Resize(newWidth,scale,newCentre) width=newWidth; responsiveScale=scale or 1; centre=newCentre or centre; inspectorScale.Scale=responsiveScale; layout(false) end
+    function refs.Resize(newWidth,scale,newCentre,isPhone)
+        width=newWidth; responsiveScale=scale or 1; centre=newCentre or centre; phoneLayout=isPhone==true
+        inspectorScale.Scale=responsiveScale; layout(false)
+    end
     function refs.Reset()
         transition+=1
         selected=nil; refs.CraftId=nil; selectedCopies={}; inspector.Visible=false
@@ -170,6 +226,7 @@ function Catalog.Build(parent)
         if refresh then refresh() end
     end
     function refs.Select(name)
+        phoneBody.CanvasPosition=Vector2.zero
         if selected then refs.Return() else refs.Reset() end
         for key,pane in pairs(panes) do pane.Visible=key==name; tabs[key].GlassEdge.Transparency=key==name and .1 or .65 end
         refs.Selected=name
@@ -194,7 +251,7 @@ function Catalog.Build(parent)
     function refs.Inspect(id,isEgg)
         transition+=1
         selected={Id=id,Egg=isEgg}; refs.CraftId=nil; selectedCopies={}
-        local old=inspector:FindFirstChild("Picture"); if old then old:Destroy() end
+        local old=inspector:FindFirstChild("Picture") or detailBody:FindFirstChild("Picture"); if old then old:Destroy() end
         refs.DetailView=Catalog.View(inspector,id,isEgg,true)
         detail(); layout(true)
     end

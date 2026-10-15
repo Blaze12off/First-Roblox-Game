@@ -165,8 +165,9 @@ function UI.Build(player)
         refs.ActiveMenu=name; focusMenus(true)
         local m=menus[name]
         if name~="Pets" then
-            m.Position=UDim2.new(.5,0,.5,12)
-            TweenService:Create(m,TweenInfo.new(.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=UDim2.fromScale(.5,.5)}):Play()
+            local target=refs.MenuCentre or UDim2.fromScale(.5,.5)
+            m.Position=target+UDim2.fromOffset(0,12)
+            TweenService:Create(m,TweenInfo.new(.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=target}):Play()
         end
     end
     local shop=menu("Shop","МАГАЗИН",272)
@@ -212,12 +213,41 @@ function UI.Build(player)
     refs.Confirm=button(confirmation,UDim2.fromOffset(20,226),UDim2.fromOffset(310,48),"Подтвердить",Color3.fromRGB(131,82,189))
     refs.Cancel=button(confirmation,UDim2.fromOffset(20,288),UDim2.fromOffset(310,42),"Отмена",Color3.fromRGB(68,81,105))
     refs.Settings=Settings.Build(refs,menu("Settings","НАСТРОЙКИ",460))
+    -- Fixed-height desktop bodies become scrollable when a phone has less vertical room.
+    for _,entry in menuScales do
+        if entry.frame.Name~="Pets" and entry.frame.Name~="Settings" then
+            local body=Instance.new("ScrollingFrame"); body.Name="Body"; body.BackgroundTransparency=1
+            body.BorderSizePixel=0; body.Position=UDim2.fromOffset(0,56); body.Size=UDim2.new(1,0,1,-62)
+            body.CanvasSize=UDim2.fromOffset(0,entry.height-62); body.ScrollBarThickness=4
+            body.ScrollingDirection=Enum.ScrollingDirection.Y
+            for _,child in entry.frame:GetChildren() do
+                if child:IsA("GuiObject") and child.Name~="Title" and child.Name~="Close" then
+                    child.Position-=UDim2.fromOffset(0,56)
+                    child.Size=UDim2.new(1,-40,child.Size.Y.Scale,child.Size.Y.Offset)
+                    if child:IsA("TextButton") then child.Position=UDim2.new(.5,0,child.Position.Y.Scale,child.Position.Y.Offset) end
+                    child.Parent=body
+                end
+            end
+            body.Parent=entry.frame
+        end
+    end
+    local originalFonts=setmetatable({},{__mode="k"})
+    local function phoneText(obj)
+        if obj:IsA("TextLabel") or obj:IsA("TextButton") then
+            originalFonts[obj]=originalFonts[obj] or obj.TextSize
+            obj.TextSize=refs.PhoneLayout and math.max(16,originalFonts[obj]) or originalFonts[obj]
+        end
+    end
+    refs.Gui.DescendantAdded:Connect(phoneText)
     local cameraConnection
     local function resize()
         local camera=workspace.CurrentCamera; if not camera then return end
         local v=refs.Layout.AbsoluteSize; if v.X<1 then v=camera.ViewportSize end
+        local phone=(game:GetService("UserInputService").TouchEnabled and math.min(v.X,v.Y)<=600)
+            or refs.Layout:GetAttribute("PhonePreview")==true
+        refs.PhoneLayout=phone
         -- 980x620 reference canvas reproduces the proportions approved in the screenshot.
-        local scale=math.min(v.X/980,v.Y/620)
+        local scale=phone and math.min(.8,v.X/390) or math.min(v.X/980,v.Y/620)
         local logical=Vector2.new(v.X/scale,v.Y/scale)
         hudScale.Scale=scale; hud.Size=UDim2.fromOffset(logical.X,logical.Y)
         refs.ResponsiveScale=scale
@@ -230,14 +260,80 @@ function UI.Build(player)
         refs.Rebirth.Position=UDim2.new(1,-12,0,math.max(logical.Y*.5,top+74+76+12+44)); refs.Rebirth.AnchorPoint=Vector2.new(1,.5)
         refs.Train.Position=UDim2.new(.5,0,1,-49)
         refs.Notice.Position=UDim2.new(.5,-190*scale,1,-166*scale); noticeScale.Scale=scale
+        -- Restore the base geometry before applying either orientation (rotation is live).
+        refs.Rebirth.Size=UDim2.fromOffset(164,88)
+        refs.RebirthStats.Position=UDim2.fromOffset(12,48); refs.RebirthStats.Size=UDim2.new(1,-24,0,27)
+        left.Size=UDim2.fromOffset(152,186)
+        for i,b in {refs.Shop,refs.Gifts,refs.Pets} do
+            b.Position=UDim2.fromOffset(76,27+(i-1)*66); b.Size=UDim2.fromOffset(152,54)
+            local icon=b:FindFirstChild("Icon"); if icon then icon.Visible=true end
+            b.Caption.Position=UDim2.fromOffset(50,0); b.Caption.Size=UDim2.new(1,-58,0,54)
+        end
+        local portrait=phone and v.Y>v.X
+        local menuScale,menuTop,menuBottom,menuWidth=scale,0,v.Y,350
+        refs.MenuCentre=nil
+        -- Keep phone text near its intended size instead of shrinking a 980px canvas.
+        if phone then
+            local edge=math.max(12,inset.X)
+            top=math.max(62,inset.Y+8)/scale
+            power.Position=UDim2.fromOffset(edge/scale,top)
+            coins.Position=UDim2.new(1,-edge/scale,0,top); coins.Size=UDim2.fromOffset(164,88)
+            if portrait then
+                multipliers.Position=UDim2.new(1,-edge/scale,0,top+98)
+                refs.Rebirth.Position=UDim2.new(0,edge/scale,0,top+98)
+                refs.Rebirth.AnchorPoint=Vector2.zero
+                refs.Rebirth.Size=UDim2.fromOffset(180,64)
+                refs.RebirthStats.Position=UDim2.fromOffset(12,34); refs.RebirthStats.Size=UDim2.new(1,-24,0,26)
+                left.AnchorPoint=Vector2.new(.5,1); left.Position=UDim2.new(.5,0,1,-18)
+                local bw=(logical.X-32)/3
+                left.Size=UDim2.fromOffset(logical.X-24,54)
+                for i,b in {refs.Shop,refs.Gifts,refs.Pets} do
+                    b.Position=UDim2.fromOffset((i-.5)*bw,27); b.Size=UDim2.fromOffset(bw-6,54)
+                    local icon=b:FindFirstChild("Icon"); if icon then icon.Visible=false end
+                    b.Caption.Position=UDim2.fromOffset(4,0); b.Caption.Size=UDim2.new(1,-8,1,0)
+                end
+                refs.Train.Position=UDim2.new(.5,0,1,-114)
+                refs.Hint.Position=UDim2.new(.5,-logical.X/2+12,1,-183); refs.Hint.Size=UDim2.fromOffset(logical.X-24,40)
+                menuTop=(top+174)*scale; menuBottom=v.Y-190*scale
+                menuWidth=math.min(350,(v.X-2*edge)/.9)
+            else
+                refs.Rebirth.Position=UDim2.new(1,-edge/scale,1,-12); refs.Rebirth.AnchorPoint=Vector2.new(1,1)
+                multipliers.Position=UDim2.new(1,-edge/scale,0,top+98)
+                left.Position=UDim2.new(0,edge/scale,1,-12); left.AnchorPoint=Vector2.new(0,1)
+                menuTop=math.max(54,inset.Y+4); menuBottom=v.Y-104*scale
+                menuWidth=math.min(600,(v.X-360*scale-32)/.9)
+                refs.Hint.Size=UDim2.fromOffset(math.min(420,logical.X-360),34)
+                refs.Hint.Position=UDim2.new(.5,-refs.Hint.Size.X.Offset/2,1,-100)
+                refs.Train.Position=UDim2.new(.5,0,1,-38)
+            end
+            menuScale=math.min(.95,(v.X-2*edge)/350)
+            if not portrait then menuWidth=math.min(600,(v.X-2*(180*scale+edge+8))/menuScale) end
+            refs.MenuCentre=UDim2.fromOffset(v.X/2,(menuTop+menuBottom)/2)
+            refs.Notice.Position=UDim2.new(.5,-190*scale,0,menuTop); noticeScale.Scale=scale
+        else
+            coins.Size=UDim2.fromOffset(164,76)
+            refs.Hint.Size=UDim2.fromOffset(420,34); refs.Hint.Position=UDim2.new(.5,-210,1,-120)
+        end
+        for _,obj in refs.Gui:GetDescendants() do phoneText(obj) end
+        multiplierTitle.TextSize=phone and 13 or 12
         for _,entry in menuScales do
-            entry.scale.Scale=scale
+            entry.scale.Scale=phone and menuScale or scale
+            local close=entry.frame:FindFirstChild("Close")
+            if close then close.Size=UDim2.fromOffset(phone and 44 or 36,phone and 44 or 36) end
+            if phone then
+                entry.frame.Size=UDim2.fromOffset(math.min(350,menuWidth),math.min(entry.height,(menuBottom-menuTop)/menuScale))
+                entry.frame.Position=refs.MenuCentre
+            else
+                entry.frame.Size=UDim2.fromOffset(entry.frame.Name=="Pets" and 920 or 350,entry.height)
+                entry.frame.Position=UDim2.fromScale(.5,.5)
+            end
+            if entry.frame.Name=="Settings" then refs.Settings.Resize(entry.frame.Size.X.Offset) end
             if entry.frame.Name=="Pets" then
                 -- Reserve the HUD columns and the lower hint/interaction strip.
-                local width=math.min(920,logical.X-394)
+                local width=phone and menuWidth or math.min(920,logical.X-394)
                 local safeTop=math.max(24,inset.Y/scale+12)
-                entry.frame.Size=UDim2.fromOffset(width,math.min(580,logical.Y-156-safeTop))
-                refs.Catalog.Resize(width,scale,UDim2.new(.5,9*scale,.5,(safeTop-156)*scale/2))
+                entry.frame.Size=UDim2.fromOffset(width,phone and (menuBottom-menuTop)/menuScale or math.min(580,logical.Y-156-safeTop))
+                refs.Catalog.Resize(width,phone and menuScale or scale,refs.MenuCentre or UDim2.new(.5,9*scale,.5,(safeTop-156)*scale/2),phone)
             end
         end
     end
@@ -248,6 +344,7 @@ function UI.Build(player)
     end
     workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(bindCamera); bindCamera()
     refs.Layout:GetPropertyChangedSignal("AbsoluteSize"):Connect(resize)
+    refs.Layout:GetAttributeChangedSignal("PhonePreview"):Connect(resize)
     refs.Shop.Activated:Connect(function() refs.Open("Shop") end)
     refs.Gifts.Activated:Connect(function() refs.Open("Gifts") end)
     refs.Rebirth.Activated:Connect(function() refs.Open("Rebirth") end)

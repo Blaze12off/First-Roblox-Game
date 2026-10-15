@@ -1,18 +1,18 @@
 <roblox version="4">
-  <Item class="Workspace" referent="RBX408771f177c44a03a35d287dafaf98fa">
+  <Item class="Workspace" referent="RBX2f9afec740594a7ba5c2e1b445a3bd9e">
     <Properties>
       <string name="Name">Workspace</string>
     </Properties>
-    <Item class="Terrain" referent="RBXbd4a2f3aa530423c994a038b5306cb1c">
+    <Item class="Terrain" referent="RBXd73943ac005a48c0a4c654878ac3a01d">
       <Properties>
         <string name="Name">Terrain</string>
       </Properties>
     </Item>
-    <Item class="Folder" referent="RBX47e02ab22e23447f8dbdc4a192c12c48">
+    <Item class="Folder" referent="RBXee7b211cf22541a99e5ed61cf54db855">
       <Properties>
         <string name="Name">SimulatorWorld</string>
       </Properties>
-      <Item class="Part" referent="RBXcb4108eaa950410ab0a6bcf4913fb9d6">
+      <Item class="Part" referent="RBX897c2fe0b1e44e80814b85c155d17588">
         <Properties>
           <string name="Name">Ground</string>
           <bool name="Anchored">true</bool>
@@ -41,7 +41,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXff5cddd66926475baa3fef3ede5ce572">
+      <Item class="Part" referent="RBXd0afddda3fae4f199c5d658246ad4bda">
         <Properties>
           <string name="Name">StartingPlaza</string>
           <bool name="Anchored">true</bool>
@@ -70,7 +70,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXcf41b4134b894d9cafb3c9ccb525fca5">
+      <Item class="Part" referent="RBX632c0472b33d47f28119d58c0def4c0b">
         <Properties>
           <string name="Name">AdvancedPlaza</string>
           <bool name="Anchored">true</bool>
@@ -99,7 +99,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX2621b115027048f69ea2ed98986b6e29">
+      <Item class="Part" referent="RBXde3ecc1356c44bc58ed6ba1fdaabe9be">
         <Properties>
           <string name="Name">Path</string>
           <bool name="Anchored">true</bool>
@@ -128,7 +128,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX9e3a0995260b44019b596e8a2a5ceb7c">
+      <Item class="Part" referent="RBX719176b335164b6db3299abbd1fb8ee8">
         <Properties>
           <string name="Name">Basic</string>
           <bool name="Anchored">true</bool>
@@ -157,7 +157,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX39b2373156694978be87c7f1a818766f">
+      <Item class="Part" referent="RBX77b07042dc3e480987d5cf66b5221877">
         <Properties>
           <string name="Name">Advanced</string>
           <bool name="Anchored">true</bool>
@@ -186,7 +186,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="SpawnLocation" referent="RBX48d93a723108474d831dd5382e601115">
+      <Item class="SpawnLocation" referent="RBX2da91ab72ffb40e1becf6c9d11beb9da">
         <Properties>
           <string name="Name">SimulatorSpawn</string>
           <bool name="Anchored">true</bool>
@@ -219,27 +219,27 @@
       </Item>
     </Item>
   </Item>
-  <Item class="Players" referent="RBXea2e72163b3d47afa93f3dc1ba861048">
+  <Item class="Players" referent="RBX2efa413de1444ac3add54f28add960d2">
     <Properties>
       <string name="Name">Players</string>
     </Properties>
   </Item>
-  <Item class="Lighting" referent="RBX301bf56298b141f4a0413505502c9b6a">
+  <Item class="Lighting" referent="RBXfb21f7abe8ba42019569da2eb01b2dc3">
     <Properties>
       <string name="Name">Lighting</string>
       <float name="ClockTime">14</float>
       <float name="Brightness">2</float>
     </Properties>
   </Item>
-  <Item class="ReplicatedStorage" referent="RBXd918535ee6744a07b595612f457751af">
+  <Item class="ReplicatedStorage" referent="RBX0348e475b51d406496140cf26ae87565">
     <Properties>
       <string name="Name">ReplicatedStorage</string>
     </Properties>
-    <Item class="Folder" referent="RBXa5c0b20abc5e45f4a9416d2fcafa14c0">
+    <Item class="Folder" referent="RBX1af1b0f2ceec408ca5e930caf52aa012">
       <Properties>
         <string name="Name">SimulatorShared</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBXc6fd9da378f34244a7da2c4bc67c4f3a">
+      <Item class="ModuleScript" referent="RBXd8266f11b1af40b0bfd7f20a7ed4c48b">
         <Properties>
           <string name="Name">Config</string>
           <ProtectedString name="Source">-- Balance lives here. No secrets and no client-supplied reward values.
@@ -327,7 +327,7 @@ return table.freeze(C)
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXdf5a1a6ee72540d69636920b83639a50">
+      <Item class="ModuleScript" referent="RBX43d058f750394439bc4e377a592f168e">
         <Properties>
           <string name="Name">TextStyle</string>
           <ProtectedString name="Source">-- Template rule: floating text must stay legible over bright platforms.
@@ -341,7 +341,7 @@ return TextStyle
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX539f7aed5d9d4a938c273f8af0c2825f">
+      <Item class="ModuleScript" referent="RBX4d6b35157dbf4175a59793ace34386f3">
         <Properties>
           <string name="Name">ModelFactory</string>
           <ProtectedString name="Source">local C=require(script.Parent.Config)
@@ -386,15 +386,15 @@ return Factory
       </Item>
     </Item>
   </Item>
-  <Item class="ServerScriptService" referent="RBX23cbbe9eeb8e4d3f91815565ea432794">
+  <Item class="ServerScriptService" referent="RBX24625ff05f3245cca29f47be85d2d56c">
     <Properties>
       <string name="Name">ServerScriptService</string>
     </Properties>
-    <Item class="Folder" referent="RBX0eb4d2df75bf42eda8c080e710a6ab63">
+    <Item class="Folder" referent="RBX2723fd7b7f5a479d9e800c0f4363e4e0">
       <Properties>
         <string name="Name">Simulator</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBX7618b2214f864dcfaeecbfd2af931352">
+      <Item class="ModuleScript" referent="RBX8c92a2389e4e490cb88ac44d5374d97c">
         <Properties>
           <string name="Name">Schema</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -460,7 +460,7 @@ return Schema
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX042e7ff9140347ed9255303eb4dc3837">
+      <Item class="ModuleScript" referent="RBX8b9998b36244466da6813902829dd5cf">
         <Properties>
           <string name="Name">PlayerData</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -568,7 +568,7 @@ return PlayerData
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX6ee85a7c4ce34925a5d27ac63ac4f12d">
+      <Item class="ModuleScript" referent="RBXe44182bfd8524acb99fbdd335f6013ac">
         <Properties>
           <string name="Name">Progression</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -594,7 +594,7 @@ return P
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXfbd45b92774c4125962dde2580e5bc7c">
+      <Item class="ModuleScript" referent="RBXcd533f482a7148748b9180a61b44db58">
         <Properties>
           <string name="Name">Rebirth</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -611,7 +611,7 @@ return R
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX2d336c39679a44269dce945593d7c838">
+      <Item class="ModuleScript" referent="RBXa5ea5794b4dc426ca66f0ebdc20f8aef">
         <Properties>
           <string name="Name">Rewards</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -664,7 +664,7 @@ return Rewards
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX5b4542f85c0d44a1a89fc616f18a58a8">
+      <Item class="ModuleScript" referent="RBX53863244383242028eb8d6ddcbe60279">
         <Properties>
           <string name="Name">Pets</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -769,7 +769,7 @@ return Pets
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX310c1fb1b5894431aac777136d62a42c">
+      <Item class="ModuleScript" referent="RBXb0918e2b760e4fffacc202e91cfc7007">
         <Properties>
           <string name="Name">PetVisuals</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -821,7 +821,7 @@ return Visuals
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX2c56e4664dff4022b8da7548fc74a068">
+      <Item class="ModuleScript" referent="RBXb8d78ab0a81c406da7a175bb3d3dc0e4">
         <Properties>
           <string name="Name">Security</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -869,7 +869,7 @@ return S
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX970ea8fcb1664247b37e182ab9dcc3c7">
+      <Item class="ModuleScript" referent="RBXd6164cbe8b1e413d8caa4bcba526b04a">
         <Properties>
           <string name="Name">LeaderboardTemplate</string>
           <ProtectedString name="Source">-- Visual draft only: each ranking row is a separate solid plaque, no live data.
@@ -954,7 +954,7 @@ return Board
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX6bd63670a1bb40c5bc2f7ae9048e0dd1">
+      <Item class="ModuleScript" referent="RBX3ce030da82404a669f9f0271bb7c6bd0">
         <Properties>
           <string name="Name">World</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1040,7 +1040,7 @@ return World
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX3c91ef2197124b9bb172d08ade837f0e">
+      <Item class="ModuleScript" referent="RBX0b377e60a09b4e43af5a95ae5e16c9b2">
         <Properties>
           <string name="Name">Network</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1067,7 +1067,7 @@ return Network
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX19f33cf359334071bbf5110f9ddbff0b">
+      <Item class="ModuleScript" referent="RBXc13a5cc2836646fd86cc1054f5af2017">
         <Properties>
           <string name="Name">Telemetry</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1086,7 +1086,7 @@ return Telemetry
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX5439ec5c45634a1282283e35ae156b42">
+      <Item class="ModuleScript" referent="RBXfe551c15c2944d0fbe7318319ec29f97">
         <Properties>
           <string name="Name">Runtime</string>
           <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -1319,18 +1319,18 @@ return Runtime
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Script" referent="RBXd6bb9fee5cc04a2f8369bd0b7bb347bd">
+      <Item class="Script" referent="RBX066d3b05abd045d4b0780a0d447cf388">
         <Properties>
           <string name="Name">Bootstrap</string>
           <ProtectedString name="Source">require(script.Parent.Runtime).Start()
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Folder" referent="RBXb7480058d2924f189a0a718191d5db82">
+      <Item class="Folder" referent="RBXe7a853bad879459f8517551f724b93a5">
         <Properties>
           <string name="Name">Tests</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBX0199e636895f4b0f852f52cd8caaa894">
+        <Item class="ModuleScript" referent="RBXbccc9e1dce7b41baa544d9f050425d21">
           <Properties>
             <string name="Name">Spec</string>
             <ProtectedString name="Source">-- Server-only deterministic tests. No production DataStore, no real user records.
@@ -1559,7 +1559,7 @@ return Spec
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX4e17d3e333dd49a4b632aa8588b78cef">
+        <Item class="ModuleScript" referent="RBX15dc35c6556641fa870475f2659d89be">
           <Properties>
             <string name="Name">Integration</string>
             <ProtectedString name="Source">-- SERVER Command Bar in a fresh Play. Only runs in Studio sandbox.
@@ -1628,19 +1628,19 @@ return Integration
       </Item>
     </Item>
   </Item>
-  <Item class="StarterPlayer" referent="RBX73f25523f6e441fb96ecd3f54e401297">
+  <Item class="StarterPlayer" referent="RBX5a70407374a6491d9c62b5be88f9a686">
     <Properties>
       <string name="Name">StarterPlayer</string>
     </Properties>
-    <Item class="StarterPlayerScripts" referent="RBX85019f9c43614cae8ae6991e65c66073">
+    <Item class="StarterPlayerScripts" referent="RBX1872378624744c6c8d6191024e91f6af">
       <Properties>
         <string name="Name">StarterPlayerScripts</string>
       </Properties>
-      <Item class="Folder" referent="RBXb5e681c5d6dc4d0cb2d9f9211e477b84">
+      <Item class="Folder" referent="RBXa0a192b5fead41398a38834b71010a69">
         <Properties>
           <string name="Name">SimulatorClient</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBX85c9c2d11a6644cdb52ca555461cc851">
+        <Item class="ModuleScript" referent="RBX714526434692453d8ae43baf90a8babc">
           <Properties>
             <string name="Name">UI</string>
             <ProtectedString name="Source">local UI={}
@@ -1810,8 +1810,9 @@ function UI.Build(player)
         refs.ActiveMenu=name; focusMenus(true)
         local m=menus[name]
         if name~="Pets" then
-            m.Position=UDim2.new(.5,0,.5,12)
-            TweenService:Create(m,TweenInfo.new(.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=UDim2.fromScale(.5,.5)}):Play()
+            local target=refs.MenuCentre or UDim2.fromScale(.5,.5)
+            m.Position=target+UDim2.fromOffset(0,12)
+            TweenService:Create(m,TweenInfo.new(.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=target}):Play()
         end
     end
     local shop=menu("Shop","МАГАЗИН",272)
@@ -1857,12 +1858,41 @@ function UI.Build(player)
     refs.Confirm=button(confirmation,UDim2.fromOffset(20,226),UDim2.fromOffset(310,48),"Подтвердить",Color3.fromRGB(131,82,189))
     refs.Cancel=button(confirmation,UDim2.fromOffset(20,288),UDim2.fromOffset(310,42),"Отмена",Color3.fromRGB(68,81,105))
     refs.Settings=Settings.Build(refs,menu("Settings","НАСТРОЙКИ",460))
+    -- Fixed-height desktop bodies become scrollable when a phone has less vertical room.
+    for _,entry in menuScales do
+        if entry.frame.Name~="Pets" and entry.frame.Name~="Settings" then
+            local body=Instance.new("ScrollingFrame"); body.Name="Body"; body.BackgroundTransparency=1
+            body.BorderSizePixel=0; body.Position=UDim2.fromOffset(0,56); body.Size=UDim2.new(1,0,1,-62)
+            body.CanvasSize=UDim2.fromOffset(0,entry.height-62); body.ScrollBarThickness=4
+            body.ScrollingDirection=Enum.ScrollingDirection.Y
+            for _,child in entry.frame:GetChildren() do
+                if child:IsA("GuiObject") and child.Name~="Title" and child.Name~="Close" then
+                    child.Position-=UDim2.fromOffset(0,56)
+                    child.Size=UDim2.new(1,-40,child.Size.Y.Scale,child.Size.Y.Offset)
+                    if child:IsA("TextButton") then child.Position=UDim2.new(.5,0,child.Position.Y.Scale,child.Position.Y.Offset) end
+                    child.Parent=body
+                end
+            end
+            body.Parent=entry.frame
+        end
+    end
+    local originalFonts=setmetatable({},{__mode="k"})
+    local function phoneText(obj)
+        if obj:IsA("TextLabel") or obj:IsA("TextButton") then
+            originalFonts[obj]=originalFonts[obj] or obj.TextSize
+            obj.TextSize=refs.PhoneLayout and math.max(16,originalFonts[obj]) or originalFonts[obj]
+        end
+    end
+    refs.Gui.DescendantAdded:Connect(phoneText)
     local cameraConnection
     local function resize()
         local camera=workspace.CurrentCamera; if not camera then return end
         local v=refs.Layout.AbsoluteSize; if v.X&lt;1 then v=camera.ViewportSize end
+        local phone=(game:GetService("UserInputService").TouchEnabled and math.min(v.X,v.Y)&lt;=600)
+            or refs.Layout:GetAttribute("PhonePreview")==true
+        refs.PhoneLayout=phone
         -- 980x620 reference canvas reproduces the proportions approved in the screenshot.
-        local scale=math.min(v.X/980,v.Y/620)
+        local scale=phone and math.min(.8,v.X/390) or math.min(v.X/980,v.Y/620)
         local logical=Vector2.new(v.X/scale,v.Y/scale)
         hudScale.Scale=scale; hud.Size=UDim2.fromOffset(logical.X,logical.Y)
         refs.ResponsiveScale=scale
@@ -1875,14 +1905,80 @@ function UI.Build(player)
         refs.Rebirth.Position=UDim2.new(1,-12,0,math.max(logical.Y*.5,top+74+76+12+44)); refs.Rebirth.AnchorPoint=Vector2.new(1,.5)
         refs.Train.Position=UDim2.new(.5,0,1,-49)
         refs.Notice.Position=UDim2.new(.5,-190*scale,1,-166*scale); noticeScale.Scale=scale
+        -- Restore the base geometry before applying either orientation (rotation is live).
+        refs.Rebirth.Size=UDim2.fromOffset(164,88)
+        refs.RebirthStats.Position=UDim2.fromOffset(12,48); refs.RebirthStats.Size=UDim2.new(1,-24,0,27)
+        left.Size=UDim2.fromOffset(152,186)
+        for i,b in {refs.Shop,refs.Gifts,refs.Pets} do
+            b.Position=UDim2.fromOffset(76,27+(i-1)*66); b.Size=UDim2.fromOffset(152,54)
+            local icon=b:FindFirstChild("Icon"); if icon then icon.Visible=true end
+            b.Caption.Position=UDim2.fromOffset(50,0); b.Caption.Size=UDim2.new(1,-58,0,54)
+        end
+        local portrait=phone and v.Y&gt;v.X
+        local menuScale,menuTop,menuBottom,menuWidth=scale,0,v.Y,350
+        refs.MenuCentre=nil
+        -- Keep phone text near its intended size instead of shrinking a 980px canvas.
+        if phone then
+            local edge=math.max(12,inset.X)
+            top=math.max(62,inset.Y+8)/scale
+            power.Position=UDim2.fromOffset(edge/scale,top)
+            coins.Position=UDim2.new(1,-edge/scale,0,top); coins.Size=UDim2.fromOffset(164,88)
+            if portrait then
+                multipliers.Position=UDim2.new(1,-edge/scale,0,top+98)
+                refs.Rebirth.Position=UDim2.new(0,edge/scale,0,top+98)
+                refs.Rebirth.AnchorPoint=Vector2.zero
+                refs.Rebirth.Size=UDim2.fromOffset(180,64)
+                refs.RebirthStats.Position=UDim2.fromOffset(12,34); refs.RebirthStats.Size=UDim2.new(1,-24,0,26)
+                left.AnchorPoint=Vector2.new(.5,1); left.Position=UDim2.new(.5,0,1,-18)
+                local bw=(logical.X-32)/3
+                left.Size=UDim2.fromOffset(logical.X-24,54)
+                for i,b in {refs.Shop,refs.Gifts,refs.Pets} do
+                    b.Position=UDim2.fromOffset((i-.5)*bw,27); b.Size=UDim2.fromOffset(bw-6,54)
+                    local icon=b:FindFirstChild("Icon"); if icon then icon.Visible=false end
+                    b.Caption.Position=UDim2.fromOffset(4,0); b.Caption.Size=UDim2.new(1,-8,1,0)
+                end
+                refs.Train.Position=UDim2.new(.5,0,1,-114)
+                refs.Hint.Position=UDim2.new(.5,-logical.X/2+12,1,-183); refs.Hint.Size=UDim2.fromOffset(logical.X-24,40)
+                menuTop=(top+174)*scale; menuBottom=v.Y-190*scale
+                menuWidth=math.min(350,(v.X-2*edge)/.9)
+            else
+                refs.Rebirth.Position=UDim2.new(1,-edge/scale,1,-12); refs.Rebirth.AnchorPoint=Vector2.new(1,1)
+                multipliers.Position=UDim2.new(1,-edge/scale,0,top+98)
+                left.Position=UDim2.new(0,edge/scale,1,-12); left.AnchorPoint=Vector2.new(0,1)
+                menuTop=math.max(54,inset.Y+4); menuBottom=v.Y-104*scale
+                menuWidth=math.min(600,(v.X-360*scale-32)/.9)
+                refs.Hint.Size=UDim2.fromOffset(math.min(420,logical.X-360),34)
+                refs.Hint.Position=UDim2.new(.5,-refs.Hint.Size.X.Offset/2,1,-100)
+                refs.Train.Position=UDim2.new(.5,0,1,-38)
+            end
+            menuScale=math.min(.95,(v.X-2*edge)/350)
+            if not portrait then menuWidth=math.min(600,(v.X-2*(180*scale+edge+8))/menuScale) end
+            refs.MenuCentre=UDim2.fromOffset(v.X/2,(menuTop+menuBottom)/2)
+            refs.Notice.Position=UDim2.new(.5,-190*scale,0,menuTop); noticeScale.Scale=scale
+        else
+            coins.Size=UDim2.fromOffset(164,76)
+            refs.Hint.Size=UDim2.fromOffset(420,34); refs.Hint.Position=UDim2.new(.5,-210,1,-120)
+        end
+        for _,obj in refs.Gui:GetDescendants() do phoneText(obj) end
+        multiplierTitle.TextSize=phone and 13 or 12
         for _,entry in menuScales do
-            entry.scale.Scale=scale
+            entry.scale.Scale=phone and menuScale or scale
+            local close=entry.frame:FindFirstChild("Close")
+            if close then close.Size=UDim2.fromOffset(phone and 44 or 36,phone and 44 or 36) end
+            if phone then
+                entry.frame.Size=UDim2.fromOffset(math.min(350,menuWidth),math.min(entry.height,(menuBottom-menuTop)/menuScale))
+                entry.frame.Position=refs.MenuCentre
+            else
+                entry.frame.Size=UDim2.fromOffset(entry.frame.Name=="Pets" and 920 or 350,entry.height)
+                entry.frame.Position=UDim2.fromScale(.5,.5)
+            end
+            if entry.frame.Name=="Settings" then refs.Settings.Resize(entry.frame.Size.X.Offset) end
             if entry.frame.Name=="Pets" then
                 -- Reserve the HUD columns and the lower hint/interaction strip.
-                local width=math.min(920,logical.X-394)
+                local width=phone and menuWidth or math.min(920,logical.X-394)
                 local safeTop=math.max(24,inset.Y/scale+12)
-                entry.frame.Size=UDim2.fromOffset(width,math.min(580,logical.Y-156-safeTop))
-                refs.Catalog.Resize(width,scale,UDim2.new(.5,9*scale,.5,(safeTop-156)*scale/2))
+                entry.frame.Size=UDim2.fromOffset(width,phone and (menuBottom-menuTop)/menuScale or math.min(580,logical.Y-156-safeTop))
+                refs.Catalog.Resize(width,phone and menuScale or scale,refs.MenuCentre or UDim2.new(.5,9*scale,.5,(safeTop-156)*scale/2),phone)
             end
         end
     end
@@ -1893,6 +1989,7 @@ function UI.Build(player)
     end
     workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(bindCamera); bindCamera()
     refs.Layout:GetPropertyChangedSignal("AbsoluteSize"):Connect(resize)
+    refs.Layout:GetAttributeChangedSignal("PhonePreview"):Connect(resize)
     refs.Shop.Activated:Connect(function() refs.Open("Shop") end)
     refs.Gifts.Activated:Connect(function() refs.Open("Gifts") end)
     refs.Rebirth.Activated:Connect(function() refs.Open("Rebirth") end)
@@ -1905,7 +2002,7 @@ return UI
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXaeffa626a87f40b48ffc0294fd62851e">
+        <Item class="ModuleScript" referent="RBX2b947ec46cb64a02ab1b5f5bceb1fc4c">
           <Properties>
             <string name="Name">Glass</string>
             <ProtectedString name="Source">local TweenService=game:GetService("TweenService")
@@ -2049,7 +2146,7 @@ return Glass
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX850e95dcc0b44b84bb801684a946d709">
+        <Item class="ModuleScript" referent="RBX8ce31c832a6f4d07b0cc576425c6b21f">
           <Properties>
             <string name="Name">Headings</string>
             <ProtectedString name="Source">local Localization=game:GetService("LocalizationService")
@@ -2089,7 +2186,7 @@ return H
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX93e936c8c56f4450b2f395e07c34832f">
+        <Item class="ModuleScript" referent="RBXea15540fdd274f13a7b16164158eb72c">
           <Properties>
             <string name="Name">Settings</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -2215,6 +2312,13 @@ function S.Build(refs,menu)
         page.BackgroundTransparency=1; page.BorderSizePixel=0; page.ScrollBarThickness=4; page.ScrollingDirection=Enum.ScrollingDirection.Y; page.Parent=menu; api.Pages[key]=page
         b.Activated:Connect(function() api.Select(key) end)
     end
+    function api.Resize(width)
+        local w=(width-56)/3
+        for i,key in {"Sound","Graphics","Interface"} do
+            tabs[key].Size=UDim2.fromOffset(w,34)
+            tabs[key].Position=UDim2.fromOffset(20+w/2+(i-1)*(w+8),125)
+        end
+    end
     for i,info in {{"Master","Весь звук"},{"Music","Музыка"},{"Effects","Эффекты"},{"Ambient","Окружение и шаги"}} do
         local key=info[1]; local y=(i-1)*84
         label(api.Pages.Sound,info[2],UDim2.fromOffset(6,y),UDim2.new(1,-12,0,26))
@@ -2250,7 +2354,7 @@ return S
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXbf62d880466d40998a374a983a975b30">
+        <Item class="ModuleScript" referent="RBX67a4eeec215a42f4b6fd455f27775c97">
           <Properties>
             <string name="Name">PetCatalog</string>
             <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -2312,6 +2416,7 @@ function Catalog.Build(parent)
     local panes,tabs,grids={},{},{}
     local state,width,selected={},parent.Size.X.Offset,nil
     local responsiveScale,transition=1,0
+    local phoneLayout=false
     local slideTweens={}
     local centre=UDim2.fromScale(.5,.5)
     local selectedCopies={}; local callbacks={}
@@ -2338,7 +2443,17 @@ function Catalog.Build(parent)
     local primary=button(inspector,UDim2.new(.5,0,1,-80),UDim2.new(1,-28,0,42),"Экипировать")
     local combine=button(inspector,UDim2.new(.5,0,1,-30),UDim2.new(1,-28,0,42),"Совместить")
     refs.DetailPrimary=primary; refs.DetailCombine=combine; refs.DetailDescription=description
+    local detailBody=Instance.new("ScrollingFrame"); detailBody.Name="PhoneBody"
+    detailBody.Position=UDim2.fromOffset(0,56); detailBody.Size=UDim2.new(1,0,1,-62)
+    detailBody.CanvasSize=UDim2.fromOffset(0,390); detailBody.ScrollingDirection=Enum.ScrollingDirection.Y
+    detailBody.ScrollBarThickness=4; detailBody.BackgroundTransparency=1; detailBody.BorderSizePixel=0
+    detailBody.Visible=false; detailBody.Parent=inspector
     refs.PetSummary=text(parent,UDim2.fromOffset(20,58),UDim2.new(1,-40,0,28),"Загрузка…",12)
+    local phoneBody=Instance.new("ScrollingFrame"); phoneBody.Name="PhoneCatalogBody"
+    phoneBody.Position=UDim2.fromOffset(0,56); phoneBody.Size=UDim2.new(1,0,1,-62)
+    phoneBody.BackgroundTransparency=1; phoneBody.BorderSizePixel=0; phoneBody.ScrollBarThickness=4
+    phoneBody.ScrollingDirection=Enum.ScrollingDirection.Y; phoneBody.AutomaticCanvasSize=Enum.AutomaticSize.Y
+    phoneBody.CanvasSize=UDim2.new(); phoneBody.Visible=false; phoneBody.Parent=parent
     for i,info in {{"Eggs","Выбор яйца"},{"Inventory","Питомцы"},{"Paid","Донатные предметы"}} do
         local name=info[1]; tabs[name]=button(parent,UDim2.fromOffset(70+(i-1)*105,109),UDim2.fromOffset(100,38),Headings.Text(name))
         local pane=Instance.new("Frame"); pane.Name=name; pane.BackgroundTransparency=1
@@ -2359,6 +2474,19 @@ function Catalog.Build(parent)
     refs.PetList.Position=UDim2.fromOffset(0,48); refs.PetList.Size=UDim2.new(1,0,1,-48)
     text(panes.Paid,UDim2.fromOffset(4,0),UDim2.new(1,-8,0,44),"Донатные предметы — скоро",13,Glass.Colors.Muted)
     refs.PaidList.Position=UDim2.fromOffset(0,48); refs.PaidList.Size=UDim2.new(1,0,1,-48)
+    local function phoneLists()
+        for _,scroll in {refs.EggList,refs.PetList,refs.PaidList} do
+            scroll.ScrollingEnabled=not phoneLayout
+            if phoneLayout then
+                local content=scroll:FindFirstChildOfClass("UIGridLayout").AbsoluteContentSize.Y+12
+                scroll.Size=UDim2.new(1,0,0,content)
+                scroll.Parent.Size=UDim2.new(1,-40,0,content+scroll.Position.Y.Offset)
+            else
+                scroll.Size=UDim2.new(1,0,1,-scroll.Position.Y.Offset)
+            end
+        end
+    end
+    for _,grid in grids do grid:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(phoneLists) end
     local function card(scroll,index,placeholder)
         local f=Instance.new("Frame"); f.Name=placeholder and "Placeholder"..index or "Card"..index
         f.LayoutOrder=index; f.Parent=scroll; Glass.Style(f,Glass.Colors.Mint,12)
@@ -2400,18 +2528,50 @@ function Catalog.Build(parent)
         if split and mobile and refs.CraftId==nil then
             refs.HiddenByInspector=true; parent.Visible=false
         elseif refs.HiddenByInspector then refs.HiddenByInspector=nil; parent.Visible=true end
-        local columns=math.min(split and 3 or 5,math.max(1,math.floor((mainWidth-42)/85)))
+        local columns=phoneLayout and math.min(2,math.max(1,math.floor((mainWidth-42)/156)))
+            or math.min(split and 3 or 5,math.max(1,math.floor((mainWidth-42)/85)))
         local cell=math.floor((mainWidth-54-(columns-1)*8)/columns)
         for _,grid in grids do grid.FillDirectionMaxCells=columns; grid.CellSize=UDim2.fromOffset(cell,216) end
         local tabWidth=(mainWidth-56)/3
-        for i,name in {"Eggs","Inventory","Paid"} do tabs[name].Position=UDim2.fromOffset(20+tabWidth/2+(i-1)*(tabWidth+8),109); tabs[name].Size=UDim2.fromOffset(tabWidth,38) end
-        local picture=inspector:FindFirstChild("Picture")
+        phoneBody.Visible=phoneLayout
+        for i,name in {"Eggs","Inventory","Paid"} do
+            tabs[name].Parent=phoneLayout and phoneBody or parent
+            tabs[name].Position=UDim2.fromOffset(20+tabWidth/2+(i-1)*(tabWidth+8),phoneLayout and 56 or 109)
+            tabs[name].Size=UDim2.fromOffset(tabWidth,38)
+            tabs[name].Text=phoneLayout and name=="Paid" and "Донат" or Headings.Text(name)
+            tabs[name].TextSize=phoneLayout and 14 or 12
+        end
+        for _,pane in panes do
+            pane.Parent=phoneLayout and phoneBody or parent
+            pane.Position=UDim2.fromOffset(20,phoneLayout and 82 or 138); pane.Size=UDim2.new(1,-40,1,-152)
+        end
+        refs.PetSummary.Parent=phoneLayout and phoneBody or parent
+        refs.PetSummary.Position=UDim2.fromOffset(20,phoneLayout and 0 or 58)
+        refs.PetSummary.Size=UDim2.new(1,-40,0,phoneLayout and 34 or 28)
+        phoneLists()
+        local picture=inspector:FindFirstChild("Picture") or detailBody:FindFirstChild("Picture")
         local viewHeight=math.max(65,math.min(190,h*.34))
         if picture then picture.Position=UDim2.fromOffset(12,60); picture.Size=UDim2.new(1,-24,0,viewHeight) end
         description.Position=UDim2.fromOffset(14,64+viewHeight); description.Size=UDim2.new(1,-28,0,math.max(30,h-viewHeight-182))
+        detailBody.Visible=phoneLayout
+        for _,obj in {description,primary,combine} do obj.Parent=phoneLayout and detailBody or inspector end
+        if phoneLayout then
+            if picture then picture.Parent=detailBody; picture.Position=UDim2.fromOffset(12,0); picture.Size=UDim2.new(1,-24,0,110) end
+            description.Position=UDim2.fromOffset(14,116); description.Size=UDim2.new(1,-28,0,148)
+            primary.Position=UDim2.new(.5,0,0,292); primary.Size=UDim2.new(1,-28,0,44)
+            combine.Position=UDim2.new(.5,0,0,348); combine.Size=UDim2.new(1,-28,0,44)
+            back.Size=UDim2.fromOffset(44,44)
+        else
+            if picture then picture.Parent=inspector end
+            primary.Position=UDim2.new(.5,0,1,-80); combine.Position=UDim2.new(.5,0,1,-30)
+            back.Size=UDim2.fromOffset(36,36)
+        end
     end
     local refresh
-    function refs.Resize(newWidth,scale,newCentre) width=newWidth; responsiveScale=scale or 1; centre=newCentre or centre; inspectorScale.Scale=responsiveScale; layout(false) end
+    function refs.Resize(newWidth,scale,newCentre,isPhone)
+        width=newWidth; responsiveScale=scale or 1; centre=newCentre or centre; phoneLayout=isPhone==true
+        inspectorScale.Scale=responsiveScale; layout(false)
+    end
     function refs.Reset()
         transition+=1
         selected=nil; refs.CraftId=nil; selectedCopies={}; inspector.Visible=false
@@ -2425,6 +2585,7 @@ function Catalog.Build(parent)
         if refresh then refresh() end
     end
     function refs.Select(name)
+        phoneBody.CanvasPosition=Vector2.zero
         if selected then refs.Return() else refs.Reset() end
         for key,pane in pairs(panes) do pane.Visible=key==name; tabs[key].GlassEdge.Transparency=key==name and .1 or .65 end
         refs.Selected=name
@@ -2449,7 +2610,7 @@ function Catalog.Build(parent)
     function refs.Inspect(id,isEgg)
         transition+=1
         selected={Id=id,Egg=isEgg}; refs.CraftId=nil; selectedCopies={}
-        local old=inspector:FindFirstChild("Picture"); if old then old:Destroy() end
+        local old=inspector:FindFirstChild("Picture") or detailBody:FindFirstChild("Picture"); if old then old:Destroy() end
         refs.DetailView=Catalog.View(inspector,id,isEgg,true)
         detail(); layout(true)
     end
@@ -2564,7 +2725,7 @@ return Catalog
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXf95048c4741d4717a51ca94b8542ed31">
+        <Item class="ModuleScript" referent="RBX5d0733827fe44ae2b6cce58701e426d9">
           <Properties>
             <string name="Name">Presentation</string>
             <ProtectedString name="Source">local Tween=game:GetService("TweenService")
@@ -2677,7 +2838,7 @@ return Presentation
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBX5c6140e43ecc41ed90f90f2bed9b646b">
+        <Item class="LocalScript" referent="RBXf52610bb0e774064bda6495ac22ed888">
           <Properties>
             <string name="Name">Controller</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -2831,7 +2992,7 @@ end)
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBXc5ddcd7f978140d7af92a3d92e9784d4">
+        <Item class="LocalScript" referent="RBX5e7dbd18b8ab481eb608044ebbcadd45">
           <Properties>
             <string name="Name">WorldSigns</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -2908,7 +3069,7 @@ end
       </Item>
     </Item>
   </Item>
-  <Item class="StarterGui" referent="RBXf09a88af7e624effad42cd87a2617dde">
+  <Item class="StarterGui" referent="RBX5a60679d5e8f414586391f57b745a5c8">
     <Properties>
       <string name="Name">StarterGui</string>
     </Properties>

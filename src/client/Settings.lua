@@ -121,6 +121,13 @@ function S.Build(refs,menu)
         page.BackgroundTransparency=1; page.BorderSizePixel=0; page.ScrollBarThickness=4; page.ScrollingDirection=Enum.ScrollingDirection.Y; page.Parent=menu; api.Pages[key]=page
         b.Activated:Connect(function() api.Select(key) end)
     end
+    function api.Resize(width)
+        local w=(width-56)/3
+        for i,key in {"Sound","Graphics","Interface"} do
+            tabs[key].Size=UDim2.fromOffset(w,34)
+            tabs[key].Position=UDim2.fromOffset(20+w/2+(i-1)*(w+8),125)
+        end
+    end
     for i,info in {{"Master","Весь звук"},{"Music","Музыка"},{"Effects","Эффекты"},{"Ambient","Окружение и шаги"}} do
         local key=info[1]; local y=(i-1)*84
         label(api.Pages.Sound,info[2],UDim2.fromOffset(6,y),UDim2.new(1,-12,0,26))
