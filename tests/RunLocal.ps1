@@ -46,3 +46,9 @@ $harness=Join-Path $PSScriptRoot '_local_harness.lua'
 if($LASTEXITCODE -ne 0){throw 'Unit suite failed'}
 & $runtime (Join-Path $PSScriptRoot 'NumberFormat.spec.lua')
 if($LASTEXITCODE -ne 0){throw 'Number formatting suite failed'}
+$auditSource=[System.IO.File]::ReadAllText((Join-Path $PSScriptRoot 'HatchRandomness.spec.lua'))
+$audit=Join-Path $PSScriptRoot '_hatch_randomness.tmp'
+$auditCode=$builder.ToString()+"`nlocal audit=(function()`n"+$auditSource+"`nend)()`naudit(getModule(`"Config`"),getModule(`"Schema`"),getModule(`"Pets`"))`n"
+[System.IO.File]::WriteAllText($audit,$auditCode,(New-Object System.Text.UTF8Encoding($false)))
+& $runtime $audit
+if($LASTEXITCODE -ne 0){throw 'Hatch distribution audit failed'}
