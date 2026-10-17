@@ -59,3 +59,5 @@ $balanceCode=$builder.ToString()+"`nlocal simulate=(function()`n"+$balanceSource
 [System.IO.File]::WriteAllText($balance,$balanceCode,(New-Object System.Text.UTF8Encoding($false)))
 & $runtime $balance
 if($LASTEXITCODE -ne 0){throw 'Jump balance simulation failed'}
+& $runtime (Join-Path $PSScriptRoot 'TowerLayout.spec.lua')
+if($LASTEXITCODE -ne 0){throw 'Tower layout suite failed'}

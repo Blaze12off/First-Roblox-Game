@@ -1,4 +1,6 @@
 local C=require(script.Parent.Config)
+local Concepts=require(script.Parent.PetConcepts)
+local Sculpt=require(script.Parent.PetSculpt)
 local Factory={}
 local V=Vector3.new
 local rgb=Color3.fromRGB
@@ -166,11 +168,67 @@ local function pet(model,id,color,upgraded)
     end
     return body
 end
+local function finishPet(model,info,species,color)
+    -- Biomes change the silhouette as well as the palette; all old IDs remain valid.
+    local zone=info.Zone or 1
+    for _,s in {-1,1} do
+        piece(model,"Brow",V(.30,.065,.07),V(s*.36,.43,-.69),dark,"Round",turn(0,0,s*-8))
+        piece(model,"ToeHighlight",V(.18,.04,.12),V(s*.47,-.72,-.58),cream,"Round")
+    end
+    if species=="Cat" then
+        piece(model,"ExplorerScarf",V(.87,.12,.2),V(0,-.55,-.69),rgb(87,189,167),"Round")
+        piece(model,"ScarfKnot",V(.2,.3,.16),V(.34,-.66,-.7),rgb(87,189,167),"Round",turn(0,0,-22))
+    elseif species=="Dog" then
+        for i=1,3 do piece(model,"HairTuft",V(.26,.32,.3),V((i-2)*.18,.73,-.26),color,"Round",turn(-20,0,(i-2)*15)) end
+    elseif species=="Bunny" then
+        piece(model,"MoonPendant",V(.28,.31,.13),V(0,-.5,-.76),gold,"Round")
+    elseif species=="Phoenix" then
+        for _,s in {-1,1} do for i=1,3 do piece(model,"WingFlameTip",V(.18,.5,.25),V(s*(.8+i*.25),.16-i*.14,.2),gold,"Round",turn(0,0,-s*36),true) end end
+    elseif species=="Dragon" then
+        for i=1,4 do crystal(model,V(0,.55-(i-1)*.15,.5+i*.24),V(.2,.45,.2),gold) end
+    end
+    if zone==2 then
+        for _,s in {-1,1} do
+            piece(model,"ForestLeaf",V(.5,.13,.28),V(s*.64,.54,.37),rgb(106,203,119),"Round",turn(0,s*20,s*28))
+            piece(model,"ForestBerry",V(.16,.16,.16),V(s*.76,.61,.23),rgb(239,135,156),"Round")
+        end
+        piece(model,"AcornCharm",V(.21,.3,.18),V(0,-.48,-.83),rgb(187,128,73),"Round")
+    elseif zone==3 then
+        for i=-1,1 do crystal(model,V(i*.52,.58,.34),V(.2,.58,.24),rgb(166,237,255),turn(0,0,-i*16)) end
+        piece(model,"WinterScarf",V(1.3,.14,1.2),V(0,-.48,0),rgb(118,171,239),"Round")
+    elseif zone==4 then
+        for _,s in {-1,1} do
+            piece(model,"ObsidianShoulder",V(.4,.33,.55),V(s*.75,-.02,.25),rgb(66,54,77),"Round")
+            crystal(model,V(s*.75,.2,.25),V(.18,.48,.2),rgb(255,144,70))
+            piece(model,"LavaRune",V(.06,.27,.06),V(s*.57,.34,-.63),rgb(255,163,77),"Round",turn(0,0,s*23),true)
+        end
+    elseif zone==5 then
+        for _,s in {-1,1} do
+            for i=1,3 do piece(model,"AstralFin",V(.16,.13,.64),V(s*(.65+i*.13),.36-i*.12,.55),cream,"Round",turn(0,s*18,-s*28)) end
+            crystal(model,V(s*.69,.65,.14),V(.15,.28,.15),gold)
+        end
+        halo(model,-.83,.77,rgb(173,210,255))
+    end
+end
 function Factory.Build(id,isEgg)
-    local info=(isEgg and C.Eggs or C.PetTypes)[id]; assert(info,"Unknown model: "..tostring(id))
+    local info=(isEgg and C.Eggs or C.PetTypes)[id] or (not isEgg and Concepts.Types[id]); assert(info,"Unknown model: "..tostring(id))
     local model=Instance.new("Model"); model.Name=id
     local color=rgb(table.unpack(info.Color))
-    model.PrimaryPart=isEgg and egg(model,info.ModelStyle or id,color) or pet(model,info.Species or info.BaseId or id,color,info.Upgraded)
+    if isEgg then
+        model.PrimaryPart=egg(model,info.ModelStyle or id,color)
+        -- Zone-specific ornaments leave the single uninterrupted shell intact.
+        if info.Zone==2 then
+            for _,s in {-1,1} do piece(model,"AmberVine",V(.18,1.4,.18),V(s*.82,0,0),rgb(118,170,98),"Round",turn(0,0,s*18)) end
+        elseif info.Zone==3 then halo(model,-1.37,1.1,rgb(159,234,255))
+        elseif info.Zone==4 then
+            for i=1,4 do crystal(model,V(math.sin(i*1.6)*.78,-1,math.cos(i*1.6)*.78),V(.28,.65,.3),rgb(255,147,72)) end
+        elseif info.Zone==5 then halo(model,-1.35,1.2,gold) end
+    elseif info.Concept then model.PrimaryPart=Sculpt.Build(model,id,color,piece,crystal,halo,turn)
+    else
+        local species=info.Species or info.BaseId or id
+        model.PrimaryPart=pet(model,species,color,info.Upgraded); finishPet(model,info,species,color)
+    end
+    model:SetAttribute("ModelRevision",2); model:SetAttribute("Species",info.Species or id)
     return model
 end
 return Factory

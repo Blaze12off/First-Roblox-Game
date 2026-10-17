@@ -1,18 +1,18 @@
 <roblox version="4">
-  <Item class="Workspace" referent="RBXfcd83c01686248169750a4e02708d684">
+  <Item class="Workspace" referent="RBXa8521e562a114b8e821d8733c2fd8b00">
     <Properties>
       <string name="Name">Workspace</string>
     </Properties>
-    <Item class="Terrain" referent="RBX8286fccc9fcd4c47914f581c65507e5a">
+    <Item class="Terrain" referent="RBX0e9f154d28ed42398dedeaf3523742bd">
       <Properties>
         <string name="Name">Terrain</string>
       </Properties>
     </Item>
-    <Item class="Folder" referent="RBX7fcd6517fe5546bfa20bc6dd02261ee9">
+    <Item class="Folder" referent="RBX84a5e245cdc0404db099e9902848f5fa">
       <Properties>
         <string name="Name">SimulatorWorld</string>
       </Properties>
-      <Item class="Part" referent="RBX12e7e7aeba854f18bfeecfbb0be98c79">
+      <Item class="Part" referent="RBX91c6b0fdb9ea404f962d9dcc9569e040">
         <Properties>
           <string name="Name">Ground</string>
           <bool name="Anchored">true</bool>
@@ -41,7 +41,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXd844c6865e984eb1a05108273f3c9931">
+      <Item class="Part" referent="RBX2d1248b22cf6428094591ed689648a2f">
         <Properties>
           <string name="Name">StartingPlaza</string>
           <bool name="Anchored">true</bool>
@@ -70,7 +70,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX40fb979795b9431db73c349767d16936">
+      <Item class="Part" referent="RBXac5c9d5172c44c4fbf5c4c792ba7d4ca">
         <Properties>
           <string name="Name">AdvancedPlaza</string>
           <bool name="Anchored">true</bool>
@@ -99,7 +99,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXd000d8ad0255441ca4a5497185a11fa4">
+      <Item class="Part" referent="RBX65e108c4a038481194d26aa2f9cfd113">
         <Properties>
           <string name="Name">Path</string>
           <bool name="Anchored">true</bool>
@@ -128,7 +128,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBX80faf5cc5d0047888b4be85d7a9cb529">
+      <Item class="Part" referent="RBX3eec4ea2341641949caad8db313e453a">
         <Properties>
           <string name="Name">Basic</string>
           <bool name="Anchored">true</bool>
@@ -157,7 +157,7 @@
           </CoordinateFrame>
         </Properties>
       </Item>
-      <Item class="Part" referent="RBXbadbc181f309473e983a3cbfb59cea86">
+      <Item class="Part" referent="RBX4b6a17ed5e194e178241825ea592e9a9">
         <Properties>
           <string name="Name">Advanced</string>
           <bool name="Anchored">true</bool>
@@ -188,27 +188,27 @@
       </Item>
     </Item>
   </Item>
-  <Item class="Players" referent="RBXe79cd6c2d2f84610910de8d5d88d7b92">
+  <Item class="Players" referent="RBX71d7817121e94ba5b464d0539cbf7994">
     <Properties>
       <string name="Name">Players</string>
     </Properties>
   </Item>
-  <Item class="Lighting" referent="RBX393a776c13684844815923b1a99eee3c">
+  <Item class="Lighting" referent="RBX2891c868031e40e08330588eeca4677c">
     <Properties>
       <string name="Name">Lighting</string>
       <float name="ClockTime">14</float>
       <float name="Brightness">2</float>
     </Properties>
   </Item>
-  <Item class="ReplicatedStorage" referent="RBX448d6144de2241a4a13e6772a1194e09">
+  <Item class="ReplicatedStorage" referent="RBXa74385cbdc90412f954a6e4cc4557028">
     <Properties>
       <string name="Name">ReplicatedStorage</string>
     </Properties>
-    <Item class="Folder" referent="RBX3019f13432c04d3f8c5c8e8d4d247960">
+    <Item class="Folder" referent="RBX8cbc707326654561ace223383fb4573d">
       <Properties>
         <string name="Name">SimulatorShared</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBXd2c2ce8dc25643fe91649dd035c397c1">
+      <Item class="ModuleScript" referent="RBXc6084276afe444c99703b4af47e593a0">
         <Properties>
           <string name="Name">Config</string>
           <ProtectedString name="Source">-- Balance lives here. No secrets and no client-supplied reward values.
@@ -352,7 +352,7 @@ return table.freeze(C)
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXdac389692ecf4d939efa6ace2a7bbe6e">
+      <Item class="ModuleScript" referent="RBX49020eb1ea79465e9385831ce20c24aa">
         <Properties>
           <string name="Name">NumberFormat</string>
           <ProtectedString name="Source">-- Display only: economy, validation and saved values always use the original numbers.
@@ -384,7 +384,7 @@ return N
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXd19788b95f1d4d9ba5267cadb0bbaa5d">
+      <Item class="ModuleScript" referent="RBX4d48dc3ef3404853a1e8bf42c4b23fdd">
         <Properties>
           <string name="Name">TextStyle</string>
           <ProtectedString name="Source">-- Template rule: floating text must stay legible over bright platforms.
@@ -398,10 +398,12 @@ return TextStyle
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX32626b1c1937435a8dc1618963e3f693">
+      <Item class="ModuleScript" referent="RBXb93d0bdb58004c1ea89da311eb505f04">
         <Properties>
           <string name="Name">ModelFactory</string>
           <ProtectedString name="Source">local C=require(script.Parent.Config)
+local Concepts=require(script.Parent.PetConcepts)
+local Sculpt=require(script.Parent.PetSculpt)
 local Factory={}
 local V=Vector3.new
 local rgb=Color3.fromRGB
@@ -569,28 +571,292 @@ local function pet(model,id,color,upgraded)
     end
     return body
 end
+local function finishPet(model,info,species,color)
+    -- Biomes change the silhouette as well as the palette; all old IDs remain valid.
+    local zone=info.Zone or 1
+    for _,s in {-1,1} do
+        piece(model,"Brow",V(.30,.065,.07),V(s*.36,.43,-.69),dark,"Round",turn(0,0,s*-8))
+        piece(model,"ToeHighlight",V(.18,.04,.12),V(s*.47,-.72,-.58),cream,"Round")
+    end
+    if species=="Cat" then
+        piece(model,"ExplorerScarf",V(.87,.12,.2),V(0,-.55,-.69),rgb(87,189,167),"Round")
+        piece(model,"ScarfKnot",V(.2,.3,.16),V(.34,-.66,-.7),rgb(87,189,167),"Round",turn(0,0,-22))
+    elseif species=="Dog" then
+        for i=1,3 do piece(model,"HairTuft",V(.26,.32,.3),V((i-2)*.18,.73,-.26),color,"Round",turn(-20,0,(i-2)*15)) end
+    elseif species=="Bunny" then
+        piece(model,"MoonPendant",V(.28,.31,.13),V(0,-.5,-.76),gold,"Round")
+    elseif species=="Phoenix" then
+        for _,s in {-1,1} do for i=1,3 do piece(model,"WingFlameTip",V(.18,.5,.25),V(s*(.8+i*.25),.16-i*.14,.2),gold,"Round",turn(0,0,-s*36),true) end end
+    elseif species=="Dragon" then
+        for i=1,4 do crystal(model,V(0,.55-(i-1)*.15,.5+i*.24),V(.2,.45,.2),gold) end
+    end
+    if zone==2 then
+        for _,s in {-1,1} do
+            piece(model,"ForestLeaf",V(.5,.13,.28),V(s*.64,.54,.37),rgb(106,203,119),"Round",turn(0,s*20,s*28))
+            piece(model,"ForestBerry",V(.16,.16,.16),V(s*.76,.61,.23),rgb(239,135,156),"Round")
+        end
+        piece(model,"AcornCharm",V(.21,.3,.18),V(0,-.48,-.83),rgb(187,128,73),"Round")
+    elseif zone==3 then
+        for i=-1,1 do crystal(model,V(i*.52,.58,.34),V(.2,.58,.24),rgb(166,237,255),turn(0,0,-i*16)) end
+        piece(model,"WinterScarf",V(1.3,.14,1.2),V(0,-.48,0),rgb(118,171,239),"Round")
+    elseif zone==4 then
+        for _,s in {-1,1} do
+            piece(model,"ObsidianShoulder",V(.4,.33,.55),V(s*.75,-.02,.25),rgb(66,54,77),"Round")
+            crystal(model,V(s*.75,.2,.25),V(.18,.48,.2),rgb(255,144,70))
+            piece(model,"LavaRune",V(.06,.27,.06),V(s*.57,.34,-.63),rgb(255,163,77),"Round",turn(0,0,s*23),true)
+        end
+    elseif zone==5 then
+        for _,s in {-1,1} do
+            for i=1,3 do piece(model,"AstralFin",V(.16,.13,.64),V(s*(.65+i*.13),.36-i*.12,.55),cream,"Round",turn(0,s*18,-s*28)) end
+            crystal(model,V(s*.69,.65,.14),V(.15,.28,.15),gold)
+        end
+        halo(model,-.83,.77,rgb(173,210,255))
+    end
+end
 function Factory.Build(id,isEgg)
-    local info=(isEgg and C.Eggs or C.PetTypes)[id]; assert(info,"Unknown model: "..tostring(id))
+    local info=(isEgg and C.Eggs or C.PetTypes)[id] or (not isEgg and Concepts.Types[id]); assert(info,"Unknown model: "..tostring(id))
     local model=Instance.new("Model"); model.Name=id
     local color=rgb(table.unpack(info.Color))
-    model.PrimaryPart=isEgg and egg(model,info.ModelStyle or id,color) or pet(model,info.Species or info.BaseId or id,color,info.Upgraded)
+    if isEgg then
+        model.PrimaryPart=egg(model,info.ModelStyle or id,color)
+        -- Zone-specific ornaments leave the single uninterrupted shell intact.
+        if info.Zone==2 then
+            for _,s in {-1,1} do piece(model,"AmberVine",V(.18,1.4,.18),V(s*.82,0,0),rgb(118,170,98),"Round",turn(0,0,s*18)) end
+        elseif info.Zone==3 then halo(model,-1.37,1.1,rgb(159,234,255))
+        elseif info.Zone==4 then
+            for i=1,4 do crystal(model,V(math.sin(i*1.6)*.78,-1,math.cos(i*1.6)*.78),V(.28,.65,.3),rgb(255,147,72)) end
+        elseif info.Zone==5 then halo(model,-1.35,1.2,gold) end
+    elseif info.Concept then model.PrimaryPart=Sculpt.Build(model,id,color,piece,crystal,halo,turn)
+    else
+        local species=info.Species or info.BaseId or id
+        model.PrimaryPart=pet(model,species,color,info.Upgraded); finishPet(model,info,species,color)
+    end
+    model:SetAttribute("ModelRevision",2); model:SetAttribute("Species",info.Species or id)
     return model
 end
 return Factory
 </ProtectedString>
         </Properties>
       </Item>
+      <Item class="ModuleScript" referent="RBX54f01cbc49954fa29dda1560ee5668d6">
+        <Properties>
+          <string name="Name">PetConcepts</string>
+          <ProtectedString name="Source">-- Review collection only. These IDs are NOT PetTypes and can never be hatched/equipped.
+local P={Order={"Bee","Mushroom","Turtle","Owl","Panda","Deer","Shark","Octopus","Griffin","Kitsune","Golem","Serpent","Unicorn","Robot","Slime","Butterfly","Chameleon","Bat","Penguin","Lion","Whale"},Types={}}
+local definitions={
+    Bee={"Медовая пчёлка","Обычная",{255,203,73},"Полосатая собирательница с прозрачными крыльями и баночкой мёда."},
+    Mushroom={"Грибной хранитель","Редкая",{224,106,125},"Лесной дух под шляпкой с кремовыми пятнышками."},
+    Turtle={"Островная черепаха","Эпическая",{101,206,164},"Носит на панцире собственный крошечный сад."},
+    Owl={"Сова-звездочёт","Эпическая",{132,143,219},"Большие лицевые диски, брови-перья и лунный медальон."},
+    Panda={"Бамбуковая панда","Редкая",{237,241,231},"Чёрные ушки, лапы и маска; свежий бамбук за спиной."},
+    Deer={"Олень рассвета","Легендарная",{226,171,113},"Ветвистые рога с листьями и светящиеся веснушки."},
+    Shark={"Рифовая акула","Мифическая",{91,173,218},"Обтекаемый силуэт, высокий плавник и добродушная улыбка."},
+    Octopus={"Чернильный осьминог","Секретная",{171,121,228},"Восемь щупалец с яркими присосками."},
+    Griffin={"Грифон песчаного солнца","Легендарная",{232,192,105},"Орлиная маска, веер перьев, львиные лапы и хвост."},
+    Kitsune={"Девятихвостый дух","Секретная",{242,226,237},"Девять хвостов, красные отметки и духи-огоньки."},
+    Golem={"Кристальный голем","Мифическая",{114,150,188},"Каменные кулаки, раздельные пластины и бирюзовое сердце."},
+    Serpent={"Змей туманностей","Божественная",{110,120,214},"Длинная изогнутая спина, звездные кольца и плавники."},
+    Unicorn={"Призматический единорог","Божественная",{242,222,251},"Витой рог, радужная грива и перламутровые копыта."},
+    Robot={"Робо-спутник","Легендарная",{117,205,213},"Мягкие металлические формы, экран-глаза и маленькие антенны."},
+    Slime={"Желейный росток","Обычная",{130,228,187},"Прозрачное желе с маленьким внутренним сердцем и ростком."},
+    Butterfly={"Мотылёк полярного сияния","Мифическая",{141,137,241},"Четыре узорчатых крыла и сверкающие усики."},
+    Chameleon={"Хамелеон-палитра","Эпическая",{118,207,134},"Объёмные глаза, цветной гребень и завиток хвоста."},
+    Bat={"Летучая мышь полумесяца","Редкая",{115,94,163},"Остроконечные ушки и широкие перепончатые крылья."},
+    Penguin={"Пингвин-полярник","Редкая",{82,111,157},"Белая грудка, шарф и короткие плавники."},
+    Lion={"Король янтаря","Легендарная",{242,190,94},"Огромная грива из отдельных прядей и золотые лапы."},
+    Whale={"Космический кит","Божественная",{122,166,226},"Широкие плавники, хвост-веер и созвездия на спине."},
+}
+for _,id in P.Order do
+    local d=definitions[id]; P.Types[id]={Name=d[1],Rarity=d[2],Color=d[3],Description=d[4],Species=id,Concept=true}
+end
+return P
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBX1b39947ed12d422786dadc275dd42f1f">
+        <Properties>
+          <string name="Name">PetSculpt</string>
+          <ProtectedString name="Source">-- Additional original silhouettes built with the same safe primitive factory.
+local S={}; local V=Vector3.new; local rgb=Color3.fromRGB
+local cream=rgb(255,241,216); local dark=rgb(24,33,58); local gold=rgb(255,205,91)
+function S.Build(model,id,color,p,crystal,halo,turn)
+    local function add(name,size,pos,c,shape,rot,glow) return p(model,name,size,pos,c or color,shape or "Round",rot,glow) end
+    local wide=id=="Whale" or id=="Shark" or id=="Turtle"; local body
+    if id=="Robot" or id=="Golem" then body=add("Body",V(1.65,1.45,1.4),V(0,0,0),color,"Block")
+    else body=add("Body",wide and V(1.65,1.25,2.2) or V(1.65,1.5,1.5),V(0,0,0)) end
+    local faceZ=wide and -1.02 or -.71
+    if id=="Robot" then
+        add("Screen",V(1.4,.85,.09),V(0,.13,-.75),dark,"Block")
+        for _,s in {-1,1} do add("PixelEye",V(.27,.34,.07),V(s*.36,.18,-.82),rgb(108,255,237),"Block",nil,true) end
+    else
+        for _,s in {-1,1} do
+            if id=="Owl" then add("FaceDisk",V(.76,.92,.17),V(s*.36,.08,faceZ+.06),cream) end
+            if id=="Panda" then add("EyePatch",V(.58,.7,.13),V(s*.36,.12,faceZ+.02),dark,nil,turn(0,0,s*-18)) end
+            add("EyeWhite",V(.36,.42,.14),V(s*.34,.14,faceZ),cream)
+            add("Pupil",V(.23,.3,.1),V(s*.34,.12,faceZ-.08),dark)
+            add("Highlight",V(.075,.085,.035),V(s*.34-.04,.2,faceZ-.14),rgb(255,255,255))
+            add("Blush",V(.23,.11,.05),V(s*.61,-.17,faceZ+.01),rgb(245,142,170))
+        end
+        add("Smile",V(.21,.055,.05),V(0,-.32,faceZ-.04),dark)
+    end
+    if not wide and id~="Serpent" and id~="Octopus" and id~="Slime" then
+        for _,s in {-1,1} do add("Paw",V(.44,.28,.52),V(s*.49,-.7,-.36),id=="Panda" and dark or cream) end
+    end
+    if id=="Bee" then
+        for i=1,3 do add("Stripe",V(1.69,.19,1.54),V(0,-.48+i*.31,0),dark) end
+        for _,s in {-1,1} do
+            local wing=add("HoneyWing",V(.85,.13,1.2),V(s*.9,.42,.3),rgb(213,246,255),nil,turn(0,s*25,s*20)); wing.Transparency=.3
+            add("Antenna",V(.08,.5,.08),V(s*.32,.93,-.15),dark,nil,turn(0,0,s*-22))
+            add("AntennaTip",V(.19,.19,.19),V(s*.42,1.18,-.15),gold)
+        end
+        add("HoneyPot",V(.58,.56,.45),V(.83,-.45,-.15),gold)
+    elseif id=="Mushroom" then
+        body.Color=cream
+        add("MushroomCap",V(2.45,.9,2.1),V(0,.79,.02))
+        add("CapRim",V(2.42,.15,2.08),V(0,.5,.02),cream)
+        for i=1,7 do local a=i*2.4; add("CapSpot",V(.28,.09,.32),V(math.cos(a)*.75,1.15,math.sin(a)*.5),cream) end
+    elseif id=="Turtle" then
+        add("Shell",V(1.82,1.08,1.9),V(0,.38,.37),rgb(65,132,109))
+        for x=-1,1 do for z=0,1 do add("ShellTile",V(.48,.16,.55),V(x*.49,.91,z*.58),gold) end end
+        for _,s in {-1,1} do for z=0,1 do add("Flipper",V(.65,.2,.65),V(s*.91,-.5,z*.95-.15)) end end
+        add("SproutStem",V(.12,.55,.12),V(0,1.15,.4),rgb(68,133,91))
+        for _,s in {-1,1} do add("GardenLeaf",V(.5,.14,.3),V(s*.22,1.38,.4),rgb(146,228,112),nil,turn(0,0,s*22)) end
+    elseif id=="Owl" or id=="Griffin" then
+        add("Beak",V(.32,.33,.35),V(0,-.15,-.89),gold,"Wedge",turn(180,0,0))
+        for _,s in {-1,1} do
+            add("BrowFeather",V(.55,.17,.22),V(s*.37,.58,-.6),cream,nil,turn(0,0,s*18))
+            for i=1,4 do add("Feather",V(.4,.19,.9),V(s*(.71+i*.16),.17-i*.13,.15),i%2==0 and cream or color,nil,turn(0,s*24,-s*32)) end
+        end
+        if id=="Griffin" then add("Tail",V(.23,.25,1.25),V(0,-.27,1)); add("TailTuft",V(.45,.4,.5),V(0,-.1,1.58),gold) end
+    elseif id=="Panda" or id=="Lion" then
+        for _,s in {-1,1} do add("RoundEar",V(.55,.55,.35),V(s*.57,.68,0),id=="Panda" and dark or gold) end
+        if id=="Panda" then
+            add("Bamboo",V(.2,1.8,.2),V(.85,.1,.6),rgb(92,177,106),nil,turn(0,0,-18))
+            for i=1,3 do add("BambooNode",V(.24,.09,.24),V(.85+i*.08,-.7+i*.45,.6),cream) end
+        else
+            for i=1,12 do local a=i*math.pi/6; add("ManeLock",V(.56,.66,.53),V(math.cos(a)*.87,math.sin(a)*.89,.1),i%2==0 and gold or rgb(204,119,53),nil,turn(0,0,math.deg(a))) end
+            add("Muzzle",V(.8,.45,.25),V(0,-.19,-.7),cream); add("Nose",V(.22,.15,.14),V(0,-.12,-.87),dark)
+        end
+    elseif id=="Deer" or id=="Unicorn" then
+        for _,s in {-1,1} do
+            add("Ear",V(.34,.64,.3),V(s*.62,.65,.02),cream,nil,turn(0,0,-s*30))
+            if id=="Deer" then
+                for i=1,3 do
+                    add("Antler",V(.13,.47,.13),V(s*(.27+i*.12),.7+i*.3,.13),gold,nil,turn(0,0,-s*18))
+                    add("AntlerBranch",V(.34,.11,.13),V(s*(.4+i*.12),.83+i*.3,.13),gold,nil,turn(0,0,s*25))
+                end
+            end
+        end
+        if id=="Unicorn" then
+            for i=1,5 do crystal(model,V(0,.65+i*.17,-.2),V(.38-i*.05,.3,.32-i*.04),i%2==0 and gold or cream) end
+            for i=1,6 do add("RainbowMane",V(.4,.36,.42),V(.38,.65-i*.18,.52),Color3.fromHSV(i/7,.4,1)) end
+        else for i=-1,1 do add("Freckle",V(.09,.09,.04),V(i*.2,.43,-.64),cream) end end
+    elseif id=="Shark" or id=="Whale" then
+        add("Belly",V(1.3,.48,1.6),V(0,-.43,-.16),cream)
+        for _,s in {-1,1} do
+            add("SideFin",V(.85,.18,.8),V(s*.9,-.13,.16),color,nil,turn(0,s*28,s*-20))
+            add("TailFan",V(.85,.17,.65),V(s*.36,.1,1.4),color,nil,turn(0,s*30,s*15))
+        end
+        if id=="Shark" then add("DorsalFin",V(.28,.95,.8),V(0,.76,.35),color,"Wedge",turn(0,90,0))
+            for _,s in {-1,1} do for i=1,3 do add("Gill",V(.04,.28,.07),V(s*.78,-.02,i*.16-.15),dark) end end
+        else halo(model,1,.65,rgb(193,224,255)); for i=1,6 do add("Constellation",V(.08,.08,.08),V(math.sin(i)*.6,.55,math.cos(i)*.6),gold,nil,nil,true) end end
+    elseif id=="Octopus" then
+        for i=1,8 do
+            local a=i*math.pi/4; local r=V(math.cos(a),0,math.sin(a))
+            add("Tentacle",V(.33,.35,1),r*.73+V(0,-.65,0),color,nil,turn(0,-math.deg(a)+90,0))
+            add("CurledTip",V(.4,.5,.4),r*1.18+V(0,-.52,0),color)
+            add("Sucker",V(.17,.1,.17),r*.99+V(0,-.83,0),rgb(139,247,229))
+        end
+    elseif id=="Kitsune" then
+        for _,s in {-1,1} do add("SpiritEar",V(.45,.8,.4),V(s*.5,.83,0),color,"Wedge",turn(0,90,-s*12)); add("RedMark",V(.14,.3,.04),V(s*.56,.09,-.68),rgb(224,93,116),nil,turn(0,0,s*22)) end
+        for i=1,9 do
+            local a=(i-5)*.25; local h=math.abs(i-5)*.1
+            add("SpiritTail",V(.36,.6,1.6),V(math.sin(a)*1.5,-.05+h,1.03),color,nil,turn(-22,math.deg(a),0))
+            add("TailFlame",V(.3,.4,.48),V(math.sin(a)*1.9,.32+h,1.65),rgb(249,137,174))
+        end
+    elseif id=="Golem" or id=="Robot" then
+        for _,s in {-1,1} do
+            add("Shoulder",V(.58,.68,.65),V(s*.92,.16,0),color,"Block",turn(0,0,-s*12))
+            add("Fist",V(.58,.5,.6),V(s*1.05,-.4,-.1),color,"Block")
+            if id=="Robot" then add("Antenna",V(.09,.5,.09),V(s*.45,.92,0),gold); add("SignalLight",V(.18,.18,.18),V(s*.45,1.2,0),rgb(110,255,218),nil,nil,true) end
+        end
+        crystal(model,V(0,-.35,-.78),V(.32,.5,.12),rgb(104,245,224))
+        if id=="Golem" then for i=-1,1 do crystal(model,V(i*.45,.82,0),V(.28,.7,.38),rgb(135,229,246)) end end
+    elseif id=="Serpent" then
+        for i=1,7 do local a=i*.55; add("Coil",V(.9-i*.06,.8-i*.05,.9-i*.06),V(math.sin(a)*.7,-i*.16,.5+i*.3)); add("SpineStar",V(.12,.28,.12),V(math.sin(a)*.7,.4-i*.16,.5+i*.3),gold,nil,nil,true) end
+        for _,s in {-1,1} do add("HeadFin",V(.32,.8,.5),V(s*.72,.45,0),cream,nil,turn(0,0,-s*35)) end
+        halo(model,1.2,.53,gold)
+    elseif id=="Slime" then
+        body.Transparency=.22
+        add("InnerHeart",V(.5,.45,.45),V(0,-.05,.05),rgb(113,255,198),nil,nil,true)
+        for _,s in {-1,1} do add("Sprout",V(.6,.13,.36),V(s*.22,.94,0),rgb(78,163,106),nil,turn(0,0,s*30)) end
+        add("Bubble",V(.26,.26,.26),V(.92,.6,.1),cream).Transparency=.4
+    elseif id=="Butterfly" or id=="Bat" then
+        for _,s in {-1,1} do
+            if id=="Butterfly" then
+                for i=1,2 do
+                    add("ButterflyWing",V(1.25,.16,1.5-i*.22),V(s*(.88+i*.12),.18-(i-1)*.6,.1),i==1 and color or rgb(125,228,220),nil,turn(0,0,s*20))
+                    add("WingEye",V(.4,.1,.5),V(s*1.12,.3-(i-1)*.6,.04),gold)
+                end
+            else
+                for i=1,3 do add("BatMembrane",V(.65,.12,.95-i*.1),V(s*(.76+i*.24),.15-i*.13,.16),color,"Wedge",turn(0,s*20,-s*25)) end
+                add("PointedEar",V(.4,.9,.3),V(s*.4,.87,0),color,"Wedge",turn(0,90,0))
+            end
+            add("Antenna",V(.07,.55,.07),V(s*.25,.93,0),dark,nil,turn(0,0,-s*25))
+        end
+    elseif id=="Chameleon" then
+        for _,s in {-1,1} do add("EyeTurret",V(.55,.58,.5),V(s*.62,.33,-.48),color) end
+        for i=1,8 do local a=i*math.pi/4; add("CoilTail",V(.22,.22,.28),V(math.cos(a)*.45,-.14+math.sin(a)*.45,1.1),Color3.fromHSV(i/9,.45,.95)) end
+        for i=1,5 do add("Crest",V(.16,.3,.24),V(0,.69,.1+(i-1)*.18),Color3.fromHSV(i/8,.5,1),"Wedge") end
+    elseif id=="Penguin" then
+        add("Bib",V(1.22,1.18,.2),V(0,-.05,-.65),cream)
+        add("Beak",V(.34,.24,.35),V(0,-.1,-.87),gold,"Wedge",turn(180,0,0))
+        add("Scarf",V(1.6,.2,1.45),V(0,-.43,0),rgb(246,123,149))
+        add("ScarfTail",V(.3,.7,.15),V(.47,-.65,-.74),rgb(246,123,149),nil,turn(0,0,-16))
+        for _,s in {-1,1} do add("Flipper",V(.27,.86,.5),V(s*.83,-.18,0),color,nil,turn(0,0,s*18)) end
+    end
+    return body
+end
+return S
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBXb506445108614b9da16af18c4fc7b2d6">
+        <Properties>
+          <string name="Name">TowerLayout</string>
+          <ProtectedString name="Source">-- Pure layout: shared by geometry, server checkpoints and CLI reachability tests.
+local L={Steps=32,CheckpointEvery=8,PlatformSize=8.6,Spacing=120}
+local ranges={{.24,6},{3,14},{10,30},{24,65},{48,105}}
+local ring={{-18,18},{-9,18},{0,18},{9,18},{18,18},{18,9},{18,0},{18,-9},
+    {18,-18},{9,-18},{0,-18},{-9,-18},{-18,-18},{-18,-9},{-18,0},{-18,9}}
+function L.Build(zone)
+    assert(type(zone)=="number" and zone%1==0 and zone&gt;=1 and zone&lt;=5,"Invalid tower zone")
+    local range=ranges[zone]; local x=(zone-1)*L.Spacing+8; local z=-76
+    local result={Zone=zone,X=x,Z=z,Stages={}}; local height=.2
+    for i=1,L.Steps do
+        local rise=range[1]+(range[2]-range[1])*((i-1)/(L.Steps-1))^1.35
+        height+=rise
+        local offset=ring[(i-1)%#ring+1]
+        result.Stages[i]={Index=i,X=x+offset[1],Y=height,Z=z+offset[2],Rise=rise,Checkpoint=i%L.CheckpointEvery==0}
+    end
+    result.SummitY=height+range[2]; result.LastRise=range[2]
+    return result
+end
+return table.freeze(L)
+</ProtectedString>
+        </Properties>
+      </Item>
     </Item>
   </Item>
-  <Item class="ServerScriptService" referent="RBX0f02bdb8c1d24f62a5e731275dd741bd">
+  <Item class="ServerScriptService" referent="RBXe9b6fc28edc84a93b4048bfa9a408702">
     <Properties>
       <string name="Name">ServerScriptService</string>
     </Properties>
-    <Item class="Folder" referent="RBXd1fe40ec7e594221baa6d22f90692036">
+    <Item class="Folder" referent="RBX8cfee0a9663e4c47bbfb89684457eaeb">
       <Properties>
         <string name="Name">Simulator</string>
       </Properties>
-      <Item class="ModuleScript" referent="RBX1bcdc47e12a24e01bc73f884a9c6887d">
+      <Item class="ModuleScript" referent="RBX414bd687f0ed4e6bbaee41d5a3d55098">
         <Properties>
           <string name="Name">Schema</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -659,7 +925,7 @@ return Schema
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXe0f5e3d37fc749fd977d57f4b90484d2">
+      <Item class="ModuleScript" referent="RBXfaaf063371694d1abdc566d4fdcecd34">
         <Properties>
           <string name="Name">PlayerData</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -767,7 +1033,7 @@ return PlayerData
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX5b6886f32f7141b68b9a8e0e91a9c9e2">
+      <Item class="ModuleScript" referent="RBXa08e96f151f94fd1b32bda6278a8b5b5">
         <Properties>
           <string name="Name">Progression</string>
           <ProtectedString name="Source">local C = require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -810,7 +1076,7 @@ return P
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXbf0279e929cf48c290e7fd2785750002">
+      <Item class="ModuleScript" referent="RBXfbb5a679f1b840939b590746b967dc3e">
         <Properties>
           <string name="Name">Rebirth</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -828,7 +1094,7 @@ return R
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX0b9e6da0a68246c3bee9b0da3879d94b">
+      <Item class="ModuleScript" referent="RBX330c40b81fb240a48b34ba2bdb2ddc0a">
         <Properties>
           <string name="Name">Rewards</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -882,7 +1148,7 @@ return Rewards
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX3075c4f39f76499bbc35f6806d540c45">
+      <Item class="ModuleScript" referent="RBXa08791a01c094763b52196ead5602218">
         <Properties>
           <string name="Name">Pets</string>
           <ProtectedString name="Source">local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
@@ -992,7 +1258,7 @@ return Pets
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX987fa724dbb54958b2b8899aaf581f3b">
+      <Item class="ModuleScript" referent="RBXe4da5d1dae4f4fc4b1c685e98af99289">
         <Properties>
           <string name="Name">PetVisuals</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1037,7 +1303,7 @@ return Visuals
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXc647d5d94dd740c98df809f441e09d59">
+      <Item class="ModuleScript" referent="RBX03eae9a700f84af0b30b310cd59cb151">
         <Properties>
           <string name="Name">Security</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1088,7 +1354,7 @@ return S
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX5057b5323320450f9304bbb1bf3b38ae">
+      <Item class="ModuleScript" referent="RBX6187ebf0414f4a50a8fbdd6936f8342b">
         <Properties>
           <string name="Name">LeaderboardTemplate</string>
           <ProtectedString name="Source">-- Visual draft only: each ranking row is a separate solid plaque, no live data.
@@ -1173,7 +1439,288 @@ return Board
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX7edb1aed29884b67886dfd9790d424bd">
+      <Item class="ModuleScript" referent="RBX4174b79a72a143d7b43db338daca75ee">
+        <Properties>
+          <string name="Name">WorldArt</string>
+          <ProtectedString name="Source">local A={}; local V=Vector3.new
+function A.Part(parent,name,size,pos,color,material,solid,rotation,shape)
+    local p=Instance.new("Part"); p.Name=name; p.Size=size
+    p.CFrame=CFrame.new(pos)*(rotation or CFrame.identity); p.Color=color
+    p.Material=material or Enum.Material.SmoothPlastic; p.Anchored=true
+    p.CanCollide=solid==true; p.CanTouch=false; p.CanQuery=solid==true
+    p.TopSurface=Enum.SurfaceType.Smooth; p.BottomSurface=Enum.SurfaceType.Smooth
+    if shape=="Ball" then p.Shape=Enum.PartType.Ball end
+    p.Parent=parent; return p
+end
+function A.Beam(parent,name,a,b,width,color,material)
+    local p=A.Part(parent,name,V(width,width,(b-a).Magnitude),(a+b)/2,color,material)
+    p.CFrame=CFrame.lookAt((a+b)/2,b); return p
+end
+function A.Column(parent,name,foot,height,width,depth,color,material,solid)
+    -- Roblox clamps individual Part dimensions; tall towers must be segmented.
+    local used,index=0,0
+    while used&lt;height do
+        local length=math.min(256,height-used); index+=1
+        local p=A.Part(parent,name,V(width,length,depth),foot+V(0,used+length/2,0),color,material,solid)
+        p:SetAttribute("ColumnSegment",index); used+=length
+    end
+end
+function A.Label(parent,pos,size,text,color,face)
+    local p=A.Part(parent,"Plaque",size,pos,Color3.fromRGB(24,35,52))
+    local gui=Instance.new("SurfaceGui"); gui.Face=face or Enum.NormalId.Back
+    gui.SizingMode=Enum.SurfaceGuiSizingMode.PixelsPerStud; gui.PixelsPerStud=48; gui.Parent=p
+    local label=Instance.new("TextLabel"); label.Size=UDim2.fromScale(.94,.9)
+    label.Position=UDim2.fromScale(.03,.05); label.BackgroundTransparency=1
+    label.Font=Enum.Font.GothamBold; label.TextScaled=true; label.TextWrapped=true
+    label.TextColor3=color; label.Text=text; label.Parent=gui
+    require(game.ReplicatedStorage.SimulatorShared.TextStyle).Apply(label)
+    return p
+end
+function A.Tree(parent,pos,color,scale)
+    scale=scale or 1; local brown=Color3.fromRGB(99,71,64)
+    A.Part(parent,"Trunk",V(1.6,8,1.6)*scale,pos+V(0,4,0)*scale,brown)
+    for i=1,3 do
+        A.Part(parent,"Canopy",V(7-i,5,7-i)*scale,pos+V((i-2)*1.1,7+i*1.5,0)*scale,
+            color:Lerp(Color3.new(1,1,1),i*.06),nil,false,CFrame.Angles(0,i,.12*i),"Ball")
+    end
+end
+function A.Ring(parent,pos,radius,color,segments)
+    segments=segments or 16
+    for i=1,segments do
+        local a=(i-1)*math.pi*2/segments; local b=i*math.pi*2/segments
+        A.Beam(parent,"Ring",pos+V(math.cos(a)*radius,0,math.sin(a)*radius),pos+V(math.cos(b)*radius,0,math.sin(b)*radius),.16,color,Enum.Material.Neon)
+    end
+end
+return A
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBX4c870f966cdd4c65b22fdf900fbec859">
+        <Properties>
+          <string name="Name">TowerWorld</string>
+          <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local Layout=require(game.ReplicatedStorage.SimulatorShared.TowerLayout)
+local A=require(script.Parent.WorldArt)
+local Factory=require(game.ReplicatedStorage.SimulatorShared.ModelFactory)
+local T={}; local V=Vector3.new; local rgb=Color3.fromRGB
+local stone=rgb(53,64,83); local gold=rgb(245,202,112)
+local names={"САД НЕБЕСНЫХ СТУПЕНЕЙ","ДРЕВО ВЫСОТЫ","ШПИЛЬ СЕВЕРНОГО СИЯНИЯ","СЕРДЦЕ ВУЛКАНА","НЕБЕСНАЯ ОБСЕРВАТОРИЯ"}
+local function prompt(base,name,action,object)
+    local p=Instance.new("ProximityPrompt"); p.Name=name; p.ActionText=action; p.ObjectText=object
+    p.KeyboardKeyCode=Enum.KeyCode.E; p.HoldDuration=0; p.MaxActivationDistance=7
+    p.RequiresLineOfSight=false; p.Exclusivity=Enum.ProximityPromptExclusivity.OneGlobally; p.Parent=base
+end
+function T.Build(map)
+    for zone,info in C.Zones do
+        local layout=Layout.Build(zone); local color=rgb(table.unpack(info.Color))
+        local folder=Instance.new("Folder"); folder.Name="Tower"..zone; folder.Parent=map
+        folder:SetAttribute("Zone",zone); folder:SetAttribute("SummitHeight",layout.SummitY)
+        local origin=V(layout.X,0,layout.Z)
+        A.Part(folder,"Courtyard",V(76,2,60),origin+V(0,-1,3),color:Lerp(stone,.47),nil,true)
+        A.Part(folder,"Approach",V(12,.2,14),V(layout.X-18,.1,-39),color:Lerp(stone,.6),nil,true)
+        -- Starts at ground level, with no SpawnLocation/visible spawn platform.
+        A.Label(folder,V(layout.X,5,-45),V(20,5,.4),names[zone].."\n32 ступени · растущая высота",color)
+        local recall=A.Part(map,"TowerRecall"..zone,V(4,.5,4),V(layout.X-29,.25,-48),color,nil,true)
+        recall:SetAttribute("RecallZone",zone); prompt(recall,"RecallPrompt","Вернуться к отметке","Башня · точка отдыха")
+        A.Label(folder,recall.Position+V(0,2.7,0),V(5,2.6,.3),"ВОЗВРАТ · E\nОтметки: каждые 8 ступеней",color)
+        -- Collidable central structure never overlaps the jumping ledges.
+        local coreColors={rgb(182,186,154),rgb(105,76,64),rgb(151,191,215),rgb(53,44,54),rgb(188,193,221)}
+        local coreColor=coreColors[zone]
+        A.Column(folder,"Core",origin,layout.SummitY-1,21,21,coreColor,nil,true)
+        for _,s in {-1,1} do
+            for _,t in {-1,1} do
+                A.Column(folder,"Spine",origin+V(s*10.8,0,t*10.8),layout.SummitY,.45,.45,color,Enum.Material.Neon)
+            end
+        end
+        for _,stage in layout.Stages do
+            local pos=V(stage.X,stage.Y-.4,stage.Z)
+            local pad=A.Part(folder,"Step"..stage.Index,V(Layout.PlatformSize,.8,Layout.PlatformSize),pos,
+                stage.Checkpoint and color or color:Lerp(stone,.48+(stage.Index%2)*.13),nil,true)
+            pad:SetAttribute("TowerZone",zone); pad:SetAttribute("TowerStep",stage.Index)
+            A.Part(folder,"StepEdge",V(7,.06,.13),pos+V(0,.43,-4.05),stage.Checkpoint and gold or color,Enum.Material.Neon)
+            A.Label(folder,pos+V(0,.45,0),V(7,.02,5),tostring(stage.Index)..(stage.Checkpoint and "  ◆" or "").."\n↑ "..string.format("%.1f",stage.Rise),stage.Checkpoint and gold or rgb(230,243,255),Enum.NormalId.Top)
+            A.Part(folder,"StepSupport",V(2,.6,2),pos-V(0,.7,0),stone,nil,false,CFrame.Angles(0,math.pi/4,0))
+            if stage.Checkpoint then
+                A.Beam(folder,"RestFlagPole",pos+V(3.8,.4,3.8),pos+V(3.8,5,3.8),.13,gold)
+                A.Part(folder,"RestFlag",V(1.6,1,.12),pos+V(3.1,4.4,3.8),color)
+            end
+        end
+        local summit=A.Part(folder,"Summit",V(42,1,42),origin+V(0,layout.SummitY-.5,0),color:Lerp(stone,.45),nil,true)
+        summit:SetAttribute("TowerZone",zone); summit:SetAttribute("TowerStep",33)
+        for _,s in {-1,1} do
+            -- Open front/back, low rails only on the far left/right edges.
+            A.Part(folder,"CrownRail",V(.4,2,38),origin+V(s*20.6,layout.SummitY+1,0),gold)
+        end
+        A.Ring(folder,origin+V(0,layout.SummitY+.1,0),9,color)
+        A.Label(folder,origin+V(0,layout.SummitY+7,-12),V(18,4,.4),"ВЕРШИНА · "..info.Name.."\n"..math.floor(layout.SummitY).." studs",color)
+        local statueIds={"Bunny","Deer","Owl","Phoenix","Dragon_Z5_Upgraded"}
+        local statue=Factory.Build(statueIds[zone],false); statue.Name="SummitMascot"; statue.Parent=folder
+        statue:ScaleTo(zone==5 and 2.6 or 2)
+        statue:PivotTo(CFrame.new(origin+V(0,layout.SummitY+4,-7))*CFrame.Angles(0,math.pi,0))
+        A.Part(folder,"MascotPedestal",V(7,2,7),origin+V(0,layout.SummitY+1,-7),stone,nil,true)
+        local down=A.Part(map,"TowerDown"..zone,V(4,.5,4),origin+V(-16,layout.SummitY+.25,14),color,nil,true)
+        down:SetAttribute("TowerDownZone",zone); prompt(down,"DownPrompt","Вниз","Вернуться к яйцам")
+        A.Label(folder,down.Position+V(0,2.4,0),V(5,1.5,.25),"К ЯЙЦАМ · E",color)
+        -- Four rings frame the vertical scale; biome details keep each tower recognizable.
+        for tier=1,4 do
+            local y=layout.SummitY*tier/5
+            A.Part(folder,"Belt",V(22,.35,22),origin+V(0,y,0),color)
+            for side=0,3 do
+                local basis=CFrame.new(origin)*CFrame.Angles(0,side*math.pi/2,0)
+                for _,s in {-1,1} do
+                    local window=basis*CFrame.new(s*5,y-4,-10.65)
+                    A.Part(folder,"Recess",V(3.2,7,.14),window.Position,coreColor:Lerp(stone,.7),nil,false,window.Rotation)
+                    for _,edge in {-1,1} do
+                        local rim=window*CFrame.new(edge*1.75,0,-.09)
+                        A.Part(folder,"WindowRim",V(.16,7.4,.14),rim.Position,gold,nil,false,rim.Rotation)
+                    end
+                    local light=window*CFrame.new(0,0,-.1)
+                    A.Part(folder,"WindowLight",V(.16,5,.08),light.Position,color,Enum.Material.Neon,false,light.Rotation)
+                end
+            end
+            if zone==2 then
+                for _,s in {-1,1} do
+                    A.Beam(folder,"Branch",origin+V(s*10,y,0),origin+V(s*16,y+5,0),1.3,coreColor)
+                    A.Part(folder,"Foliage",V(8,5,7),origin+V(s*14,y+7,0),color,nil,false,nil,"Ball")
+                end
+            elseif zone==3 then
+                for _,s in {-1,1} do
+                    A.Part(folder,"IceShard",V(3,13,3),origin+V(s*8,y,0),color:Lerp(rgb(255,255,255),.4),Enum.Material.Ice,false,CFrame.Angles(0,.6,s*.18))
+                end
+            elseif zone==4 then
+                for _,s in {-1,1} do A.Beam(folder,"LavaVein",origin+V(s*10.6,y-12,-8),origin+V(s*10.6,y+12,8),.55,rgb(255,103,47),Enum.Material.Neon) end
+            elseif zone==5 then
+                A.Ring(folder,origin+V(0,y,0),12,gold,20)
+            else
+                for _,s in {-1,1} do A.Part(folder,"GardenWindow",V(3,4,.2),origin+V(s*5,y, -10.6),gold) end
+            end
+        end
+        if zone==2 then A.Tree(folder,origin+V(0,layout.SummitY+2,0),color,2)
+        elseif zone==5 then
+            A.Ring(folder,origin+V(0,layout.SummitY+15,0),7,gold)
+            A.Part(folder,"AstralHeart",V(5,7,5),origin+V(0,layout.SummitY+12,0),color,Enum.Material.Neon,false,CFrame.Angles(.4,.4,.4))
+        end
+    end
+end
+return T
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBXa50d29f76ff740b28dfa37eb5474a3ed">
+        <Properties>
+          <string name="Name">TowerProgress</string>
+          <ProtectedString name="Source">local Players=game:GetService("Players")
+local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local Layout=require(game.ReplicatedStorage.SimulatorShared.TowerLayout)
+local Security=require(script.Parent.Security)
+local T={}
+-- Checkpoints are recovery aids for the current server session, never currency or XP.
+function T.Start(map,getData,notice)
+    local sessions={}; local closed=false
+    local function state(player)
+        local s=sessions[player.UserId]
+        if not s then s={Checkpoints={},Zone=1,LastRecall=-10}; sessions[player.UserId]=s end
+        return s
+    end
+    local function move(player,pos)
+        local char=player.Character; local root=char and char:FindFirstChild("HumanoidRootPart")
+        local human=char and char:FindFirstChildOfClass("Humanoid")
+        if not root or not human or human.Health&lt;=0 then return false end
+        root.AssemblyLinearVelocity=Vector3.zero; root.AssemblyAngularVelocity=Vector3.zero
+        char:PivotTo(CFrame.new(pos)); return true
+    end
+    function T.Recall(player,zone,down)
+        if type(zone)~="number" or zone%1~=0 or zone&lt;1 or zone&gt;#C.Zones or type(down)~="boolean" then return false end
+        local base=map:FindFirstChild((down and "TowerDown" or "TowerRecall")..zone)
+        local data=getData(player); if not base or not data or zone&gt;data.Zone or not Security.Near(player,base,7) then return false end
+        local s=state(player); if os.clock()-s.LastRecall&lt;2 then return false end; s.LastRecall=os.clock()
+        local checkpoint=s.Checkpoints[zone] or 0
+        local stage=checkpoint&gt;0 and Layout.Build(zone).Stages[checkpoint]
+        if down or not stage then move(player,C.Zones[zone].Position)
+        else move(player,Vector3.new(stage.X,stage.Y+3.5,stage.Z)) end
+        notice(player,down and "У подножия башни." or stage and ("Возврат к ступени "..checkpoint..".") or "Сначала достигни отметки на ступени 8.")
+        return true
+    end
+    for _,base in map:GetChildren() do
+        local zone=base:GetAttribute("RecallZone"); local down=base:GetAttribute("TowerDownZone")
+        if zone then base.RecallPrompt.Triggered:Connect(function(player) T.Recall(player,zone,false) end)
+        elseif down then base.DownPrompt.Triggered:Connect(function(player) T.Recall(player,down,true) end) end
+    end
+    Players.PlayerRemoving:Connect(function(player) sessions[player.UserId]=nil end)
+    game:BindToClose(function() closed=true end)
+    task.spawn(function()
+        while not closed do
+            task.wait(.15)
+            for _,player in Players:GetPlayers() do
+                local data=getData(player); local char=player.Character
+                local root=char and char:FindFirstChild("HumanoidRootPart")
+                local human=char and char:FindFirstChildOfClass("Humanoid")
+                if not data or not root or not human or human.Health&lt;=0 then continue end
+                local s=state(player)
+                if root.Position.Y &lt; -25 then
+                    local zone=math.min(s.Zone,data.Zone); local cp=s.Checkpoints[zone]
+                    local stage=cp and Layout.Build(zone).Stages[cp]
+                    move(player,stage and Vector3.new(stage.X,stage.Y+3.5,stage.Z) or C.Zones[zone].Position)
+                elseif math.abs(root.AssemblyLinearVelocity.Y)&lt;3 and human.FloorMaterial~=Enum.Material.Air then
+                    local params=RaycastParams.new(); params.FilterType=Enum.RaycastFilterType.Exclude; params.FilterDescendantsInstances={char}
+                    local hit=workspace:Raycast(root.Position,Vector3.new(0,-(human.HipHeight+root.Size.Y/2+1),0),params)
+                    local step=hit and hit.Instance:GetAttribute("TowerStep"); local zone=hit and hit.Instance:GetAttribute("TowerZone")
+                    if step and zone and zone&lt;=data.Zone then
+                        s.Zone=zone; player:SetAttribute("TowerZone",zone); player:SetAttribute("TowerStep",step)
+                        local checkpoint=math.min(Layout.Steps,step-step%Layout.CheckpointEvery)
+                        if checkpoint&gt;0 and checkpoint&gt;(s.Checkpoints[zone] or 0) then
+                            s.Checkpoints[zone]=checkpoint; player:SetAttribute("TowerCheckpoint",checkpoint)
+                            notice(player,"Отметка башни: "..checkpoint.."/32. Возврат по E у подножия (до выхода из сервера).")
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end
+return T
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBX33e78d68bc8d4c25ad84d15ae08cbf39">
+        <Properties>
+          <string name="Name">PetGallery</string>
+          <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
+local Concepts=require(game.ReplicatedStorage.SimulatorShared.PetConcepts)
+local Factory=require(game.ReplicatedStorage.SimulatorShared.ModelFactory)
+local A=require(script.Parent.WorldArt)
+local G={}; local V=Vector3.new; local rgb=Color3.fromRGB
+local rarityNames={["Обычная"]="Обычный",["Редкая"]="Редкий",["Эпическая"]="Эпический",["Мифическая"]="Мифический",["Легендарная"]="Легендарный",["Секретная"]="Секретный",["Божественная"]="Божественный"}
+function G.Build(map)
+    local folder=Instance.new("Folder"); folder.Name="PetGallery"; folder.Parent=map
+    A.Part(folder,"GalleryGround",V(58,2,108),V(-100,-1,0),rgb(36,49,66),nil,true)
+    A.Part(folder,"GalleryBridge",V(25,.2,8),V(-58.5,.1,14),rgb(92,122,137),nil,true)
+    for _,z in {9.7,18.3} do A.Beam(folder,"BridgeRim",V(-71,.6,z),V(-46,.6,z),.13,rgb(113,224,199),Enum.Material.Neon) end
+    A.Label(folder,V(-100,8,54),V(38,6,.4),"АТЕЛЬЕ ПИТОМЦЕВ\n7 обновлённых видов + 21 концепт",rgb(140,239,219))
+    local order={"Cat","Dog","Bunny","Fox","Phoenix","Axolotl","Dragon"}
+    for _,id in Concepts.Order do table.insert(order,id) end
+    for index,id in order do
+        local info=C.PetTypes[id] or Concepts.Types[id]
+        local col=(index-1)%4; local row=math.floor((index-1)/4)
+        local pos=V(-119+col*12,0,-42+row*13)
+        local color=rgb(table.unpack(C.RarityColors[info.Rarity]))
+        A.Part(folder,"DisplayBase"..id,V(9,.8,9),pos+V(0,.4,0),rgb(45,61,80),nil,true)
+        A.Ring(folder,pos+V(0,.85,0),3.7,color,12)
+        local model=Factory.Build(id,false); model.Name="Exhibit_"..id; model.Parent=folder
+        model:ScaleTo(1.5); model:PivotTo(CFrame.new(pos+V(0,2.55,0))*CFrame.Angles(0,math.pi,0))
+        A.Label(folder,pos+V(0,1,-4.1),V(8,1.8,.22),info.Name.."\n"..(info.Concept and "КОНЦЕПТ · " or "В ИГРЕ · ")..rarityNames[info.Rarity],color,Enum.NormalId.Back)
+    end
+    for _,x in {-128,-72} do for _,z in {-52,52} do
+        A.Part(folder,"PavilionColumn",V(.8,8,.8),V(x,4,z),rgb(105,133,149),nil,true)
+    end end
+    -- Open-air pavilion; no large opaque roof hiding the collection from the camera.
+    for _,x in {-128,-72} do A.Beam(folder,"CanopyFrame",V(x,8,-52),V(x,8,52),.5,rgb(150,199,197)) end
+end
+return G
+</ProtectedString>
+        </Properties>
+      </Item>
+      <Item class="ModuleScript" referent="RBXbf5b01ddda3f4168a27d3ed9c7794dd0">
         <Properties>
           <string name="Name">World</string>
           <ProtectedString name="Source">local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
@@ -1181,6 +1728,10 @@ local C=require(game.ReplicatedStorage.SimulatorShared.Config)
 local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
 local LeaderboardTemplate=require(script.Parent.LeaderboardTemplate)
 local ModelFactory=require(game.ReplicatedStorage.SimulatorShared.ModelFactory)
+local TowerWorld=require(script.Parent.TowerWorld)
+local Layout=require(game.ReplicatedStorage.SimulatorShared.TowerLayout)
+local A=require(script.Parent.WorldArt)
+local Gallery=require(script.Parent.PetGallery)
 local World={}
 local builtMap
 local function part(parent,name,size,position,color)
@@ -1211,14 +1762,15 @@ function World.Build()
     -- Editor preview is recreated from this module at Play; balance/layout source stays authoritative.
     if existing then existing:Destroy() end
     local map=Instance.new("Folder"); map.Name="SimulatorWorld"; map.Parent=workspace
-    part(map,"Ground",Vector3.new(100,2,80),Vector3.new(4,-1,0),Color3.fromRGB(30,40,62))
+    part(map,"Ground",Vector3.new(100,2,80),Vector3.new(4,-1,0),Color3.fromRGB(111,157,133))
     part(map,"StartingPlaza",Vector3.new(32,0.2,26),Vector3.new(-12,0.1,0),Color3.fromRGB(47,72,88))
     part(map,"AdvancedPlaza",Vector3.new(28,0.2,26),Vector3.new(24,0.1,0),Color3.fromRGB(67,49,96))
     -- Join x=4..10 exactly: no overlap with either plaza, and a 0.05 stud step below them.
     part(map,"Path",Vector3.new(6,0.2,7),Vector3.new(7,0.05,0),Color3.fromRGB(100,109,134))
     for zone=2,#C.Zones do
         local info=C.Zones[zone]; local x=(zone-1)*120
-        part(map,"GroundZ"..zone,Vector3.new(100,2,80),Vector3.new(x+4,-1,0),Color3.fromRGB(30,40,62))
+        local groundColors={Color3.fromRGB(111,157,133),Color3.fromRGB(92,138,106),Color3.fromRGB(183,216,231),Color3.fromRGB(81,69,83),Color3.fromRGB(185,195,221)}
+        part(map,"GroundZ"..zone,Vector3.new(100,2,80),Vector3.new(x+4,-1,0),groundColors[zone])
         part(map,"PlazaZ"..zone,Vector3.new(32,.2,26),Vector3.new(x-12,.1,0),Color3.fromRGB(table.unpack(info.Color)):Lerp(Color3.fromRGB(25,35,55),.65))
         sign(map,"ZoneTitle"..zone,Vector3.new(x-16,8,-15),"УРОВЕНЬ "..zone.." · "..info.Name,Color3.fromRGB(table.unpack(info.Color)))
     end
@@ -1233,7 +1785,8 @@ function World.Build()
         sign(map,name.."Label",pos+Vector3.new(0,8,0),"УРОВЕНЬ "..target.." · "..info.Name..(returning and "\nНазад · E" or "\n"..number(info.XP).." опыта · "..number(info.Cost).." монет · E"),color)
     end
     for zone=2,#C.Zones do
-        gate("ZoneGate"..zone,zone,Vector3.new((zone-2)*120+40,.45,12),false)
+        local summit=Layout.Build(zone-1)
+        gate("ZoneGate"..zone,zone,Vector3.new(summit.X,summit.SummitY+.45,summit.Z+4),false)
         gate("ZoneReturn"..zone,zone-1,Vector3.new((zone-1)*120-31,.45,24),true)
     end
     for id, info in pairs(C.Stations) do
@@ -1263,13 +1816,41 @@ function World.Build()
         sign(map,id.."EggSign",info.Position+Vector3.new(0,6,0),info.Name.."\n"..number(info.Cost).." монет • нажми E",color)
     end
     sign(map,"Milestone",Vector3.new(24,7,-13),"НАГРАДЫ ЗА ПРОГРЕСС\n1 Rebirth: аура • 10 Rebirth: неоновый след",Color3.fromRGB(120,223,255))
-    for _, z in {-37,37} do
+    TowerWorld.Build(map)
+    Gallery.Build(map)
+    for _, z in {37} do
         part(map,"Border"..z,Vector3.new(94,3,1),Vector3.new(4,1.5,z),Color3.fromRGB(52,67,93))
     end
-    for _, x in {-43,51} do
+    -- Open west edge for the atelier and north edge for the tower approach.
+    for _, x in {51} do
         part(map,"Border"..x,Vector3.new(1,3,74),Vector3.new(x,1.5,0),Color3.fromRGB(52,67,93))
     end
-    LeaderboardTemplate.Build(map)
+    for zone,info in C.Zones do
+        local x=(zone-1)*120; local color=Color3.fromRGB(table.unpack(info.Color))
+        for _,side in {-1,1} do
+            if zone==2 or zone==1 then A.Tree(map,Vector3.new(x+side*32,0,-25),color,zone==2 and 1.5 or 1)
+            elseif zone==3 then
+                A.Part(map,"IceGarden",Vector3.new(5,8,5),Vector3.new(x+side*32,3,-25),color,Enum.Material.Ice,false,CFrame.Angles(.15,.5,side*.2))
+            elseif zone==4 then
+                A.Part(map,"Basalt",Vector3.new(6,9,6),Vector3.new(x+side*32,3,-25),Color3.fromRGB(61,48,64),nil,false,CFrame.Angles(.1,.5,side*.13))
+                A.Ring(map,Vector3.new(x+side*32,1,-25),4,color)
+            else
+                A.Ring(map,Vector3.new(x+side*32,4,-25),4,color)
+                A.Part(map,"FloatingStar",Vector3.new(2,3,2),Vector3.new(x+side*32,5,-25),color,Enum.Material.Neon,false,CFrame.Angles(.4,.4,.4))
+            end
+        end
+        -- Decorative paving stays below the gameplay floor, preventing coplanar flashing.
+        A.Part(map,"EggWalk"..zone,Vector3.new(8,.12,26),Vector3.new(x-31,.06,-3),color:Lerp(Color3.fromRGB(40,54,72),.7),nil,true)
+        A.Label(map,Vector3.new(x-16,3,23),Vector3.new(19,3,.3),"ПРЫГАЙ → ПОДНИМИСЬ НА БАШНЮ\nПортал следующей зоны — на вершине",color)
+    end
+    local lighting=game:GetService("Lighting")
+    lighting.ClockTime=13.5; lighting.Brightness=2; lighting.Ambient=Color3.fromRGB(112,123,145)
+    lighting.OutdoorAmbient=Color3.fromRGB(146,158,177)
+    local bloom=lighting:FindFirstChild("SimulatorBloom") or Instance.new("BloomEffect")
+    bloom.Name="SimulatorBloom"; bloom.Intensity=.12; bloom.Size=18; bloom.Threshold=1.8; bloom.Parent=lighting
+    local board=LeaderboardTemplate.Build(map)
+    local pivot=board:GetPivot()
+    board:PivotTo(CFrame.new(4,pivot.Position.Y,31)*CFrame.Angles(0,math.pi,0))
     builtMap=map
     return map
 end
@@ -1277,7 +1858,7 @@ return World
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBXa10c179e5a6d49dd9e9332a8b2f084ca">
+      <Item class="ModuleScript" referent="RBXcf5cb15452c94213b062cda7571cb745">
         <Properties>
           <string name="Name">Network</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1304,7 +1885,7 @@ return Network
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX1b9d458d3aa44249947e582c9fa4055a">
+      <Item class="ModuleScript" referent="RBX18fc64bc13ac4f4ca9fc70c4e7358aba">
         <Properties>
           <string name="Name">Telemetry</string>
           <ProtectedString name="Source">local C=require(game.ReplicatedStorage.SimulatorShared.Config)
@@ -1323,7 +1904,7 @@ return Telemetry
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="ModuleScript" referent="RBX12b8c4c24d3a4088a73458764694f44e">
+      <Item class="ModuleScript" referent="RBX385284fac05041b2ab4786a466bfa567">
         <Properties>
           <string name="Name">Runtime</string>
           <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -1341,6 +1922,7 @@ local World=require(script.Parent.World)
 local Telemetry=require(script.Parent.Telemetry)
 local Pets=require(script.Parent.Pets)
 local PetVisuals=require(script.Parent.PetVisuals)
+local TowerProgress=require(script.Parent.TowerProgress)
 local Runtime={sessions={},started=false}
 local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local dataService,remotes,map,mode
@@ -1542,6 +2124,7 @@ function Runtime.Start()
     end
     dataService=PlayerData.new(store,{offline=mode=="sandbox"})
     map=World.Build(); remotes=Network.Create()
+    TowerProgress.Start(map,function(player) return dataService:Get(player.UserId) end,notice)
     remotes.Action.OnServerEvent:Connect(function(player,action,...) Runtime.Dispatch(player,action,...) end)
     for id in pairs(C.Stations) do
         map[id].TrainPrompt.Triggered:Connect(function(player) Runtime.Dispatch(player,"Train",id) end)
@@ -1608,18 +2191,18 @@ return Runtime
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Script" referent="RBXe9f7b288895d4839bf2dc86ec6207a11">
+      <Item class="Script" referent="RBXe8c56f4bb0b44905a6a5ef4e3bb78c9b">
         <Properties>
           <string name="Name">Bootstrap</string>
           <ProtectedString name="Source">require(script.Parent.Runtime).Start()
 </ProtectedString>
         </Properties>
       </Item>
-      <Item class="Folder" referent="RBXb1a454a91ae040a4ae708c8e27493646">
+      <Item class="Folder" referent="RBXd9c3c9f67c4b453b96be8d96f69f7df4">
         <Properties>
           <string name="Name">Tests</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBXfd5b9126ffcd4a04b7687fd9adf0ed79">
+        <Item class="ModuleScript" referent="RBX7e432fb1b3a74dc7a3143e70c00174de">
           <Properties>
             <string name="Name">Spec</string>
             <ProtectedString name="Source">-- Server-only deterministic tests. No production DataStore, no real user records.
@@ -1899,7 +2482,7 @@ return Spec
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX4335e4f8d0244da4be2643d013d03634">
+        <Item class="ModuleScript" referent="RBXbeb4153656134b74803513205dca428e">
           <Properties>
             <string name="Name">Integration</string>
             <ProtectedString name="Source">-- SERVER Command Bar in a fresh Play. Only runs in Studio sandbox.
@@ -1968,19 +2551,19 @@ return Integration
       </Item>
     </Item>
   </Item>
-  <Item class="StarterPlayer" referent="RBX89b0ecafc1684c1a9e7d70d73faf8a23">
+  <Item class="StarterPlayer" referent="RBX96adb28842084591abf64f91ea4a3c19">
     <Properties>
       <string name="Name">StarterPlayer</string>
     </Properties>
-    <Item class="StarterPlayerScripts" referent="RBXe4dd658171934c24988f19ea2e90845a">
+    <Item class="StarterPlayerScripts" referent="RBX59e82715c51749568354bff9eab242b4">
       <Properties>
         <string name="Name">StarterPlayerScripts</string>
       </Properties>
-      <Item class="Folder" referent="RBXa09fa6db1aa840c7b7b99c5d9d9092f2">
+      <Item class="Folder" referent="RBXa07e1aa54ff644f1b457ab1b6b3f6ff0">
         <Properties>
           <string name="Name">SimulatorClient</string>
         </Properties>
-        <Item class="ModuleScript" referent="RBX8e034e3609f747c09b0e2bb5f9a917be">
+        <Item class="ModuleScript" referent="RBX5eb3a08d4c054207918b5d64ed0e4edb">
           <Properties>
             <string name="Name">UI</string>
             <ProtectedString name="Source">local UI={}
@@ -2350,7 +2933,7 @@ return UI
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBX2bf20ee63bd249bc80bfcdf664f294db">
+        <Item class="ModuleScript" referent="RBXc492c3956f2a4005a7f0508ad1978cf2">
           <Properties>
             <string name="Name">Glass</string>
             <ProtectedString name="Source">local TweenService=game:GetService("TweenService")
@@ -2510,7 +3093,7 @@ return Glass
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXa8e2f0766655420dacb02ac6b51ee12e">
+        <Item class="ModuleScript" referent="RBX457a07842c9b4144a0020ce51fc8ee11">
           <Properties>
             <string name="Name">Headings</string>
             <ProtectedString name="Source">local Localization=game:GetService("LocalizationService")
@@ -2561,7 +3144,7 @@ return H
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXcd8deb58dbab4e4e86bfd0e396841f14">
+        <Item class="ModuleScript" referent="RBXde236c387ae1403ca6c865ecc76c08e9">
           <Properties>
             <string name="Name">Settings</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -2736,7 +3319,7 @@ return S
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXa15e8365d6b24da68aadb3cab9818e35">
+        <Item class="ModuleScript" referent="RBX633aa20332c84ab2bf90b8b8d42738d9">
           <Properties>
             <string name="Name">PetCatalog</string>
             <ProtectedString name="Source">local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
@@ -3146,7 +3729,7 @@ return Catalog
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="ModuleScript" referent="RBXa0a0e75a5aa84c89b795910c894f594b">
+        <Item class="ModuleScript" referent="RBX2f61bb6e19484eee8138a0b43ae47cbc">
           <Properties>
             <string name="Name">Presentation</string>
             <ProtectedString name="Source">local Tween=game:GetService("TweenService")
@@ -3259,7 +3842,7 @@ return Presentation
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBX53330c6c98e4478ca377e4dd75bffb11">
+        <Item class="LocalScript" referent="RBX4bbe7aa1dab3442394ad982517ad8e93">
           <Properties>
             <string name="Name">Controller</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -3447,7 +4030,7 @@ end)
 </ProtectedString>
           </Properties>
         </Item>
-        <Item class="LocalScript" referent="RBXf0d61de4fade40528b46f3cedd9b41fb">
+        <Item class="LocalScript" referent="RBX0b1ecffff8924a6d88ec781c4e1f9cb4">
           <Properties>
             <string name="Name">WorldSigns</string>
             <ProtectedString name="Source">local Players=game:GetService("Players")
@@ -3524,7 +4107,7 @@ end
       </Item>
     </Item>
   </Item>
-  <Item class="StarterGui" referent="RBX2f0863ab21cc484ea026996ddea22c3a">
+  <Item class="StarterGui" referent="RBXa0ecf776129e44e199b4eae7a92fb214">
     <Properties>
       <string name="Name">StarterGui</string>
     </Properties>

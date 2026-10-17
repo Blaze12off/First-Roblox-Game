@@ -13,6 +13,7 @@ local World=require(script.Parent.World)
 local Telemetry=require(script.Parent.Telemetry)
 local Pets=require(script.Parent.Pets)
 local PetVisuals=require(script.Parent.PetVisuals)
+local TowerProgress=require(script.Parent.TowerProgress)
 local Runtime={sessions={},started=false}
 local number=require(game.ReplicatedStorage.SimulatorShared.NumberFormat).Compact
 local dataService,remotes,map,mode
@@ -214,6 +215,7 @@ function Runtime.Start()
     end
     dataService=PlayerData.new(store,{offline=mode=="sandbox"})
     map=World.Build(); remotes=Network.Create()
+    TowerProgress.Start(map,function(player) return dataService:Get(player.UserId) end,notice)
     remotes.Action.OnServerEvent:Connect(function(player,action,...) Runtime.Dispatch(player,action,...) end)
     for id in pairs(C.Stations) do
         map[id].TrainPrompt.Triggered:Connect(function(player) Runtime.Dispatch(player,"Train",id) end)

@@ -72,9 +72,12 @@ $null = Add-Script $shared 'ModuleScript' 'Config' 'src\shared\Config.lua'
 $null = Add-Script $shared 'ModuleScript' 'NumberFormat' 'src\shared\NumberFormat.lua'
 $null = Add-Script $shared 'ModuleScript' 'TextStyle' 'src\shared\TextStyle.lua'
 $null = Add-Script $shared 'ModuleScript' 'ModelFactory' 'src\shared\ModelFactory.lua'
+$null = Add-Script $shared 'ModuleScript' 'PetConcepts' 'src\shared\PetConcepts.lua'
+$null = Add-Script $shared 'ModuleScript' 'PetSculpt' 'src\shared\PetSculpt.lua'
+$null = Add-Script $shared 'ModuleScript' 'TowerLayout' 'src\shared\TowerLayout.lua'
 $server = Add-Item $root 'ServerScriptService' 'ServerScriptService'
 $modules = Add-Item $server 'Folder' 'Simulator'
-foreach ($name in @('Schema','PlayerData','Progression','Rebirth','Rewards','Pets','PetVisuals','Security','LeaderboardTemplate','World','Network','Telemetry','Runtime')) {
+foreach ($name in @('Schema','PlayerData','Progression','Rebirth','Rewards','Pets','PetVisuals','Security','LeaderboardTemplate','WorldArt','TowerWorld','TowerProgress','PetGallery','World','Network','Telemetry','Runtime')) {
     $null = Add-Script $modules 'ModuleScript' $name "src\server\$name.lua"
 }
 $null = Add-Script $modules 'Script' 'Bootstrap' 'src\server\Bootstrap.server.lua'

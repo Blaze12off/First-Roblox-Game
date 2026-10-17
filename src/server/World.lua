@@ -3,6 +3,10 @@ local C=require(game.ReplicatedStorage.SimulatorShared.Config)
 local TextStyle=require(game.ReplicatedStorage.SimulatorShared.TextStyle)
 local LeaderboardTemplate=require(script.Parent.LeaderboardTemplate)
 local ModelFactory=require(game.ReplicatedStorage.SimulatorShared.ModelFactory)
+local TowerWorld=require(script.Parent.TowerWorld)
+local Layout=require(game.ReplicatedStorage.SimulatorShared.TowerLayout)
+local A=require(script.Parent.WorldArt)
+local Gallery=require(script.Parent.PetGallery)
 local World={}
 local builtMap
 local function part(parent,name,size,position,color)
@@ -33,14 +37,15 @@ function World.Build()
     -- Editor preview is recreated from this module at Play; balance/layout source stays authoritative.
     if existing then existing:Destroy() end
     local map=Instance.new("Folder"); map.Name="SimulatorWorld"; map.Parent=workspace
-    part(map,"Ground",Vector3.new(100,2,80),Vector3.new(4,-1,0),Color3.fromRGB(30,40,62))
+    part(map,"Ground",Vector3.new(100,2,80),Vector3.new(4,-1,0),Color3.fromRGB(111,157,133))
     part(map,"StartingPlaza",Vector3.new(32,0.2,26),Vector3.new(-12,0.1,0),Color3.fromRGB(47,72,88))
     part(map,"AdvancedPlaza",Vector3.new(28,0.2,26),Vector3.new(24,0.1,0),Color3.fromRGB(67,49,96))
     -- Join x=4..10 exactly: no overlap with either plaza, and a 0.05 stud step below them.
     part(map,"Path",Vector3.new(6,0.2,7),Vector3.new(7,0.05,0),Color3.fromRGB(100,109,134))
     for zone=2,#C.Zones do
         local info=C.Zones[zone]; local x=(zone-1)*120
-        part(map,"GroundZ"..zone,Vector3.new(100,2,80),Vector3.new(x+4,-1,0),Color3.fromRGB(30,40,62))
+        local groundColors={Color3.fromRGB(111,157,133),Color3.fromRGB(92,138,106),Color3.fromRGB(183,216,231),Color3.fromRGB(81,69,83),Color3.fromRGB(185,195,221)}
+        part(map,"GroundZ"..zone,Vector3.new(100,2,80),Vector3.new(x+4,-1,0),groundColors[zone])
         part(map,"PlazaZ"..zone,Vector3.new(32,.2,26),Vector3.new(x-12,.1,0),Color3.fromRGB(table.unpack(info.Color)):Lerp(Color3.fromRGB(25,35,55),.65))
         sign(map,"ZoneTitle"..zone,Vector3.new(x-16,8,-15),"УРОВЕНЬ "..zone.." · "..info.Name,Color3.fromRGB(table.unpack(info.Color)))
     end
@@ -55,7 +60,8 @@ function World.Build()
         sign(map,name.."Label",pos+Vector3.new(0,8,0),"УРОВЕНЬ "..target.." · "..info.Name..(returning and "\nНазад · E" or "\n"..number(info.XP).." опыта · "..number(info.Cost).." монет · E"),color)
     end
     for zone=2,#C.Zones do
-        gate("ZoneGate"..zone,zone,Vector3.new((zone-2)*120+40,.45,12),false)
+        local summit=Layout.Build(zone-1)
+        gate("ZoneGate"..zone,zone,Vector3.new(summit.X,summit.SummitY+.45,summit.Z+4),false)
         gate("ZoneReturn"..zone,zone-1,Vector3.new((zone-1)*120-31,.45,24),true)
     end
     for id, info in pairs(C.Stations) do
@@ -85,13 +91,41 @@ function World.Build()
         sign(map,id.."EggSign",info.Position+Vector3.new(0,6,0),info.Name.."\n"..number(info.Cost).." монет • нажми E",color)
     end
     sign(map,"Milestone",Vector3.new(24,7,-13),"НАГРАДЫ ЗА ПРОГРЕСС\n1 Rebirth: аура • 10 Rebirth: неоновый след",Color3.fromRGB(120,223,255))
-    for _, z in {-37,37} do
+    TowerWorld.Build(map)
+    Gallery.Build(map)
+    for _, z in {37} do
         part(map,"Border"..z,Vector3.new(94,3,1),Vector3.new(4,1.5,z),Color3.fromRGB(52,67,93))
     end
-    for _, x in {-43,51} do
+    -- Open west edge for the atelier and north edge for the tower approach.
+    for _, x in {51} do
         part(map,"Border"..x,Vector3.new(1,3,74),Vector3.new(x,1.5,0),Color3.fromRGB(52,67,93))
     end
-    LeaderboardTemplate.Build(map)
+    for zone,info in C.Zones do
+        local x=(zone-1)*120; local color=Color3.fromRGB(table.unpack(info.Color))
+        for _,side in {-1,1} do
+            if zone==2 or zone==1 then A.Tree(map,Vector3.new(x+side*32,0,-25),color,zone==2 and 1.5 or 1)
+            elseif zone==3 then
+                A.Part(map,"IceGarden",Vector3.new(5,8,5),Vector3.new(x+side*32,3,-25),color,Enum.Material.Ice,false,CFrame.Angles(.15,.5,side*.2))
+            elseif zone==4 then
+                A.Part(map,"Basalt",Vector3.new(6,9,6),Vector3.new(x+side*32,3,-25),Color3.fromRGB(61,48,64),nil,false,CFrame.Angles(.1,.5,side*.13))
+                A.Ring(map,Vector3.new(x+side*32,1,-25),4,color)
+            else
+                A.Ring(map,Vector3.new(x+side*32,4,-25),4,color)
+                A.Part(map,"FloatingStar",Vector3.new(2,3,2),Vector3.new(x+side*32,5,-25),color,Enum.Material.Neon,false,CFrame.Angles(.4,.4,.4))
+            end
+        end
+        -- Decorative paving stays below the gameplay floor, preventing coplanar flashing.
+        A.Part(map,"EggWalk"..zone,Vector3.new(8,.12,26),Vector3.new(x-31,.06,-3),color:Lerp(Color3.fromRGB(40,54,72),.7),nil,true)
+        A.Label(map,Vector3.new(x-16,3,23),Vector3.new(19,3,.3),"ПРЫГАЙ → ПОДНИМИСЬ НА БАШНЮ\nПортал следующей зоны — на вершине",color)
+    end
+    local lighting=game:GetService("Lighting")
+    lighting.ClockTime=13.5; lighting.Brightness=2; lighting.Ambient=Color3.fromRGB(112,123,145)
+    lighting.OutdoorAmbient=Color3.fromRGB(146,158,177)
+    local bloom=lighting:FindFirstChild("SimulatorBloom") or Instance.new("BloomEffect")
+    bloom.Name="SimulatorBloom"; bloom.Intensity=.12; bloom.Size=18; bloom.Threshold=1.8; bloom.Parent=lighting
+    local board=LeaderboardTemplate.Build(map)
+    local pivot=board:GetPivot()
+    board:PivotTo(CFrame.new(4,pivot.Position.Y,31)*CFrame.Angles(0,math.pi,0))
     builtMap=map
     return map
 end
