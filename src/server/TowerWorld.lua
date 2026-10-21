@@ -23,7 +23,7 @@ function T.Build(map)
         local recall=A.Part(map,"TowerRecall"..zone,V(4,.5,4),V(layout.X-29,.25,-48),color,nil,true)
         recall:SetAttribute("RecallZone",zone); prompt(recall,"RecallPrompt","Вернуться к отметке","Башня · точка отдыха")
         A.Label(folder,recall.Position+V(0,2.7,0),V(5,2.6,.3),"ВОЗВРАТ · E\nОтметки: каждые 8 ступеней",color)
-        -- Collidable central structure never overlaps the jumping ledges.
+        -- Collidable central structure stays clear of the continuous stair flights.
         local coreColors={rgb(182,186,154),rgb(105,76,64),rgb(151,191,215),rgb(53,44,54),rgb(188,193,221)}
         local coreColor=coreColors[zone]
         A.Column(folder,"Core",origin,layout.SummitY-1,21,21,coreColor,nil,true)
@@ -33,21 +33,25 @@ function T.Build(map)
             end
         end
         for _,stage in layout.Stages do
-            local pos=V(stage.X,stage.Y-.4,stage.Z)
-            local pad=A.Part(folder,"Step"..stage.Index,V(Layout.PlatformSize,.8,Layout.PlatformSize),pos,
+            local pos=V(stage.X,stage.Y-stage.Height/2,stage.Z)
+            -- Solid risers fill the old vertical air gaps; neighboring treads share an edge.
+            local pad=A.Part(folder,"Step"..stage.Index,V(Layout.PlatformSize,stage.Height,Layout.PlatformSize),pos,
                 stage.Checkpoint and color or color:Lerp(stone,.48+(stage.Index%2)*.13),nil,true)
             pad:SetAttribute("TowerZone",zone); pad:SetAttribute("TowerStep",stage.Index)
-            A.Part(folder,"StepEdge",V(7,.06,.13),pos+V(0,.43,-4.05),stage.Checkpoint and gold or color,Enum.Material.Neon)
-            A.Label(folder,pos+V(0,.45,0),V(7,.02,5),tostring(stage.Index)..(stage.Checkpoint and "  ◆" or "").."\n↑ "..string.format("%.1f",stage.Rise),stage.Checkpoint and gold or rgb(230,243,255),Enum.NormalId.Top)
-            A.Part(folder,"StepSupport",V(2,.6,2),pos-V(0,.7,0),stone,nil,false,CFrame.Angles(0,math.pi/4,0))
+            local surface=V(stage.X,stage.Y,stage.Z)
+            A.Part(folder,"StepEdge",V(7,.06,.13),surface+V(0,.03,-4.3),stage.Checkpoint and gold or color,Enum.Material.Neon)
+            A.Label(folder,surface+V(0,.05,0),V(7,.02,5),tostring(stage.Index)..(stage.Checkpoint and "  ◆" or "").."\n↑ "..string.format("%.1f",stage.Rise),stage.Checkpoint and gold or rgb(230,243,255),Enum.NormalId.Top)
+            local dx,dz=stage.X-layout.X,stage.Z-layout.Z
+            A.Beam(folder,"StairStringer",V(layout.X+math.clamp(dx,-10.5,10.5),stage.Bottom+.2,layout.Z+math.clamp(dz,-10.5,10.5)),
+                V(stage.X,stage.Bottom+.2,stage.Z),.35,stone)
             if stage.Checkpoint then
-                A.Beam(folder,"RestFlagPole",pos+V(3.8,.4,3.8),pos+V(3.8,5,3.8),.13,gold)
-                A.Part(folder,"RestFlag",V(1.6,1,.12),pos+V(3.1,4.4,3.8),color)
+                A.Beam(folder,"RestFlagPole",surface+V(3.8,0,3.8),surface+V(3.8,4.6,3.8),.13,gold)
+                A.Part(folder,"RestFlag",V(1.6,1,.12),surface+V(3.1,4,3.8),color)
             end
         end
-        local summit=A.Part(folder,"Summit",V(42,1,42),origin+V(0,layout.SummitY-.5,0),color:Lerp(stone,.45),nil,true)
+        local summit=A.Part(folder,"Summit",V(layout.DeckWidth,1,layout.DeckDepth),V(layout.DeckX,layout.SummitY-.5,layout.Z),color:Lerp(stone,.45),nil,true)
         summit:SetAttribute("TowerZone",zone); summit:SetAttribute("TowerStep",33)
-        for _,s in {-1,1} do
+        for _,s in {1} do
             -- Open front/back, low rails only on the far left/right edges.
             A.Part(folder,"CrownRail",V(.4,2,38),origin+V(s*20.6,layout.SummitY+1,0),gold)
         end
@@ -58,7 +62,7 @@ function T.Build(map)
         statue:ScaleTo(zone==5 and 2.6 or 2)
         statue:PivotTo(CFrame.new(origin+V(0,layout.SummitY+4,-7))*CFrame.Angles(0,math.pi,0))
         A.Part(folder,"MascotPedestal",V(7,2,7),origin+V(0,layout.SummitY+1,-7),stone,nil,true)
-        local down=A.Part(map,"TowerDown"..zone,V(4,.5,4),origin+V(-16,layout.SummitY+.25,14),color,nil,true)
+        local down=A.Part(map,"TowerDown"..zone,V(4,.5,4),origin+V(15,layout.SummitY+.25,14),color,nil,true)
         down:SetAttribute("TowerDownZone",zone); prompt(down,"DownPrompt","Вниз","Вернуться к яйцам")
         A.Label(folder,down.Position+V(0,2.4,0),V(5,1.5,.25),"К ЯЙЦАМ · E",color)
         -- Four rings frame the vertical scale; biome details keep each tower recognizable.

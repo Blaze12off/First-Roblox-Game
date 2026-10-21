@@ -39,4 +39,18 @@ local deadline=os.clock()+12
 repeat task.wait(.1) until p:GetAttribute("TowerStep")==3 or os.clock()>deadline
 assert(p:GetAttribute("TowerStep")==3,"Actual client climb reaches step 3 on server")
 print("TOWER_TRAVERSE_SERVER_PASS actual_jumps steps_1_2_3")
+task.wait(1)
+local last=L.Build(1).Stages[L.Steps]
+settle(Vector3.new(last.X,last.Y+3,last.Z))
+p:SetAttribute("StairExitReady",true)
+local params=RaycastParams.new(); params.FilterType=Enum.RaycastFilterType.Exclude; params.FilterDescendantsInstances={p.Character}
+local onDeck=false; deadline=os.clock()+8
+repeat
+    task.wait(.1)
+    local hit=workspace:Raycast(p.Character.HumanoidRootPart.Position,Vector3.new(0,-6,0),params)
+    onDeck=hit and hit.Instance.Name=="Summit"
+until onDeck or os.clock()>deadline
+assert(onDeck,"Walk from the last step onto the deck")
+print("STAIR_EXIT_SERVER_PASS walk_on_continuous_deck")
+task.wait(.8)
 p:SetAttribute("ArtQAComplete",true)

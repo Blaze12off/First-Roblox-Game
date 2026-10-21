@@ -23,3 +23,19 @@ for index=2,3 do
 end
 run:UnbindFromRenderStep("TowerTraverseQA")
 print("TOWER_TRAVERSE_CLIENT_PASS Humanoid_Move Jumping actual_landings")
+repeat task.wait(.1) until player:GetAttribute("StairExitReady")
+local last=Layout.Build(1).Stages[Layout.Steps]
+local goal=Vector3.new(last.X+9,0,last.Z)
+direction=(goal-Vector3.new(root.Position.X,0,root.Position.Z)).Unit
+run:BindToRenderStep("StairExitQA",Enum.RenderPriority.Character.Value+1,function() human:Move(direction,false) end)
+local deadline=os.clock()+5
+repeat
+    task.wait(.025)
+    local delta=goal-Vector3.new(root.Position.X,0,root.Position.Z)
+    direction=delta.Magnitude<.5 and Vector3.zero or delta.Unit
+until (goal-Vector3.new(root.Position.X,0,root.Position.Z)).Magnitude<.6 or os.clock()>deadline
+direction=Vector3.zero; run:UnbindFromRenderStep("StairExitQA"); task.wait(.3)
+local params=RaycastParams.new(); params.FilterType=Enum.RaycastFilterType.Exclude; params.FilterDescendantsInstances={player.Character}
+local hit=workspace:Raycast(root.Position,Vector3.new(0,-6,0),params)
+assert(hit and hit.Instance.Name=="Summit","Continuous deck exit without a jump")
+print("STAIR_EXIT_CLIENT_PASS no_jump no_gap")

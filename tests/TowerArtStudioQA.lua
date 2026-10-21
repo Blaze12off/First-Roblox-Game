@@ -43,7 +43,19 @@ function Q.Run()
             local part=tower:FindFirstChild("Step"..i); assert(part and part.CanCollide and part.CanQuery)
             assert(part:GetAttribute("TowerZone")==zone and part:GetAttribute("TowerStep")==i)
             assert(math.abs(part.Position.Y+part.Size.Y/2-stage.Y)<.001); platforms+=1
+            assert(math.abs(part.Size.Y-stage.Height)<.002 and math.abs(part.Size.X-9)<.001,"Solid stair block")
+            if i>1 then
+                local previous=tower["Step"..(i-1)]
+                local dx,dz=math.abs(part.Position.X-previous.Position.X),math.abs(part.Position.Z-previous.Position.Z)
+                assert((math.abs(dx-9)<.001 and dz<.001) or (math.abs(dz-9)<.001 and dx<.001),"Tread faces touch")
+                assert(part.Position.Y-part.Size.Y/2<previous.Position.Y+previous.Size.Y/2,"Riser closes the vertical gap")
+            end
         end
+        local final=tower["Step"..Layout.Steps]; local deck=tower.Summit
+        assert(math.abs(final.Position.Y+final.Size.Y/2-deck.Position.Y-deck.Size.Y/2)<.002,"Flush summit")
+        assert(math.abs(final.Position.X+final.Size.X/2-deck.Position.X+deck.Size.X/2)<.002,"Summit shares stair edge")
+        local params=RaycastParams.new(); params.FilterType=Enum.RaycastFilterType.Include; params.FilterDescendantsInstances={deck}
+        assert(not workspace:Raycast(Vector3.new(final.Position.X,layout.SummitY+2,final.Position.Z),Vector3.new(0,8,0),params),"Stairwell is not capped by the deck")
         if zone<5 then assert(math.abs(map["ZoneGate"..(zone+1)].Position.Y-layout.SummitY-.45)<.001) end
     end
     local exhibits=0
